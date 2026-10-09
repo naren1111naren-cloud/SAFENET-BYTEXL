@@ -165,7 +165,7 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
   return (
     <div className="space-y-6">
       {/* Upload & Dropzone Area */}
-      <div className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-xs">
+      <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-6 sm:p-7 shadow-xs">
         <div className="flex flex-col md:flex-row gap-6 items-center">
           {/* Dropzone */}
           <div
@@ -175,8 +175,8 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
             onClick={() => fileInputRef.current?.click()}
             className={`flex-1 w-full border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all duration-200 flex flex-col items-center justify-center min-h-[190px] ${
               isDragging
-                ? 'border-blue-500 bg-blue-50/50'
-                : 'border-slate-200 hover:border-blue-400 bg-slate-50/70 hover:bg-slate-50'
+                ? 'border-blue-500 bg-[#121821]/50'
+                : 'border-[#303946] hover:border-blue-400 bg-slate-50/70 hover:bg-[#19222D]'
             }`}
           >
             <input
@@ -191,22 +191,22 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
               }}
             />
 
-            <div className="p-3 bg-blue-50 border border-blue-100 rounded-full text-blue-600 mb-3 shadow-xs">
+            <div className="p-3 bg-[#121821] border border-blue-100 rounded-full text-[#35D0BA] font-bold mb-3 shadow-xs">
               <UploadCloud className="w-6 h-6" />
             </div>
 
-            <p className="text-sm font-semibold text-slate-900 mb-1">
-              Drag & drop brand artwork or <span className="text-blue-600 hover:underline">browse file</span>
+            <p className="text-sm font-semibold text-[#FFFFFF] font-bold mb-1">
+              Drag & drop brand artwork or <span className="text-[#35D0BA] font-bold hover:underline">browse file</span>
             </p>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-[#D0D7E0] font-bold">
               Supports PNG, JPG, WebP • Max 4 MB • Strips EXIF metadata automatically
             </p>
           </div>
 
           {/* Preview & Action Panel */}
           {selectedFile && previewUrl && (
-            <div className="w-full md:w-80 bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col items-center text-center">
-              <div className="relative w-28 h-28 bg-white border border-slate-200 rounded-lg overflow-hidden flex items-center justify-center p-2 mb-3 shadow-xs">
+            <div className="w-full md:w-80 bg-slate-50 border border-[#303946] rounded-xl p-4 flex flex-col items-center text-center">
+              <div className="relative w-28 h-28 bg-[#0D1118] border border-[#303946] rounded-lg overflow-hidden flex items-center justify-center p-2 mb-3 shadow-xs">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={previewUrl}
@@ -215,10 +215,10 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                 />
               </div>
 
-              <span className="font-mono text-xs text-slate-900 font-semibold truncate max-w-[240px] mb-1">
+              <span className="font-mono text-xs text-[#FFFFFF] font-bold font-semibold truncate max-w-[240px] mb-1">
                 {selectedFile.name}
               </span>
-              <span className="text-[11px] text-slate-500 mb-4">
+              <span className="text-[11px] text-[#D0D7E0] font-bold mb-4">
                 {(selectedFile.size / 1024).toFixed(1)} KB • {selectedFile.type.split('/')[1]?.toUpperCase()}
               </span>
 
@@ -255,13 +255,13 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
 
       {/* Progress Stages */}
       {analyzing && (
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xs">
+        <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-6 shadow-xs">
           <div className="flex items-center justify-between mb-4">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-600 flex items-center gap-2">
-              <RefreshCw className="w-4 h-4 text-blue-600 animate-spin" />
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#D0D7E0] font-bold flex items-center gap-2">
+              <RefreshCw className="w-4 h-4 text-[#35D0BA] font-bold animate-spin" />
               Perceptual Intelligence & Reverse Search Pipeline
             </h4>
-            <span className="text-xs font-mono font-bold text-blue-600">
+            <span className="text-xs font-mono font-bold text-[#35D0BA] font-bold">
               Step {currentStageIndex + 1} of {scanStages.length}
             </span>
           </div>
@@ -284,16 +284,16 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                     isDone
                       ? 'bg-emerald-50 border-emerald-200 text-emerald-800 font-medium'
                       : isCurrent
-                      ? 'bg-blue-50 border-blue-300 text-blue-700 font-bold shadow-xs'
-                      : 'bg-slate-50 border-slate-200 text-slate-400'
+                      ? 'bg-[#121821] border-blue-300 text-[#35D0BA] font-bold font-bold shadow-xs'
+                      : 'bg-slate-50 border-[#303946] text-[#8F9CAE] font-bold'
                   }`}
                 >
                   {isDone ? (
                     <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
                   ) : isCurrent ? (
-                    <RefreshCw className="w-4 h-4 text-blue-600 animate-spin shrink-0" />
+                    <RefreshCw className="w-4 h-4 text-[#35D0BA] font-bold animate-spin shrink-0" />
                   ) : (
-                    <Clock className="w-4 h-4 text-slate-400 shrink-0" />
+                    <Clock className="w-4 h-4 text-[#8F9CAE] font-bold shrink-0" />
                   )}
                   <span className="leading-snug">{stage}</span>
                 </div>
@@ -309,9 +309,9 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
           {/* Summary & Gemini Insights Header */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Vision Insight Box */}
-            <div className="md:col-span-2 bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs">
+            <div className="md:col-span-2 bg-[#0D1118] border border-[#303946] rounded-2xl p-5 shadow-xs">
               <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-blue-600">
+                <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#35D0BA] font-bold">
                   <Sparkles className="w-4 h-4" />
                   Gemini Vision Typography & Feature Extraction
                 </div>
@@ -320,36 +320,36 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                     Live Vision OCR
                   </span>
                 ) : (
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 text-slate-600 border border-slate-200">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 text-[#D0D7E0] font-bold border border-[#303946]">
                     Not Configured
                   </span>
                 )}
               </div>
 
               {report.geminiVision.status === 'SUCCESS' ? (
-                <div className="space-y-2 text-xs text-slate-600">
+                <div className="space-y-2 text-xs text-[#D0D7E0] font-bold">
                   {report.geminiVision.extractedText && (
                     <div className="flex items-start gap-2">
-                      <span className="font-mono text-slate-900 font-semibold shrink-0">Extracted Text:</span>
-                      <span className="font-mono px-2 py-0.5 rounded bg-slate-100 text-blue-700 font-bold">
+                      <span className="font-mono text-[#FFFFFF] font-bold font-semibold shrink-0">Extracted Text:</span>
+                      <span className="font-mono px-2 py-0.5 rounded bg-slate-100 text-[#35D0BA] font-bold font-bold">
                         &quot;{report.geminiVision.extractedText}&quot;
                       </span>
                     </div>
                   )}
                   {report.geminiVision.visualDescription && (
                     <p className="leading-relaxed">
-                      <span className="font-semibold text-slate-900">Visual Elements: </span>
+                      <span className="font-semibold text-[#FFFFFF] font-bold">Visual Elements: </span>
                       {report.geminiVision.visualDescription}
                     </p>
                   )}
                   {report.geminiVision.detectedColors.length > 0 && (
                     <div className="flex items-center gap-2 pt-1">
-                      <span className="font-semibold text-slate-900">Dominant Colors:</span>
+                      <span className="font-semibold text-[#FFFFFF] font-bold">Dominant Colors:</span>
                       <div className="flex gap-1.5">
                         {report.geminiVision.detectedColors.map((color) => (
                           <span
                             key={color}
-                            className="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 text-slate-700 border border-slate-200"
+                            className="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 text-[#D0D7E0] font-bold border border-[#303946]"
                           >
                             {color}
                           </span>
@@ -359,20 +359,20 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                   )}
                 </div>
               ) : (
-                <p className="text-xs text-slate-500 leading-relaxed">
+                <p className="text-xs text-[#D0D7E0] font-bold leading-relaxed">
                   {report.geminiVision.explanation}
                 </p>
               )}
             </div>
 
             {/* Provider Status & SHA-256 Info */}
-            <div className="bg-white border border-slate-200/90 rounded-2xl p-5 flex flex-col justify-between shadow-xs">
+            <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-5 flex flex-col justify-between shadow-xs">
               <div>
-                <span className="text-[10px] font-mono uppercase text-slate-400 block mb-1">
+                <span className="text-[10px] font-mono uppercase text-[#8F9CAE] font-bold block mb-1">
                   Reverse Image Provider
                 </span>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-bold text-slate-900">
+                  <span className="text-xs font-bold text-[#FFFFFF] font-bold">
                     {report.providerStatus.provider === 'serpapi_google_lens' ? 'Google Lens (SerpAPI)' : 'Provider Engine'}
                   </span>
                   <span
@@ -386,13 +386,13 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                   </span>
                 </div>
                 {report.providerStatus.message && (
-                  <p className="text-[11px] text-slate-500 leading-tight mb-2">
+                  <p className="text-[11px] text-[#D0D7E0] font-bold leading-tight mb-2">
                     {report.providerStatus.message}
                   </p>
                 )}
               </div>
 
-              <div className="pt-2 border-t border-slate-100 text-[10px] font-mono text-slate-400 flex items-center justify-between">
+              <div className="pt-2 border-t border-slate-100 text-[10px] font-mono text-[#8F9CAE] font-bold flex items-center justify-between">
                 <span>SHA-256: {report.imageHash.slice(0, 10)}...</span>
                 <span>{report.durationMs}ms</span>
               </div>
@@ -401,10 +401,10 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
 
           {/* Candidates Header */}
           <div className="flex items-center justify-between pt-2">
-            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-              <Eye className="w-4 h-4 text-blue-600" />
+            <h3 className="text-sm font-bold text-[#FFFFFF] font-bold flex items-center gap-2">
+              <Eye className="w-4 h-4 text-[#35D0BA] font-bold" />
               Reverse Image Matches & Trademark Lookalike Analysis
-              <span className="text-xs font-mono font-normal text-slate-500">
+              <span className="text-xs font-mono font-normal text-[#D0D7E0] font-bold">
                 ({report.summary.totalCandidates} candidates indexed)
               </span>
             </h3>
@@ -416,7 +416,7 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
               <span className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-rose-50 text-rose-700 border border-rose-200 font-bold">
                 {report.summary.lookalikeCount} Lookalikes
               </span>
-              <span className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-100 text-slate-600 border border-slate-200 font-bold">
+              <span className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-slate-100 text-[#D0D7E0] font-bold border border-[#303946] font-bold">
                 {report.summary.unknownCount} Unknown
               </span>
             </div>
@@ -431,12 +431,12 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                 return (
                   <div
                     key={cand.id}
-                    className={`bg-white border rounded-2xl p-5 shadow-xs flex flex-col justify-between transition-all hover:border-slate-300 ${
+                    className={`bg-[#0D1118] border rounded-2xl p-5 shadow-xs flex flex-col justify-between transition-all hover:border-slate-300 ${
                       cand.classification === 'OFFICIAL'
                         ? 'border-emerald-200 hover:border-emerald-300'
                         : cand.classification === 'POSSIBLE_LOOKALIKE'
                         ? 'border-rose-200 hover:border-rose-300 bg-rose-50/20'
-                        : 'border-slate-200'
+                        : 'border-[#303946]'
                     }`}
                   >
                     <div>
@@ -444,7 +444,7 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                       <div className="flex items-start justify-between gap-3 mb-3">
                         <div className="flex items-center gap-3">
                           {/* Candidate Thumbnail */}
-                          <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 overflow-hidden flex items-center justify-center shrink-0 p-1">
+                          <div className="w-12 h-12 rounded-xl bg-slate-50 border border-[#303946] overflow-hidden flex items-center justify-center shrink-0 p-1">
                             {cand.thumbnailUrl ? (
                               // eslint-disable-next-line @next/next/no-img-element
                               <img
@@ -456,22 +456,22 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                                 }}
                               />
                             ) : (
-                              <ImageIcon className="w-5 h-5 text-slate-400" />
+                              <ImageIcon className="w-5 h-5 text-[#8F9CAE] font-bold" />
                             )}
                           </div>
 
                           <div>
-                            <h4 className="text-xs font-bold text-slate-900 leading-snug line-clamp-1">
+                            <h4 className="text-xs font-bold text-[#FFFFFF] font-bold leading-snug line-clamp-1">
                               {cand.name || cand.title || cand.domain}
                             </h4>
-                            <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                              <span className="font-mono text-blue-600 font-semibold">{cand.domain}</span>
+                            <div className="flex items-center gap-1.5 text-xs text-[#D0D7E0] font-bold">
+                              <span className="font-mono text-[#35D0BA] font-bold font-semibold">{cand.domain}</span>
                               {cand.sourceUrl && (
                                 <a
                                   href={cand.sourceUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-slate-400 hover:text-slate-700 transition-colors"
+                                  className="text-[#8F9CAE] font-bold hover:text-[#D0D7E0] font-bold transition-colors"
                                 >
                                   <ExternalLink className="w-3 h-3" />
                                 </a>
@@ -494,7 +494,7 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                           </span>
                         )}
                         {cand.classification === 'UNKNOWN' && (
-                          <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-slate-100 text-slate-600 border border-slate-200 flex items-center gap-1 shrink-0">
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-slate-100 text-[#D0D7E0] font-bold border border-[#303946] flex items-center gap-1 shrink-0">
                             <HelpCircle className="w-3 h-3" />
                             Unknown
                           </span>
@@ -504,8 +504,8 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                       {/* Similarity & Risk Progress Bar */}
                       <div className="space-y-1.5 mb-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
                         <div className="flex items-center justify-between text-xs">
-                          <span className="text-slate-600 font-medium">Visual Perceptual Similarity:</span>
-                          <span className="font-mono font-bold text-slate-900">
+                          <span className="text-[#D0D7E0] font-bold font-medium">Visual Perceptual Similarity:</span>
+                          <span className="font-mono font-bold text-[#FFFFFF] font-bold">
                             {cand.similarityScore}%
                           </span>
                         </div>
@@ -523,7 +523,7 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                         </div>
 
                         {cand.similarityMetrics && (
-                          <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 pt-1">
+                          <div className="flex items-center justify-between text-[10px] font-mono text-[#8F9CAE] font-bold pt-1">
                             <span>dHash Dist: {cand.similarityMetrics.dHashDistance}/64</span>
                             <span>Color Match: {(cand.similarityMetrics.colorSimilarity * 100).toFixed(0)}%</span>
                           </div>
@@ -533,8 +533,8 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
                       {/* Signals & Evidence Reasons */}
                       <div className="space-y-1 mb-4">
                         {cand.reasons.map((reason, idx) => (
-                          <div key={idx} className="flex items-start gap-1.5 text-[11px] text-slate-600">
-                            <span className="text-blue-600 mt-0.5 font-bold">•</span>
+                          <div key={idx} className="flex items-start gap-1.5 text-[11px] text-[#D0D7E0] font-bold">
+                            <span className="text-[#35D0BA] font-bold mt-0.5 font-bold">•</span>
                             <span className="leading-tight">{reason}</span>
                           </div>
                         ))}
@@ -543,7 +543,7 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
 
                     {/* Card Actions */}
                     <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-                      <span className="text-xs font-mono font-semibold text-slate-600">
+                      <span className="text-xs font-mono font-semibold text-[#D0D7E0] font-bold">
                         Risk Score:{' '}
                         <span
                           className={
@@ -588,9 +588,9 @@ export default function LogoCheckWorkbench({ onPromoteIncident }: LogoCheckWorkb
               })}
             </div>
           ) : (
-            <div className="bg-white border border-slate-200/90 rounded-2xl p-8 text-center text-slate-500 shadow-xs">
-              <FileCheck className="w-8 h-8 text-slate-400 mx-auto mb-2" />
-              <p className="text-sm font-semibold text-slate-900 mb-1">
+            <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-8 text-center text-[#D0D7E0] font-bold shadow-xs">
+              <FileCheck className="w-8 h-8 text-[#8F9CAE] font-bold mx-auto mb-2" />
+              <p className="text-sm font-semibold text-[#FFFFFF] font-bold mb-1">
                 No active lookalikes or reverse image matches found
               </p>
               <p className="text-xs">

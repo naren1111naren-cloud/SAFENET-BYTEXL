@@ -11,8 +11,8 @@ export default function MonitoringPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-[#0A0D12] flex items-center justify-center text-[#94A3B8] font-mono text-[13px]">
-      Redirecting to Social Media & Brand Impersonation Monitoring...
+    <div className="min-h-screen bg-[#080B10] flex items-center justify-center text-[#FFFFFF] font-mono text-[18px] font-extrabold">
+      Redirecting to Social Media &amp; Brand Impersonation Monitoring...
     </div>
   );
 }

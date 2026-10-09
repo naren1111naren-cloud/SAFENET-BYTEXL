@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * SAFENET Password Reset Page (Organic Monochrome)
+ * SAFENET Password Reset Page (Dark-Only Cybersecurity Theme)
  * Allows authenticated users redirected from a recovery email to set a new password.
  */
 
@@ -57,36 +57,36 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F8F6] flex items-center justify-center p-4 text-[#202723]">
-      <div className="w-full max-w-md bg-white border border-[#DDE2DC] rounded-2xl p-8 space-y-6 shadow-xs">
-        <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#E7F0E9] text-[#477A60] mb-2 border border-[#477A60]/30">
-            <ShieldCheck className="w-6 h-6" />
+    <div className="min-h-screen bg-[#080B10] flex items-center justify-center p-4 text-[#FFFFFF]">
+      <div className="w-full max-w-lg bg-[#0D1118] border border-[#303946] rounded-2xl p-8 sm:p-10 space-y-7 shadow-2xl">
+        <div className="text-center space-y-3">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#121821] text-[#35D0BA] mb-2 border border-[#303946] shadow-[0_0_20px_rgba(53,208,186,0.15)]">
+            <ShieldCheck className="w-8 h-8" />
           </div>
-          <h1 className="text-2xl font-bold text-[#202723] tracking-tight">Set New Password</h1>
-          <p className="text-xs text-[#626B65]">
+          <h1 className="text-3xl font-extrabold text-[#FFFFFF] tracking-tight">Set New Password</h1>
+          <p className="text-[17px] text-[#D0D7E0] font-bold">
             Enter your new secure password to restore access to your SAFENET account.
           </p>
         </div>
 
         {error && (
-          <div className="p-3.5 bg-[#C93643]/10 border border-[#C93643]/30 rounded-xl text-[#C93643] text-xs flex items-center gap-2 font-medium">
-            <AlertCircle className="w-4 h-4 shrink-0" />
+          <div className="p-4 bg-[#2D1216] border border-[#FF5C6C]/40 rounded-xl text-[#FF5C6C] text-[16px] flex items-center gap-2.5 font-bold">
+            <AlertCircle className="w-5 h-5 shrink-0" />
             <span>{error}</span>
           </div>
         )}
 
         {success && (
-          <div className="p-3.5 bg-[#347653]/10 border border-[#347653]/30 rounded-xl text-[#347653] text-xs flex items-center gap-2 font-medium">
-            <CheckCircle2 className="w-4 h-4 shrink-0" />
+          <div className="p-4 bg-[#0F2620] border border-[#35D0BA]/40 rounded-xl text-[#35D0BA] text-[16px] flex items-center gap-2.5 font-bold">
+            <CheckCircle2 className="w-5 h-5 shrink-0" />
             <span>Password updated successfully! Redirecting to dashboard...</span>
           </div>
         )}
 
         {!success && (
-          <form onSubmit={handleUpdatePassword} className="space-y-4">
-            <div className="space-y-1.5">
-              <label className="block text-xs font-mono uppercase text-[#858D86] font-bold">
+          <form onSubmit={handleUpdatePassword} className="space-y-5">
+            <div className="space-y-2">
+              <label className="block text-[17px] font-mono uppercase text-[#D0D7E0] font-bold">
                 New Password
               </label>
               <div className="relative">
@@ -97,20 +97,20 @@ export default function ResetPasswordPage() {
                   placeholder="At least 6 characters"
                   required
                   disabled={loading}
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] focus:border-[#477A60] rounded-xl px-4 py-2.5 text-sm text-[#202723] placeholder-[#858D86] outline-none pr-10 transition"
+                  className="w-full bg-[#121821] border border-[#303946] focus:border-[#35D0BA] rounded-xl px-4 py-3.5 text-[18px] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] outline-none pr-12 transition"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-3 text-[#858D86] hover:text-[#202723]"
+                  className="absolute right-4 top-4 text-[#D0D7E0] hover:text-[#FFFFFF]"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
             </div>
 
-            <div className="space-y-1.5">
-              <label className="block text-xs font-mono uppercase text-[#858D86] font-bold">
+            <div className="space-y-2">
+              <label className="block text-[17px] font-mono uppercase text-[#D0D7E0] font-bold">
                 Confirm Password
               </label>
               <input
@@ -120,18 +120,18 @@ export default function ResetPasswordPage() {
                 placeholder="Repeat new password"
                 required
                 disabled={loading}
-                className="w-full bg-[#F7F8F6] border border-[#DDE2DC] focus:border-[#477A60] rounded-xl px-4 py-2.5 text-sm text-[#202723] placeholder-[#858D86] outline-none transition"
+                className="w-full bg-[#121821] border border-[#303946] focus:border-[#35D0BA] rounded-xl px-4 py-3.5 text-[18px] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] outline-none transition"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-[#477A60] hover:bg-[#365F49] text-white font-bold text-sm transition flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer shadow-xs"
+              className="w-full py-4 rounded-xl bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] font-extrabold text-[19px] transition flex items-center justify-center gap-2.5 disabled:opacity-50 cursor-pointer shadow-lg"
             >
               {loading ? (
                 <>
-                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  <RefreshCw className="w-5 h-5 animate-spin" />
                   <span>Updating Password...</span>
                 </>
               ) : (

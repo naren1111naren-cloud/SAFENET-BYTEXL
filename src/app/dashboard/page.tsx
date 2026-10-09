@@ -11,7 +11,7 @@ export default function DashboardPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-[#0A0D12] flex items-center justify-center text-[#94A3B8] font-mono text-[13px]">
+    <div className="min-h-screen bg-[#080B10] flex items-center justify-center text-[#FFFFFF] font-mono text-[18px] font-extrabold">
       Loading SAFENET Risk Decision Console...
     </div>
   );

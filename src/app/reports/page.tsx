@@ -62,147 +62,147 @@ All scores and indicators derived from live network telemetry, DNS, RDAP, TLS ha
       pageTitle="Intelligence Briefings"
       pageSubtitle="Documented outcomes, longitudinal trends, and executive risk briefings."
     >
-      <div className="max-w-5xl mx-auto space-y-10 pb-16">
+      <div className="max-w-6xl mx-auto space-y-12 pb-16">
         {/* ========================================================================= */}
         {/* 1. REPORT HEADER & ACTIONS                                                */}
         {/* ========================================================================= */}
-        <section className="bg-white border border-[#DDE2DC] rounded-xl p-6 shadow-xs flex flex-col md:flex-row md:items-start justify-between gap-6">
-          <div className="space-y-2 flex-1">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#858D86] font-bold">
+        <section className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-2xl flex flex-col md:flex-row md:items-start justify-between gap-6">
+          <div className="space-y-3 flex-1">
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
                 EXECUTIVE BRIEFING
               </span>
-              <span className="text-[#DDE2DC]">/</span>
-              <span className="font-mono text-[11px] text-[#626B65]">
+              <span className="text-[#303946]">/</span>
+              <span className="font-mono text-[14px] text-[#D0D7E0] font-bold">
                 Telemetry Period: Active Session
               </span>
             </div>
 
-            <h1 className="text-[26px] sm:text-[32px] font-bold text-[#202723] leading-tight">
+            <h1 className="text-[32px] sm:text-[42px] font-extrabold text-[#FFFFFF] leading-tight">
               Digital Risk Summary: {brand?.name || 'Organization'}
             </h1>
 
-            <p className="text-[14px] text-[#626B65] max-w-2xl leading-relaxed">
+            <p className="text-[19px] text-[#D0D7E0] max-w-3xl leading-relaxed font-bold">
               Consolidated intelligence on detected impersonation operations, domain takedown notices, and proactive consumer protection advisories for {brand?.name || 'the protected organization'}.
             </p>
           </div>
 
           <button
             onClick={handleCopyReport}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#477A60] hover:bg-[#365F49] text-white text-[12px] font-mono transition rounded-lg font-bold shrink-0 shadow-xs"
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[17px] font-mono transition rounded-xl font-extrabold shrink-0 shadow-lg cursor-pointer"
           >
-            {copiedReport ? <Check className="h-3.5 w-3.5 text-white" /> : <Copy className="h-3.5 w-3.5 text-white" />}
+            {copiedReport ? <Check className="h-4 w-4 text-[#080B10]" /> : <Copy className="h-4 w-4 text-[#080B10]" />}
             {copiedReport ? 'REPORT COPIED' : 'EXPORT EXECUTIVE REPORT'}
           </button>
         </section>
 
         {/* ========================================================================= */}
-        {/* 2. KEY OUTCOMES                                                           */}
+        {/* 2. KEY OUTCOMES (Open, Non-Boxy)                                          */}
         {/* ========================================================================= */}
-        <section className="bg-white border border-[#DDE2DC] rounded-xl p-6 shadow-xs space-y-6">
-          <div className="flex items-baseline justify-between border-b border-[#DDE2DC] pb-3">
-            <div className="space-y-0.5">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#477A60] font-bold">
+        <section className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-8">
+          <div className="flex items-baseline justify-between border-b border-[#303946] pb-4">
+            <div className="space-y-1">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
                 DOCUMENTED IMPACT
               </span>
-              <h3 className="text-[20px] font-bold text-[#202723]">
+              <h3 className="text-[26px] font-extrabold text-[#FFFFFF]">
                 Key security outcomes
               </h3>
             </div>
-            <span className="font-mono text-[11px] text-[#858D86]">
+            <span className="font-mono text-[15px] text-[#D0D7E0] font-bold">
               {monitoredVectors.length} Monitored Vector Types
             </span>
           </div>
 
-          <div className="divide-y divide-[#DDE2DC]">
+          <div className="divide-y divide-[#303946]">
             {/* 01 */}
-            <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
-              <div className="md:col-span-1 font-mono text-[12px] text-[#858D86] font-bold">
+            <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
+              <div className="md:col-span-1 font-mono text-[16px] text-[#D0D7E0] font-extrabold">
                 01
               </div>
               <div className="md:col-span-4">
-                <div className="text-[15px] text-[#202723] font-bold">
+                <div className="text-[20px] text-[#FFFFFF] font-extrabold">
                   Identified threat portfolio
                 </div>
-                <div className="text-[12px] text-[#858D86] font-mono mt-0.5">
+                <div className="text-[15px] text-[#35D0BA] font-mono mt-0.5 font-bold">
                   {totalThreats} Recorded Assets
                 </div>
               </div>
-              <div className="md:col-span-5 text-[13px] text-[#626B65] leading-relaxed">
+              <div className="md:col-span-5 text-[18px] text-[#D0D7E0] leading-relaxed font-bold">
                 Active monitoring across domains, social channels, and scam vectors targeting {brand?.name || 'this brand'}. {criticalThreats} items classified as critical risk.
               </div>
-              <div className={`md:col-span-2 md:text-right font-mono text-[11px] font-bold ${criticalThreats > 0 ? 'text-[#C93643]' : 'text-[#347653]'}`}>
+              <div className={`md:col-span-2 md:text-right font-mono text-[15px] font-extrabold ${criticalThreats > 0 ? 'text-[#FF5C6C]' : 'text-[#35D0BA]'}`}>
                 {criticalThreats > 0 ? `${criticalThreats} CRITICAL` : 'NORMAL'}
               </div>
             </div>
 
             {/* 02 */}
-            <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
-              <div className="md:col-span-1 font-mono text-[12px] text-[#858D86] font-bold">
+            <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
+              <div className="md:col-span-1 font-mono text-[16px] text-[#D0D7E0] font-extrabold">
                 02
               </div>
               <div className="md:col-span-4">
-                <div className="text-[15px] text-[#202723] font-bold">
+                <div className="text-[20px] text-[#FFFFFF] font-extrabold">
                   Highest-risk triage targets
                 </div>
-                <div className="text-[12px] text-[#858D86] font-mono mt-0.5">
+                <div className="text-[15px] text-[#35D0BA] font-mono mt-0.5 font-bold">
                   {topThreats.length} Prioritized Targets
                 </div>
               </div>
-              <div className="md:col-span-5 text-[13px] text-[#626B65] leading-relaxed font-mono text-[12px]">
+              <div className="md:col-span-5 text-[17px] text-[#D0D7E0] leading-relaxed font-mono font-bold">
                 {topThreats.length > 0 ? (
                   topThreats.map((t) => (
-                    <div key={t.id} className="truncate">
-                      {t.targetAsset} (Risk: {t.riskScore}/100)
+                    <div key={t.id} className="truncate text-[#FFFFFF]">
+                      {t.targetAsset} (Risk: <span className="text-[#FF5C6C] font-extrabold">{t.riskScore}/100</span>)
                     </div>
                   ))
                 ) : (
                   <div>No critical threat records currently stored.</div>
                 )}
               </div>
-              <div className="md:col-span-2 md:text-right font-mono text-[11px] text-[#C93643] font-bold">
+              <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#FF5C6C] font-extrabold">
                 TRIAGE ACTIVE
               </div>
             </div>
 
             {/* 03 */}
-            <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
-              <div className="md:col-span-1 font-mono text-[12px] text-[#858D86] font-bold">
+            <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
+              <div className="md:col-span-1 font-mono text-[16px] text-[#D0D7E0] font-extrabold">
                 03
               </div>
               <div className="md:col-span-4">
-                <div className="text-[15px] text-[#202723] font-bold">
+                <div className="text-[20px] text-[#FFFFFF] font-extrabold">
                   Remediation &amp; takedowns
                 </div>
-                <div className="text-[12px] text-[#858D86] font-mono mt-0.5">
+                <div className="text-[15px] text-[#35D0BA] font-mono mt-0.5 font-bold">
                   {resolvedCount} Resolved Records
                 </div>
               </div>
-              <div className="md:col-span-5 text-[13px] text-[#626B65] leading-relaxed">
+              <div className="md:col-span-5 text-[18px] text-[#D0D7E0] leading-relaxed font-bold">
                 Takedown notices and registrar abuse packages generated from verifiable evidence dossiers.
               </div>
-              <div className="md:col-span-2 md:text-right font-mono text-[11px] text-[#347653] font-bold">
+              <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#35D0BA] font-extrabold">
                 {resolvedCount > 0 ? 'CONTAINED' : 'READY'}
               </div>
             </div>
 
             {/* 04 */}
-            <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
-              <div className="md:col-span-1 font-mono text-[12px] text-[#858D86] font-bold">
+            <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
+              <div className="md:col-span-1 font-mono text-[16px] text-[#D0D7E0] font-extrabold">
                 04
               </div>
               <div className="md:col-span-4">
-                <div className="text-[15px] text-[#202723] font-bold">
+                <div className="text-[20px] text-[#FFFFFF] font-extrabold">
                   Threat vector coverage
                 </div>
-                <div className="text-[12px] text-[#858D86] font-mono mt-0.5">
+                <div className="text-[15px] text-[#35D0BA] font-mono mt-0.5 font-bold">
                   Telemetry breadth
                 </div>
               </div>
-              <div className="md:col-span-5 text-[13px] text-[#626B65] leading-relaxed capitalize">
+              <div className="md:col-span-5 text-[18px] text-[#D0D7E0] leading-relaxed capitalize font-bold">
                 {monitoredVectors.length > 0 ? monitoredVectors.join(', ').replace(/_/g, ' ') : 'Domain lookahead and link scanner'}
               </div>
-              <div className="md:col-span-2 md:text-right font-mono text-[11px] text-[#347653] font-bold">
+              <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#35D0BA] font-extrabold">
                 OPERATIONAL
               </div>
             </div>

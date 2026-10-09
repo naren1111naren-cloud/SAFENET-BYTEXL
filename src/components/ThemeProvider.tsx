@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-export type Theme = 'light' | 'dark';
+export type Theme = 'dark';
 
 interface ThemeContextType {
   theme: Theme;
@@ -11,28 +11,28 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'light',
-  resolvedTheme: 'light',
+  theme: 'dark',
+  resolvedTheme: 'dark',
   setTheme: () => {},
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme] = useState<Theme>('dark');
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove('dark');
-    root.classList.add('light');
-    root.style.colorScheme = 'light';
-    root.style.backgroundColor = '#F7F8F6';
+    root.classList.remove('light');
+    root.classList.add('dark');
+    root.style.colorScheme = 'dark';
+    root.style.backgroundColor = '#080B10';
   }, []);
 
   return (
     <ThemeContext.Provider
       value={{
-        theme,
-        resolvedTheme: theme,
-        setTheme,
+        theme: 'dark',
+        resolvedTheme: 'dark',
+        setTheme: () => {},
       }}
     >
       {children}
@@ -43,3 +43,4 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 export function useTheme() {
   return useContext(ThemeContext);
 }
+

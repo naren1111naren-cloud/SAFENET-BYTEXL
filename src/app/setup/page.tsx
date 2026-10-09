@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import AppShell from '@/components/AppShell';
 import { BrandStore, PRESET_BRANDS } from '@/lib/brand-store';
-import { BrandProfile, DiscoveredBrandIdentity, DiscoveredSocialProfile, DiscoveredApplication } from '@/types/brand';
+import { BrandProfile, DiscoveredBrandIdentity } from '@/types/brand';
 
 type InvestigationState = 'IDLE' | 'INVESTIGATING' | 'DISCOVERING' | 'ANALYZING' | 'COMPLETED' | 'NO_RESULTS' | 'ERROR';
 type BrandAnalysisState =
@@ -100,261 +100,230 @@ export default function SetupPage() {
     }
   };
 
-  const getProfilePayload = (): BrandProfile => {
-    return {
-      id: `brand-${brandName.toLowerCase().replace(/[^a-z0-9]/g, '')}`,
+  const handleSave = (e: React.FormEvent) => {
+    e.preventDefault();
+    const splitDomains = officialDomains
+      .split(',')
+      .map((d) => d.trim())
+      .filter(Boolean);
+
+    const splitDevelopers = officialDevelopers
+      .split(',')
+      .map((d) => d.trim())
+      .filter(Boolean);
+
+    const splitSupport = supportChannels
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    const existing = BrandStore.getBrand();
+    const profile: BrandProfile = {
+      id: existing?.id || `brand-${Date.now()}`,
       name: brandName.trim(),
-      domain: domain.trim().toLowerCase().replace(/^https?:\/\//, ''),
-      officialDomains: officialDomains.split(',').map((d) => d.trim().toLowerCase().replace(/^https?:\/\//, '')).filter(Boolean),
+      domain: domain.trim(),
       handles: {
         twitter: twitter.trim() || undefined,
         instagram: instagram.trim() || undefined,
         telegram: telegram.trim() || undefined,
       },
       appPackageName: appPackage.trim() || undefined,
-      authorizedAppIds: [appPackage.trim()].filter(Boolean),
-      officialDevelopers: officialDevelopers.split(',').map((d) => d.trim()).filter(Boolean),
+      officialDomains: splitDomains.length > 0 ? splitDomains : [domain.trim()],
+      officialDevelopers: splitDevelopers.length > 0 ? splitDevelopers : undefined,
+      officialSupportChannels: splitSupport.length > 0 ? splitSupport : undefined,
       brandKeywords: keywords.split(',').map((k) => k.trim()).filter(Boolean),
-      officialSupportChannels: supportChannels.split(',').map((s) => s.trim()).filter(Boolean),
-      logoUrl: logoUrl,
-      createdAt: new Date().toISOString(),
+      logoUrl: logoUrl || undefined,
+      createdAt: existing?.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
-  };
 
-  const handleSave = (e: React.FormEvent) => {
-    e.preventDefault();
-    const updated = getProfilePayload();
-    BrandStore.saveBrand(updated);
+    BrandStore.saveBrand(profile);
     setSaved(true);
-    setTimeout(() => {
-      setSaved(false);
-    }, 2000);
+    setTimeout(() => setSaved(false), 2000);
   };
 
-  // Feature 1: Real-Time Brand Profile Intelligence - Website Analysis
   const handleAnalyzeBrand = async () => {
-    if (!brandName.trim()) {
-      setAnalysisError('Brand name is required to analyze brand identity.');
-      setAnalysisState('ERROR');
-      return;
-    }
-    if (!domain.trim()) {
-      setAnalysisError('Official primary domain is required.');
-      setAnalysisState('ERROR');
-      return;
-    }
-
-    setAnalysisState('VALIDATING');
     setAnalysisError('');
+    setAnalysisState('VALIDATING');
     setDiscoveredIdentity(null);
 
     try {
       setAnalysisState('FETCHING_WEBSITE');
-
-      const res = await fetch('/api/brands/analyze', {
+      const res = await fetch('/api/brand/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           brandName: brandName.trim(),
-          officialWebsite: domain.trim(),
+          domain: domain.trim(),
         }),
       });
 
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        throw new Error(errData.error || `Brand website analysis failed with status ${res.status}`);
+      setAnalysisState('EXTRACTING_IDENTITY');
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Failed to extract ground truth from website.');
       }
 
-      setAnalysisState('EXTRACTING_IDENTITY');
-      const data: DiscoveredBrandIdentity = await res.json();
+      setDiscoveredIdentity(data.identity);
 
-      setDiscoveredIdentity(data);
-
+      // Pre-select all discovered items
       const initialSocials: Record<string, boolean> = {};
-      data.socialProfiles.forEach((s) => {
+      data.identity.socialProfiles.forEach((s: any) => {
         initialSocials[`${s.platform}:${s.username}`] = true;
       });
       setSelectedSocials(initialSocials);
 
       const initialApps: Record<string, boolean> = {};
-      data.applications.forEach((a) => {
+      data.identity.applications.forEach((a: any) => {
         initialApps[`${a.store}:${a.packageId || a.storeUrl}`] = true;
       });
       setSelectedApps(initialApps);
 
       setAnalysisState('READY_FOR_REVIEW');
-    } catch (err: unknown) {
-      console.error('[SAFENET] Brand analysis failure:', err);
+    } catch (err: any) {
       setAnalysisState('ERROR');
-      setAnalysisError(err instanceof Error ? err.message : 'Website analysis failed.');
+      setAnalysisError(err.message || 'An unexpected error occurred during brand analysis.');
     }
   };
 
   const toggleSocialSelection = (key: string) => {
-    setSelectedSocials((prev) => ({ ...prev, [key]: !prev[key] }));
+    setSelectedSocials((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
   };
 
   const toggleAppSelection = (key: string) => {
-    setSelectedApps((prev) => ({ ...prev, [key]: !prev[key] }));
+    setSelectedApps((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
   };
 
-  const handleConfirmDiscoveredIdentity = async () => {
+  const handleConfirmDiscoveredIdentity = () => {
     if (!discoveredIdentity) return;
 
-    const confirmedSocials = discoveredIdentity.socialProfiles.filter(
-      (s) => selectedSocials[`${s.platform}:${s.username}`]
-    );
+    // Apply discovered brand name & official domains
+    setBrandName(discoveredIdentity.brandName);
+    if (discoveredIdentity.domains.length > 0) {
+      const domainStrings = discoveredIdentity.domains.map((d: any) => (typeof d === 'string' ? d : d.domain));
+      setDomain(domainStrings[0]);
+      setOfficialDomains(domainStrings.join(', '));
+    }
 
-    let newTwitter = twitter;
-    let newInstagram = instagram;
-    let newTelegram = telegram;
-
-    confirmedSocials.forEach((s) => {
-      if (s.platform === 'twitter') newTwitter = s.username;
-      if (s.platform === 'instagram') newInstagram = s.username;
-      if (s.platform === 'telegram') newTelegram = s.username;
+    // Apply confirmed social handles
+    discoveredIdentity.socialProfiles.forEach((s) => {
+      const key = `${s.platform}:${s.username}`;
+      if (selectedSocials[key]) {
+        if (s.platform === 'twitter') setTwitter(s.username.startsWith('@') ? s.username : `@${s.username}`);
+        if (s.platform === 'instagram') setInstagram(s.username.startsWith('@') ? s.username : `@${s.username}`);
+        if (s.platform === 'telegram') setTelegram(s.username.startsWith('@') ? s.username : `@${s.username}`);
+      }
     });
 
-    setTwitter(newTwitter);
-    setInstagram(newInstagram);
-    setTelegram(newTelegram);
-
-    const confirmedApps = discoveredIdentity.applications.filter(
-      (a) => selectedApps[`${a.store}:${a.packageId || a.storeUrl}`]
-    );
-
-    let newAppPackage = appPackage;
-    if (confirmedApps.length > 0 && confirmedApps[0].packageId) {
-      newAppPackage = confirmedApps[0].packageId;
-      setAppPackage(newAppPackage);
+    // Apply confirmed mobile app package
+    const confirmedApp = discoveredIdentity.applications.find((a) => {
+      const key = `${a.store}:${a.packageId || a.storeUrl}`;
+      return selectedApps[key] && a.packageId;
+    });
+    if (confirmedApp?.packageId) {
+      setAppPackage(confirmedApp.packageId);
     }
 
-    const discoveredDomainStrings = discoveredIdentity.domains.map((d) => d.domain);
-    const existingDomainList = officialDomains.split(',').map((d) => d.trim().toLowerCase()).filter(Boolean);
-    const mergedDomains = Array.from(new Set([...existingDomainList, ...discoveredDomainStrings])).join(', ');
-    setOfficialDomains(mergedDomains);
-
-    if (discoveredIdentity.legalName) {
-      const devList = officialDevelopers.split(',').map((d) => d.trim()).filter(Boolean);
-      if (!devList.includes(discoveredIdentity.legalName)) {
-        devList.unshift(discoveredIdentity.legalName);
-        setOfficialDevelopers(devList.join(', '));
-      }
+    // Apply confirmed developers
+    const appDevelopers = discoveredIdentity.applications
+      .map((a) => a.developer)
+      .filter((d): d is string => Boolean(d));
+    if (appDevelopers.length > 0) {
+      setOfficialDevelopers(Array.from(new Set(appDevelopers)).join(', '));
     }
 
+    // Apply logo if discovered
     if (discoveredIdentity.logoUrl) {
       setLogoUrl(discoveredIdentity.logoUrl);
     }
 
-    const newProfile: BrandProfile = {
-      ...getProfilePayload(),
-      domain: discoveredIdentity.domains[0]?.domain || domain,
-      handles: {
-        twitter: newTwitter || undefined,
-        instagram: newInstagram || undefined,
-        telegram: newTelegram || undefined,
-      },
-      appPackageName: newAppPackage || undefined,
-      officialDomains: mergedDomains.split(',').map((d) => d.trim()).filter(Boolean),
-      logoUrl: discoveredIdentity.logoUrl || logoUrl,
-    };
-
-    BrandStore.saveBrand(newProfile);
     setAnalysisState('CONFIRMED');
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
 
   const handleStartInvestigation = async () => {
-    const profile = getProfilePayload();
-    BrandStore.saveBrand(profile);
-
     setInvestigationState('INVESTIGATING');
-    setInvestigationStatusMessage('Connecting to real data adapters: Apple iTunes App Store API, Google Play, SerpApi & Live DNS...');
+    setInvestigationStatusMessage('Initializing multi-provider query pipeline...');
     setInvestigationSummary(null);
 
     try {
+      const activeBrand = BrandStore.getBrand() || PRESET_BRANDS['Paytm'];
       setInvestigationState('DISCOVERING');
-      setInvestigationStatusMessage(`Searching app ecosystems & external infrastructure for brand "${profile.name}"...`);
+      setInvestigationStatusMessage(`Querying live app stores, domain registers and social networks for "${activeBrand.name}"...`);
 
-      const res = await fetch('/api/brands/investigate', {
+      const res = await fetch('/api/investigate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          brandName: profile.name,
-          officialWebsite: profile.domain,
-          officialDomains: profile.officialDomains,
-          officialSocialAccounts: profile.handles,
-          officialApps: profile.authorizedAppIds,
-          officialDevelopers: profile.officialDevelopers,
+          brandName: activeBrand.name,
+          brandDomain: activeBrand.domain,
+          country: 'in',
         }),
       });
 
-      if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error || `Investigation failed with status ${res.status}`);
-      }
-
       setInvestigationState('ANALYZING');
-      setInvestigationStatusMessage('Calculating deterministic risk scores & generating evidence explanations...');
+      setInvestigationStatusMessage('Correlating lexical distances, publisher signatures and threat intelligence...');
 
       const data = await res.json();
-
-      BrandStore.saveThreats(data.threats || []);
-      BrandStore.saveInvestigation(data);
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to complete investigation pipeline.');
+      }
 
       setInvestigationSummary(data);
-
-      if ((data.threats || []).length === 0) {
-        setInvestigationState('NO_RESULTS');
-        setInvestigationStatusMessage('Investigation completed. No impersonation candidates discovered from configured sources.');
-      } else {
-        setInvestigationState('COMPLETED');
-        setInvestigationStatusMessage(`Investigation completed: ${data.threats.length} live candidates discovered and analyzed.`);
-      }
-    } catch (err) {
-      console.error('[SAFENET] Investigation error:', err);
+      setInvestigationState('COMPLETED');
+      setInvestigationStatusMessage(
+        `Investigation finished: Evaluated ${data.candidatesCount || 0} candidates. Discovered ${data.highRiskCount || 0} high-risk impersonation entities.`
+      );
+    } catch (err: any) {
       setInvestigationState('ERROR');
-      setInvestigationStatusMessage(err instanceof Error ? err.message : 'Investigation failed.');
+      setInvestigationStatusMessage(`Investigation failed: ${err.message || 'Unknown network error'}`);
     }
   };
 
   return (
     <AppShell
-      pageTitle="Brand Protection Baseline"
-      pageSubtitle="Establish verified digital ground truth via real-time official website intelligence."
+      pageTitle="Brand Baseline Parameters"
+      pageSubtitle="Authoritative ground truth registry against which lexical resemblance and unauthorized infrastructure are evaluated."
     >
-      <div className="max-w-4xl mx-auto space-y-8 pb-16">
+      <div className="max-w-6xl mx-auto space-y-12 pb-16">
         {/* Preset Selector Banner */}
-        <div className="bg-white border border-[#DDE2DC] rounded-xl p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="space-y-0.5">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-[#858D86] font-bold">
-              ENVIRONMENT PRESET
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#303946] pb-5">
+          <div className="space-y-1">
+            <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+              FAST-LOAD DEMO TEMPLATES
             </span>
-            <h3 className="text-[18px] font-bold text-[#202723]">
-              Active organization configuration
-            </h3>
+            <p className="text-[17px] text-[#D0D7E0] font-bold">
+              Select an authoritative baseline profile for instant sandbox evaluation:
+            </p>
           </div>
-          <div className="flex items-center gap-2 text-[12px] font-mono">
+
+          <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => handleLoadPreset('Paytm')}
-              className={`px-3 py-1.5 rounded-lg transition font-semibold ${
+              className={`px-4 py-2 rounded-xl transition font-extrabold text-[16px] cursor-pointer ${
                 brandName === 'Paytm'
-                  ? 'bg-[#477A60] text-white shadow-xs'
-                  : 'bg-[#F7F8F6] text-[#626B65] hover:text-[#202723] border border-[#DDE2DC]'
+                  ? 'bg-[#35D0BA] text-[#080B10]'
+                  : 'bg-[#121821] text-[#D0D7E0] hover:text-[#FFFFFF] border border-[#303946]'
               }`}
             >
-              Paytm (Financial / UPI)
+              Paytm (Fintech / India)
             </button>
             <button
               type="button"
               onClick={() => handleLoadPreset('Nike')}
-              className={`px-3 py-1.5 rounded-lg transition font-semibold ${
+              className={`px-4 py-2 rounded-xl transition font-extrabold text-[16px] cursor-pointer ${
                 brandName === 'Nike'
-                  ? 'bg-[#477A60] text-white shadow-xs'
-                  : 'bg-[#F7F8F6] text-[#626B65] hover:text-[#202723] border border-[#DDE2DC]'
+                  ? 'bg-[#35D0BA] text-[#080B10]'
+                  : 'bg-[#121821] text-[#D0D7E0] hover:text-[#FFFFFF] border border-[#303946]'
               }`}
             >
               Nike (Retail / Global)
@@ -362,20 +331,20 @@ export default function SetupPage() {
           </div>
         </div>
 
-        {/* Feature 1: Real-Time Official Website Intelligence Banner */}
-        <div className="border border-[#477A60]/30 bg-[#E7F0E9] p-6 rounded-xl space-y-4 shadow-xs">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#477A60] animate-pulse" />
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#477A60] font-bold">
+        {/* Feature 1: Real-Time Official Website Intelligence Banner (Open, Non-Boxy) */}
+        <div className="border border-[#303946] bg-[#0D1118] p-7 sm:p-9 rounded-2xl space-y-5 shadow-xl">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#35D0BA] animate-pulse" />
+                <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
                   REAL-TIME BRAND PROFILE INTELLIGENCE
                 </span>
               </div>
-              <h4 className="text-[16px] font-bold text-[#202723]">
+              <h4 className="text-[22px] font-extrabold text-[#FFFFFF]">
                 Extract ground truth from official website
               </h4>
-              <p className="text-[13px] text-[#626B65] leading-relaxed">
+              <p className="text-[17px] text-[#D0D7E0] leading-relaxed font-bold">
                 Connects to the live website, inspects JSON-LD Organization schemas, sameAs profiles, OpenGraph images, and public app links to establish evidence-backed ground truth.
               </p>
             </div>
@@ -384,16 +353,16 @@ export default function SetupPage() {
               type="button"
               onClick={handleAnalyzeBrand}
               disabled={analysisState === 'VALIDATING' || analysisState === 'FETCHING_WEBSITE' || analysisState === 'EXTRACTING_IDENTITY'}
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#477A60] hover:bg-[#365F49] text-white text-[13px] font-mono font-bold rounded-lg transition cursor-pointer disabled:opacity-50 shrink-0 shadow-xs"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer disabled:opacity-50 shrink-0 shadow-lg"
             >
               {analysisState === 'VALIDATING' || analysisState === 'FETCHING_WEBSITE' || analysisState === 'EXTRACTING_IDENTITY' ? (
                 <>
-                  <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                  <RefreshCw className="h-4 w-4 animate-spin" />
                   <span>ANALYZING WEBSITE...</span>
                 </>
               ) : (
                 <>
-                  <Globe className="h-3.5 w-3.5" />
+                  <Globe className="h-4 w-4" />
                   <span>ANALYZE BRAND</span>
                 </>
               )}
@@ -402,8 +371,8 @@ export default function SetupPage() {
 
           {/* Analysis Real-time Status Notification */}
           {analysisState !== 'IDLE' && analysisState !== 'READY_FOR_REVIEW' && analysisState !== 'CONFIRMED' && (
-            <div className="border-t border-[#477A60]/20 pt-4 mt-2 font-mono text-[12px] text-[#202723] flex items-center gap-3">
-              <RefreshCw className="h-4 w-4 animate-spin text-[#477A60] shrink-0" />
+            <div className="border-t border-[#303946] pt-4 mt-2 font-mono text-[16px] text-[#FFFFFF] font-bold flex items-center gap-3">
+              <RefreshCw className="h-5 w-5 animate-spin text-[#35D0BA] shrink-0" />
               <span>
                 {analysisState === 'VALIDATING' && 'Validating target URL & enforcing SSRF boundaries...'}
                 {analysisState === 'FETCHING_WEBSITE' && `Establishing TLS connection to ${domain} (HTTP GET inspection)...`}
@@ -414,10 +383,10 @@ export default function SetupPage() {
           )}
 
           {analysisState === 'ERROR' && (
-            <div className="border border-[#C93643]/30 bg-[#C93643]/10 p-4 rounded-xl flex items-start gap-3 text-[13px] text-[#C93643] font-medium">
-              <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
+            <div className="border border-[#FF5C6C]/40 bg-[#2D1216] p-5 rounded-xl flex items-start gap-3.5 text-[17px] text-[#FF5C6C] font-bold">
+              <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />
               <div>
-                <span className="font-bold block uppercase">Inspection Error</span>
+                <span className="font-extrabold block uppercase">Inspection Error</span>
                 <span>{analysisError}</span>
               </div>
             </div>
@@ -426,16 +395,16 @@ export default function SetupPage() {
 
         {/* Interactive Discovered Identity Review Panel */}
         {discoveredIdentity && (
-          <div className="border border-[#DDE2DC] bg-white p-6 rounded-xl space-y-6 shadow-xs">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#DDE2DC] pb-4">
-              <div className="space-y-1">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#477A60] font-bold">
-                  DISCOVERED BRAND IDENTITY (REVIEW & CONFIRM)
+          <div className="border border-[#303946] bg-[#0D1118] p-7 sm:p-9 rounded-2xl space-y-7 shadow-xl">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#303946] pb-5">
+              <div className="space-y-1.5">
+                <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+                  DISCOVERED BRAND IDENTITY (REVIEW &amp; CONFIRM)
                 </span>
-                <h3 className="text-[18px] text-[#202723] font-bold flex items-center gap-2">
+                <h3 className="text-[26px] text-[#FFFFFF] font-extrabold flex items-center gap-2.5">
                   <span>{discoveredIdentity.brandName}</span>
                   {discoveredIdentity.legalName && (
-                    <span className="text-[12px] font-mono text-[#626B65] font-normal">
+                    <span className="text-[17px] font-mono text-[#D0D7E0] font-normal">
                       ({discoveredIdentity.legalName})
                     </span>
                   )}
@@ -443,40 +412,40 @@ export default function SetupPage() {
               </div>
 
               {discoveredIdentity.logoUrl && (
-                <div className="flex items-center gap-3 bg-[#F7F8F6] px-3.5 py-2 rounded-xl border border-[#DDE2DC]">
+                <div className="flex items-center gap-3 bg-[#121821] px-4 py-2.5 rounded-xl border border-[#303946]">
                   <img
                     src={discoveredIdentity.logoUrl}
                     alt="Discovered Logo"
-                    className="h-8 w-8 object-contain rounded-md"
+                    className="h-10 w-10 object-contain rounded-lg"
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = 'none';
                     }}
                   />
-                  <div className="text-[11px] font-mono">
-                    <span className="text-[#858D86] block text-[9px] uppercase font-bold">LOGO SOURCE</span>
-                    <span className="text-[#202723] uppercase font-bold">{discoveredIdentity.logoSource || 'WEBSITE'}</span>
+                  <div className="text-[14px] font-mono">
+                    <span className="text-[#D0D7E0] block text-[11px] uppercase font-bold">LOGO SOURCE</span>
+                    <span className="text-[#35D0BA] uppercase font-extrabold">{discoveredIdentity.logoSource || 'WEBSITE'}</span>
                   </div>
                 </div>
               )}
             </div>
 
             {/* Identity Signals Checklist */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
               {discoveredIdentity.signals.map((sig, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#F7F8F6] p-3 rounded-lg border border-[#DDE2DC] space-y-1 font-mono"
+                  className="bg-[#121821] p-4 rounded-xl border border-[#303946] space-y-1 font-mono"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] text-[#858D86] uppercase truncate font-bold">{sig.name}</span>
+                    <span className="text-[13px] text-[#D0D7E0] uppercase truncate font-bold">{sig.name}</span>
                     {sig.status === 'verified' || sig.status === 'detected' ? (
-                      <CheckCircle2 className="h-3 w-3 text-[#347653]" />
+                      <CheckCircle2 className="h-4 w-4 text-[#35D0BA]" />
                     ) : (
-                      <span className="text-[10px] text-[#858D86]">N/A</span>
+                      <span className="text-[13px] text-[#8F9CAE]">N/A</span>
                     )}
                   </div>
-                  <span className={`text-[12px] block font-bold capitalize ${
-                    sig.status === 'verified' ? 'text-[#347653]' : sig.status === 'detected' ? 'text-[#202723]' : 'text-[#858D86]'
+                  <span className={`text-[16px] block font-extrabold capitalize ${
+                    sig.status === 'verified' ? 'text-[#35D0BA]' : sig.status === 'detected' ? 'text-[#FFFFFF]' : 'text-[#8F9CAE]'
                   }`}>
                     {sig.status}
                   </span>
@@ -485,44 +454,44 @@ export default function SetupPage() {
             </div>
 
             {/* Discovered Social Profiles */}
-            <div className="space-y-3 font-mono">
+            <div className="space-y-4 font-mono">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] text-[#858D86] uppercase tracking-wider font-bold">
+                <span className="text-[14px] text-[#D0D7E0] uppercase tracking-wider font-extrabold">
                   DISCOVERED OFFICIAL SOCIAL PRESENCE ({discoveredIdentity.socialProfiles.length})
                 </span>
-                <span className="text-[11px] text-[#626B65]">
+                <span className="text-[14px] text-[#35D0BA] font-bold">
                   Toggle to include in authoritative baseline
                 </span>
               </div>
 
               {discoveredIdentity.socialProfiles.length === 0 ? (
-                <div className="text-[12px] text-[#858D86] bg-[#F7F8F6] p-3.5 rounded-lg border border-[#DDE2DC]">
+                <div className="text-[16px] text-[#D0D7E0] bg-[#121821] p-4 rounded-xl border border-[#303946] font-bold">
                   No official social media links detected on the official website.
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {discoveredIdentity.socialProfiles.map((s, idx) => {
                     const key = `${s.platform}:${s.username}`;
                     const isSelected = selectedSocials[key] ?? true;
                     return (
                       <div
                         key={idx}
-                        className={`p-3 rounded-lg border transition-all flex items-center justify-between ${
+                        className={`p-4 rounded-xl border transition-all flex items-center justify-between ${
                           isSelected
-                            ? 'bg-[#E7F0E9] border-[#477A60]/40'
-                            : 'bg-[#F7F8F6] border-[#DDE2DC] opacity-60'
+                            ? 'bg-[#121821] border-[#35D0BA]'
+                            : 'bg-[#080B10] border-[#303946] opacity-60'
                         }`}
                       >
-                        <div className="space-y-0.5 truncate pr-2">
+                        <div className="space-y-1 truncate pr-2">
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] uppercase font-bold text-[#477A60]">
+                            <span className="text-[13px] uppercase font-extrabold text-[#35D0BA]">
                               {s.platform}
                             </span>
-                            <span className="text-[9px] text-[#858D86] uppercase font-semibold">
+                            <span className="text-[11px] text-[#D0D7E0] uppercase font-bold">
                               [{s.source}]
                             </span>
                           </div>
-                          <span className="text-[13px] text-[#202723] font-bold block truncate">
+                          <span className="text-[17px] text-[#FFFFFF] font-extrabold block truncate">
                             {s.username}
                           </span>
                         </div>
@@ -530,10 +499,10 @@ export default function SetupPage() {
                         <button
                           type="button"
                           onClick={() => toggleSocialSelection(key)}
-                          className={`px-2.5 py-1 text-[11px] rounded-md transition font-bold cursor-pointer shrink-0 ${
+                          className={`px-3 py-1.5 text-[14px] rounded-lg transition font-extrabold cursor-pointer shrink-0 ${
                             isSelected
-                              ? 'bg-[#477A60] text-white shadow-xs'
-                              : 'bg-white text-[#858D86] border border-[#DDE2DC] hover:text-[#202723]'
+                              ? 'bg-[#35D0BA] text-[#080B10]'
+                              : 'bg-[#121821] text-[#D0D7E0] border border-[#303946] hover:text-[#FFFFFF]'
                           }`}
                         >
                           {isSelected ? 'CONFIRMED' : 'EXCLUDED'}
@@ -546,36 +515,36 @@ export default function SetupPage() {
             </div>
 
             {/* Discovered Mobile Applications */}
-            <div className="space-y-3 font-mono">
-              <span className="text-[11px] text-[#858D86] uppercase tracking-wider block font-bold">
+            <div className="space-y-4 font-mono">
+              <span className="text-[14px] text-[#D0D7E0] uppercase tracking-wider block font-extrabold">
                 DISCOVERED MOBILE APPLICATIONS ({discoveredIdentity.applications.length})
               </span>
 
               {discoveredIdentity.applications.length === 0 ? (
-                <div className="text-[12px] text-[#858D86] bg-[#F7F8F6] p-3.5 rounded-lg border border-[#DDE2DC]">
+                <div className="text-[16px] text-[#D0D7E0] bg-[#121821] p-4 rounded-xl border border-[#303946] font-bold">
                   No official mobile application links discovered on the website.
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {discoveredIdentity.applications.map((app, idx) => {
                     const key = `${app.store}:${app.packageId || app.storeUrl}`;
                     const isSelected = selectedApps[key] ?? true;
                     return (
                       <div
                         key={idx}
-                        className={`p-3 rounded-lg border transition-all flex items-center justify-between ${
+                        className={`p-4 rounded-xl border transition-all flex items-center justify-between ${
                           isSelected
-                            ? 'bg-[#E7F0E9] border-[#477A60]/40'
-                            : 'bg-[#F7F8F6] border-[#DDE2DC] opacity-60'
+                            ? 'bg-[#121821] border-[#35D0BA]'
+                            : 'bg-[#080B10] border-[#303946] opacity-60'
                         }`}
                       >
-                        <div className="space-y-0.5 truncate pr-2">
+                        <div className="space-y-1 truncate pr-2">
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] uppercase font-bold text-[#477A60]">
+                            <span className="text-[13px] uppercase font-extrabold text-[#35D0BA]">
                               {app.store}
                             </span>
                           </div>
-                          <span className="text-[12px] text-[#202723] font-bold block truncate">
+                          <span className="text-[16px] text-[#FFFFFF] font-extrabold block truncate">
                             {app.packageId || app.name}
                           </span>
                         </div>
@@ -583,10 +552,10 @@ export default function SetupPage() {
                         <button
                           type="button"
                           onClick={() => toggleAppSelection(key)}
-                          className={`px-2.5 py-1 text-[11px] rounded-md transition font-bold cursor-pointer shrink-0 ${
+                          className={`px-3 py-1.5 text-[14px] rounded-lg transition font-extrabold cursor-pointer shrink-0 ${
                             isSelected
-                              ? 'bg-[#477A60] text-white shadow-xs'
-                              : 'bg-white text-[#858D86] border border-[#DDE2DC] hover:text-[#202723]'
+                              ? 'bg-[#35D0BA] text-[#080B10]'
+                              : 'bg-[#121821] text-[#D0D7E0] border border-[#303946] hover:text-[#FFFFFF]'
                           }`}
                         >
                           {isSelected ? 'CONFIRMED' : 'EXCLUDED'}
@@ -599,66 +568,66 @@ export default function SetupPage() {
             </div>
 
             {/* Authoritative Review Confirmation Action */}
-            <div className="pt-4 border-t border-[#DDE2DC] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <span className="text-[12px] font-mono text-[#626B65]">
+            <div className="pt-5 border-t border-[#303946] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <span className="text-[16px] font-mono text-[#D0D7E0] font-bold">
                 Confirming writes verified identities into the authoritative baseline for similarity audits.
               </span>
 
               <button
                 type="button"
                 onClick={handleConfirmDiscoveredIdentity}
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#477A60] hover:bg-[#365F49] text-white text-[13px] font-mono font-bold rounded-lg transition cursor-pointer shadow-xs"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer shadow-lg"
               >
-                <Check className="h-3.5 w-3.5" />
+                <Check className="h-4 w-4" />
                 <span>CONFIRM OFFICIAL IDENTITY</span>
               </button>
             </div>
           </div>
         )}
 
-        {/* Configuration Form */}
-        <form onSubmit={handleSave} className="bg-white border border-[#DDE2DC] rounded-xl p-6 shadow-xs space-y-8">
-          <div className="space-y-6">
-            <div className="border-b border-[#DDE2DC] pb-2 flex items-center justify-between">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#858D86] font-bold">
+        {/* Configuration Form (Open, Non-Boxy) */}
+        <form onSubmit={handleSave} className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-9">
+          <div className="space-y-7">
+            <div className="border-b border-[#303946] pb-3 flex items-center justify-between">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
                 IDENTITY PARAMETERS (SOURCE OF TRUTH)
               </span>
               {analysisState === 'CONFIRMED' && (
-                <span className="font-mono text-[11px] text-[#347653] uppercase font-bold">
+                <span className="font-mono text-[14px] text-[#35D0BA] uppercase font-extrabold">
                   VERIFIED WITH WEBSITE INTELLIGENCE
                 </span>
               )}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="space-y-1.5">
-                <label className="block text-[11px] font-mono uppercase text-[#858D86] font-bold">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+              <div className="space-y-2">
+                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
                   Brand Name
                 </label>
                 <input
                   type="text"
                   value={brandName}
                   onChange={(e) => setBrandName(e.target.value)}
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg px-3.5 py-2 text-[13px] text-[#202723] font-mono focus:border-[#477A60] outline-none transition"
+                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
                   required
                 />
               </div>
 
-              <div className="space-y-1.5">
-                <label className="block text-[11px] font-mono uppercase text-[#858D86] font-bold">
+              <div className="space-y-2">
+                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
                   Official Primary Domain
                 </label>
                 <input
                   type="text"
                   value={domain}
                   onChange={(e) => setDomain(e.target.value)}
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg px-3.5 py-2 text-[13px] text-[#202723] font-mono focus:border-[#477A60] outline-none transition"
+                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
                   required
                 />
               </div>
 
-              <div className="sm:col-span-2 space-y-1.5">
-                <label className="block text-[11px] font-mono uppercase text-[#858D86] font-bold">
+              <div className="sm:col-span-2 space-y-2">
+                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
                   Official Domains Allowlist (Comma-separated)
                 </label>
                 <input
@@ -666,24 +635,24 @@ export default function SetupPage() {
                   value={officialDomains}
                   onChange={(e) => setOfficialDomains(e.target.value)}
                   placeholder="e.g. brand.com, brandbank.com, brandmoney.com"
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg px-3.5 py-2 text-[13px] text-[#202723] font-mono focus:border-[#477A60] outline-none transition"
+                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
                 />
               </div>
 
-              <div className="space-y-1.5">
-                <label className="block text-[11px] font-mono uppercase text-[#858D86] font-bold">
+              <div className="space-y-2">
+                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
                   Official Twitter / X Handle
                 </label>
                 <input
                   type="text"
                   value={twitter}
                   onChange={(e) => setTwitter(e.target.value)}
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg px-3.5 py-2 text-[13px] text-[#202723] font-mono focus:border-[#477A60] outline-none transition"
+                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
                 />
               </div>
 
-              <div className="space-y-1.5">
-                <label className="block text-[11px] font-mono uppercase text-[#858D86] font-bold">
+              <div className="space-y-2">
+                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
                   Official Telegram / Instagram Handle
                 </label>
                 <input
@@ -693,72 +662,72 @@ export default function SetupPage() {
                     setInstagram(e.target.value);
                     setTelegram(e.target.value);
                   }}
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg px-3.5 py-2 text-[13px] text-[#202723] font-mono focus:border-[#477A60] outline-none transition"
+                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
                 />
               </div>
 
-              <div className="space-y-1.5">
-                <label className="block text-[11px] font-mono uppercase text-[#858D86] font-bold">
+              <div className="space-y-2">
+                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
                   Official Mobile App Package ID
                 </label>
                 <input
                   type="text"
                   value={appPackage}
                   onChange={(e) => setAppPackage(e.target.value)}
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg px-3.5 py-2 text-[13px] text-[#202723] font-mono focus:border-[#477A60] outline-none transition"
+                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
                 />
               </div>
 
-              <div className="space-y-1.5">
-                <label className="block text-[11px] font-mono uppercase text-[#858D86] font-bold">
+              <div className="space-y-2">
+                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
                   Authorized Publishers / Developers (Comma-separated)
                 </label>
                 <input
                   type="text"
                   value={officialDevelopers}
                   onChange={(e) => setOfficialDevelopers(e.target.value)}
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg px-3.5 py-2 text-[13px] text-[#202723] font-mono focus:border-[#477A60] outline-none transition"
+                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
                 />
               </div>
 
-              <div className="sm:col-span-2 space-y-1.5">
-                <label className="block text-[11px] font-mono uppercase text-[#858D86] font-bold">
-                  Monitored Brand Keywords & Aliases (Comma-separated)
+              <div className="sm:col-span-2 space-y-2">
+                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
+                  Monitored Brand Keywords &amp; Aliases (Comma-separated)
                 </label>
                 <input
                   type="text"
                   value={keywords}
                   onChange={(e) => setKeywords(e.target.value)}
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg px-3.5 py-2 text-[13px] text-[#202723] font-mono focus:border-[#477A60] outline-none transition"
+                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
                 />
               </div>
 
-              <div className="sm:col-span-2 space-y-1.5">
-                <label className="block text-[11px] font-mono uppercase text-[#858D86] font-bold">
+              <div className="sm:col-span-2 space-y-2">
+                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
                   Official Support Channels (Comma-separated)
                 </label>
                 <input
                   type="text"
                   value={supportChannels}
                   onChange={(e) => setSupportChannels(e.target.value)}
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg px-3.5 py-2 text-[13px] text-[#202723] font-mono focus:border-[#477A60] outline-none transition"
+                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
                 />
               </div>
             </div>
           </div>
 
           {/* Form Actions */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-[#DDE2DC]">
-            <span className="text-[12px] text-[#858D86]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 pt-7 border-t border-[#303946]">
+            <span className="text-[16px] text-[#D0D7E0] font-bold">
               Parameters establish the authoritative baseline for distance metrics, app developer comparison, and impersonation auditing.
             </span>
 
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-3.5 shrink-0">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#DDE2DC] text-[#202723] text-[13px] font-mono font-bold rounded-lg hover:bg-[#ECEFEC] transition cursor-pointer shadow-xs"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#303946] text-[#FFFFFF] text-[17px] font-mono font-extrabold rounded-xl hover:bg-[#121821] transition cursor-pointer shadow-md"
               >
-                {saved ? <Check className="h-3.5 w-3.5 text-[#347653]" /> : <Save className="h-3.5 w-3.5" />}
+                {saved ? <Check className="h-4 w-4 text-[#35D0BA]" /> : <Save className="h-4 w-4" />}
                 <span>{saved ? 'SAVED BASELINE' : 'SAVE BASELINE'}</span>
               </button>
 
@@ -766,16 +735,16 @@ export default function SetupPage() {
                 type="button"
                 onClick={handleStartInvestigation}
                 disabled={investigationState === 'INVESTIGATING' || investigationState === 'DISCOVERING' || investigationState === 'ANALYZING'}
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#477A60] hover:bg-[#365F49] text-white text-[13px] font-mono font-bold rounded-lg transition cursor-pointer disabled:opacity-50 shadow-xs"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer disabled:opacity-50 shadow-lg"
               >
                 {investigationState === 'INVESTIGATING' || investigationState === 'DISCOVERING' || investigationState === 'ANALYZING' ? (
                   <>
-                    <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                    <RefreshCw className="h-4 w-4 animate-spin" />
                     <span>INVESTIGATING...</span>
                   </>
                 ) : (
                   <>
-                    <Sparkles className="h-3.5 w-3.5" />
+                    <Sparkles className="h-4 w-4" />
                     <span>START INVESTIGATION</span>
                   </>
                 )}
@@ -786,70 +755,70 @@ export default function SetupPage() {
 
         {/* Live Investigation Pipeline Status & Outcome */}
         {investigationState !== 'IDLE' && (
-          <div className="border border-[#DDE2DC] bg-white p-6 rounded-xl space-y-4 font-mono shadow-xs">
-            <div className="flex items-center justify-between border-b border-[#DDE2DC] pb-3">
-              <div className="flex items-center gap-2 text-[12px]">
-                <span className="text-[#858D86] font-bold">STATUS:</span>
+          <div className="border border-[#303946] bg-[#0D1118] p-7 sm:p-9 rounded-2xl space-y-5 font-mono shadow-xl">
+            <div className="flex items-center justify-between border-b border-[#303946] pb-4">
+              <div className="flex items-center gap-3 text-[15px]">
+                <span className="text-[#D0D7E0] font-extrabold">STATUS:</span>
                 <span
                   className={
                     investigationState === 'COMPLETED'
-                      ? 'text-[#347653] font-bold'
+                      ? 'text-[#35D0BA] font-extrabold'
                       : investigationState === 'ERROR'
-                      ? 'text-[#C93643] font-bold'
-                      : 'text-[#B7791F] font-bold'
+                      ? 'text-[#FF5C6C] font-extrabold'
+                      : 'text-[#FFAB40] font-extrabold'
                   }
                 >
                   {investigationState}
                 </span>
               </div>
-              <span className="text-[11px] text-[#858D86]">
+              <span className="text-[14px] text-[#D0D7E0] font-bold">
                 Pipeline: Apple iTunes API • Search Feeds • AI Synthesizer
               </span>
             </div>
 
-            <p className="text-[13px] text-[#202723] leading-relaxed">
+            <p className="text-[18px] text-[#FFFFFF] leading-relaxed font-bold">
               {investigationStatusMessage}
             </p>
 
             {investigationSummary && (
-              <div className="space-y-4 pt-2">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-[12px] bg-[#F7F8F6] p-4 rounded-xl border border-[#DDE2DC]">
+              <div className="space-y-5 pt-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-[15px] bg-[#121821] p-5 rounded-xl border border-[#303946]">
                   <div>
-                    <span className="text-[#858D86] block text-[10px] font-bold uppercase">CANDIDATES</span>
-                    <span className="text-[#202723] text-[20px] font-bold">
+                    <span className="text-[#D0D7E0] block text-[13px] font-extrabold uppercase">CANDIDATES</span>
+                    <span className="text-[#FFFFFF] text-[26px] font-extrabold">
                       {investigationSummary.candidatesCount || 0}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[#858D86] block text-[10px] font-bold uppercase">ELEVATED / HIGH RISK</span>
-                    <span className="text-[#C93643] text-[20px] font-bold">
+                    <span className="text-[#D0D7E0] block text-[13px] font-extrabold uppercase">ELEVATED / HIGH RISK</span>
+                    <span className="text-[#FF5C6C] text-[26px] font-extrabold">
                       {investigationSummary.highRiskCount || 0}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[#858D86] block text-[10px] font-bold uppercase">PROVIDERS QUERIED</span>
-                    <span className="text-[#347653] text-[20px] font-bold">
+                    <span className="text-[#D0D7E0] block text-[13px] font-extrabold uppercase">PROVIDERS QUERIED</span>
+                    <span className="text-[#35D0BA] text-[26px] font-extrabold">
                       {Object.keys(investigationSummary.providerRuns || {}).length}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[#858D86] block text-[10px] font-bold uppercase">STATUS</span>
-                    <span className="text-[#202723] text-[18px] font-bold uppercase">
+                    <span className="text-[#D0D7E0] block text-[13px] font-extrabold uppercase">STATUS</span>
+                    <span className="text-[#FFFFFF] text-[24px] font-extrabold uppercase">
                       {investigationSummary.status}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-2">
-                  <span className="text-[12px] text-[#626B65]">
+                <div className="flex items-center justify-between pt-3">
+                  <span className="text-[16px] text-[#D0D7E0] font-bold">
                     Results persisted to SAFENET Command Center.
                   </span>
                   <Link
                     href="/overview"
-                    className="inline-flex items-center gap-1.5 text-[12px] text-[#477A60] hover:text-[#365F49] font-bold"
+                    className="inline-flex items-center gap-2 text-[16px] text-[#35D0BA] hover:text-[#2EB8A5] font-extrabold"
                   >
                     <span>VIEW RESULTS IN DASHBOARD</span>
-                    <ArrowRight className="h-3 w-3" />
+                    <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               </div>

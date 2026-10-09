@@ -53,7 +53,7 @@ export default function ThreatActivityChart() {
 
   const points = DATA_SETS[range];
   const maxVal = Math.max(...points.map((p) => p.detected)) * 1.15;
-  const height = 220;
+  const height = 240;
   const width = 640;
 
   const getCoordinates = (val: number, idx: number) => {
@@ -64,65 +64,65 @@ export default function ThreatActivityChart() {
 
   const generateLinePath = (key: keyof DataPoint) => {
     return points
-      .map((p, idx) => {
-        const val = typeof p[key] === 'number' ? (p[key] as number) : 0;
-        const { x, y } = getCoordinates(val, idx);
-        return `${idx === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`;
+      .map((p, i) => {
+        const { x, y } = getCoordinates(p[key] as number, i);
+        return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`;
       })
       .join(' ');
   };
 
   const generateAreaPath = (key: keyof DataPoint) => {
-    const line = generateLinePath(key);
-    return `${line} L ${width} ${height} L 0 ${height} Z`;
+    const linePath = generateLinePath(key);
+    const lastX = width;
+    const firstX = 0;
+    const bottomY = height;
+    return `${linePath} L ${lastX} ${bottomY} L ${firstX} ${bottomY} Z`;
   };
 
-  const activeIdx = hoveredIdx !== null ? hoveredIdx : points.length - 1;
-  const activePoint = points[activeIdx];
+  const activePoint = hoveredIdx !== null ? points[hoveredIdx] : points[points.length - 1];
 
   return (
-    <div className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
-      {/* ── CARD HEADER ── */}
-      <div className="px-5 py-4 border-b border-[#DDE2DC] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#FFFFFF]">
+    <div className="bg-[#0D1118] border border-[#303946] rounded-xl overflow-hidden flex flex-col justify-between">
+      {/* ── HEADER & CONTROLS ── */}
+      <div className="px-6 py-5 border-b border-[#303946] flex flex-wrap items-center justify-between gap-4 bg-[#0D1118]">
         <div>
-          <div className="flex items-center gap-2">
-            <h3 className="text-[16px] font-bold text-[#202723] tracking-tight">
-              Threat Activity & Attack Volume
+          <div className="flex items-center gap-3">
+            <h3 className="text-[22px] font-bold text-[#FFFFFF] tracking-tight">
+              Threat Activity Timeline
             </h3>
-            <span className="text-[12px] font-mono font-medium text-[#347653] flex items-center gap-0.5">
-              <ArrowUpRight className="h-3 w-3" />
-              +14.2%
+            <span className="flex items-center gap-1.5 text-[15px] font-bold text-[#35D0BA] bg-[#35D0BA]/15 px-2.5 py-0.5 rounded-full border border-[#35D0BA]/30">
+              <span className="h-2 w-2 rounded-full bg-[#35D0BA] animate-pulse" />
+              Live Ingestion
             </span>
           </div>
-          <p className="text-[13px] text-[#626B65] mt-0.5">
-            Temporal telemetry of fraudulent profiles, impersonation, and payment scams.
+          <p className="text-[17px] text-[#D0D7E0] font-bold mt-1">
+            Real-time multi-vector detection and automatic mitigation rate.
           </p>
         </div>
 
-        {/* Card Controls */}
-        <div className="flex items-center gap-2 self-start sm:self-center">
-          {/* Mode toggle */}
-          <div className="flex items-center p-0.5 rounded-lg bg-[#ECEFEC] border border-[#DDE2DC] text-[12px]">
+        <div className="flex items-center gap-3">
+          {/* View Mode Toggle */}
+          <div className="flex items-center bg-[#121821] p-1 rounded-lg border border-[#303946] text-[16px] font-bold">
             <button
               onClick={() => setViewMode('total')}
-              className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'total' ? 'bg-[#FFFFFF] text-[#202723] font-semibold shadow-xs' : 'text-[#626B65] hover:text-[#202723]'
+              className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
+                viewMode === 'total' ? 'bg-[#35D0BA] text-[#080B10]' : 'text-[#FFFFFF] hover:text-[#35D0BA]'
               }`}
             >
               Total
             </button>
             <button
               onClick={() => setViewMode('vectors')}
-              className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'vectors' ? 'bg-[#FFFFFF] text-[#202723] font-semibold shadow-xs' : 'text-[#626B65] hover:text-[#202723]'
+              className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
+                viewMode === 'vectors' ? 'bg-[#35D0BA] text-[#080B10]' : 'text-[#FFFFFF] hover:text-[#35D0BA]'
               }`}
             >
               Vectors
             </button>
           </div>
 
-          {/* Range toggle */}
-          <div className="flex items-center p-0.5 rounded-lg bg-[#ECEFEC] border border-[#DDE2DC] text-[12px] font-mono">
+          {/* Time Range Selector */}
+          <div className="flex items-center bg-[#121821] p-1 rounded-lg border border-[#303946] text-[16px] font-bold">
             {(['24h', '7d', '30d', '90d'] as TimeRange[]).map((t) => (
               <button
                 key={t}
@@ -130,8 +130,8 @@ export default function ThreatActivityChart() {
                   setRange(t);
                   setHoveredIdx(null);
                 }}
-                className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
-                  range === t ? 'bg-[#477A60] text-[#FFFFFF] font-semibold shadow-xs' : 'text-[#626B65] hover:text-[#202723]'
+                className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
+                  range === t ? 'bg-[#35D0BA] text-[#080B10]' : 'text-[#FFFFFF] hover:text-[#35D0BA]'
                 }`}
               >
                 {t}
@@ -141,56 +141,56 @@ export default function ThreatActivityChart() {
 
           <button
             title="Download CSV"
-            className="p-2 rounded-lg text-[#626B65] hover:text-[#202723] hover:bg-[#ECEFEC] transition-colors cursor-pointer border border-[#DDE2DC]"
+            className="p-2.5 rounded-lg text-[#FFFFFF] hover:text-[#35D0BA] hover:bg-[#121821] transition-colors cursor-pointer border border-[#303946]"
           >
-            <Download className="h-3.5 w-3.5" />
+            <Download className="h-4 w-4" />
           </button>
         </div>
       </div>
 
       {/* ── STAT SUMMARY STRIP ── */}
-      <div className="px-5 py-3 border-b border-[#DDE2DC] bg-[#F7F8F6] flex flex-wrap items-center justify-between gap-4">
+      <div className="px-6 py-4 border-b border-[#303946] bg-[#121821] flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-baseline gap-2">
-          <span className="text-[12px] font-mono uppercase text-[#858D86] font-semibold">Active Interval:</span>
-          <span className="text-[13px] font-semibold text-[#202723] font-mono">{activePoint.time}</span>
+          <span className="text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">Active Interval:</span>
+          <span className="text-[17px] font-bold text-[#FFFFFF] font-mono">{activePoint.time}</span>
         </div>
 
-        <div className="flex items-center gap-6 text-[13px] font-mono">
+        <div className="flex items-center gap-6 text-[16px] font-mono font-bold">
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#477A60]" />
-            <span className="text-[#626B65]">Detected:</span>
-            <span className="text-[#202723] font-semibold tabular-nums">{activePoint.detected.toLocaleString()}</span>
+            <span className="h-2.5 w-2.5 rounded-full bg-[#35D0BA]" />
+            <span className="text-[#D0D7E0]">Detected:</span>
+            <span className="text-[#FFFFFF] tabular-nums">{activePoint.detected.toLocaleString()}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#C93643]" />
-            <span className="text-[#626B65]">Impersonations:</span>
-            <span className="text-[#C93643] font-semibold tabular-nums">{activePoint.impersonation.toLocaleString()}</span>
+            <span className="h-2.5 w-2.5 rounded-full bg-[#FF5C6C]" />
+            <span className="text-[#D0D7E0]">Impersonations:</span>
+            <span className="text-[#FF5C6C] tabular-nums">{activePoint.impersonation.toLocaleString()}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#347653]" />
-            <span className="text-[#626B65]">Remediated:</span>
-            <span className="text-[#347653] font-semibold tabular-nums">{activePoint.blocked.toLocaleString()}</span>
+            <span className="h-2.5 w-2.5 rounded-full bg-[#64A9FF]" />
+            <span className="text-[#D0D7E0]">Remediated:</span>
+            <span className="text-[#64A9FF] tabular-nums">{activePoint.blocked.toLocaleString()}</span>
           </div>
         </div>
       </div>
 
       {/* ── CHART SVG CANVAS ── */}
-      <div className="p-5 bg-[#FFFFFF]">
+      <div className="p-6 bg-[#0D1118]">
         <div className="w-full relative">
           <svg
             viewBox={`0 0 ${width} ${height}`}
-            className="w-full h-48 sm:h-56 overflow-visible"
+            className="w-full h-56 sm:h-64 overflow-visible"
             onMouseLeave={() => setHoveredIdx(null)}
           >
             <defs>
-              <linearGradient id="omSageGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#477A60" stopOpacity="0.16" />
-                <stop offset="100%" stopColor="#477A60" stopOpacity="0.0" />
+              <linearGradient id="cyberTealGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#35D0BA" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#35D0BA" stopOpacity="0.0" />
               </linearGradient>
 
-              <linearGradient id="omRedGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#C93643" stopOpacity="0.14" />
-                <stop offset="100%" stopColor="#C93643" stopOpacity="0.0" />
+              <linearGradient id="cyberRedGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#FF5C6C" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#FF5C6C" stopOpacity="0.0" />
               </linearGradient>
             </defs>
 
@@ -205,16 +205,17 @@ export default function ThreatActivityChart() {
                     y1={y}
                     x2={width}
                     y2={y}
-                    stroke="#DDE2DC"
+                    stroke="#1E2633"
                     strokeWidth="1"
-                    strokeDasharray="3 3"
+                    strokeDasharray="4 4"
                   />
                   <text
                     x="4"
-                    y={y - 4}
-                    fill="#858D86"
-                    fontSize="10"
+                    y={y - 6}
+                    fill="#D0D7E0"
+                    fontSize="13"
                     fontFamily="monospace"
+                    fontWeight="bold"
                   >
                     {val}
                   </text>
@@ -223,111 +224,82 @@ export default function ThreatActivityChart() {
             })}
 
             {/* Area Fills */}
-            <path d={generateAreaPath('detected')} fill="url(#omSageGrad)" />
+            <path d={generateAreaPath('detected')} fill="url(#cyberTealGrad)" />
             {viewMode === 'vectors' && (
-              <path d={generateAreaPath('impersonation')} fill="url(#omRedGrad)" />
+              <path d={generateAreaPath('impersonation')} fill="url(#cyberRedGrad)" />
             )}
 
-            {/* Primary Detected Line */}
+            {/* Trend Lines */}
             <path
               d={generateLinePath('detected')}
               fill="none"
-              stroke="#477A60"
-              strokeWidth="2.2"
+              stroke="#35D0BA"
+              strokeWidth="2.5"
               strokeLinecap="round"
-              strokeLinejoin="round"
             />
-
-            {/* Vector Lines */}
             {viewMode === 'vectors' && (
-              <>
-                <path
-                  d={generateLinePath('impersonation')}
-                  fill="none"
-                  stroke="#C93643"
-                  strokeWidth="1.75"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d={generateLinePath('scams')}
-                  fill="none"
-                  stroke="#D95F36"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeDasharray="4 2"
-                />
-              </>
+              <path
+                d={generateLinePath('impersonation')}
+                fill="none"
+                stroke="#FF5C6C"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
             )}
 
-            {/* Interactive Points */}
-            {points.map((p, idx) => {
-              const { x, y } = getCoordinates(p.detected, idx);
-              const isHovered = activeIdx === idx;
+            {/* Hover Interaction Vertical Line */}
+            {hoveredIdx !== null && (
+              <line
+                x1={getCoordinates(points[hoveredIdx].detected, hoveredIdx).x}
+                y1={0}
+                x2={getCoordinates(points[hoveredIdx].detected, hoveredIdx).x}
+                y2={height}
+                stroke="#35D0BA"
+                strokeWidth="1.5"
+                strokeDasharray="3 3"
+              />
+            )}
+
+            {/* Data Point Dots & Hitboxes */}
+            {points.map((p, i) => {
+              const detectedCoord = getCoordinates(p.detected, i);
+              const isHovered = hoveredIdx === i;
+
               return (
-                <g
-                  key={p.time}
-                  onMouseEnter={() => setHoveredIdx(idx)}
-                  className="cursor-pointer"
-                >
+                <g key={i}>
+                  {/* Invisible wide hitbox */}
                   <rect
-                    x={x - 20}
+                    x={detectedCoord.x - width / points.length / 2}
                     y={0}
-                    width={40}
+                    width={width / points.length}
                     height={height}
                     fill="transparent"
+                    className="cursor-pointer"
+                    onMouseEnter={() => setHoveredIdx(i)}
                   />
 
-                  {isHovered && (
-                    <line
-                      x1={x}
-                      y1={0}
-                      x2={x}
-                      y2={height}
-                      stroke="#477A60"
-                      strokeWidth="1"
-                      strokeDasharray="2 2"
-                      opacity="0.8"
-                    />
-                  )}
-
+                  {/* Detected Node */}
                   <circle
-                    cx={x}
-                    cy={y}
-                    r={isHovered ? 5 : 3.5}
-                    fill={isHovered ? '#FFFFFF' : '#477A60'}
-                    stroke="#202723"
-                    strokeWidth="2"
+                    cx={detectedCoord.x}
+                    cy={detectedCoord.y}
+                    r={isHovered ? 6 : 4}
+                    fill="#080B10"
+                    stroke="#35D0BA"
+                    strokeWidth={isHovered ? 3 : 2}
+                    className="transition-all duration-150 pointer-events-none"
                   />
                 </g>
               );
             })}
-
-            {/* X-Axis */}
-            {points.map((p, idx) => {
-              const { x } = getCoordinates(0, idx);
-              return (
-                <text
-                  key={p.time}
-                  x={x}
-                  y={height - 2}
-                  textAnchor={idx === 0 ? 'start' : idx === points.length - 1 ? 'end' : 'middle'}
-                  fill="#858D86"
-                  fontSize="11"
-                  fontFamily="monospace"
-                >
-                  {p.time}
-                </text>
-              );
-            })}
           </svg>
-        </div>
-      </div>
 
-      {/* ── CARD FOOTER ── */}
-      <div className="px-5 py-3 border-t border-[#DDE2DC] bg-[#F7F8F6] flex items-center justify-between text-[12px] text-[#858D86]">
-        <span>Source: Safenet Telemetry Sensors • Monitored attack surfaces</span>
-        <span className="font-mono text-[#626B65]">Telemetry active</span>
+          {/* Time Labels */}
+          <div className="flex justify-between text-[15px] font-mono text-[#D0D7E0] font-bold mt-3 px-1">
+            {points.map((p, i) => (
+              <span key={i} className="text-center">{p.time}</span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

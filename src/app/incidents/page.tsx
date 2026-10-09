@@ -74,19 +74,19 @@ export default function IncidentsPage() {
       pageTitle="Incident Response Queue"
       pageSubtitle="Operational triage, status lifecycle, and mitigation workflow."
     >
-      <div className="max-w-6xl mx-auto space-y-8 pb-16">
+      <div className="max-w-6xl mx-auto space-y-10 pb-16">
         {/* ========================================================================= */}
         {/* 1. FILTER TABS & ACTIONS                                                  */}
         {/* ========================================================================= */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#DDE2DC] pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#303946] pb-5">
           {/* Status Filters */}
-          <div className="flex flex-wrap items-center gap-2 font-mono text-[12px]">
+          <div className="flex flex-wrap items-center gap-2.5 font-mono text-[16px]">
             <button
               onClick={() => setSelectedFilter('ALL')}
-              className={`px-3 py-1.5 rounded-lg transition font-semibold ${
+              className={`px-4 py-2 rounded-xl transition font-extrabold cursor-pointer ${
                 selectedFilter === 'ALL'
-                  ? 'bg-[#202723] text-white'
-                  : 'bg-white border border-[#DDE2DC] text-[#626B65] hover:text-[#202723]'
+                  ? 'bg-[#35D0BA] text-[#080B10]'
+                  : 'bg-[#121821] border border-[#303946] text-[#D0D7E0] hover:text-[#FFFFFF]'
               }`}
             >
               All ({threats.length})
@@ -97,10 +97,10 @@ export default function IncidentsPage() {
                 <button
                   key={st}
                   onClick={() => setSelectedFilter(st)}
-                  className={`px-3 py-1.5 rounded-lg transition font-semibold ${
+                  className={`px-4 py-2 rounded-xl transition font-extrabold cursor-pointer ${
                     selectedFilter === st
-                      ? 'bg-[#202723] text-white'
-                      : 'bg-white border border-[#DDE2DC] text-[#626B65] hover:text-[#202723]'
+                      ? 'bg-[#35D0BA] text-[#080B10]'
+                      : 'bg-[#121821] border border-[#303946] text-[#D0D7E0] hover:text-[#FFFFFF]'
                   }`}
                 >
                   {st} ({count})
@@ -111,48 +111,48 @@ export default function IncidentsPage() {
 
           <Link
             href="/check"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#477A60] hover:bg-[#365F49] text-white text-[12px] font-bold rounded-lg transition shadow-xs shrink-0"
+            className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[17px] font-extrabold rounded-xl transition shadow-lg shrink-0"
           >
-            <Plus className="h-3.5 w-3.5" />
+            <Plus className="h-4 w-4 text-[#080B10]" />
             <span>Check new artifact</span>
           </Link>
         </div>
 
         {/* ========================================================================= */}
-        {/* 2. OPERATIONAL TABLE                                                      */}
+        {/* 2. OPERATIONAL TABLE (Open, Non-Boxy)                                     */}
         {/* ========================================================================= */}
         {filteredThreats.length === 0 ? (
-          <div className="bg-white border border-[#DDE2DC] rounded-xl p-16 text-center space-y-3 shadow-xs">
-            <h3 className="text-[16px] font-bold text-[#202723]">No incidents match the active filter</h3>
-            <p className="text-[13px] text-[#626B65] max-w-sm mx-auto">
+          <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-16 text-center space-y-4 shadow-xl">
+            <h3 className="text-[22px] font-extrabold text-[#FFFFFF]">No incidents match the active filter</h3>
+            <p className="text-[18px] text-[#D0D7E0] max-w-md mx-auto font-bold">
               Investigate a suspicious link or change filters to review queued entities.
             </p>
             <div className="pt-2">
               <Link
                 href="/check"
-                className="font-mono text-[12px] text-[#477A60] hover:text-[#365F49] font-bold underline underline-offset-4"
+                className="font-mono text-[16px] text-[#35D0BA] hover:text-[#2EB8A5] font-extrabold underline underline-offset-4"
               >
                 Launch check instrument →
               </Link>
             </div>
           </div>
         ) : (
-          <div className="bg-white border border-[#DDE2DC] rounded-xl shadow-xs overflow-hidden">
+          <div className="bg-[#0D1118] border border-[#303946] rounded-2xl shadow-xl overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-[13px]">
+              <table className="w-full text-left text-[18px]">
                 <thead>
-                  <tr className="bg-[#F7F8F6] border-b border-[#DDE2DC] text-[#858D86] font-mono text-[11px] uppercase font-bold">
-                    <th className="py-3.5 px-4 font-bold">Severity</th>
-                    <th className="py-3.5 px-4 font-bold">Entity / Asset</th>
-                    <th className="py-3.5 px-4 font-bold">Vector</th>
-                    <th className="py-3.5 px-4 font-bold">Score</th>
-                    <th className="py-3.5 px-4 font-bold">First Seen</th>
-                    <th className="py-3.5 px-4 font-bold">Status</th>
-                    <th className="py-3.5 px-4 font-bold">Analyst</th>
-                    <th className="py-3.5 px-4 font-bold text-right">Action</th>
+                  <tr className="bg-[#121821] border-b border-[#303946] text-[#D0D7E0] font-mono text-[14px] uppercase font-extrabold">
+                    <th className="py-4 px-5">Severity</th>
+                    <th className="py-4 px-5">Entity / Asset</th>
+                    <th className="py-4 px-5">Vector</th>
+                    <th className="py-4 px-5">Score</th>
+                    <th className="py-4 px-5">First Seen</th>
+                    <th className="py-4 px-5">Status</th>
+                    <th className="py-4 px-5">Analyst</th>
+                    <th className="py-4 px-5 text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#DDE2DC]">
+                <tbody className="divide-y divide-[#303946]">
                   {filteredThreats.map((threat) => {
                     const isCrit = threat.riskScore >= 80;
                     const currentStatus = mapStatusToOperational(threat.status);
@@ -161,61 +161,61 @@ export default function IncidentsPage() {
                       <tr
                         key={threat.id}
                         onClick={() => router.push(`/threat/${threat.id}`)}
-                        className="group hover:bg-[#F7F8F6] transition cursor-pointer"
+                        className="group hover:bg-[#121821] transition cursor-pointer"
                       >
-                        <td className="py-3.5 px-4 font-mono text-[11px]">
+                        <td className="py-4 px-5 font-mono text-[14px]">
                           <span
-                            className={`font-bold px-2 py-0.5 rounded-full ${
+                            className={`font-extrabold px-3 py-1 rounded-md border ${
                               isCrit
-                                ? 'text-[#C93643] bg-[#C93643]/10 border border-[#C93643]/30'
+                                ? 'text-[#FF5C6C] bg-[#2D1216] border-[#FF5C6C]/40'
                                 : threat.riskScore >= 50
-                                ? 'text-[#D95F36] bg-[#D95F36]/10 border border-[#D95F36]/30'
-                                : 'text-[#347653] bg-[#347653]/10 border border-[#347653]/30'
+                                ? 'text-[#FFAB40] bg-[#2C1C0D] border-[#FFAB40]/40'
+                                : 'text-[#35D0BA] bg-[#0F2620] border-[#35D0BA]/40'
                             }`}
                           >
                             {isCrit ? 'CRITICAL' : threat.riskScore >= 50 ? 'HIGH' : 'EVALUATED'}
                           </span>
                         </td>
 
-                        <td className="py-3.5 px-4 font-mono text-[13px] text-[#202723] font-bold max-w-xs truncate">
+                        <td className="py-4 px-5 font-mono text-[18px] text-[#FFFFFF] font-extrabold max-w-xs truncate">
                           {threat.targetAsset}
                         </td>
 
-                        <td className="py-3.5 px-4 text-[#626B65] text-[12px] uppercase font-mono">
+                        <td className="py-4 px-5 text-[#D0D7E0] text-[16px] uppercase font-mono font-bold">
                           {threat.type.replace('_', ' ')}
                         </td>
 
-                        <td className="py-3.5 px-4 font-mono text-[13px] text-[#202723] font-bold">
-                          {threat.riskScore} <span className="text-[#858D86] text-[10px] font-normal">/ 100</span>
+                        <td className="py-4 px-5 font-mono text-[18px] text-[#FFFFFF] font-extrabold">
+                          {threat.riskScore} <span className="text-[#D0D7E0] text-[14px] font-bold">/ 100</span>
                         </td>
 
-                        <td className="py-3.5 px-4 font-mono text-[11px] text-[#858D86]">
+                        <td className="py-4 px-5 font-mono text-[15px] text-[#D0D7E0] font-bold">
                           {threat.discoveredAt ? new Date(threat.discoveredAt).toLocaleDateString() : 'Today'}
                         </td>
 
-                        <td className="py-3.5 px-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
+                        <td className="py-4 px-5 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                           <select
                             value={currentStatus}
                             onChange={(e) => handleUpdateStatus(threat.id, e.target.value as OperationalStatus)}
-                            className="bg-white border border-[#DDE2DC] text-[11px] font-mono text-[#202723] rounded-lg px-2.5 py-1 outline-none cursor-pointer focus:border-[#477A60]"
+                            className="bg-[#121821] border border-[#303946] text-[15px] font-mono text-[#FFFFFF] font-bold rounded-lg px-3 py-1.5 outline-none cursor-pointer focus:border-[#35D0BA]"
                           >
                             {statuses.map((s) => (
-                              <option key={s} value={s}>{s}</option>
+                              <option key={s} value={s} className="bg-[#0D1118] text-[#FFFFFF]">{s}</option>
                             ))}
                           </select>
                         </td>
 
-                        <td className="py-3.5 px-4 font-mono text-[11px] text-[#626B65] whitespace-nowrap">
+                        <td className="py-4 px-5 font-mono text-[15px] text-[#D0D7E0] font-bold whitespace-nowrap">
                           {threat.assignedAnalyst || 'SOC Analyst'}
                         </td>
 
-                        <td className="py-3.5 px-4 text-right whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
+                        <td className="py-4 px-5 text-right whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                           <Link
                             href={`/threat/${threat.id}`}
-                            className="font-mono text-[12px] text-[#477A60] hover:text-[#365F49] font-bold transition inline-flex items-center gap-1"
+                            className="font-mono text-[16px] text-[#35D0BA] hover:text-[#2EB8A5] font-extrabold transition inline-flex items-center gap-1.5"
                           >
                             <span>Investigate</span>
-                            <ChevronRight className="h-3.5 w-3.5" />
+                            <ChevronRight className="h-4 w-4" />
                           </Link>
                         </td>
                       </tr>

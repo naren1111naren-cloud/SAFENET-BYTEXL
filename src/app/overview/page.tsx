@@ -5,16 +5,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
   ArrowRight,
-  Activity,
-  AlertOctagon,
-  GitBranch,
-  Shield,
-  Layers,
   ChevronRight,
-  Sparkles,
   ShieldAlert,
   Search,
-  ExternalLink,
 } from 'lucide-react';
 import AppShell from '@/components/AppShell';
 import { BrandStore, PRESET_BRANDS } from '@/lib/brand-store';
@@ -82,19 +75,19 @@ export default function OverviewPage() {
       pageTitle="Command Center"
       pageSubtitle={`Real-time digital risk intelligence for ${brand?.name || 'Paytm'} • Monitored brand perimeter active`}
     >
-      <div className="space-y-8 pb-16">
+      <div className="space-y-12 pb-16">
         {/* ========================================================================= */}
-        {/* 1. TOP BAR: TIME FILTER + KPI CARDS                                       */}
+        {/* 1. TOP BAR: TIME FILTER + OPEN NON-BOXY KPI METRICS                       */}
         {/* ========================================================================= */}
-        <section className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#DDE2DC] pb-4">
-            <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#E7F0E9] border border-[#D1E3D5] text-[#477A60] text-[11px] font-semibold">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#477A60] animate-pulse" />
+        <section className="space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#303946] pb-5">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#35D0BA]/15 border border-[#35D0BA]/35 text-[#35D0BA] text-[15px] font-bold">
+                <span className="h-2 w-2 rounded-full bg-[#35D0BA] animate-pulse" />
                 LIVE TELEMETRY
               </span>
-              <span className="text-[#DDE2DC]">/</span>
-              <span className="text-[13px] text-[#626B65] font-medium">
+              <span className="text-[#303946]">/</span>
+              <span className="text-[18px] text-[#FFFFFF] font-bold">
                 {brand?.name || 'Paytm'} Perimeter Monitoring
               </span>
             </div>
@@ -103,21 +96,21 @@ export default function OverviewPage() {
             <div className="flex items-center gap-3">
               <Link
                 href="/check"
-                className="px-3.5 py-1.5 bg-[#477A60] hover:bg-[#365F49] text-white font-semibold text-[13px] rounded-lg shadow-xs inline-flex items-center gap-1.5 transition-all cursor-pointer"
+                className="px-4 py-2 bg-[#35D0BA] hover:bg-[#2bbca6] text-[#080B10] font-bold text-[17px] rounded-lg shadow-sm inline-flex items-center gap-2 transition-all cursor-pointer"
               >
-                <Search className="h-3.5 w-3.5" />
+                <Search className="h-4 w-4" />
                 <span>Quick Check</span>
               </Link>
 
-              <div className="flex items-center bg-[#ECEFEC] border border-[#DDE2DC] rounded-lg p-0.5">
+              <div className="flex items-center bg-[#121821] border border-[#303946] rounded-lg p-1 text-[16px] font-bold">
                 {(['24H', '7D', '30D'] as const).map((r) => (
                   <button
                     key={r}
                     onClick={() => setTimeRange(r)}
-                    className={`px-3 py-1 rounded-md text-[12px] font-medium transition-all cursor-pointer ${
+                    className={`px-3.5 py-1 rounded-md transition-all cursor-pointer ${
                       timeRange === r
-                        ? 'bg-[#FFFFFF] text-[#202723] font-bold shadow-xs'
-                        : 'text-[#626B65] hover:text-[#202723]'
+                        ? 'bg-[#35D0BA] text-[#080B10] font-bold'
+                        : 'text-[#FFFFFF] hover:text-[#35D0BA]'
                     }`}
                   >
                     {r}
@@ -127,61 +120,61 @@ export default function OverviewPage() {
             </div>
           </div>
 
-          {/* KPI Metric Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {/* Detected Candidates */}
-            <div className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:border-[#C4CCC3] transition-all space-y-2">
-              <div className="text-[12px] text-[#626B65] uppercase font-bold tracking-wider">
+          {/* OPEN NON-BOXY METRICS: Floating values with descriptive labels */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-2">
+            {/* Metric 1 */}
+            <div className="space-y-2 border-b sm:border-b-0 sm:border-r border-[#303946] pb-4 sm:pb-0 pr-4">
+              <div className="text-[17px] text-[#D0D7E0] uppercase font-bold tracking-wider">
                 Detected Candidates
               </div>
-              <div className="text-[32px] sm:text-[36px] font-extrabold text-[#202723] leading-tight tabular-nums">
+              <div className="text-[44px] sm:text-[52px] font-extrabold text-[#FFFFFF] leading-none tabular-nums tracking-tight">
                 {totalDetected}
               </div>
-              <div className="text-[12px] text-[#347653] font-medium flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#347653]" />
+              <div className="text-[16px] text-[#35D0BA] font-bold flex items-center gap-2 pt-1">
+                <span className="h-2 w-2 rounded-full bg-[#35D0BA]" />
                 {totalDetected > 0 ? `${totalDetected} live entities indexed` : 'Perimeter nominal'}
               </div>
             </div>
 
-            {/* Needs Attention */}
-            <div className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:border-[#F8D3D6] transition-all space-y-2">
-              <div className="text-[12px] text-[#626B65] uppercase font-bold tracking-wider">
+            {/* Metric 2 */}
+            <div className="space-y-2 border-b sm:border-b-0 sm:border-r border-[#303946] pb-4 sm:pb-0 pr-4">
+              <div className="text-[17px] text-[#D0D7E0] uppercase font-bold tracking-wider">
                 Needs Attention
               </div>
-              <div className="text-[32px] sm:text-[36px] font-extrabold text-[#C93643] leading-tight tabular-nums">
+              <div className="text-[44px] sm:text-[52px] font-extrabold text-[#FF5C6C] leading-none tabular-nums tracking-tight">
                 {needsAttention}
               </div>
-              <div className="text-[12px] text-[#C93643] font-medium flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#C93643]" />
-                High / Critical severity triage
+              <div className="text-[16px] text-[#FF5C6C] font-bold flex items-center gap-2 pt-1">
+                <span className="h-2 w-2 rounded-full bg-[#FF5C6C]" />
+                High / Critical triage
               </div>
             </div>
 
-            {/* Active Investigations */}
-            <div className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:border-[#FBE8CA] transition-all space-y-2">
-              <div className="text-[12px] text-[#626B65] uppercase font-bold tracking-wider">
+            {/* Metric 3 */}
+            <div className="space-y-2 border-b sm:border-b-0 sm:border-r border-[#303946] pb-4 sm:pb-0 pr-4">
+              <div className="text-[17px] text-[#D0D7E0] uppercase font-bold tracking-wider">
                 Active Investigations
               </div>
-              <div className="text-[32px] sm:text-[36px] font-extrabold text-[#B7791F] leading-tight tabular-nums">
+              <div className="text-[44px] sm:text-[52px] font-extrabold text-[#FFCD4D] leading-none tabular-nums tracking-tight">
                 {investigationsCount}
               </div>
-              <div className="text-[12px] text-[#B7791F] font-medium flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#B7791F]" />
-                Persisted sessions & cases
+              <div className="text-[16px] text-[#FFCD4D] font-bold flex items-center gap-2 pt-1">
+                <span className="h-2 w-2 rounded-full bg-[#FFCD4D]" />
+                Persisted forensic cases
               </div>
             </div>
 
-            {/* Campaigns Discovered */}
-            <div className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:border-[#D3E1F5] transition-all space-y-2">
-              <div className="text-[12px] text-[#626B65] uppercase font-bold tracking-wider">
-                Campaigns Discovered
+            {/* Metric 4 */}
+            <div className="space-y-2">
+              <div className="text-[17px] text-[#D0D7E0] uppercase font-bold tracking-wider">
+                Campaign Clusters
               </div>
-              <div className="text-[32px] sm:text-[36px] font-extrabold text-[#3974C6] leading-tight tabular-nums">
+              <div className="text-[44px] sm:text-[52px] font-extrabold text-[#64A9FF] leading-none tabular-nums tracking-tight">
                 {campaignsCount}
               </div>
-              <div className="text-[12px] text-[#3974C6] font-medium flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#3974C6]" />
-                Multi-vector clusters
+              <div className="text-[16px] text-[#64A9FF] font-bold flex items-center gap-2 pt-1">
+                <span className="h-2 w-2 rounded-full bg-[#64A9FF]" />
+                Correlated threat hubs
               </div>
             </div>
           </div>
@@ -192,117 +185,117 @@ export default function OverviewPage() {
         {/* ========================================================================= */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* LEFT 8 COLS: THREAT ACTIVITY VELOCITY (HOURLY) */}
-          <div className="lg:col-span-8 bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-5">
-            <div className="flex items-baseline justify-between border-b border-[#DDE2DC] pb-3">
-              <div className="space-y-0.5">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#858D86]">
+          <div className="lg:col-span-8 bg-[#0D1118] border border-[#303946] rounded-xl p-6 sm:p-7 space-y-6">
+            <div className="flex items-baseline justify-between border-b border-[#303946] pb-4">
+              <div className="space-y-1">
+                <span className="text-[14px] font-bold uppercase tracking-wider text-[#35D0BA]">
                   TEMPORAL SIGNALS
                 </span>
-                <h3 className="text-[18px] font-bold text-[#202723]">
+                <h3 className="text-[24px] font-bold text-[#FFFFFF]">
                   Threat Activity Velocity
                 </h3>
               </div>
-              <span className="text-[12px] font-mono text-[#858D86]">Interval: 60m UTC</span>
+              <span className="text-[16px] font-mono text-[#D0D7E0] font-bold">Interval: 60m UTC</span>
             </div>
 
-            {/* Clean analytical density bar graph */}
-            <div className="space-y-3 font-sans">
-              <div className="h-36 flex items-end gap-1.5 pt-4 px-2">
+            {/* Analytical density bar graph */}
+            <div className="space-y-4 font-sans">
+              <div className="h-44 flex items-end gap-2 pt-4 px-2">
                 {hourlyActivity.map((val, idx) => (
                   <div key={idx} className="flex-1 flex flex-col items-center gap-1 group relative h-full justify-end">
                     <div
                       className={`w-full rounded-t-sm transition-all ${
-                        val > 2 ? 'bg-[#C93643]' : val > 0 ? 'bg-[#477A60]' : 'bg-[#ECEFEC]'
-                      } group-hover:bg-[#365F49]`}
-                      style={{ height: val > 0 ? `${Math.max(15, (val / maxHourly) * 100)}%` : '6px' }}
+                        val > 2 ? 'bg-[#FF5C6C]' : val > 0 ? 'bg-[#35D0BA]' : 'bg-[#19222D]'
+                      } group-hover:bg-[#64A9FF]`}
+                      style={{ height: val > 0 ? `${Math.max(18, (val / maxHourly) * 100)}%` : '6px' }}
                     />
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between text-[#858D86] text-[11px] pt-3 border-t border-[#DDE2DC] font-mono">
+              <div className="flex justify-between text-[#D0D7E0] text-[15px] pt-4 border-t border-[#303946] font-mono font-bold">
                 <span>00:00 UTC</span>
                 <span>06:00 UTC</span>
                 <span>12:00 UTC</span>
                 <span>18:00 UTC</span>
-                <span className="text-[#477A60] font-bold">Now</span>
+                <span className="text-[#35D0BA] font-bold">Now</span>
               </div>
             </div>
           </div>
 
           {/* RIGHT 4 COLS: RISK SEVERITY DISTRIBUTION */}
-          <div className="lg:col-span-4 bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-5">
-            <div className="flex items-baseline justify-between border-b border-[#DDE2DC] pb-3">
-              <div className="space-y-0.5">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#858D86]">
+          <div className="lg:col-span-4 bg-[#0D1118] border border-[#303946] rounded-xl p-6 sm:p-7 space-y-6">
+            <div className="flex items-baseline justify-between border-b border-[#303946] pb-4">
+              <div className="space-y-1">
+                <span className="text-[14px] font-bold uppercase tracking-wider text-[#35D0BA]">
                   SEVERITY COMPOSITION
                 </span>
-                <h3 className="text-[18px] font-bold text-[#202723]">
+                <h3 className="text-[24px] font-bold text-[#FFFFFF]">
                   Risk Distribution
                 </h3>
               </div>
-              <span className="text-[12px] font-mono text-[#858D86]">N = {totalDetected}</span>
+              <span className="text-[16px] font-mono text-[#D0D7E0] font-bold">N = {totalDetected}</span>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               {/* Critical */}
-              <div className="space-y-1.5">
-                <div className="flex justify-between text-[12px] font-semibold">
-                  <span className="text-[#C93643]">CRITICAL</span>
-                  <span className="text-[#626B65] font-mono tabular-nums">
+              <div className="space-y-2">
+                <div className="flex justify-between text-[16px] font-bold">
+                  <span className="text-[#FF5C6C]">CRITICAL</span>
+                  <span className="text-[#FFFFFF] font-mono tabular-nums">
                     {criticalCount} ({totalDetected > 0 ? Math.round((criticalCount / totalDetected) * 100) : 0}%)
                   </span>
                 </div>
-                <div className="w-full bg-[#ECEFEC] h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-[#121821] h-3 rounded-full overflow-hidden border border-[#303946]/50">
                   <div
-                    className="bg-[#C93643] h-full rounded-full transition-all"
+                    className="bg-[#FF5C6C] h-full rounded-full transition-all"
                     style={{ width: totalDetected > 0 ? `${(criticalCount / totalDetected) * 100}%` : '0%' }}
                   />
                 </div>
               </div>
 
               {/* High */}
-              <div className="space-y-1.5">
-                <div className="flex justify-between text-[12px] font-semibold">
-                  <span className="text-[#D95F36]">HIGH</span>
-                  <span className="text-[#626B65] font-mono tabular-nums">
+              <div className="space-y-2">
+                <div className="flex justify-between text-[16px] font-bold">
+                  <span className="text-[#FF8E4D]">HIGH</span>
+                  <span className="text-[#FFFFFF] font-mono tabular-nums">
                     {highCount} ({totalDetected > 0 ? Math.round((highCount / totalDetected) * 100) : 0}%)
                   </span>
                 </div>
-                <div className="w-full bg-[#ECEFEC] h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-[#121821] h-3 rounded-full overflow-hidden border border-[#303946]/50">
                   <div
-                    className="bg-[#D95F36] h-full rounded-full transition-all"
+                    className="bg-[#FF8E4D] h-full rounded-full transition-all"
                     style={{ width: totalDetected > 0 ? `${(highCount / totalDetected) * 100}%` : '0%' }}
                   />
                 </div>
               </div>
 
               {/* Medium */}
-              <div className="space-y-1.5">
-                <div className="flex justify-between text-[12px] font-semibold">
-                  <span className="text-[#B7791F]">MEDIUM</span>
-                  <span className="text-[#626B65] font-mono tabular-nums">
+              <div className="space-y-2">
+                <div className="flex justify-between text-[16px] font-bold">
+                  <span className="text-[#FFCD4D]">MEDIUM</span>
+                  <span className="text-[#FFFFFF] font-mono tabular-nums">
                     {mediumCount} ({totalDetected > 0 ? Math.round((mediumCount / totalDetected) * 100) : 0}%)
                   </span>
                 </div>
-                <div className="w-full bg-[#ECEFEC] h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-[#121821] h-3 rounded-full overflow-hidden border border-[#303946]/50">
                   <div
-                    className="bg-[#B7791F] h-full rounded-full transition-all"
+                    className="bg-[#FFCD4D] h-full rounded-full transition-all"
                     style={{ width: totalDetected > 0 ? `${(mediumCount / totalDetected) * 100}%` : '0%' }}
                   />
                 </div>
               </div>
 
               {/* Low */}
-              <div className="space-y-1.5">
-                <div className="flex justify-between text-[12px] font-semibold">
-                  <span className="text-[#3974C6]">LOW</span>
-                  <span className="text-[#626B65] font-mono tabular-nums">
+              <div className="space-y-2">
+                <div className="flex justify-between text-[16px] font-bold">
+                  <span className="text-[#64A9FF]">LOW</span>
+                  <span className="text-[#FFFFFF] font-mono tabular-nums">
                     {lowCount} ({totalDetected > 0 ? Math.round((lowCount / totalDetected) * 100) : 0}%)
                   </span>
                 </div>
-                <div className="w-full bg-[#ECEFEC] h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-[#121821] h-3 rounded-full overflow-hidden border border-[#303946]/50">
                   <div
-                    className="bg-[#3974C6] h-full rounded-full transition-all"
+                    className="bg-[#64A9FF] h-full rounded-full transition-all"
                     style={{ width: totalDetected > 0 ? `${(lowCount / totalDetected) * 100}%` : '0%' }}
                   />
                 </div>
@@ -314,82 +307,82 @@ export default function OverviewPage() {
         {/* ========================================================================= */}
         {/* 3. PRIORITY DETECTIONS TABLE                                              */}
         {/* ========================================================================= */}
-        <section className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-5">
-          <div className="flex items-baseline justify-between border-b border-[#DDE2DC] pb-3">
-            <div className="space-y-0.5">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#858D86]">
+        <section className="bg-[#0D1118] border border-[#303946] rounded-xl p-6 sm:p-7 space-y-6">
+          <div className="flex items-baseline justify-between border-b border-[#303946] pb-4">
+            <div className="space-y-1">
+              <span className="text-[14px] font-bold uppercase tracking-wider text-[#35D0BA]">
                 TRIAGE QUEUE
               </span>
-              <h3 className="text-[18px] font-bold text-[#202723]">
+              <h3 className="text-[24px] font-bold text-[#FFFFFF]">
                 Priority Detections
               </h3>
             </div>
             <Link
               href="/incidents"
-              className="text-[13px] font-semibold text-[#477A60] hover:text-[#365F49] transition-colors inline-flex items-center gap-1"
+              className="text-[17px] font-bold text-[#35D0BA] hover:underline transition-colors inline-flex items-center gap-1.5"
             >
               <span>All Incidents ({threats.length})</span>
-              <ArrowRight className="h-3.5 w-3.5" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-[13px]">
+            <table className="w-full text-left text-[18px]">
               <thead>
-                <tr className="border-b border-[#DDE2DC] text-[#858D86] font-semibold text-[11px] uppercase tracking-wider">
-                  <th className="py-3 pr-4 font-bold">Severity</th>
-                  <th className="py-3 px-4 font-bold">Target Asset</th>
-                  <th className="py-3 px-4 font-bold">Vector</th>
-                  <th className="py-3 px-4 font-bold">Score</th>
-                  <th className="py-3 px-4 font-bold">Discovered</th>
-                  <th className="py-3 pl-4 font-bold text-right">Action</th>
+                <tr className="border-b border-[#303946] text-[#D0D7E0] font-bold text-[15px] uppercase tracking-wider">
+                  <th className="py-3.5 pr-4">Severity</th>
+                  <th className="py-3.5 px-4">Target Asset</th>
+                  <th className="py-3.5 px-4">Vector</th>
+                  <th className="py-3.5 px-4">Score</th>
+                  <th className="py-3.5 px-4">Discovered</th>
+                  <th className="py-3.5 pl-4 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#DDE2DC]">
+              <tbody className="divide-y divide-[#303946]">
                 {priorityQueue.length > 0 ? (
                   priorityQueue.map((threat) => (
-                    <tr key={threat.id} className="group hover:bg-[#F7F8F6] transition-colors">
-                      <td className="py-3.5 pr-4">
+                    <tr key={threat.id} className="group hover:bg-[#121821] transition-colors">
+                      <td className="py-4 pr-4">
                         <span
-                          className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase border ${
+                          className={`inline-flex items-center px-2.5 py-1 rounded text-[13px] font-mono font-bold uppercase border ${
                             threat.riskScore >= 80
-                              ? 'bg-[#FDF2F3] text-[#C93643] border-[#F8D3D6]'
+                              ? 'bg-[#FF5C6C]/15 text-[#FF5C6C] border-[#FF5C6C]/35'
                               : threat.riskScore >= 50
-                              ? 'bg-[#FEF9F0] text-[#B7791F] border-[#FBE8CA]'
-                              : 'bg-[#EFF7F2] text-[#347653] border-[#CBE4D4]'
+                              ? 'bg-[#FFCD4D]/15 text-[#FFCD4D] border-[#FFCD4D]/35'
+                              : 'bg-[#35D0BA]/15 text-[#35D0BA] border-[#35D0BA]/35'
                           }`}
                         >
                           {threat.riskScore >= 80 ? 'CRITICAL' : threat.riskScore >= 50 ? 'HIGH' : 'EVALUATED'}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-[13px] font-semibold text-[#202723]">
+                      <td className="py-4 px-4 font-mono text-[17px] font-bold text-[#FFFFFF]">
                         {threat.targetAsset}
                       </td>
-                      <td className="py-3.5 px-4 text-[#626B65] text-[12px] uppercase font-mono">
+                      <td className="py-4 px-4 text-[#D0D7E0] text-[16px] uppercase font-mono font-bold">
                         {threat.type.replace('_', ' ')}
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-[13px] font-semibold text-[#202723] tabular-nums">
-                        {threat.riskScore} <span className="text-[#858D86] text-[11px] font-normal">/ 100</span>
+                      <td className="py-4 px-4 font-mono text-[17px] font-bold text-[#FFFFFF] tabular-nums">
+                        {threat.riskScore} <span className="text-[#D0D7E0] text-[14px]">/ 100</span>
                       </td>
-                      <td className="py-3.5 px-4 text-[12px] text-[#626B65]">
+                      <td className="py-4 px-4 text-[16px] text-[#D0D7E0] font-bold">
                         {new Date(threat.discoveredAt).toLocaleDateString()}
                       </td>
-                      <td className="py-3.5 pl-4 text-right">
+                      <td className="py-4 pl-4 text-right">
                         <Link
                           href={`/threat/${threat.id}`}
-                          className="text-[12px] font-semibold text-[#477A60] hover:text-[#365F49] transition-colors inline-flex items-center gap-1 group-hover:translate-x-0.5"
+                          className="text-[16px] font-bold text-[#35D0BA] hover:underline transition-colors inline-flex items-center gap-1.5 group-hover:translate-x-0.5"
                         >
                           <span>Investigate</span>
-                          <ChevronRight className="h-3.5 w-3.5" />
+                          <ChevronRight className="h-4 w-4" />
                         </Link>
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={6} className="py-12 text-center text-[#858D86] text-[13px]">
+                    <td colSpan={6} className="py-14 text-center text-[#D0D7E0] text-[18px] font-bold">
                       No digital impersonation entities currently detected for {brand?.name || 'this brand'}.{' '}
-                      <Link href="/check" className="text-[#477A60] hover:underline font-semibold ml-1">
+                      <Link href="/check" className="text-[#35D0BA] hover:underline font-bold ml-1">
                         Run a check to discover candidates →
                       </Link>
                     </td>

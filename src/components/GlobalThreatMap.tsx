@@ -96,46 +96,46 @@ export default function GlobalThreatMap() {
   const [activeLayer, setActiveLayer] = useState<'threats' | 'phishing' | 'bots'>('threats');
 
   return (
-    <div className="bg-[#0E0E0E] border border-[#222222] rounded-[6px] overflow-hidden">
+    <div className="bg-[#0D1118] border border-[#303946] rounded-2xl overflow-hidden shadow-xl">
       {/* ── CARD HEADER ── */}
-      <div className="px-5 py-3.5 border-b border-[#222222] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0E0E0E]">
+      <div className="px-6 py-5 border-b border-[#303946] flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#0D1118]">
         <div>
-          <div className="flex items-center gap-2">
-            <h3 className="text-[14px] font-semibold text-white tracking-[-0.01em]">
+          <div className="flex items-center gap-3">
+            <h3 className="text-[20px] font-extrabold text-[#FFFFFF] tracking-[-0.01em]">
               Origin Telemetry & Infrastructure Map
             </h3>
-            <span className="text-[11px] font-mono text-[#F38020] bg-[#F38020]/15 px-2 py-0.5 rounded border border-[#F38020]/30 font-semibold">
+            <span className="text-[14px] font-mono text-[#35D0BA] bg-[#121821] px-2.5 py-1 rounded-md border border-[#303946] font-bold">
               Global ASNs
             </span>
           </div>
-          <p className="text-[12px] text-[#A0A0A0] mt-0.5">
+          <p className="text-[17px] text-[#D0D7E0] mt-1 font-bold">
             Geographic hosting density of detected counterfeit entities, lookalike servers, and rogue APK endpoints.
           </p>
         </div>
 
         {/* Layer Toggles */}
-        <div className="flex items-center gap-2 self-start sm:self-center">
-          <div className="flex items-center p-0.5 rounded bg-black border border-[#222222] text-[11px]">
+        <div className="flex items-center gap-3 self-start sm:self-center">
+          <div className="flex items-center p-1 rounded-xl bg-[#080B10] border border-[#303946] text-[15px]">
             <button
               onClick={() => setActiveLayer('threats')}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                activeLayer === 'threats' ? 'bg-[#222222] text-white font-medium' : 'text-[#767676] hover:text-white'
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer font-bold ${
+                activeLayer === 'threats' ? 'bg-[#121821] text-[#FFFFFF]' : 'text-[#D0D7E0] hover:text-[#FFFFFF]'
               }`}
             >
               All Threats
             </button>
             <button
               onClick={() => setActiveLayer('phishing')}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                activeLayer === 'phishing' ? 'bg-[#222222] text-white font-medium' : 'text-[#767676] hover:text-white'
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer font-bold ${
+                activeLayer === 'phishing' ? 'bg-[#121821] text-[#FFFFFF]' : 'text-[#D0D7E0] hover:text-[#FFFFFF]'
               }`}
             >
               Phishing
             </button>
             <button
               onClick={() => setActiveLayer('bots')}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                activeLayer === 'bots' ? 'bg-[#222222] text-white font-medium' : 'text-[#767676] hover:text-white'
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer font-bold ${
+                activeLayer === 'bots' ? 'bg-[#121821] text-[#FFFFFF]' : 'text-[#D0D7E0] hover:text-[#FFFFFF]'
               }`}
             >
               Rogue APKs
@@ -144,9 +144,9 @@ export default function GlobalThreatMap() {
 
           <button
             title="Download CSV"
-            className="p-1.5 rounded text-[#767676] hover:text-white hover:bg-[#1E1E1E] transition-colors cursor-pointer"
+            className="p-2.5 rounded-xl text-[#D0D7E0] hover:text-[#FFFFFF] bg-[#121821] border border-[#303946] hover:bg-[#19222D] transition-colors cursor-pointer"
           >
-            <Download className="h-3.5 w-3.5" />
+            <Download className="h-4 w-4" />
           </button>
         </div>
       </div>
@@ -154,25 +154,25 @@ export default function GlobalThreatMap() {
       {/* ── MAP & TELEMETRY SPLIT ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3">
         {/* Map Visual (2 cols) */}
-        <div className="lg:col-span-2 p-5 bg-black relative border-b lg:border-b-0 lg:border-r border-[#222222] min-h-[300px] flex items-center justify-center">
+        <div className="lg:col-span-2 p-6 bg-[#080B10] relative border-b lg:border-b-0 lg:border-r border-[#303946] min-h-[320px] flex items-center justify-center">
           {/* Vector Grid Backdrop */}
-          <div className="w-full h-full absolute inset-0 opacity-15 pointer-events-none flex items-center justify-center">
+          <div className="w-full h-full absolute inset-0 opacity-20 pointer-events-none flex items-center justify-center">
             <svg viewBox="0 0 1000 500" className="w-full h-full object-cover">
               {[100, 200, 300, 400].map((y) => (
-                <line key={`lat-${y}`} x1="0" y1={y} x2="1000" y2={y} stroke="#444444" strokeDasharray="4 4" strokeWidth="0.5" />
+                <line key={`lat-${y}`} x1="0" y1={y} x2="1000" y2={y} stroke="#303946" strokeDasharray="4 4" strokeWidth="0.8" />
               ))}
               {[200, 400, 600, 800].map((x) => (
-                <line key={`lon-${x}`} x1={x} y1="0" x2={x} y2="500" stroke="#444444" strokeDasharray="4 4" strokeWidth="0.5" />
+                <line key={`lon-${x}`} x1={x} y1="0" x2={x} y2="500" stroke="#303946" strokeDasharray="4 4" strokeWidth="0.8" />
               ))}
             </svg>
           </div>
 
           {/* Region Beacon Markers */}
-          <div className="w-full h-64 sm:h-72 relative">
+          <div className="w-full h-64 sm:h-76 relative">
             {REGIONS.map((region) => {
               const isSelected = selectedRegion.id === region.id;
               const beaconColor =
-                region.severity === 'CRITICAL' ? '#EB364B' : region.severity === 'HIGH' ? '#F38020' : '#FDBA3B';
+                region.severity === 'CRITICAL' ? '#FF5C6C' : region.severity === 'HIGH' ? '#FFAB40' : '#64A9FF';
 
               return (
                 <div
@@ -187,15 +187,15 @@ export default function GlobalThreatMap() {
                   />
 
                   <div
-                    className={`relative h-4 w-4 rounded-full border-2 border-black shadow-md flex items-center justify-center transition-transform ${
-                      isSelected ? 'scale-125 ring-2 ring-white' : 'group-hover:scale-110'
+                    className={`relative h-5 w-5 rounded-full border-2 border-[#080B10] shadow-md flex items-center justify-center transition-transform ${
+                      isSelected ? 'scale-125 ring-2 ring-[#35D0BA]' : 'group-hover:scale-110'
                     }`}
                     style={{ backgroundColor: beaconColor }}
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                    <span className="h-2 w-2 rounded-full bg-[#FFFFFF]" />
                   </div>
 
-                  <div className="absolute top-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded bg-[#141414] border border-[#262626] text-[10px] font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity z-20 pointer-events-none shadow-lg">
+                  <div className="absolute top-6 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 rounded-lg bg-[#121821] border border-[#303946] text-[13px] font-mono text-[#FFFFFF] font-bold opacity-0 group-hover:opacity-100 transition-opacity z-20 pointer-events-none shadow-xl">
                     {region.name} ({region.threatCount})
                   </div>
                 </div>
@@ -203,75 +203,75 @@ export default function GlobalThreatMap() {
             })}
           </div>
 
-          <div className="absolute bottom-3 left-3 text-[10px] font-mono text-[#555555] flex items-center gap-2">
-            <span>● CRITICAL (&gt;90)</span>
-            <span>● HIGH (70-90)</span>
-            <span>● MEDIUM (&lt;70)</span>
+          <div className="absolute bottom-4 left-4 text-[13px] font-mono text-[#D0D7E0] font-bold flex items-center gap-3">
+            <span className="text-[#FF5C6C]">● CRITICAL (&gt;90)</span>
+            <span className="text-[#FFAB40]">● HIGH (70-90)</span>
+            <span className="text-[#64A9FF]">● MEDIUM (&lt;70)</span>
           </div>
         </div>
 
         {/* Selected Region Telemetry Drawer (1 col) */}
-        <div className="p-5 bg-[#0E0E0E] flex flex-col justify-between space-y-4">
+        <div className="p-6 bg-[#121821] flex flex-col justify-between space-y-5">
           <div className="space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-[#222222]">
+            <div className="flex items-center justify-between pb-3.5 border-b border-[#303946]">
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-[#767676] font-semibold">
+                <span className="text-[13px] font-mono uppercase tracking-wider text-[#35D0BA] font-extrabold">
                   Selected Origin
                 </span>
-                <h4 className="text-[16px] font-semibold text-white mt-0.5">
+                <h4 className="text-[20px] font-extrabold text-[#FFFFFF] mt-0.5">
                   {selectedRegion.name} ({selectedRegion.countryCode})
                 </h4>
               </div>
               <span
-                className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border ${
+                className={`text-[13px] font-mono font-extrabold px-2.5 py-1 rounded-md border ${
                   selectedRegion.severity === 'CRITICAL'
-                    ? 'badge-critical'
+                    ? 'bg-[#2D1216] text-[#FF5C6C] border-[#FF5C6C]/40'
                     : selectedRegion.severity === 'HIGH'
-                    ? 'badge-high'
-                    : 'badge-medium'
+                    ? 'bg-[#2C1C0D] text-[#FFAB40] border-[#FFAB40]/40'
+                    : 'bg-[#0F2620] text-[#35D0BA] border-[#35D0BA]/40'
                 }`}
               >
                 {selectedRegion.severity}
               </span>
             </div>
 
-            <div className="space-y-3 font-mono text-[12px]">
-              <div className="flex items-center justify-between py-1.5 border-b border-[#1C1C1C]">
-                <span className="text-[#A0A0A0]">Observed Threats:</span>
-                <span className="text-white font-semibold tabular-nums">
+            <div className="space-y-3 font-mono text-[16px]">
+              <div className="flex items-center justify-between py-2 border-b border-[#303946]">
+                <span className="text-[#D0D7E0] font-bold">Observed Threats:</span>
+                <span className="text-[#FFFFFF] font-extrabold tabular-nums">
                   {selectedRegion.threatCount.toLocaleString()}
                 </span>
               </div>
-              <div className="flex items-center justify-between py-1.5 border-b border-[#1C1C1C]">
-                <span className="text-[#A0A0A0]">Velocity Delta:</span>
-                <span className="text-[#00B37E] font-semibold flex items-center gap-0.5">
-                  <ArrowUpRight className="h-3 w-3" />
+              <div className="flex items-center justify-between py-2 border-b border-[#303946]">
+                <span className="text-[#D0D7E0] font-bold">Velocity Delta:</span>
+                <span className="text-[#35D0BA] font-extrabold flex items-center gap-1">
+                  <ArrowUpRight className="h-4 w-4" />
                   {selectedRegion.changeRate}
                 </span>
               </div>
-              <div className="flex items-center justify-between py-1.5 border-b border-[#1C1C1C]">
-                <span className="text-[#A0A0A0]">Risk Severity Score:</span>
-                <span className="text-[#EB364B] font-bold">{selectedRegion.riskScore} / 100</span>
+              <div className="flex items-center justify-between py-2 border-b border-[#303946]">
+                <span className="text-[#D0D7E0] font-bold">Risk Severity Score:</span>
+                <span className="text-[#FF5C6C] font-extrabold">{selectedRegion.riskScore} / 100</span>
               </div>
-              <div className="py-1.5 border-b border-[#1C1C1C]">
-                <span className="text-[#767676] block text-[11px] uppercase">Primary Attack Vector:</span>
-                <span className="text-white text-[12px] font-sans font-medium mt-0.5 block">
+              <div className="py-2 border-b border-[#303946]">
+                <span className="text-[#D0D7E0] block text-[14px] uppercase font-bold">Primary Attack Vector:</span>
+                <span className="text-[#FFFFFF] text-[16px] font-sans font-bold mt-1 block">
                   {selectedRegion.topCategory}
                 </span>
               </div>
-              <div className="py-1">
-                <span className="text-[#767676] block text-[11px] uppercase">Target Sector:</span>
-                <span className="text-[#A0A0A0] text-[12px] font-sans mt-0.5 block">
+              <div className="py-2">
+                <span className="text-[#D0D7E0] block text-[14px] uppercase font-bold">Target Sector:</span>
+                <span className="text-[#FFFFFF] text-[16px] font-sans font-bold mt-1 block">
                   {selectedRegion.topTargetSector}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="pt-3 border-t border-[#222222]">
+          <div className="pt-4 border-t border-[#303946]">
             <button
               onClick={() => (window.location.href = `/monitoring?tab=threats`)}
-              className="w-full py-2 px-3 rounded bg-[#1A1A1A] hover:bg-[#252525] text-white text-[12px] font-semibold transition-colors cursor-pointer text-center"
+              className="w-full py-3 px-4 rounded-xl bg-[#080B10] hover:bg-[#19222D] border border-[#303946] text-[#FFFFFF] text-[16px] font-extrabold transition-colors cursor-pointer text-center"
             >
               Filter Telemetry by {selectedRegion.countryCode} →
             </button>
@@ -280,9 +280,9 @@ export default function GlobalThreatMap() {
       </div>
 
       {/* ── CARD FOOTER ── */}
-      <div className="px-5 py-2.5 border-t border-[#222222] bg-[#080808] flex items-center justify-between text-[11px] text-[#767676]">
-        <span>GeoIP & ASN Telemetry Engine v2.4</span>
-        <span className="font-mono">5 Active Surveillance Nodes</span>
+      <div className="px-6 py-3 border-t border-[#303946] bg-[#080B10] flex items-center justify-between text-[15px] text-[#D0D7E0] font-bold">
+        <span>GeoIP &amp; ASN Telemetry Engine v2.4</span>
+        <span className="font-mono text-[#35D0BA]">5 Active Surveillance Nodes</span>
       </div>
     </div>
   );

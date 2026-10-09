@@ -42,70 +42,70 @@ export default function EditorialHomePage() {
 
   return (
     <AppShell>
-      <div className="space-y-20 py-6 max-w-4xl mx-auto">
-        <section className="space-y-10">
-          <div className="space-y-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-blue-50 text-blue-700 border border-blue-200 text-[11px] font-bold uppercase tracking-wider">
-              <ShieldCheck className="h-3.5 w-3.5 text-blue-600" />
-              DIGITAL TRUST, VERIFIED
+      <div className="space-y-24 py-8 max-w-5xl mx-auto">
+        <section className="space-y-12">
+          <div className="space-y-8">
+            <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-[#121821] text-[#35D0BA] border border-[#303946] text-[16px] font-extrabold uppercase tracking-wider">
+              <ShieldCheck className="h-5 w-5 text-[#35D0BA]" />
+              DIGITAL RISK PROTECTION &amp; SOCIAL THREAT MONITORING
             </span>
-            <h1 className="text-[44px] sm:text-[68px] lg:text-[80px] font-extrabold text-slate-900 tracking-[-0.035em] leading-[1.02]">
+            <h1 className="text-[52px] sm:text-[76px] lg:text-[88px] font-extrabold text-[#FFFFFF] tracking-[-0.035em] leading-[1.05]">
               Don&apos;t guess.<br />
-              <span className="text-blue-600">Know.</span>
+              <span className="text-[#35D0BA]">Know.</span>
             </h1>
-            <p className="text-[18px] sm:text-[20px] text-slate-600 max-w-[640px] leading-relaxed pt-1">
-              Investigate the links, accounts, messages, and apps you don&apos;t trust — and examine forensic evidence before you act.
+            <p className="text-[22px] sm:text-[24px] text-[#D0D7E0] max-w-[720px] leading-relaxed pt-1 font-bold">
+              Investigate the links, accounts, messages, and apps you don&apos;t trust — and examine forensic evidence before granting trust.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-5 pt-3">
               <Link
                 href="/check"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-[14px] font-bold shadow-xs transition-all cursor-pointer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] rounded-xl text-[20px] font-extrabold shadow-lg transition-all cursor-pointer"
               >
                 <span>Check Something</span>
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
                 href="/overview"
-                className="inline-flex items-center px-6 py-3.5 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 rounded-xl text-[14px] font-semibold shadow-xs transition-colors cursor-pointer"
+                className="inline-flex items-center px-8 py-4 bg-[#121821] border border-[#303946] text-[#FFFFFF] hover:bg-[#19222D] rounded-xl text-[20px] font-extrabold shadow-md transition-colors cursor-pointer"
               >
                 <span>Explore Dashboard</span>
               </Link>
             </div>
           </div>
 
-          <div className="pt-8 space-y-5 border-t border-slate-200">
-            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-              <h2 className="text-[13px] font-sans uppercase tracking-wider text-slate-800 font-bold">
+          <div className="pt-10 space-y-6 border-t border-[#303946]">
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <h2 className="text-[19px] font-mono uppercase tracking-wider text-[#35D0BA] font-extrabold">
                 WHAT ARE YOU CHECKING?
               </h2>
-              <span className="text-[13px] text-slate-500">
+              <span className="text-[17px] text-[#D0D7E0] font-bold">
                 Paste a URL, domain, message, account or application to investigate.
               </span>
             </div>
 
-            <form onSubmit={handleAnalyze} className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xs space-y-4">
+            <form onSubmit={handleAnalyze} className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-5">
               <div className="relative">
                 <input
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder={typePlaceholders[selectedType]}
-                  className="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 rounded-xl px-4 py-3.5 text-[14px] text-slate-900 placeholder-slate-400 outline-none font-mono transition-all shadow-xs"
+                  className="w-full bg-[#121821] border border-[#303946] focus:border-[#35D0BA] focus:ring-1 focus:ring-[#35D0BA] rounded-xl px-5 py-4 text-[19px] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] outline-none font-mono transition-all shadow-inner"
                 />
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
-                <div className="flex flex-wrap items-center gap-1.5 text-[12px] font-medium">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
+                <div className="flex flex-wrap items-center gap-2.5 text-[16px] font-bold">
                   {(['url', 'message', 'social', 'app', 'lookalike'] as const).map((mode) => (
                     <button
                       key={mode}
                       type="button"
                       onClick={() => setSelectedType(mode)}
-                      className={`px-3 py-1.5 rounded-lg uppercase tracking-wider transition-all cursor-pointer ${
+                      className={`px-4 py-2 rounded-xl uppercase tracking-wider transition-all cursor-pointer font-extrabold ${
                         selectedType === mode
-                          ? 'bg-blue-50 text-blue-700 border border-blue-200 font-bold'
-                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                          ? 'bg-[#121821] text-[#35D0BA] border border-[#35D0BA]'
+                          : 'text-[#D0D7E0] hover:text-[#FFFFFF] bg-[#080B10] border border-[#303946]'
                       }`}
                     >
                       {mode === 'lookalike' ? 'Look-alike' : mode}
@@ -115,66 +115,66 @@ export default function EditorialHomePage() {
 
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-[13px] font-bold uppercase tracking-wider cursor-pointer shadow-xs transition-all self-start sm:self-auto"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] rounded-xl text-[19px] font-extrabold uppercase tracking-wider cursor-pointer shadow-lg transition-all self-start sm:self-auto"
                 >
                   <span>Check Risk</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-5 w-5" />
                 </button>
               </div>
             </form>
           </div>
         </section>
 
-        <section className="space-y-4 pt-4 border-t border-slate-200">
-          <div className="text-[11px] font-sans uppercase tracking-wider text-slate-400 font-bold pb-1">
+        <section className="space-y-5 pt-6 border-t border-[#303946]">
+          <div className="text-[16px] font-mono uppercase tracking-wider text-[#D0D7E0] font-extrabold pb-1">
             COMMON INVESTIGATIONS
           </div>
 
-          <div className="divide-y divide-slate-100 border-y border-slate-200 bg-white rounded-2xl shadow-xs overflow-hidden">
+          <div className="divide-y divide-[#303946] border-y border-[#303946] bg-[#0D1118] rounded-2xl shadow-lg overflow-hidden">
             <div
               onClick={() => setSample('url', 'http://paytm-support-verify.xyz')}
-              className="p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 group cursor-pointer hover:bg-slate-50 transition-colors"
+              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#121821] transition-colors"
             >
-              <span className="text-[14px] font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#35D0BA] transition-colors">
                 “Is this website legitimate?”
               </span>
-              <span className="font-mono text-[13px] text-slate-500">
+              <span className="font-mono text-[17px] text-[#64A9FF] font-bold">
                 paytm-support-verify.xyz
               </span>
             </div>
 
             <div
               onClick={() => setSample('social', '@Paytm_CareHelp')}
-              className="p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 group cursor-pointer hover:bg-slate-50 transition-colors"
+              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#121821] transition-colors"
             >
-              <span className="text-[14px] font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#35D0BA] transition-colors">
                 “Is this support account real?”
               </span>
-              <span className="font-mono text-[13px] text-slate-500">
+              <span className="font-mono text-[17px] text-[#64A9FF] font-bold">
                 @Paytm_CareHelp
               </span>
             </div>
 
             <div
               onClick={() => setSample('message', 'URGENT: Your account KYC expires today. Update PAN via link to avoid suspension.')}
-              className="p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 group cursor-pointer hover:bg-slate-50 transition-colors"
+              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#121821] transition-colors"
             >
-              <span className="text-[14px] font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#35D0BA] transition-colors">
                 “Is this payment request a scam?”
               </span>
-              <span className="font-mono text-[13px] text-slate-500">
+              <span className="font-mono text-[17px] text-[#FFAB40] font-bold">
                 Account suspension SMS lure
               </span>
             </div>
 
             <div
               onClick={() => setSample('lookalike', 'Paytm Customer Support Helpline')}
-              className="p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 group cursor-pointer hover:bg-slate-50 transition-colors"
+              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#121821] transition-colors"
             >
-              <span className="text-[14px] font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#35D0BA] transition-colors">
                 “Is this look-alike support account legitimate?”
               </span>
-              <span className="font-mono text-[13px] text-slate-500">
+              <span className="font-mono text-[17px] text-[#FF5C6C] font-bold">
                 Combosquatting &amp; name resemblance check
               </span>
             </div>
