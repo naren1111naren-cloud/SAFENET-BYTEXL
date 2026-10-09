@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+@layer base {
+  :root,
+  .dark {
+    /* === SAFENET CYBER THREAT OPS / SENTINEL DARK SYSTEM === */
+    --sn-bg: #06080C;
+    --sn-canvas: #080C14;
+    --sn-surface: #0B101A;
+    --sn-surface-hover: #101726;
+    --sn-surface-elevated: #151F33;
+    --sn-surface-glass: rgba(11, 16, 26, 0.75);
+
+    /* Typography Palette */
+    --sn-text-primary: #F3F6FB;
+    --sn-text-secondary: #94A3B8;
+    --sn-text-muted: #5B6B82;
+
+    /* Hairline Cyber Separators & Subtle Borders */
+    --sn-border: rgba(255, 255, 255, 0.08);
+    --sn-border-subtle: rgba(255, 255, 255, 0.04);
+    --sn-border-strong: rgba(255, 255, 255, 0.16);
+    --sn-border-cyan: rgba(6, 182, 212, 0.25);
+    --sn-border-emerald: rgba(16, 185, 129, 0.25);
+
+    /* Telemetry Accents */
+    --sn-cyan: #00D2FF;
+    --sn-cyan-glow: rgba(0, 210, 255, 0.18);
+    --sn-emerald: #00F5A0;
+    --sn-emerald-glow: rgba(0, 245, 160, 0.18);
+    --sn-crimson: #FF3366;
+    --sn-crimson-glow: rgba(255, 51, 102, 0.18);
+    --sn-amber: #F59E0B;
+    --sn-amber-glow: rgba(245, 158, 11, 0.18);
+    --sn-violet: #8B5CF6;
+    --sn-violet-glow: rgba(139, 92, 246, 0.18);
+
+    --background: #06080C;
+    --foreground: #F3F6FB;
+  }
+}
+
+/* === Sentinel Dark Layout === */
+html {
+  color-scheme: dark !important;
+  background-color: #06080C !important;
+}
+
+body {
+  background-color: #06080C;
+  background-image: 
+    radial-gradient(ellipse 90% 45% at 50% -15%, rgba(0, 210, 255, 0.06), transparent),
+    radial-gradient(ellipse 60% 30% at 80% 30%, rgba(0, 245, 160, 0.03), transparent),
+    linear-gradient(to bottom, rgba(6, 8, 12, 0.92), rgba(6, 8, 12, 0.98)),
+    url('/images/dark-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% auto, 100% 100%, 100% 100%, 100% auto;
+  background-attachment: fixed;
+  color: #F3F6FB;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.012em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Monospace font for telemetry, data, domains, hashes, and indicators */
+code, kbd, samp, pre, .font-mono {
+  font-family: var(--font-jetbrains-mono), "SF Mono", Consolas, "Liberation Mono", monospace;
+  font-feature-settings: "tnum" 1;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* === Cyber Telemetry Grid Backdrop === */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* === Minimal Hairline Scrollbar === */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 210, 255, 0.35);
+}
+
+/* === Selection === */
+::selection {
+  background: rgba(0, 210, 255, 0.25);
+  color: #FFFFFF;
+}
+
+/* === Precision Cyber Focus === */
+:focus-visible {
+  outline: 1px solid var(--sn-cyan);
+  outline-offset: 1px;
+}
+
+/* Hairline Cyber Separators */
+.sn-separator {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Continuous Rows with Subtle Cyber Hover */
+.sn-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.15s ease;
+}
+.sn-row:hover {
+  background-color: rgba(0, 210, 255, 0.025);
+}
+
+/* Cyber Surface Cards with Glass and Telemetry Borders */
+.cyber-card {
+  background: rgba(11, 16, 26, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cyber-card:hover {
+  border-color: rgba(0, 210, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.06);
+}
+
+.cyber-card-elevated {
+  background: rgba(16, 23, 38, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.5), 0 0 16px rgba(0, 210, 255, 0.08);
+}
+
+/* Primary Sentinel Action */
+.btn-accent {
+  background: linear-gradient(135deg, #00D2FF 0%, #00F5A0 100%);
+  color: #040910;
+  font-weight: 600;
+  border-radius: 4px;
+  box-shadow: 0 0 16px rgba(0, 210, 255, 0.25);
+  transition: all 0.18s ease;
+}
+.btn-accent:hover {
+  box-shadow: 0 0 24px rgba(0, 210, 255, 0.45);
+  filter: brightness(1.08);
+}
+
+.btn-quiet {
+  background-color: rgba(255, 255, 255, 0.02);
+  color: #F3F6FB;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  transition: all 0.18s ease;
+}
+.btn-quiet:hover {
+  border-color: rgba(0, 210, 255, 0.4);
+  background-color: rgba(0, 210, 255, 0.05);
+  color: #FFFFFF;
+}
+
+/* Semantic Badges */
+.badge-critical {
+  color: #FF3366;
+  background-color: rgba(255, 51, 102, 0.12);
+  border: 1px solid rgba(255, 51, 102, 0.35);
+}
+
+.badge-high {
+  color: #F59E0B;
+  background-color: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.badge-nominal {
+  color: #00F5A0;
+  background-color: rgba(0, 245, 160, 0.12);
+  border: 1px solid rgba(0, 245, 160, 0.35);
+}
+
+.badge-telemetry {
+  color: #00D2FF;
+  background-color: rgba(0, 210, 255, 0.12);
+  border: 1px solid rgba(0, 210, 255, 0.35);
+}
+
+/* Status Indicators */
+.status-danger {
+  color: #FF3366;
+}
+.status-warning {
+  color: #F59E0B;
+}
+.status-accent {
+  color: #00F5A0;
+}
+.status-info {
+  color: #00D2FF;
+}
+
+/* Telemetry Ping Animations */
+@keyframes cyber-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.92);
+  }
+}
+.animate-cyber-pulse {
+  animation: cyber-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+

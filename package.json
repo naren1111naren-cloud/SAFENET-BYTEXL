@@ -1,0 +1,35 @@
+{
+  "name": "safenet",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "tsx --test tests/phase2-intelligence.test.mjs tests/real-intelligence-pipeline.test.mjs tests/brand-profile-intelligence.test.mjs tests/supabase-brand-persistence.test.mjs tests/app-threat-intelligence.test.mjs tests/social-monitoring.test.mjs tests/instagram-impersonation.test.mjs tests/lookalike-detection.test.mjs"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.52.0",
+    "next": "16.3.8",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tailwind-merge": "^3.7.0",
+    "vis-data": "^8.0.5",
+    "vis-network": "^10.1.2",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.8",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  }
+}
