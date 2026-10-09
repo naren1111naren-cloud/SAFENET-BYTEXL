@@ -81,20 +81,20 @@ export default function ThreatActivityChart() {
   const activePoint = points[activeIdx];
 
   return (
-    <div className="bg-[#0E0E0E] border border-[#222222] rounded-[6px] overflow-hidden">
+    <div className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
       {/* ── CARD HEADER ── */}
-      <div className="px-5 py-3.5 border-b border-[#222222] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0E0E0E]">
+      <div className="px-5 py-4 border-b border-[#DDE2DC] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#FFFFFF]">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-[14px] font-semibold text-white tracking-[-0.01em]">
+            <h3 className="text-[16px] font-bold text-[#202723] tracking-tight">
               Threat Activity & Attack Volume
             </h3>
-            <span className="text-[11px] font-mono font-medium text-[#00B37E] flex items-center gap-0.5">
+            <span className="text-[12px] font-mono font-medium text-[#347653] flex items-center gap-0.5">
               <ArrowUpRight className="h-3 w-3" />
               +14.2%
             </span>
           </div>
-          <p className="text-[12px] text-[#A0A0A0] mt-0.5">
+          <p className="text-[13px] text-[#626B65] mt-0.5">
             Temporal telemetry of fraudulent profiles, impersonation, and payment scams.
           </p>
         </div>
@@ -102,19 +102,19 @@ export default function ThreatActivityChart() {
         {/* Card Controls */}
         <div className="flex items-center gap-2 self-start sm:self-center">
           {/* Mode toggle */}
-          <div className="flex items-center p-0.5 rounded bg-black border border-[#222222] text-[11px]">
+          <div className="flex items-center p-0.5 rounded-lg bg-[#ECEFEC] border border-[#DDE2DC] text-[12px]">
             <button
               onClick={() => setViewMode('total')}
-              className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
-                viewMode === 'total' ? 'bg-[#222222] text-white font-medium' : 'text-[#767676] hover:text-white'
+              className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
+                viewMode === 'total' ? 'bg-[#FFFFFF] text-[#202723] font-semibold shadow-xs' : 'text-[#626B65] hover:text-[#202723]'
               }`}
             >
               Total
             </button>
             <button
               onClick={() => setViewMode('vectors')}
-              className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
-                viewMode === 'vectors' ? 'bg-[#222222] text-white font-medium' : 'text-[#767676] hover:text-white'
+              className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
+                viewMode === 'vectors' ? 'bg-[#FFFFFF] text-[#202723] font-semibold shadow-xs' : 'text-[#626B65] hover:text-[#202723]'
               }`}
             >
               Vectors
@@ -122,7 +122,7 @@ export default function ThreatActivityChart() {
           </div>
 
           {/* Range toggle */}
-          <div className="flex items-center p-0.5 rounded bg-black border border-[#222222] text-[11px] font-mono">
+          <div className="flex items-center p-0.5 rounded-lg bg-[#ECEFEC] border border-[#DDE2DC] text-[12px] font-mono">
             {(['24h', '7d', '30d', '90d'] as TimeRange[]).map((t) => (
               <button
                 key={t}
@@ -130,8 +130,8 @@ export default function ThreatActivityChart() {
                   setRange(t);
                   setHoveredIdx(null);
                 }}
-                className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
-                  range === t ? 'bg-[#F38020] text-white font-semibold' : 'text-[#A0A0A0] hover:text-white'
+                className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
+                  range === t ? 'bg-[#477A60] text-[#FFFFFF] font-semibold shadow-xs' : 'text-[#626B65] hover:text-[#202723]'
                 }`}
               >
                 {t}
@@ -141,7 +141,7 @@ export default function ThreatActivityChart() {
 
           <button
             title="Download CSV"
-            className="p-1.5 rounded text-[#767676] hover:text-white hover:bg-[#1E1E1E] transition-colors cursor-pointer"
+            className="p-2 rounded-lg text-[#626B65] hover:text-[#202723] hover:bg-[#ECEFEC] transition-colors cursor-pointer border border-[#DDE2DC]"
           >
             <Download className="h-3.5 w-3.5" />
           </button>
@@ -149,33 +149,33 @@ export default function ThreatActivityChart() {
       </div>
 
       {/* ── STAT SUMMARY STRIP ── */}
-      <div className="px-5 py-3 border-b border-[#1C1C1C] bg-[#080808] flex flex-wrap items-center justify-between gap-4">
+      <div className="px-5 py-3 border-b border-[#DDE2DC] bg-[#F7F8F6] flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-baseline gap-2">
-          <span className="text-[11px] font-mono uppercase text-[#A0A0A0] font-semibold">Active Snapshot:</span>
-          <span className="text-[13px] font-semibold text-white font-mono">{activePoint.time}</span>
+          <span className="text-[12px] font-mono uppercase text-[#858D86] font-semibold">Active Interval:</span>
+          <span className="text-[13px] font-semibold text-[#202723] font-mono">{activePoint.time}</span>
         </div>
 
-        <div className="flex items-center gap-6 text-[12px] font-mono">
+        <div className="flex items-center gap-6 text-[13px] font-mono">
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#F38020]" />
-            <span className="text-[#A0A0A0]">Detected:</span>
-            <span className="text-white font-semibold">{activePoint.detected.toLocaleString()}</span>
+            <span className="h-2 w-2 rounded-full bg-[#477A60]" />
+            <span className="text-[#626B65]">Detected:</span>
+            <span className="text-[#202723] font-semibold tabular-nums">{activePoint.detected.toLocaleString()}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#EB364B]" />
-            <span className="text-[#A0A0A0]">Impersonations:</span>
-            <span className="text-[#EB364B] font-semibold">{activePoint.impersonation.toLocaleString()}</span>
+            <span className="h-2 w-2 rounded-full bg-[#C93643]" />
+            <span className="text-[#626B65]">Impersonations:</span>
+            <span className="text-[#C93643] font-semibold tabular-nums">{activePoint.impersonation.toLocaleString()}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#00B37E]" />
-            <span className="text-[#A0A0A0]">Remediated:</span>
-            <span className="text-[#00B37E] font-semibold">{activePoint.blocked.toLocaleString()}</span>
+            <span className="h-2 w-2 rounded-full bg-[#347653]" />
+            <span className="text-[#626B65]">Remediated:</span>
+            <span className="text-[#347653] font-semibold tabular-nums">{activePoint.blocked.toLocaleString()}</span>
           </div>
         </div>
       </div>
 
-      {/* ── CHART SVG CANVAS ON BLACK ── */}
-      <div className="p-5 bg-[#0E0E0E]">
+      {/* ── CHART SVG CANVAS ── */}
+      <div className="p-5 bg-[#FFFFFF]">
         <div className="w-full relative">
           <svg
             viewBox={`0 0 ${width} ${height}`}
@@ -183,14 +183,14 @@ export default function ThreatActivityChart() {
             onMouseLeave={() => setHoveredIdx(null)}
           >
             <defs>
-              <linearGradient id="cfOrangeGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#F38020" stopOpacity="0.28" />
-                <stop offset="100%" stopColor="#F38020" stopOpacity="0.0" />
+              <linearGradient id="omSageGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#477A60" stopOpacity="0.16" />
+                <stop offset="100%" stopColor="#477A60" stopOpacity="0.0" />
               </linearGradient>
 
-              <linearGradient id="cfRedGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#EB364B" stopOpacity="0.22" />
-                <stop offset="100%" stopColor="#EB364B" stopOpacity="0.0" />
+              <linearGradient id="omRedGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#C93643" stopOpacity="0.14" />
+                <stop offset="100%" stopColor="#C93643" stopOpacity="0.0" />
               </linearGradient>
             </defs>
 
@@ -205,15 +205,15 @@ export default function ThreatActivityChart() {
                     y1={y}
                     x2={width}
                     y2={y}
-                    stroke="#222222"
+                    stroke="#DDE2DC"
                     strokeWidth="1"
                     strokeDasharray="3 3"
                   />
                   <text
                     x="4"
                     y={y - 4}
-                    fill="#444444"
-                    fontSize="9"
+                    fill="#858D86"
+                    fontSize="10"
                     fontFamily="monospace"
                   >
                     {val}
@@ -223,17 +223,17 @@ export default function ThreatActivityChart() {
             })}
 
             {/* Area Fills */}
-            <path d={generateAreaPath('detected')} fill="url(#cfOrangeGrad)" />
+            <path d={generateAreaPath('detected')} fill="url(#omSageGrad)" />
             {viewMode === 'vectors' && (
-              <path d={generateAreaPath('impersonation')} fill="url(#cfRedGrad)" />
+              <path d={generateAreaPath('impersonation')} fill="url(#omRedGrad)" />
             )}
 
             {/* Primary Detected Line */}
             <path
               d={generateLinePath('detected')}
               fill="none"
-              stroke="#F38020"
-              strokeWidth="2"
+              stroke="#477A60"
+              strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -244,7 +244,7 @@ export default function ThreatActivityChart() {
                 <path
                   d={generateLinePath('impersonation')}
                   fill="none"
-                  stroke="#EB364B"
+                  stroke="#C93643"
                   strokeWidth="1.75"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -252,7 +252,7 @@ export default function ThreatActivityChart() {
                 <path
                   d={generateLinePath('scams')}
                   fill="none"
-                  stroke="#FDBA3B"
+                  stroke="#D95F36"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeDasharray="4 2"
@@ -284,7 +284,7 @@ export default function ThreatActivityChart() {
                       y1={0}
                       x2={x}
                       y2={height}
-                      stroke="#F38020"
+                      stroke="#477A60"
                       strokeWidth="1"
                       strokeDasharray="2 2"
                       opacity="0.8"
@@ -294,9 +294,9 @@ export default function ThreatActivityChart() {
                   <circle
                     cx={x}
                     cy={y}
-                    r={isHovered ? 5 : 3}
-                    fill={isHovered ? '#FFFFFF' : '#F38020'}
-                    stroke="#000000"
+                    r={isHovered ? 5 : 3.5}
+                    fill={isHovered ? '#FFFFFF' : '#477A60'}
+                    stroke="#202723"
                     strokeWidth="2"
                   />
                 </g>
@@ -312,8 +312,8 @@ export default function ThreatActivityChart() {
                   x={x}
                   y={height - 2}
                   textAnchor={idx === 0 ? 'start' : idx === points.length - 1 ? 'end' : 'middle'}
-                  fill="#767676"
-                  fontSize="10"
+                  fill="#858D86"
+                  fontSize="11"
                   fontFamily="monospace"
                 >
                   {p.time}
@@ -325,9 +325,9 @@ export default function ThreatActivityChart() {
       </div>
 
       {/* ── CARD FOOTER ── */}
-      <div className="px-5 py-2.5 border-t border-[#222222] bg-[#080808] flex items-center justify-between text-[11px] text-[#767676]">
-        <span>Source: Safenet Global Telemetry Sensors · Aggregated at 5m resolution</span>
-        <span className="font-mono">Last updated 2m ago</span>
+      <div className="px-5 py-3 border-t border-[#DDE2DC] bg-[#F7F8F6] flex items-center justify-between text-[12px] text-[#858D86]">
+        <span>Source: Safenet Telemetry Sensors • Monitored attack surfaces</span>
+        <span className="font-mono text-[#626B65]">Telemetry active</span>
       </div>
     </div>
   );

@@ -3,64 +3,72 @@
 @layer base {
   :root,
   .light {
-    /* === SAFENET ENTERPRISE WHITE THEME + === */
-    --sn-bg: #F8FAFC;
-    --sn-surface: #FFFFFF;
-    --sn-surface-hover: #F1F5F9;
+    /* === SAFENET — ORGANIC MONOCHROME DESIGN TOKENS (HIGH READABILITY & DEEP BLACK) === */
+    --sn-bg-app: #F7F8F6;
+    --sn-surface-card: #FFFFFF;
+    --sn-surface-secondary: #ECEFEC;
     --sn-surface-elevated: #FFFFFF;
 
-    /* High-Contrast Enterprise Typography Palette */
-    --sn-text-primary: #0F172A;
-    --sn-text-secondary: #475569;
-    --sn-text-muted: #64748B;
+    /* Dark Bold Black & Deep Charcoal Typography (Maximum Contrast) */
+    --sn-text-primary: #0A0D0C;
+    --sn-text-secondary: #313B36;
+    --sn-text-muted: #525D57;
 
-    /* Hairline Separators & Subtle Borders */
-    --sn-border: #E2E8F0;
-    --sn-border-subtle: #F1F5F9;
-    --sn-border-strong: #CBD5E1;
+    /* Subtle Borders & Dividers */
+    --sn-border: #D8DDD6;
+    --sn-border-subtle: #E8ECE6;
+    --sn-border-strong: #BDC5BD;
+    --sn-focus-ring: #477A60;
 
-    /* Enterprise Primary Accent - Royal Electric Blue */
-    --sn-accent: #2563EB;
-    --sn-accent-hover: #1D4ED8;
-    --sn-accent-subtle: #EFF6FF;
+    /* Restrained Sage Green Accent Palette */
+    --sn-primary-green: #3F7057;
+    --sn-hover-green: #2F5642;
+    --sn-soft-green: #E4EFE7;
 
-    /* Semantic Status (High-Contrast & Accessible) */
-    --sn-danger: #DC2626;
-    --sn-danger-subtle: #FEF2F2;
-    --sn-warning: #D97706;
-    --sn-warning-subtle: #FFFBEB;
-    --sn-info: #0284C7;
-    --sn-info-subtle: #F0F9FF;
-    --sn-success: #059669;
-    --sn-success-subtle: #ECFDF5;
+    /* Security Status Colors (Strict High-Contrast Palette) */
+    --sn-status-critical: #C93643;
+    --sn-status-high: #D95F36;
+    --sn-status-medium: #B7791F;
+    --sn-status-low: #2B6CB0;
+    --sn-status-safe: #2D6A4F;
 
-    --background: #F8FAFC;
-    --foreground: #0F172A;
+    --background: #F7F8F6;
+    --foreground: #0A0D0C;
   }
 }
 
-/* === Base Editorial Layout === */
+/* === Base HTML & Body Layout === */
 html {
   color-scheme: light !important;
-  background-color: #F8FAFC !important;
+  background-color: #F7F8F6 !important;
+  font-size: 15px;
 }
 
 body {
-  background-color: #F8FAFC;
+  background-color: #F7F8F6;
   background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37, 99, 235, 0.05), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(14, 165, 233, 0.04), transparent),
-    radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.18) 1px, transparent 0);
-  background-size: 100% auto, 100% auto, 24px 24px;
+    radial-gradient(circle at 1px 1px, rgba(100, 110, 102, 0.1) 1px, transparent 0);
+  background-size: 24px 24px;
   background-attachment: fixed;
-  color: #0F172A;
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  letter-spacing: -0.011em;
+  color: #0A0D0C;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 450;
+  letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Monospace font ONLY for technical data (URLs, domains, IPs, hashes, timestamps) */
+/* Headings with Bold Black & Relaxed Line Heights */
+h1, h2, h3, h4, h5, h6 {
+  color: #0A0D0C;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+/* Monospace font for technical data */
 code, kbd, samp, pre, .font-mono {
   font-family: var(--font-jetbrains-mono), "SF Mono", Consolas, monospace;
   font-feature-settings: "tnum" 1;
@@ -70,88 +78,239 @@ code, kbd, samp, pre, .font-mono {
   font-variant-numeric: tabular-nums;
 }
 
-/* === Minimal Hairline Scrollbar === */
+/* === Organic Monochrome Hairline Scrollbar === */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #D8DDD6;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: #BDC5BD;
 }
 
-/* === Selection === */
+/* === Text Selection === */
 ::selection {
-  background: rgba(37, 99, 235, 0.15);
-  color: #1D4ED8;
+  background: rgba(63, 112, 87, 0.22);
+  color: #0A0D0C;
 }
 
-/* === Precision Focus === */
+/* === Precision Focus State === */
 :focus-visible {
-  outline: 2px solid var(--sn-accent);
+  outline: 2px solid #3F7057;
   outline-offset: 1px;
 }
 
-/* Hairline Separators */
-.sn-separator {
-  border-color: #E2E8F0;
-}
-
-/* Continuous Rows with Subtle Hover */
-.sn-row {
-  border-bottom: 1px solid #E2E8F0;
-  transition: background-color 0.15s ease;
-}
-.sn-row:hover {
-  background-color: #F8FAFC;
-}
-
-/* Restrained Primary Action */
-.btn-accent {
-  background-color: #2563EB;
-  color: #FFFFFF;
-  font-weight: 600;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
-  transition: all 0.15s ease;
-}
-.btn-accent:hover {
-  background-color: #1D4ED8;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-}
-
-.btn-quiet {
+/* === Design System Surface & Container Classes === */
+.sn-surface {
   background-color: #FFFFFF;
-  color: #0F172A;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  transition: all 0.15s ease;
-}
-.btn-quiet:hover {
-  border-color: #CBD5E1;
-  background-color: #F8FAFC;
+  border: 1px solid #D8DDD6;
 }
 
-/* Restrained Status Indicators */
-.status-danger {
-  color: #DC2626;
+.sn-surface-secondary {
+  background-color: #ECEFEC;
+  border: 1px solid #D8DDD6;
 }
-.status-warning {
-  color: #D97706;
+
+.sn-card {
+  background-color: #FFFFFF;
+  border: 1px solid #D8DDD6;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
-.status-accent {
-  color: #2563EB;
+.sn-card:hover {
+  border-color: #BDC5BD;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
-.status-info {
-  color: #0284C7;
+
+/* === Hairline Separator === */
+.sn-divider {
+  height: 1px;
+  background-color: #D8DDD6;
+  width: 100%;
 }
-.status-success {
-  color: #059669;
+
+/* === Buttons & Interactive States === */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  background-color: #3F7057;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 650;
+  border-radius: 9px;
+  transition: background-color 0.16s ease, transform 0.1s ease, box-shadow 0.16s ease;
+  box-shadow: 0 1px 2px rgba(63, 112, 87, 0.15);
+  cursor: pointer;
+  user-select: none;
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: #2F5642;
+  box-shadow: 0 2px 6px rgba(47, 86, 66, 0.2);
+}
+.btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  background-color: #FFFFFF;
+  color: #0A0D0C;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid #D8DDD6;
+  border-radius: 9px;
+  transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+  cursor: pointer;
+}
+.btn-secondary:hover:not(:disabled) {
+  background-color: #F7F8F6;
+  border-color: #BDC5BD;
+}
+.btn-secondary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  background-color: transparent;
+  color: #313B36;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 9px;
+  transition: background-color 0.16s ease, color 0.16s ease;
+  cursor: pointer;
+}
+.btn-ghost:hover:not(:disabled) {
+  background-color: #ECEFEC;
+  color: #0A0D0C;
+}
+
+/* === Form Input Classes === */
+.sn-input {
+  width: 100%;
+  height: 44px;
+  background-color: #FFFFFF;
+  border: 1px solid #D8DDD6;
+  border-radius: 9px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #0A0D0C;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+.sn-input::placeholder {
+  color: #525D57;
+  font-weight: 400;
+}
+.sn-input:focus {
+  border-color: #3F7057;
+  box-shadow: 0 0 0 3px rgba(63, 112, 87, 0.15);
+}
+
+/* === Security Status Badges === */
+.badge-critical {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  color: #C93643;
+  background-color: rgba(201, 54, 67, 0.1);
+  border: 1px solid rgba(201, 54, 67, 0.3);
+}
+
+.badge-high {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  color: #D95F36;
+  background-color: rgba(217, 95, 54, 0.1);
+  border: 1px solid rgba(217, 95, 54, 0.3);
+}
+
+.badge-medium {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  color: #B7791F;
+  background-color: rgba(183, 121, 31, 0.1);
+  border: 1px solid rgba(183, 121, 31, 0.3);
+}
+
+.badge-low {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  color: #2B6CB0;
+  background-color: rgba(43, 108, 176, 0.1);
+  border: 1px solid rgba(43, 108, 176, 0.3);
+}
+
+.badge-safe {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  color: #2D6A4F;
+  background-color: rgba(45, 106, 79, 0.1);
+  border: 1px solid rgba(45, 106, 79, 0.3);
+}
+
+/* Restrained animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

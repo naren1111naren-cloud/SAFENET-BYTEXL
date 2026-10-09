@@ -14,7 +14,7 @@ export default function SafenetLogo({ size = 16, className = '', showWordmark = 
 
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
-      {/* Official SAFENET Search-Lens Browser Brand Mark */}
+      {/* Official SAFENET Brand Mark */}
       <div
         className="flex items-center justify-center shrink-0 overflow-hidden rounded-[4px]"
         style={{ width, height }}
@@ -32,12 +32,12 @@ export default function SafenetLogo({ size = 16, className = '', showWordmark = 
       {showWordmark && (
         <div className="flex flex-col select-none">
           <div className="flex items-center gap-1.5 leading-none">
-            <span className="font-sans font-bold text-[14px] tracking-[0.05em] text-slate-900">
+            <span className="font-sans font-bold text-[14px] tracking-[0.06em] text-[#202723]">
               SAFENET
             </span>
           </div>
-          <span className="text-[10px] text-slate-500 font-sans tracking-tight mt-0.5 leading-none">
-            Risk Decision System
+          <span className="text-[10px] text-[#626B65] font-sans tracking-tight mt-0.5 leading-none font-medium">
+            Digital Risk Protection
           </span>
         </div>
       )}

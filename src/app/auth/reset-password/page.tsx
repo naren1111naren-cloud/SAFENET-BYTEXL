@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * SAFENET Password Reset Page
+ * SAFENET Password Reset Page (Organic Monochrome)
  * Allows authenticated users redirected from a recovery email to set a new password.
  */
 
@@ -57,27 +57,27 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080A0B] flex items-center justify-center p-4 text-slate-200">
-      <div className="w-full max-w-md bg-[#0D1011] border border-slate-800 rounded-2xl p-8 space-y-6 shadow-2xl">
+    <div className="min-h-screen bg-[#F7F8F6] flex items-center justify-center p-4 text-[#202723]">
+      <div className="w-full max-w-md bg-white border border-[#DDE2DC] rounded-2xl p-8 space-y-6 shadow-xs">
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-cyan-500/10 text-cyan-400 mb-2 border border-cyan-500/20">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#E7F0E9] text-[#477A60] mb-2 border border-[#477A60]/30">
             <ShieldCheck className="w-6 h-6" />
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Set New Password</h1>
-          <p className="text-xs text-slate-400">
+          <h1 className="text-2xl font-bold text-[#202723] tracking-tight">Set New Password</h1>
+          <p className="text-xs text-[#626B65]">
             Enter your new secure password to restore access to your SAFENET account.
           </p>
         </div>
 
         {error && (
-          <div className="p-3 bg-rose-500/10 border border-rose-500/30 rounded-xl text-rose-400 text-xs flex items-center gap-2">
+          <div className="p-3.5 bg-[#C93643]/10 border border-[#C93643]/30 rounded-xl text-[#C93643] text-xs flex items-center gap-2 font-medium">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{error}</span>
           </div>
         )}
 
         {success && (
-          <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400 text-xs flex items-center gap-2">
+          <div className="p-3.5 bg-[#347653]/10 border border-[#347653]/30 rounded-xl text-[#347653] text-xs flex items-center gap-2 font-medium">
             <CheckCircle2 className="w-4 h-4 shrink-0" />
             <span>Password updated successfully! Redirecting to dashboard...</span>
           </div>
@@ -86,7 +86,7 @@ export default function ResetPasswordPage() {
         {!success && (
           <form onSubmit={handleUpdatePassword} className="space-y-4">
             <div className="space-y-1.5">
-              <label className="block text-xs font-mono uppercase text-slate-400">
+              <label className="block text-xs font-mono uppercase text-[#858D86] font-bold">
                 New Password
               </label>
               <div className="relative">
@@ -97,12 +97,12 @@ export default function ResetPasswordPage() {
                   placeholder="At least 6 characters"
                   required
                   disabled={loading}
-                  className="w-full bg-[#080A0B] border border-slate-700 focus:border-cyan-400 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none pr-10"
+                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] focus:border-[#477A60] rounded-xl px-4 py-2.5 text-sm text-[#202723] placeholder-[#858D86] outline-none pr-10 transition"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-3 text-slate-400 hover:text-white"
+                  className="absolute right-3 top-3 text-[#858D86] hover:text-[#202723]"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -110,7 +110,7 @@ export default function ResetPasswordPage() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-xs font-mono uppercase text-slate-400">
+              <label className="block text-xs font-mono uppercase text-[#858D86] font-bold">
                 Confirm Password
               </label>
               <input
@@ -120,14 +120,14 @@ export default function ResetPasswordPage() {
                 placeholder="Repeat new password"
                 required
                 disabled={loading}
-                className="w-full bg-[#080A0B] border border-slate-700 focus:border-cyan-400 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none"
+                className="w-full bg-[#F7F8F6] border border-[#DDE2DC] focus:border-[#477A60] rounded-xl px-4 py-2.5 text-sm text-[#202723] placeholder-[#858D86] outline-none transition"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+              className="w-full py-3 rounded-xl bg-[#477A60] hover:bg-[#365F49] text-white font-bold text-sm transition flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer shadow-xs"
             >
               {loading ? (
                 <>

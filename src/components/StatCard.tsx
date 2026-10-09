@@ -21,43 +21,45 @@ export default function StatCard({
   variant = 'default',
 }: StatCardProps) {
   const accentColors = {
-    default: '#FFFFFF',
-    danger: '#EB364B',
-    warning: '#F38020',
-    success: '#00B37E',
-    info: '#2F80ED',
+    default: '#202723',
+    danger: '#C93643',
+    warning: '#B7791F',
+    success: '#347653',
+    info: '#3974C6',
   };
 
   const numberColor = accentColors[variant];
 
   return (
-    <div className="bg-[#0E0E0E] border border-[#222222] rounded-[6px] p-4 flex flex-col justify-between hover:border-[#383838] transition-colors">
-      <div className="flex items-center justify-between text-[#A0A0A0]">
-        <div className="text-[11px] font-mono uppercase tracking-wider font-semibold">
+    <div className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl p-5 flex flex-col justify-between hover:border-[#858D86]/60 transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+      <div className="flex items-center justify-between text-[#626B65]">
+        <div className="text-[13px] font-semibold tracking-normal text-[#626B65]">
           {title}
         </div>
         {Icon ? (
-          <Icon className="h-4 w-4 text-[#767676]" />
+          <div className="p-1.5 rounded-md bg-[#ECEFEC] text-[#626B65]">
+            <Icon className="h-4 w-4" />
+          </div>
         ) : (
-          <Info className="h-3.5 w-3.5 text-[#555555]" />
+          <Info className="h-3.5 w-3.5 text-[#858D86]" />
         )}
       </div>
 
-      <div className="my-2.5">
+      <div className="my-3">
         <div
-          className="text-[28px] sm:text-[32px] font-semibold tabular-nums leading-none tracking-[-0.02em]"
+          className="text-[30px] sm:text-[34px] font-bold tabular-nums leading-none tracking-[-0.02em]"
           style={{ color: numberColor }}
         >
           {value}
         </div>
       </div>
 
-      <div className="flex items-center justify-between text-[11px] text-[#767676] pt-1 border-t border-[#1C1C1C]">
+      <div className="flex items-center justify-between text-[12px] text-[#858D86] pt-2.5 border-t border-[#DDE2DC]">
         <span className="truncate">{subtitle || 'Live telemetry'}</span>
         {changeRate && (
           <span
             className={`font-mono font-medium flex items-center gap-0.5 ${
-              isPositiveChange ? 'text-[#00B37E]' : 'text-[#EB364B]'
+              isPositiveChange ? 'text-[#347653]' : 'text-[#C93643]'
             }`}
           >
             {isPositiveChange ? (

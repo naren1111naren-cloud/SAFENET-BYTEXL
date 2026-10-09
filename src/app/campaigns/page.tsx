@@ -67,20 +67,22 @@ ${activeCluster.sharedIocs.map((ioc: ThreatIOC) => `${ioc.type.toUpperCase()}: $
       pageTitle="Campaign Intelligence"
       pageSubtitle="Correlated infrastructure, shared identifiers, and multi-vector attacker clusters."
     >
-      <div className="max-w-5xl mx-auto space-y-16 pb-16">
+      <div className="max-w-5xl mx-auto space-y-10 pb-16">
         {/* ========================================================================= */}
-        {/* 1. CAMPAIGN HEADER & METRICS (NO TILES/CARDS)                             */}
+        {/* 1. CAMPAIGN HEADER & METRICS                                              */}
         {/* ========================================================================= */}
-        <section className="space-y-8">
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 border-b border-[rgba(255,255,255,0.08)] pb-8">
+        <section className="bg-white border border-[#DDE2DC] rounded-xl p-6 shadow-xs space-y-6">
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 border-b border-[#DDE2DC] pb-6">
             <div className="space-y-2 flex-1">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#59625F]">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#858D86] font-bold">
                   ACTIVE CAMPAIGN
                 </span>
-                <span className="text-[#59625F]">/</span>
-                <span className={`font-mono text-[11px] uppercase tracking-wider font-semibold ${
-                  activeCluster && activeCluster.highestRiskScore >= 80 ? 'text-[#FF5C5C]' : 'text-[#F5B84B]'
+                <span className="text-[#DDE2DC]">/</span>
+                <span className={`font-mono text-[11px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full ${
+                  activeCluster && activeCluster.highestRiskScore >= 80
+                    ? 'text-[#C93643] bg-[#C93643]/10 border border-[#C93643]/30'
+                    : 'text-[#D95F36] bg-[#D95F36]/10 border border-[#D95F36]/30'
                 }`}>
                   {activeCluster
                     ? `${activeCluster.highestRiskScore >= 80 ? 'CRITICAL' : 'ELEVATED'} SEVERITY • ${activeCluster.assetCount} ASSETS CORRELATED`
@@ -88,15 +90,15 @@ ${activeCluster.sharedIocs.map((ioc: ThreatIOC) => `${ioc.type.toUpperCase()}: $
                 </span>
               </div>
 
-              <h1 className="text-[26px] sm:text-[32px] font-normal text-[#F2F4F3] leading-tight">
+              <h1 className="text-[26px] sm:text-[32px] font-bold text-[#202723] leading-tight">
                 {activeCluster ? `"${activeCluster.name}"` : `No Active Threat Cluster for ${brand?.name || 'Selected Brand'}`}
               </h1>
 
-              <p className="text-[14px] text-[#8A9390] max-w-2xl leading-relaxed">
+              <p className="text-[14px] text-[#626B65] max-w-2xl leading-relaxed">
                 {activeCluster ? (
                   <>
                     {activeCluster.threats.length} distinct threat entities share technical infrastructure or identifiers targeting{' '}
-                    <span className="text-[#F2F4F3] font-medium">{brand?.name || 'the protected brand'}</span>.
+                    <span className="text-[#202723] font-bold">{brand?.name || 'the protected brand'}</span>.
                   </>
                 ) : (
                   <>
@@ -110,70 +112,70 @@ ${activeCluster.sharedIocs.map((ioc: ThreatIOC) => `${ioc.type.toUpperCase()}: $
               <button
                 type="button"
                 onClick={handleCopyDossier}
-                className="inline-flex items-center gap-2 px-4 py-2 border border-[rgba(255,255,255,0.08)] text-[#F2F4F3] text-[12px] font-mono hover:border-[rgba(255,255,255,0.25)] transition-colors rounded-[2px] cursor-pointer shrink-0"
+                className="inline-flex items-center gap-2 px-4 py-2 border border-[#DDE2DC] bg-[#F7F8F6] hover:bg-[#ECEFEC] text-[#202723] text-[12px] font-mono transition rounded-lg font-bold shrink-0 shadow-xs"
               >
-                {copiedDossier ? <Check className="h-3.5 w-3.5 text-[#18E6A3]" /> : <Copy className="h-3.5 w-3.5" />}
+                {copiedDossier ? <Check className="h-3.5 w-3.5 text-[#347653]" /> : <Copy className="h-3.5 w-3.5 text-[#858D86]" />}
                 {copiedDossier ? 'DOSSIER COPIED' : 'EXPORT DOSSIER'}
               </button>
             )}
           </div>
 
           {activeCluster ? (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-[rgba(255,255,255,0.08)]">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-y md:divide-y-0 md:divide-x divide-[#DDE2DC]">
               <div className="space-y-1">
-                <div className="font-mono text-[11px] text-[#59625F] uppercase">
+                <div className="font-mono text-[11px] text-[#858D86] uppercase font-bold">
                   Correlated Assets
                 </div>
-                <div className="font-mono text-[32px] font-light text-[#F2F4F3] leading-none">
+                <div className="font-mono text-[32px] font-bold text-[#202723] leading-none">
                   {activeCluster.assetCount}
                 </div>
-                <div className="font-mono text-[11px] text-[#8A9390] pt-1">
+                <div className="font-mono text-[11px] text-[#626B65] pt-1">
                   {activeCluster.threatTypes.join(', ')}
                 </div>
               </div>
 
-              <div className="space-y-1 md:pl-8 pt-4 md:pt-0">
-                <div className="font-mono text-[11px] text-[#59625F] uppercase">
+              <div className="space-y-1 md:pl-6 pt-4 md:pt-0">
+                <div className="font-mono text-[11px] text-[#858D86] uppercase font-bold">
                   Primary Shared Pivot
                 </div>
-                <div className="font-mono text-[15px] text-[#F2F4F3] font-normal leading-tight pt-2 truncate">
+                <div className="font-mono text-[15px] text-[#202723] font-bold leading-tight pt-2 truncate">
                   {activeCluster.primaryIoc?.value || 'Shared Vector'}
                 </div>
-                <div className="font-mono text-[11px] text-[#59625F]">
+                <div className="font-mono text-[11px] text-[#858D86]">
                   Type: {activeCluster.primaryIoc?.type || 'Vector'}
                 </div>
               </div>
 
-              <div className="space-y-1 md:pl-8 pt-4 md:pt-0">
-                <div className="font-mono text-[11px] text-[#59625F] uppercase">
+              <div className="space-y-1 md:pl-6 pt-4 md:pt-0">
+                <div className="font-mono text-[11px] text-[#858D86] uppercase font-bold">
                   Average Risk
                 </div>
-                <div className="font-mono text-[32px] font-light text-[#FF5C5C] leading-none">
+                <div className="font-mono text-[32px] font-bold text-[#C93643] leading-none">
                   {activeCluster.avgRiskScore}
                 </div>
-                <div className="font-mono text-[11px] text-[#59625F] pt-1">
+                <div className="font-mono text-[11px] text-[#858D86] pt-1">
                   Peak: {activeCluster.highestRiskScore}/100
                 </div>
               </div>
 
-              <div className="space-y-1 md:pl-8 pt-4 md:pt-0">
-                <div className="font-mono text-[11px] text-[#59625F] uppercase">
+              <div className="space-y-1 md:pl-6 pt-4 md:pt-0">
+                <div className="font-mono text-[11px] text-[#858D86] uppercase font-bold">
                   Shared Identifiers
                 </div>
-                <div className="font-mono text-[32px] font-light text-[#F2F4F3] leading-none">
+                <div className="font-mono text-[32px] font-bold text-[#202723] leading-none">
                   {activeCluster.sharedIocs.length}
                 </div>
-                <div className="font-mono text-[11px] text-[#59625F] pt-1">
+                <div className="font-mono text-[11px] text-[#858D86] pt-1">
                   Linked telemetry
                 </div>
               </div>
             </div>
           ) : (
-            <div className="p-8 border border-[rgba(255,255,255,0.08)] bg-[#0D1011]/30 rounded-[2px] text-center space-y-2">
-              <div className="font-mono text-[13px] text-[#8A9390]">
+            <div className="p-8 border border-[#DDE2DC] bg-[#F7F8F6] rounded-xl text-center space-y-2">
+              <div className="font-mono text-[13px] text-[#626B65]">
                 Zero active cross-vector campaign clusters for {brand?.name || 'this brand'}.
               </div>
-              <div className="text-[12px] text-[#59625F]">
+              <div className="text-[12px] text-[#858D86]">
                 SAFENET requires verifiable shared network infrastructure, shared payment accounts, or shared certificate serials before establishing an attacker campaign.
               </div>
             </div>
@@ -181,37 +183,37 @@ ${activeCluster.sharedIocs.map((ioc: ThreatIOC) => `${ioc.type.toUpperCase()}: $
         </section>
 
         {/* ========================================================================= */}
-        {/* 2. ATTRIBUTION PATH (DYNAMIC EDITORIAL LAYOUT)                            */}
+        {/* 2. ATTRIBUTION PATH                                                       */}
         {/* ========================================================================= */}
         {activeCluster && (
-          <section className="space-y-6 border-t border-[rgba(255,255,255,0.08)] pt-12">
-            <div className="flex items-baseline justify-between border-b border-[rgba(255,255,255,0.08)] pb-3">
-              <div className="space-y-1">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#59625F]">
+          <section className="bg-white border border-[#DDE2DC] rounded-xl p-6 shadow-xs space-y-6">
+            <div className="flex items-baseline justify-between border-b border-[#DDE2DC] pb-3">
+              <div className="space-y-0.5">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#477A60] font-bold">
                   CORRELATION TRAIL
                 </span>
-                <h3 className="text-[20px] font-normal text-[#F2F4F3]">
+                <h3 className="text-[20px] font-bold text-[#202723]">
                   Attribution pipeline
                 </h3>
               </div>
-              <span className="font-mono text-[11px] text-[#59625F]">
+              <span className="font-mono text-[11px] text-[#858D86]">
                 {activeCluster.threats.length} Connected Vectors
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 divide-y md:divide-y-0 md:divide-x divide-[rgba(255,255,255,0.08)]">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 divide-y md:divide-y-0 md:divide-x divide-[#DDE2DC]">
               {activeCluster.threats.slice(0, 4).map((t: ThreatItem, idx: number) => (
                 <div key={t.id} className={`space-y-2 ${idx > 0 ? 'md:pl-6 pt-4 md:pt-0' : ''}`}>
-                  <div className="font-mono text-[11px] text-[#59625F]">
+                  <div className="font-mono text-[11px] text-[#858D86] font-bold">
                     {String(idx + 1).padStart(2, '0')} / {t.type.toUpperCase()}
                   </div>
-                  <div className="font-mono text-[13px] text-[#F2F4F3] break-all">
+                  <div className="font-mono text-[13px] text-[#202723] font-bold break-all">
                     {t.targetAsset}
                   </div>
-                  <div className="text-[12px] text-[#8A9390]">
+                  <div className="text-[12px] text-[#626B65]">
                     {t.reasons?.[0] || 'Correlated adversary infrastructure node.'}
                   </div>
-                  <div className="font-mono text-[11px] text-[#FF5C5C] pt-1">
+                  <div className="font-mono text-[11px] text-[#C93643] font-bold pt-1">
                     Risk {t.riskScore} / 100
                   </div>
                 </div>
@@ -223,42 +225,42 @@ ${activeCluster.sharedIocs.map((ioc: ThreatIOC) => `${ioc.type.toUpperCase()}: $
         {/* ========================================================================= */}
         {/* 3. CLUSTER NETWORK VISUALIZATION                                          */}
         {/* ========================================================================= */}
-        <section className="space-y-6 border-t border-[rgba(255,255,255,0.08)] pt-12">
-          <div className="flex items-baseline justify-between border-b border-[rgba(255,255,255,0.08)] pb-3">
-            <div className="space-y-1">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#59625F]">
+        <section className="bg-white border border-[#DDE2DC] rounded-xl p-6 shadow-xs space-y-6">
+          <div className="flex items-baseline justify-between border-b border-[#DDE2DC] pb-3">
+            <div className="space-y-0.5">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[#477A60] font-bold">
                 NETWORK TOPOLOGY
               </span>
-              <h3 className="text-[20px] font-normal text-[#F2F4F3]">
+              <h3 className="text-[20px] font-bold text-[#202723]">
                 Cluster graph
               </h3>
             </div>
             <button
               onClick={() => setShowInteractiveGraph(!showInteractiveGraph)}
-              className="font-mono text-[11px] text-[#8A9390] hover:text-[#F2F4F3] transition-colors cursor-pointer"
+              className="font-mono text-[12px] text-[#477A60] hover:text-[#365F49] font-bold cursor-pointer"
             >
               {showInteractiveGraph ? 'Hide interactive graph' : 'Expand interactive graph →'}
             </button>
           </div>
 
           {showInteractiveGraph ? (
-            <div className="border border-[rgba(255,255,255,0.08)] bg-[#080A0B] rounded-[2px] overflow-hidden">
+            <div className="border border-[#DDE2DC] bg-[#F7F8F6] rounded-xl overflow-hidden p-2">
               <ThreatClusterGraph threats={threats} />
             </div>
           ) : (
-            <div className="py-8 px-6 border border-[rgba(255,255,255,0.08)] bg-[#0D1011]/30 rounded-[2px] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="py-8 px-6 border border-[#DDE2DC] bg-[#F7F8F6] rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1">
-                <div className="text-[14px] text-[#F2F4F3]">
+                <div className="text-[14px] text-[#202723] font-bold">
                   Interactive physics network map
                 </div>
-                <div className="text-[12px] text-[#8A9390]">
+                <div className="text-[12px] text-[#626B65]">
                   Renders transitive relationships between brand assets, hosting autonomous systems, and phishing nodes.
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setShowInteractiveGraph(true)}
-                className="px-4 py-2 border border-[rgba(255,255,255,0.08)] text-[#F2F4F3] text-[12px] font-mono hover:border-[rgba(255,255,255,0.25)] transition-colors rounded-[2px] cursor-pointer shrink-0"
+                className="px-4 py-2 border border-[#DDE2DC] bg-white text-[#202723] hover:bg-[#ECEFEC] text-[12px] font-mono rounded-lg cursor-pointer shrink-0 font-bold shadow-xs transition"
               >
                 Launch interactive graph →
               </button>
@@ -269,18 +271,18 @@ ${activeCluster.sharedIocs.map((ioc: ThreatIOC) => `${ioc.type.toUpperCase()}: $
         {/* ========================================================================= */}
         {/* 4. OPERATIONAL RESPONSE ACTION                                            */}
         {/* ========================================================================= */}
-        <section className="border-t border-[rgba(255,255,255,0.08)] pt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <section className="bg-white border border-[#DDE2DC] rounded-xl p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div className="space-y-1">
-            <h4 className="text-[16px] font-normal text-[#F2F4F3]">
+            <h4 className="text-[16px] font-bold text-[#202723]">
               Operational campaign response
             </h4>
-            <p className="text-[13px] text-[#8A9390]">
+            <p className="text-[13px] text-[#626B65]">
               Escalate shared AS44050 endpoints to domain registrar abuse desks and trigger bank freeze on malicious UPI handles.
             </p>
           </div>
           <Link
             href="/incidents"
-            className="px-5 py-2.5 bg-[#F2F4F3] text-[#080A0B] text-[13px] font-medium rounded-[2px] hover:bg-white transition-all shrink-0 text-center"
+            className="px-5 py-2.5 bg-[#477A60] hover:bg-[#365F49] text-white text-[13px] font-bold rounded-lg transition shrink-0 text-center shadow-xs"
           >
             Manage incidents →
           </Link>

@@ -41,7 +41,7 @@ function RiskArcGauge({ score, maxScore = 100 }: { score: number; maxScore?: num
   const arcLength = circumference * 0.75;
   const strokeDashoffset = arcLength - (arcLength * Math.min(score, maxScore)) / maxScore;
 
-  const color = score >= 80 ? '#DC2626' : score >= 50 ? '#D97706' : '#059669';
+  const color = score >= 70 ? '#C93643' : score >= 40 ? '#B7791F' : '#347653';
 
   return (
     <div className="relative flex flex-col items-center justify-center">
@@ -51,7 +51,7 @@ function RiskArcGauge({ score, maxScore = 100 }: { score: number; maxScore?: num
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke="#E2E8F0"
+          stroke="#ECEFEC"
           strokeWidth={strokeWidth}
           fill="none"
           strokeDasharray={`${arcLength} ${circumference}`}
@@ -72,10 +72,10 @@ function RiskArcGauge({ score, maxScore = 100 }: { score: number; maxScore?: num
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center pt-1">
-        <span className="font-mono text-[32px] font-bold text-slate-900 leading-none tracking-tight">
+        <span className="font-mono text-[32px] font-bold text-[#202723] leading-none tracking-tight tabular-nums">
           {score}
         </span>
-        <span className="font-mono text-[11px] text-slate-400 mt-1">/ {maxScore}</span>
+        <span className="font-mono text-[11px] text-[#858D86] mt-1">/ {maxScore}</span>
       </div>
     </div>
   );
@@ -261,33 +261,33 @@ function CheckRiskContent() {
     >
       <div className="max-w-5xl mx-auto space-y-16 pb-16">
         {/* ========================================================================= */}
-        {/* 1. INVESTIGATION INPUT INSTRUMENT (NO BOX CARDS)                          */}
+        {/* 1. INVESTIGATION INPUT INSTRUMENT                                         */}
         {/* ========================================================================= */}
         <section className="space-y-6 pt-2">
           <div className="space-y-2">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-blue-600 font-bold">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-[#477A60] font-bold">
               CHECK RISK
             </span>
-            <h1 className="text-[28px] sm:text-[34px] font-bold tracking-tight text-slate-900">
+            <h1 className="text-[28px] sm:text-[34px] font-bold tracking-tight text-[#202723]">
               What are you checking?
             </h1>
-            <p className="text-[14px] text-slate-600 max-w-2xl leading-relaxed">
+            <p className="text-[14px] text-[#626B65] max-w-2xl leading-relaxed">
               Paste a URL, domain, message, account or application to investigate its risk signals across brand baseline and live telemetry.
             </p>
           </div>
 
-          {/* Mode Selector Tabs (Clean underline styling) */}
-          <div className="flex items-center gap-6 border-b border-slate-200 pb-2 text-[12px] font-mono">
+          {/* Mode Selector Tabs */}
+          <div className="flex items-center gap-6 border-b border-[#DDE2DC] pb-2 text-[12px] font-mono">
             <button
               type="button"
               onClick={() => loadDemoPreset('url')}
               className={`pb-2.5 transition-all cursor-pointer flex items-center gap-2 ${
                 checkType === 'url'
-                  ? 'text-blue-700 border-b-2 border-blue-600 font-bold'
-                  : 'text-slate-500 hover:text-slate-900 font-medium'
+                  ? 'text-[#477A60] border-b-2 border-[#477A60] font-bold'
+                  : 'text-[#626B65] hover:text-[#202723] font-medium'
               }`}
             >
-              <Globe className={`h-3.5 w-3.5 ${checkType === 'url' ? 'text-blue-600' : 'text-slate-400'}`} />
+              <Globe className={`h-3.5 w-3.5 ${checkType === 'url' ? 'text-[#477A60]' : 'text-[#858D86]'}`} />
               URL / DOMAIN
             </button>
             <button
@@ -295,11 +295,11 @@ function CheckRiskContent() {
               onClick={() => loadDemoPreset('message')}
               className={`pb-2.5 transition-all cursor-pointer flex items-center gap-2 ${
                 checkType === 'message'
-                  ? 'text-blue-700 border-b-2 border-blue-600 font-bold'
-                  : 'text-slate-500 hover:text-slate-900 font-medium'
+                  ? 'text-[#477A60] border-b-2 border-[#477A60] font-bold'
+                  : 'text-[#626B65] hover:text-[#202723] font-medium'
               }`}
             >
-              <MessageSquare className={`h-3.5 w-3.5 ${checkType === 'message' ? 'text-blue-600' : 'text-slate-400'}`} />
+              <MessageSquare className={`h-3.5 w-3.5 ${checkType === 'message' ? 'text-[#477A60]' : 'text-[#858D86]'}`} />
               MESSAGE / EMAIL
             </button>
             <button
@@ -307,11 +307,11 @@ function CheckRiskContent() {
               onClick={() => loadDemoPreset('social')}
               className={`pb-2.5 transition-all cursor-pointer flex items-center gap-2 ${
                 checkType === 'social'
-                  ? 'text-blue-700 border-b-2 border-blue-600 font-bold'
-                  : 'text-slate-500 hover:text-slate-900 font-medium'
+                  ? 'text-[#477A60] border-b-2 border-[#477A60] font-bold'
+                  : 'text-[#626B65] hover:text-[#202723] font-medium'
               }`}
             >
-              <AtSign className={`h-3.5 w-3.5 ${checkType === 'social' ? 'text-blue-600' : 'text-slate-400'}`} />
+              <AtSign className={`h-3.5 w-3.5 ${checkType === 'social' ? 'text-[#477A60]' : 'text-[#858D86]'}`} />
               SOCIAL ACCOUNT
             </button>
             <button
@@ -319,11 +319,11 @@ function CheckRiskContent() {
               onClick={() => loadDemoPreset('app')}
               className={`pb-2.5 transition-all cursor-pointer flex items-center gap-2 ${
                 checkType === 'app'
-                  ? 'text-blue-700 border-b-2 border-blue-600 font-bold'
-                  : 'text-slate-500 hover:text-slate-900 font-medium'
+                  ? 'text-[#477A60] border-b-2 border-[#477A60] font-bold'
+                  : 'text-[#626B65] hover:text-[#202723] font-medium'
               }`}
             >
-              <Smartphone className={`h-3.5 w-3.5 ${checkType === 'app' ? 'text-blue-600' : 'text-slate-400'}`} />
+              <Smartphone className={`h-3.5 w-3.5 ${checkType === 'app' ? 'text-[#477A60]' : 'text-[#858D86]'}`} />
               APP / APK
             </button>
             <button
@@ -331,11 +331,11 @@ function CheckRiskContent() {
               onClick={() => loadDemoPreset('lookalike')}
               className={`pb-2.5 transition-all cursor-pointer flex items-center gap-2 ${
                 checkType === 'lookalike'
-                  ? 'text-blue-700 border-b-2 border-blue-600 font-bold'
-                  : 'text-slate-500 hover:text-slate-900 font-medium'
+                  ? 'text-[#477A60] border-b-2 border-[#477A60] font-bold'
+                  : 'text-[#626B65] hover:text-[#202723] font-medium'
               }`}
             >
-              <Sparkles className={`h-3.5 w-3.5 ${checkType === 'lookalike' ? 'text-blue-600' : 'text-slate-400'}`} />
+              <Sparkles className={`h-3.5 w-3.5 ${checkType === 'lookalike' ? 'text-[#477A60]' : 'text-[#858D86]'}`} />
               LOOK-ALIKE DETECTION
             </button>
           </div>
@@ -353,7 +353,7 @@ function CheckRiskContent() {
                   e.preventDefault();
                   handleRunAnalysis();
                 }}
-                className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xs space-y-4"
+                className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-4"
               >
                 <div className="relative">
                   <textarea
@@ -361,21 +361,21 @@ function CheckRiskContent() {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Paste a suspicious URL, message, account handle, or package name..."
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-[14px] text-slate-900 placeholder-slate-400 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none font-mono resize-none transition-all shadow-xs"
+                    className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-xl px-4 py-3.5 text-[14px] text-[#202723] placeholder-[#858D86] focus:bg-[#FFFFFF] focus:border-[#477A60] focus:ring-1 focus:ring-[#477A60] outline-none font-mono resize-none transition-all shadow-xs"
                   />
                 </div>
 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
                   {/* Presets in clean pills */}
-                  <div className="flex items-center gap-2 text-[12px] font-mono text-slate-400 overflow-x-auto">
-                    <span className="font-semibold text-slate-500">Presets:</span>
+                  <div className="flex items-center gap-2 text-[12px] font-mono text-[#858D86] overflow-x-auto">
+                    <span className="font-semibold text-[#626B65]">Presets:</span>
                     <button
                       type="button"
                       onClick={() => {
                         setCheckType('url');
                         setInputValue('http://paytm-support-verify.xyz');
                       }}
-                      className="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded transition-colors"
+                      className="px-2 py-0.5 bg-[#ECEFEC] hover:bg-[#DDE2DC] text-[#626B65] hover:text-[#202723] rounded transition-colors"
                     >
                       paytm-support-verify.xyz
                     </button>
@@ -386,7 +386,7 @@ function CheckRiskContent() {
                         setCheckType('social');
                         setInputValue('@Paytm_CareHelp');
                       }}
-                      className="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded transition-colors"
+                      className="px-2 py-0.5 bg-[#ECEFEC] hover:bg-[#DDE2DC] text-[#626B65] hover:text-[#202723] rounded transition-colors"
                     >
                       @Paytm_CareHelp
                     </button>
@@ -397,7 +397,7 @@ function CheckRiskContent() {
                         setCheckType('app');
                         setInputValue('com.paytm.cashback.reward.apk');
                       }}
-                      className="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded transition-colors"
+                      className="px-2 py-0.5 bg-[#ECEFEC] hover:bg-[#DDE2DC] text-[#626B65] hover:text-[#202723] rounded transition-colors"
                     >
                       com.paytm.cashback.reward.apk
                     </button>
@@ -406,7 +406,7 @@ function CheckRiskContent() {
                   <button
                     type="submit"
                     disabled={analyzing || !inputValue.trim()}
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-blue-600 hover:bg-blue-700 text-white text-[13px] font-bold tracking-tight rounded-xl shadow-xs transition-all cursor-pointer disabled:opacity-40 shrink-0"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-[#477A60] hover:bg-[#365F49] text-white text-[13px] font-bold tracking-tight rounded-xl shadow-xs transition-all cursor-pointer disabled:opacity-40 shrink-0"
                   >
                     {analyzing ? (
                       <>
@@ -425,21 +425,21 @@ function CheckRiskContent() {
 
               {/* Sequential Telemetry Progression (During scan) */}
               {analyzing && (
-                <div className="pt-4 border-t border-[rgba(255,255,255,0.08)] space-y-3">
-                  <div className="flex items-center gap-2 font-mono text-[11px] text-[#8A9390]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#18E6A3] animate-pulse" />
+                <div className="pt-4 border-t border-[#DDE2DC] space-y-3">
+                  <div className="flex items-center gap-2 font-mono text-[11px] text-[#626B65]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#477A60] animate-pulse" />
                     <span>EVALUATING ARTIFACT TELEMETRY:</span>
-                    <span className="text-[#F2F4F3]">{inputValue.slice(0, 45)}</span>
+                    <span className="text-[#202723] font-semibold">{inputValue.slice(0, 45)}</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-[11px]">
                     {scanningStages.map((stage, idx) => (
                       <div
                         key={idx}
                         className={`flex items-center gap-2 transition-opacity ${
-                          idx <= analysisStep ? 'text-[#F2F4F3]' : 'text-[#59625F]'
+                          idx <= analysisStep ? 'text-[#202723]' : 'text-[#858D86]'
                         }`}
                       >
-                        <span className={idx <= analysisStep ? 'text-[#18E6A3]' : 'text-[#59625F]'}>
+                        <span className={idx <= analysisStep ? 'text-[#477A60]' : 'text-[#858D86]'}>
                           {idx < analysisStep ? '—' : idx === analysisStep ? '›' : '·'}
                         </span>
                         <span>{stage}</span>
@@ -453,57 +453,57 @@ function CheckRiskContent() {
         </section>
 
         {/* ========================================================================= */}
-        {/* ERROR STATE: ANALYSIS UNAVAILABLE                                         */}
+        {/* ERROR STATE                                                               */}
         {/* ========================================================================= */}
         {errorMessage && !analyzing && (
-          <div className="space-y-4 border border-[rgba(255,92,92,0.25)] bg-[#0D1011] p-8 rounded-[2px] text-center my-8">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-[#FF5C5C]">
+          <div className="space-y-4 border border-[#F8D3D6] bg-[#FDF2F3] p-8 rounded-xl text-center my-8">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-[#C93643] font-bold">
               Analysis unavailable
             </span>
-            <h3 className="text-[18px] text-[#F2F4F3] font-normal">
+            <h3 className="text-[18px] text-[#202723] font-bold">
               {errorMessage}
             </h3>
-            <p className="text-[13px] text-[#8A9390] max-w-lg mx-auto leading-relaxed">
+            <p className="text-[13px] text-[#626B65] max-w-lg mx-auto leading-relaxed">
               SAFENET could not complete this check. Please verify the target input, network status, or try again.
             </p>
           </div>
         )}
 
         {/* ========================================================================= */}
-        {/* 2. RISK RESULT EXPERIENCE (THE CORE DECISION SYSTEM)                       */}
+        {/* 2. RISK RESULT EXPERIENCE                                                 */}
         {/* ========================================================================= */}
         {result && !analyzing && checkType !== 'lookalike' && (
-          <div className="space-y-12 border-t border-slate-200 pt-10">
+          <div className="space-y-12 border-t border-[#DDE2DC] pt-10">
             {/* ── TOP RESULT HERO: SCORE + VERDICT ── */}
-            <div className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row md:items-start justify-between gap-8">
+            <div className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl p-6 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col md:flex-row md:items-start justify-between gap-8">
               <div className="space-y-4 flex-1">
                 <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#858D86]">
                     RISK ASSESSMENT
                   </span>
-                  <span className="text-slate-300">/</span>
+                  <span className="text-[#DDE2DC]">/</span>
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold uppercase border ${
                       result.riskScore >= 70
-                        ? 'bg-rose-50 text-rose-700 border-rose-200'
+                        ? 'bg-[#FDF2F3] text-[#C93643] border-[#F8D3D6]'
                         : result.riskScore >= 40
-                        ? 'bg-amber-50 text-amber-700 border-amber-200'
-                        : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                        ? 'bg-[#FEF9F0] text-[#B7791F] border-[#FBE8CA]'
+                        : 'bg-[#EFF7F2] text-[#347653] border-[#CBE4D4]'
                     }`}
                   >
                     {result.riskLevel || (result.riskScore >= 70 ? 'HIGH RISK' : result.riskScore >= 40 ? 'MEDIUM RISK' : 'SAFE / LOW RISK')}
                   </span>
-                  <span className="text-slate-300">/</span>
-                  <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider bg-slate-100 px-2 py-0.5 rounded">
+                  <span className="text-[#DDE2DC]">/</span>
+                  <span className="text-[11px] font-mono text-[#626B65] uppercase tracking-wider bg-[#ECEFEC] px-2 py-0.5 rounded">
                     {result.isLLMPowered ? 'AI + HEURISTIC' : 'DETERMINISTIC HEURISTIC'}
                   </span>
                 </div>
 
-                <h2 className="text-[24px] sm:text-[30px] font-mono text-slate-900 font-bold break-all leading-tight">
+                <h2 className="text-[24px] sm:text-[30px] font-mono text-[#202723] font-bold break-all leading-tight">
                   {result.targetInput}
                 </h2>
 
-                <p className="text-[15px] text-slate-600 leading-relaxed max-w-2xl">
+                <p className="text-[15px] text-[#626B65] leading-relaxed max-w-2xl">
                   {result.summaryPhrase || (
                     result.riskScore >= 70
                       ? `SAFENET detected high-risk indicators targeting ${result.brand?.name || 'protected assets'}.`
@@ -513,7 +513,7 @@ function CheckRiskContent() {
                   )}
                 </p>
 
-                {/* Primary Response Action Bar */}
+                {/* Action Bar */}
                 <div className="flex flex-wrap items-center gap-3 pt-3">
                   <button
                     type="button"
@@ -521,10 +521,10 @@ function CheckRiskContent() {
                     disabled={incidentCreated}
                     className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold cursor-pointer transition-all shadow-xs ${
                       incidentCreated
-                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                        ? 'bg-[#EFF7F2] text-[#347653] border border-[#CBE4D4]'
                         : result.riskScore >= 50
-                        ? 'bg-rose-600 text-white hover:bg-rose-700'
-                        : 'bg-blue-600 text-white hover:bg-blue-700'
+                        ? 'bg-[#C93643] text-white hover:bg-[#b52f3b]'
+                        : 'bg-[#477A60] text-white hover:bg-[#365F49]'
                     }`}
                   >
                     <AlertOctagon className="h-4 w-4" />
@@ -533,25 +533,25 @@ function CheckRiskContent() {
 
                   <Link
                     href="/campaigns"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 border border-slate-200 bg-white text-slate-700 text-[13px] font-medium hover:bg-slate-50 rounded-lg shadow-xs transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 border border-[#DDE2DC] bg-[#FFFFFF] text-[#202723] text-[13px] font-medium hover:bg-[#F7F8F6] rounded-lg shadow-xs transition-colors"
                   >
-                    <GitBranch className="h-4 w-4 text-slate-500" />
+                    <GitBranch className="h-4 w-4 text-[#858D86]" />
                     Investigate Campaign
                   </Link>
 
                   <button
                     type="button"
                     onClick={() => setAdvisoryModalOpen(true)}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 border border-slate-200 bg-white text-slate-700 text-[13px] font-medium hover:bg-slate-50 rounded-lg shadow-xs transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 border border-[#DDE2DC] bg-[#FFFFFF] text-[#202723] text-[13px] font-medium hover:bg-[#F7F8F6] rounded-lg shadow-xs transition-colors cursor-pointer"
                   >
-                    <FileText className="h-4 w-4 text-slate-500" />
+                    <FileText className="h-4 w-4 text-[#858D86]" />
                     Customer Advisory
                   </button>
 
                   <button
                     type="button"
                     onClick={handleShareResult}
-                    className="inline-flex items-center gap-2 px-3.5 py-2.5 text-slate-600 hover:text-slate-900 text-[13px] font-medium rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 px-3.5 py-2.5 text-[#626B65] hover:text-[#202723] text-[13px] font-medium rounded-lg hover:bg-[#ECEFEC] transition-colors cursor-pointer"
                   >
                     <Share2 className="h-4 w-4" />
                     {copiedShare ? 'Copied Link' : 'Share'}
@@ -559,23 +559,23 @@ function CheckRiskContent() {
                 </div>
 
                 {incidentCreated && (
-                  <div className="pt-2 flex items-center gap-2 text-[13px] font-medium text-emerald-700">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                  <div className="pt-2 flex items-center gap-2 text-[13px] font-medium text-[#347653]">
+                    <span className="h-2 w-2 rounded-full bg-[#347653]" />
                     <span>Incident successfully queued in response center.</span>
-                    <Link href="/incidents" className="text-blue-600 hover:underline font-semibold ml-1">
+                    <Link href="/incidents" className="text-[#477A60] hover:underline font-semibold ml-1">
                       View in queue →
                     </Link>
                   </div>
                 )}
               </div>
 
-              {/* Sophisticated SVG Arc Gauge */}
-              <div className="flex flex-col items-center justify-center shrink-0 border border-slate-200 p-6 rounded-2xl bg-slate-50/70 min-w-[200px] shadow-xs">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-3">
+              {/* Arc Gauge */}
+              <div className="flex flex-col items-center justify-center shrink-0 border border-[#DDE2DC] p-6 rounded-xl bg-[#F7F8F6] min-w-[200px] shadow-xs">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#858D86] mb-3">
                   THREAT SCORE
                 </span>
                 <RiskArcGauge score={result.riskScore ?? 0} />
-                <span className="text-[12px] font-medium text-slate-500 mt-3 font-sans">
+                <span className="text-[12px] font-medium text-[#626B65] mt-3 font-sans">
                   {typeof result.confidence === 'number' ? `Confidence: ${result.confidence}%` : 'Confidence unavailable'}
                 </span>
               </div>
@@ -583,43 +583,42 @@ function CheckRiskContent() {
 
             {/* ── SECTION: WHY WE FLAGGED IT / DECISION SIGNALS ── */}
             <section className="space-y-6">
-              <div className="flex items-baseline justify-between border-b border-[rgba(255,255,255,0.08)] pb-3">
+              <div className="flex items-baseline justify-between border-b border-[#DDE2DC] pb-3">
                 <div className="space-y-1">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#59625F]">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#858D86]">
                     DECISION SIGNALS
                   </span>
-                  <h3 className="text-[20px] font-normal text-[#F2F4F3]">
+                  <h3 className="text-[20px] font-bold text-[#202723]">
                     Why SAFENET reached this assessment
                   </h3>
                 </div>
-                <span className="font-mono text-[11px] text-[#59625F]">
+                <span className="font-mono text-[11px] text-[#858D86]">
                   {result.contributions?.length || result.reasons?.length || 0} evaluated signal{(result.contributions?.length || result.reasons?.length || 0) === 1 ? '' : 's'}
                 </span>
               </div>
 
-              {/* Horizontal rows with thin separators */}
-              <div className="divide-y divide-[rgba(255,255,255,0.08)]">
+              <div className="divide-y divide-[#DDE2DC]">
                 {result.contributions && result.contributions.length > 0 ? (
                   result.contributions.map((contrib: any, index: number) => {
                     const num = String(index + 1).padStart(2, '0');
                     return (
                       <div key={index} className="py-4.5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
-                        <div className="md:col-span-1 font-mono text-[12px] text-[#59625F]">
+                        <div className="md:col-span-1 font-mono text-[12px] text-[#858D86]">
                           {num}
                         </div>
                         <div className="md:col-span-4">
-                          <div className="text-[14px] text-[#F2F4F3] font-medium">
+                          <div className="text-[14px] text-[#202723] font-semibold">
                             {contrib.vector}
                           </div>
-                          <div className="text-[12px] text-[#8A9390] mt-0.5 font-mono">
+                          <div className="text-[12px] text-[#626B65] mt-0.5 font-mono">
                             Contribution: +{contrib.points} pts
                           </div>
                         </div>
-                        <div className="md:col-span-5 text-[13px] text-[#8A9390] leading-relaxed">
+                        <div className="md:col-span-5 text-[13px] text-[#626B65] leading-relaxed">
                           {contrib.reason}
                         </div>
-                        <div className={`md:col-span-2 md:text-right font-mono text-[11px] ${
-                          contrib.points >= 30 ? 'text-[#FF5C5C]' : contrib.points >= 15 ? 'text-[#F5B84B]' : 'text-[#18E6A3]'
+                        <div className={`md:col-span-2 md:text-right font-mono text-[11px] font-bold ${
+                          contrib.points >= 30 ? 'text-[#C93643]' : contrib.points >= 15 ? 'text-[#B7791F]' : 'text-[#347653]'
                         }`}>
                           {contrib.points >= 30 ? 'HIGH IMPACT' : contrib.points >= 15 ? 'MODERATE' : 'INFORMATIONAL'}
                         </div>
@@ -631,93 +630,93 @@ function CheckRiskContent() {
                     const num = String(index + 1).padStart(2, '0');
                     return (
                       <div key={index} className="py-4.5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
-                        <div className="md:col-span-1 font-mono text-[12px] text-[#59625F]">{num}</div>
-                        <div className="md:col-span-4 text-[14px] text-[#F2F4F3] font-medium">Evaluation Finding {num}</div>
-                        <div className="md:col-span-5 text-[13px] text-[#8A9390] leading-relaxed">{reason}</div>
-                        <div className="md:col-span-2 md:text-right font-mono text-[11px] text-[#18E6A3]">VERIFIED</div>
+                        <div className="md:col-span-1 font-mono text-[12px] text-[#858D86]">{num}</div>
+                        <div className="md:col-span-4 text-[14px] text-[#202723] font-semibold">Evaluation Finding {num}</div>
+                        <div className="md:col-span-5 text-[13px] text-[#626B65] leading-relaxed">{reason}</div>
+                        <div className="md:col-span-2 md:text-right font-mono text-[11px] text-[#347653] font-bold">VERIFIED</div>
                       </div>
                     );
                   })
                 ) : (
-                  <div className="py-8 text-center font-mono text-[13px] text-[#8A9390]">
+                  <div className="py-8 text-center font-mono text-[13px] text-[#858D86]">
                     No significant risk indicators were detected.
                   </div>
                 )}
               </div>
             </section>
 
-            {/* ── SECTION: AI THREAT REASONING (IF AVAILABLE) ── */}
+            {/* ── SECTION: AI THREAT REASONING ── */}
             {result.aiAnalysis && (
-              <section className="space-y-4 border border-[rgba(24,230,163,0.2)] bg-[#18E6A3]/5 p-6 rounded-[2px]">
-                <div className="flex items-center justify-between pb-2 border-b border-[rgba(24,230,163,0.15)]">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#18E6A3] font-semibold">
-                    NEURAL THREAT REASONING (GEMINI 1.5 FLASH)
+              <section className="space-y-4 border border-[#D1E3D5] bg-[#EFF7F2] p-6 rounded-xl">
+                <div className="flex items-center justify-between pb-2 border-b border-[#D1E3D5]">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#477A60] font-bold">
+                    NEURAL THREAT REASONING
                   </span>
-                  <span className="font-mono text-[10px] text-[#8A9390]">EVIDENCE-GROUNDED INFERENCE</span>
+                  <span className="font-mono text-[10px] text-[#858D86]">EVIDENCE-GROUNDED INFERENCE</span>
                 </div>
-                <h4 className="text-[16px] text-[#F2F4F3] font-normal leading-snug">
+                <h4 className="text-[16px] text-[#202723] font-bold leading-snug">
                   {result.aiAnalysis.threatAssessment}
                 </h4>
-                <p className="text-[13px] text-[#8A9390] leading-relaxed">
+                <p className="text-[13px] text-[#626B65] leading-relaxed">
                   {result.aiAnalysis.keyFindingsExplanation}
                 </p>
                 {result.aiAnalysis.contradictoryOrMissingEvidence?.length > 0 && (
-                  <div className="pt-2 font-mono text-[11px] text-[#59625F]">
+                  <div className="pt-2 font-mono text-[11px] text-[#858D86]">
                     Evidence gaps: {result.aiAnalysis.contradictoryOrMissingEvidence.join(' • ')}
                   </div>
                 )}
               </section>
             )}
 
-            {/* ── SECTION: TECHNICAL EVIDENCE (REAL MULTI-SOURCE INTELLIGENCE) ── */}
+            {/* ── SECTION: TECHNICAL EVIDENCE ── */}
             <section className="space-y-6">
-              <div className="flex items-baseline justify-between border-b border-[rgba(255,255,255,0.08)] pb-3">
+              <div className="flex items-baseline justify-between border-b border-[#DDE2DC] pb-3">
                 <div className="space-y-1">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#59625F]">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#858D86]">
                     TECHNICAL EVIDENCE
                   </span>
-                  <h3 className="text-[20px] font-normal text-[#F2F4F3]">
+                  <h3 className="text-[20px] font-bold text-[#202723]">
                     Multi-source network intelligence
                   </h3>
                 </div>
-                <span className="font-mono text-[11px] text-[#59625F]">
+                <span className="font-mono text-[11px] text-[#858D86]">
                   Authoritative Lookups
                 </span>
               </div>
 
-              <div className="font-mono text-[12px] divide-y divide-[rgba(255,255,255,0.08)]">
+              <div className="font-mono text-[12px] divide-y divide-[#DDE2DC]">
                 {/* 1. Identity & Asset */}
                 <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <span className="text-[#59625F]">Target Asset</span>
-                  <span className="text-[#F2F4F3]">{result.normalizedTarget || result.targetInput}</span>
+                  <span className="text-[#858D86]">Target Asset</span>
+                  <span className="text-[#202723] font-semibold">{result.normalizedTarget || result.targetInput}</span>
                 </div>
 
                 {/* 2. DNS Resolution */}
                 <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <span className="text-[#59625F]">DNS Status</span>
-                  <span className={result.dns ? (result.dns.isResolved || result.dns.resolved ? 'text-[#18E6A3]' : 'text-[#F5B84B]') : 'text-[#8A9390]'}>
+                  <span className="text-[#858D86]">DNS Status</span>
+                  <span className={result.dns ? (result.dns.isResolved || result.dns.resolved ? 'text-[#347653] font-bold' : 'text-[#B7791F] font-bold') : 'text-[#858D86]'}>
                     {result.dns ? ((result.dns.isResolved || result.dns.resolved) ? 'Resolved (A/AAAA Active)' : `No resolution (${result.dns.overallStatus || 'NXDOMAIN'})`) : 'Not applicable'}
                   </span>
                 </div>
 
                 <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <span className="text-[#59625F]">Resolved IPv4</span>
-                  <span className="text-[#F2F4F3]">
+                  <span className="text-[#858D86]">Resolved IPv4</span>
+                  <span className="text-[#202723]">
                     {result.dns?.ipv4 && result.dns.ipv4.length > 0 ? result.dns.ipv4.join(', ') : 'None'}
                   </span>
                 </div>
 
                 {result.dns?.mx && result.dns.mx.length > 0 && (
                   <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <span className="text-[#59625F]">Mail Exchangers (MX)</span>
-                    <span className="text-[#F2F4F3]">{result.dns.mx.slice(0, 2).join(', ')}</span>
+                    <span className="text-[#858D86]">Mail Exchangers (MX)</span>
+                    <span className="text-[#202723]">{result.dns.mx.slice(0, 2).join(', ')}</span>
                   </div>
                 )}
 
                 {result.dns?.ns && result.dns.ns.length > 0 && (
                   <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <span className="text-[#59625F]">Nameservers (NS)</span>
-                    <span className="text-[#F2F4F3]">{result.dns.ns.slice(0, 2).join(', ')}</span>
+                    <span className="text-[#858D86]">Nameservers (NS)</span>
+                    <span className="text-[#202723]">{result.dns.ns.slice(0, 2).join(', ')}</span>
                   </div>
                 )}
 
@@ -725,15 +724,15 @@ function CheckRiskContent() {
                 {result.rdap && (
                   <>
                     <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <span className="text-[#59625F]">Domain Registrar</span>
-                      <span className={result.rdap.registrarName ? 'text-[#F2F4F3]' : 'text-[#59625F]'}>
+                      <span className="text-[#858D86]">Domain Registrar</span>
+                      <span className={result.rdap.registrarName ? 'text-[#202723]' : 'text-[#858D86]'}>
                         {result.rdap.registrarName ? `${result.rdap.registrarName}${result.rdap.registrarIanaId ? ` (IANA: ${result.rdap.registrarIanaId})` : ''}` : (result.rdap.status === 'unavailable' ? 'Unavailable via RDAP' : 'Not available')}
                       </span>
                     </div>
 
                     <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <span className="text-[#59625F]">Domain Age & Creation</span>
-                      <span className={result.rdap.registrationDateUtc ? 'text-[#F2F4F3]' : 'text-[#59625F]'}>
+                      <span className="text-[#858D86]">Domain Age & Creation</span>
+                      <span className={result.rdap.registrationDateUtc ? 'text-[#202723]' : 'text-[#858D86]'}>
                         {result.rdap.registrationDateUtc ? `${result.rdap.domainAgeFormatted || 'Verified'} (Created: ${result.rdap.registrationDateUtc.split('T')[0]})` : 'Unavailable / Not returned by registry'}
                       </span>
                     </div>
@@ -744,16 +743,16 @@ function CheckRiskContent() {
                 {result.tls && result.tls.status !== 'no_tls' && (
                   <>
                     <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <span className="text-[#59625F]">TLS Certificate Status</span>
-                      <span className={result.tls.status === 'valid' ? 'text-[#18E6A3]' : 'text-[#FF5C5C]'}>
+                      <span className="text-[#858D86]">TLS Certificate Status</span>
+                      <span className={result.tls.status === 'valid' ? 'text-[#347653] font-bold' : 'text-[#C93643] font-bold'}>
                         {result.tls.status === 'valid' ? `Valid (${result.tls.daysRemaining} days remaining)` : `Anomaly: ${result.tls.status} (${result.tls.error || 'Verification error'})`}
                       </span>
                     </div>
 
                     {result.tls.issuer?.commonName && (
                       <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <span className="text-[#59625F]">Certificate Authority</span>
-                        <span className="text-[#8A9390]">{result.tls.issuer.commonName}</span>
+                        <span className="text-[#858D86]">Certificate Authority</span>
+                        <span className="text-[#626B65]">{result.tls.issuer.commonName}</span>
                       </div>
                     )}
                   </>
@@ -763,16 +762,16 @@ function CheckRiskContent() {
                 {result.http && (
                   <>
                     <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <span className="text-[#59625F]">HTTP Endpoint Status</span>
-                      <span className={result.http.isAccessible ? 'text-[#18E6A3]' : 'text-[#F5B84B]'}>
+                      <span className="text-[#858D86]">HTTP Endpoint Status</span>
+                      <span className={result.http.isAccessible ? 'text-[#347653] font-bold' : 'text-[#B7791F] font-bold'}>
                         {result.http.isAccessible ? `HTTP ${result.http.statusCode} (${result.http.durationMs}ms latency)` : `Unreachable (${result.http.error || 'Connection failed'})`}
                       </span>
                     </div>
 
                     {result.http.redirectCount > 0 && (
                       <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <span className="text-[#59625F]">Redirect Chain</span>
-                        <span className="text-[#F5B84B] truncate max-w-md">
+                        <span className="text-[#858D86]">Redirect Chain</span>
+                        <span className="text-[#B7791F] truncate max-w-md">
                           {result.http.redirectCount} hop(s) &rarr; {result.http.finalUrl}
                         </span>
                       </div>
@@ -780,47 +779,11 @@ function CheckRiskContent() {
                   </>
                 )}
 
-                {/* 6. Webpage HTML Findings */}
-                {result.page && result.page.inspected && (
-                  <>
-                    {result.page.title && (
-                      <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <span className="text-[#59625F]">HTML Title</span>
-                        <span className="text-[#F2F4F3] truncate max-w-md">&ldquo;{result.page.title}&rdquo;</span>
-                      </div>
-                    )}
-
-                    <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <span className="text-[#59625F]">Interactive Forms</span>
-                      <span className="text-[#F2F4F3]">
-                        {result.page.formCount} form(s) ({result.page.passwordInputCount} password, {result.page.otpInputCount} OTP fields)
-                      </span>
-                    </div>
-
-                    {result.page.hasCrossDomainFormSubmission && (
-                      <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <span className="text-[#FF5C5C]">Cross-Domain Form Exfiltration</span>
-                        <span className="text-[#FF5C5C]">Detected (submits credentials across foreign domain)</span>
-                      </div>
-                    )}
-                  </>
-                )}
-
-                {/* 7. IP Network & ASN Enrichment */}
-                {result.ipIntel && result.ipIntel.status === 'available' && (
-                  <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <span className="text-[#59625F]">Network Infrastructure</span>
-                    <span className="text-[#F2F4F3]">
-                      {result.ipIntel.asn || 'AS Unknown'} • {result.ipIntel.asOrganization || result.ipIntel.isp || 'Hosting Provider'} ({result.ipIntel.country || 'Region'})
-                    </span>
-                  </div>
-                )}
-
-                {/* 8. Threat Feeds */}
+                {/* 6. Threat Feeds */}
                 {result.threatFeeds && result.threatFeeds.findings?.length > 0 && (
                   <div className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <span className="text-[#59625F]">Threat Feed Detections</span>
-                    <span className={result.threatFeeds.detectionsCount > 0 ? 'text-[#FF5C5C]' : 'text-[#18E6A3]'}>
+                    <span className="text-[#858D86]">Threat Feed Detections</span>
+                    <span className={result.threatFeeds.detectionsCount > 0 ? 'text-[#C93643] font-bold' : 'text-[#347653] font-bold'}>
                       {result.threatFeeds.detectionsCount > 0
                         ? `${result.threatFeeds.detectionsCount} vendor detection(s) flagged`
                         : (result.threatFeeds.providersChecked > 0 ? 'Clean (No vendor detections)' : 'Threat feeds unconfigured')}
@@ -828,111 +791,25 @@ function CheckRiskContent() {
                   </div>
                 )}
               </div>
-
-              {/* Analysis Limitations Banner if any service encountered gaps */}
-              {result.limitations && result.limitations.length > 0 && (
-                <div className="p-4 border border-[rgba(255,255,255,0.08)] bg-[#0D1011] rounded-[2px] space-y-1 font-mono text-[11px] text-[#8A9390]">
-                  <div className="text-[#59625F] uppercase tracking-wider font-semibold">ANALYSIS LIMITATIONS</div>
-                  {result.limitations.map((lim: string, lIdx: number) => (
-                    <div key={lIdx}>• {lim}</div>
-                  ))}
-                </div>
-              )}
             </section>
 
-            {/* ── SECTION: CAMPAIGN CORRELATION & INFRASTRUCTURE VISUALIZATION ── */}
+            {/* ── SECTION: RECOMMENDED ACTION ── */}
             <section className="space-y-6">
-              <div className="flex items-baseline justify-between border-b border-[rgba(255,255,255,0.08)] pb-3">
+              <div className="flex items-baseline justify-between border-b border-[#DDE2DC] pb-3">
                 <div className="space-y-1">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#59625F]">
-                    NETWORK TOPOLOGY
-                  </span>
-                  <h3 className="text-[20px] font-normal text-[#F2F4F3]">
-                    Campaign correlation
-                  </h3>
-                </div>
-                <Link
-                  href="/campaigns"
-                  className="font-mono text-[11px] text-[#8A9390] hover:text-[#F2F4F3] transition-colors"
-                >
-                  View full cluster →
-                </Link>
-              </div>
-
-              {/* Data visualization: restrained node diagram */}
-              <div className="p-6 border border-[rgba(255,255,255,0.08)] bg-[#0D1011]/30 rounded-[2px] space-y-6">
-                {result.campaignName ? (
-                  <>
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[13px] text-[#8A9390]">
-                      <div>
-                        This artifact is linked to <span className="text-[#F2F4F3] font-medium">&ldquo;{result.campaignName}&rdquo;</span>.
-                      </div>
-                      <div className="font-mono text-[11px] text-[#59625F]">
-                        Connected entities: {result.connectedNodesCount || 2} nodes
-                      </div>
-                    </div>
-
-                    <div className="space-y-3 font-mono text-[12px]">
-                      <div className="flex items-center gap-3">
-                        <span className="px-2 py-0.5 bg-[#0D1011] border border-[rgba(255,255,255,0.12)] text-[#FF5C5C] rounded-[2px]">
-                          TARGET ENTITY
-                        </span>
-                        <span className="text-[#59625F]">────────</span>
-                        <span className="text-[#F2F4F3]">{result.targetInput}</span>
-                      </div>
-
-                      {result.dns?.ipv4 && result.dns.ipv4.length > 0 && (
-                        <div className="flex items-center gap-3 pl-8">
-                          <span className="text-[#59625F]">│</span>
-                          <span className="text-[#59625F]">└── SHARED HOST</span>
-                          <span className="text-[#8A9390]">{result.dns.ipv4[0]}</span>
-                        </div>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <div className="space-y-4">
-                    <div className="text-[13px] text-[#8A9390]">
-                      No confirmed campaign correlation available.
-                    </div>
-                    {result.dns?.resolved && result.dns.ipv4 && result.dns.ipv4.length > 0 && (
-                      <div className="space-y-3 font-mono text-[12px] pt-2">
-                        <div className="flex items-center gap-3">
-                          <span className="px-2 py-0.5 bg-[#0D1011] border border-[rgba(255,255,255,0.12)] text-[#18E6A3] rounded-[2px]">
-                            RESOLVED HOST
-                          </span>
-                          <span className="text-[#59625F]">────────</span>
-                          <span className="text-[#F2F4F3]">{result.targetInput}</span>
-                        </div>
-                        <div className="flex items-center gap-3 pl-8">
-                          <span className="text-[#59625F]">└── IP ADDRESS</span>
-                          <span className="text-[#8A9390]">{result.dns.ipv4.join(', ')}</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            </section>
-
-            {/* ── SECTION: RECOMMENDED ACTION (DECIDE & ACT) ── */}
-            <section className="space-y-6">
-              <div className="flex items-baseline justify-between border-b border-[rgba(255,255,255,0.08)] pb-3">
-                <div className="space-y-1">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#59625F]">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#858D86]">
                     ACTIONABLE MITIGATION
                   </span>
-                  <h3 className="text-[20px] font-normal text-[#F2F4F3]">
+                  <h3 className="text-[20px] font-bold text-[#202723]">
                     Recommended action
                   </h3>
                 </div>
-                <span className="font-mono text-[11px] text-[#59625F]">
+                <span className="font-mono text-[11px] text-[#858D86]">
                   Immediate protocols
                 </span>
               </div>
 
-              {/* Numbered Plain Instructions */}
-              <div className="divide-y divide-[rgba(255,255,255,0.08)]">
+              <div className="divide-y divide-[#DDE2DC]">
                 {(result.recommendedAction?.steps || [
                   result.riskScore >= 70
                     ? 'Do not enter credentials, OTPs, or financial details at this destination.'
@@ -947,61 +824,41 @@ function CheckRiskContent() {
                   const num = String(index + 1).padStart(2, '0');
                   return (
                     <div key={index} className="py-4 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
-                      <div className="md:col-span-1 font-mono text-[12px] text-[#59625F]">
+                      <div className="md:col-span-1 font-mono text-[12px] text-[#858D86]">
                         {num}
                       </div>
-                      <div className="md:col-span-4 text-[14px] text-[#F2F4F3] font-medium">
+                      <div className="md:col-span-4 text-[14px] text-[#202723] font-semibold">
                         {index === 0 ? 'Authentication Protocol' : index === 1 ? 'Transaction Protocol' : 'Mitigation Protocol'}
                       </div>
-                      <div className="md:col-span-7 text-[13px] text-[#8A9390] leading-relaxed">
+                      <div className="md:col-span-7 text-[13px] text-[#626B65] leading-relaxed">
                         {step}
                       </div>
                     </div>
                   );
                 })}
               </div>
-
-              {/* Direct Next Step Action Bar */}
-              <div className="pt-4 flex flex-wrap items-center gap-4">
-                <button
-                  type="button"
-                  onClick={handleCreateIncident}
-                  disabled={incidentCreated}
-                  className="px-5 py-2.5 bg-[#F2F4F3] text-[#080A0B] text-[13px] font-medium rounded-[2px] hover:bg-white transition-all cursor-pointer disabled:opacity-40"
-                >
-                  {incidentCreated ? 'INCIDENT ACTIVE' : 'LOG INCIDENT TO QUEUE →'}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setAdvisoryModalOpen(true)}
-                  className="px-5 py-2.5 border border-[rgba(255,255,255,0.08)] text-[#F2F4F3] text-[13px] rounded-[2px] hover:border-[rgba(255,255,255,0.25)] transition-colors cursor-pointer"
-                >
-                  PREPARE CUSTOMER ADVISORY
-                </button>
-              </div>
             </section>
           </div>
         )}
 
         {/* ========================================================================= */}
-        {/* CUSTOMER ADVISORY MODAL (EDITORIAL REDESIGN)                              */}
+        {/* CUSTOMER ADVISORY MODAL                                                   */}
         {/* ========================================================================= */}
         {advisoryModalOpen && advisories && (
-          <div className="fixed inset-0 z-50 bg-[#080A0B]/85 backdrop-blur-[4px] flex items-center justify-center p-4">
-            <div className="bg-[#0D1011] border border-[rgba(255,255,255,0.12)] rounded-[2px] max-w-xl w-full p-6 space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-[rgba(255,255,255,0.08)]">
+          <div className="fixed inset-0 z-50 bg-[#202723]/40 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-[#FFFFFF] border border-[#DDE2DC] rounded-2xl max-w-xl w-full p-6 space-y-5 shadow-2xl">
+              <div className="flex items-center justify-between pb-3 border-b border-[#DDE2DC]">
                 <div>
-                  <span className="font-mono text-[10px] uppercase text-[#59625F]">
+                  <span className="font-mono text-[10px] uppercase text-[#858D86] font-bold">
                     PUBLIC NOTICE
                   </span>
-                  <h3 className="text-[16px] font-normal text-[#F2F4F3]">
+                  <h3 className="text-[16px] font-bold text-[#202723]">
                     Customer Safety Advisory
                   </h3>
                 </div>
                 <button
                   onClick={() => setAdvisoryModalOpen(false)}
-                  className="text-[#59625F] hover:text-[#F2F4F3] p-1 cursor-pointer"
+                  className="text-[#858D86] hover:text-[#202723] p-1 cursor-pointer"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -1009,15 +866,15 @@ function CheckRiskContent() {
 
               {/* Language Switcher */}
               <div className="flex items-center gap-2 font-mono text-[11px]">
-                <span className="text-[#59625F]">Language:</span>
+                <span className="text-[#858D86]">Language:</span>
                 {(['en', 'hi', 'ta'] as const).map((lang) => (
                   <button
                     key={lang}
                     onClick={() => setAdvisoryLang(lang)}
-                    className={`px-2 py-0.5 rounded-[2px] transition-colors cursor-pointer ${
+                    className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
                       advisoryLang === lang
-                        ? 'bg-[#F2F4F3] text-[#080A0B] font-medium'
-                        : 'text-[#8A9390] hover:text-[#F2F4F3]'
+                        ? 'bg-[#E7F0E9] text-[#477A60] font-semibold'
+                        : 'text-[#626B65] hover:text-[#202723]'
                     }`}
                   >
                     {lang === 'en' ? 'English' : lang === 'hi' ? 'हिंदी (Hindi)' : 'தமிழ் (Tamil)'}
@@ -1026,7 +883,7 @@ function CheckRiskContent() {
               </div>
 
               {/* Advisory Text Box */}
-              <div className="bg-[#080A0B] border border-[rgba(255,255,255,0.08)] p-4 font-mono text-[12px] text-[#F2F4F3] leading-relaxed whitespace-pre-wrap max-h-60 overflow-y-auto">
+              <div className="bg-[#F7F8F6] border border-[#DDE2DC] p-4 font-mono text-[12px] text-[#202723] leading-relaxed whitespace-pre-wrap max-h-60 overflow-y-auto rounded-lg">
                 {advisories.social.content}
               </div>
 
@@ -1034,7 +891,7 @@ function CheckRiskContent() {
                 <button
                   type="button"
                   onClick={() => setAdvisoryModalOpen(false)}
-                  className="px-4 py-2 text-[12px] font-mono text-[#8A9390] hover:text-[#F2F4F3] cursor-pointer"
+                  className="px-4 py-2 text-[13px] font-medium text-[#626B65] hover:text-[#202723] cursor-pointer"
                 >
                   Close
                 </button>
@@ -1045,9 +902,9 @@ function CheckRiskContent() {
                     setCopiedAdvisory(true);
                     setTimeout(() => setCopiedAdvisory(false), 2000);
                   }}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#F2F4F3] text-[#080A0B] text-[12px] font-medium rounded-[2px] hover:bg-white transition-all cursor-pointer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#477A60] text-white text-[13px] font-semibold rounded-lg hover:bg-[#365F49] transition-all cursor-pointer"
                 >
-                  {copiedAdvisory ? <Check className="h-3.5 w-3.5 text-[#18E6A3]" /> : <Copy className="h-3.5 w-3.5" />}
+                  {copiedAdvisory ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
                   {copiedAdvisory ? 'COPIED TO CLIPBOARD' : 'COPY ADVISORY'}
                 </button>
               </div>
@@ -1061,7 +918,7 @@ function CheckRiskContent() {
 
 export default function CheckRiskPage() {
   return (
-    <Suspense fallback={<div className="p-12 text-center text-[#8A9390] font-mono text-[13px]">Loading investigation instrument...</div>}>
+    <Suspense fallback={<div className="p-12 text-center text-[#858D86] font-mono text-[13px]">Loading investigation instrument...</div>}>
       <CheckRiskContent />
     </Suspense>
   );

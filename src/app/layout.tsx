@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'SAFENET — Digital Risk Decision System',
-  description: 'Investigate suspicious links, messages, accounts and applications before you trust them.',
+  description: 'Enterprise digital risk protection and social threat monitoring platform.',
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#FFFFFF',
+  themeColor: '#F7F8F6',
 };
 
 export default function RootLayout({
@@ -44,10 +44,10 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased light`}
-      style={{ colorScheme: 'light', backgroundColor: '#F8FAFC' }}
+      style={{ colorScheme: 'light', backgroundColor: '#F7F8F6' }}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col antialiased bg-[#F8FAFC] text-[#0F172A]">
+      <body className="min-h-full flex flex-col antialiased bg-[#F7F8F6] text-[#202723]">
         <ThemeProvider>
           <AuthProvider>
             {children}
