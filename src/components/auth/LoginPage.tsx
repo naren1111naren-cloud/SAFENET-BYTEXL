@@ -1,12 +1,11 @@
 'use client';
 
 /**
- * SAFENET Login & Registration Page
- * Redesigned for SAFENET — Organic Monochrome:
- * - Clean white card surfaces, soft-grey backgrounds (#F7F8F6).
- * - Bold charcoal typography (#202723) with clear visual hierarchy.
- * - Restrained sage-green primary action buttons (#477A60).
- * - Full preservation of Supabase Authentication.
+ * SAFENET Login & Demo Entry Portal
+ * Redesigned for Organic Monochrome with Dark Bold Black Typography:
+ * - 1-Click Instant Demo Accounts (Fake IDs for instant login without external auth)
+ * - Seamless bypass so any visitor can access the platform
+ * - Custom Demo Login for any user-entered ID
  */
 
 import React, { useState } from 'react';
@@ -15,134 +14,56 @@ import {
   ShieldCheck,
   Lock,
   Mail,
-  Eye,
-  EyeOff,
-  AlertCircle,
-  CheckCircle2,
-  RefreshCw,
   ArrowRight,
-  Shield,
-  KeyRound,
+  User,
+  Sparkles,
+  Zap,
+  Building,
   Check,
+  LogIn,
 } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
-import SafenetLogo from '@/components/SafenetLogo';
+import { useAuth, DEMO_ACCOUNTS, DemoAccount } from '@/context/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTarget = searchParams.get('redirect') || '/overview';
 
-  const { signInWithPassword, signUp, resetPassword, isConfigured } = useAuth();
+  const { loginWithDemo, signInWithPassword } = useAuth();
 
-  const [mode, setMode] = useState<'signin' | 'signup' | 'forgot'>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [agreeTerms, setAgreeTerms] = useState(true);
-
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [activeLoggingDemo, setActiveLoggingDemo] = useState<string | null>(null);
 
-  const validateEmail = (val: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+  const handleSelectDemo = async (account: DemoAccount) => {
+    setActiveLoggingDemo(account.id);
+    try {
+      await loginWithDemo(account.id);
+      router.push(redirectTarget);
+    } finally {
+      setActiveLoggingDemo(null);
+    }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleCustomSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrorMessage(null);
-    setSuccessMessage(null);
-
-    // 1. Validation
-    if (!email.trim()) {
-      setErrorMessage('Please enter your email address.');
-      return;
-    }
-
-    if (!validateEmail(email)) {
-      setErrorMessage('Please provide a valid email address (e.g. name@company.com).');
-      return;
-    }
-
-    if (mode === 'forgot') {
-      setLoading(true);
-      try {
-        const { error } = await resetPassword(email);
-        if (error) {
-          setErrorMessage(error.message || 'Unable to send password reset email. Please verify the address.');
-        } else {
-          setSuccessMessage('Password reset link sent! Please check your email inbox.');
-        }
-      } catch (err: any) {
-        setErrorMessage(err.message || 'Network error occurred while requesting password reset.');
-      } finally {
-        setLoading(false);
-      }
-      return;
-    }
-
-    if (!password) {
-      setErrorMessage('Please enter your password.');
-      return;
-    }
-
-    if (mode === 'signup' && password.length < 6) {
-      setErrorMessage('Password must be at least 6 characters long.');
-      return;
-    }
-
-    if (mode === 'signup' && !agreeTerms) {
-      setErrorMessage('Please accept the Terms & Security Conditions to register.');
-      return;
-    }
-
+    const targetEmail = email.trim() || 'analyst@safenet.io';
     setLoading(true);
-
     try {
-      if (mode === 'signin') {
-        const { error } = await signInWithPassword(email, password);
-
-        if (error) {
-          if (error.message?.toLowerCase().includes('invalid login credentials')) {
-            setErrorMessage('Invalid email or password. Please double-check your credentials.');
-          } else if (error.message?.toLowerCase().includes('email not confirmed')) {
-            setErrorMessage('Email address has not been confirmed. Please check your inbox for the verification link.');
-          } else {
-            setErrorMessage(error.message || 'Authentication failed. Please check your network or credentials.');
-          }
-        } else {
-          router.push(redirectTarget);
-        }
-      } else if (mode === 'signup') {
-        const { data, error } = await signUp(email, password);
-
-        if (error) {
-          setErrorMessage(error.message || 'Account registration could not be completed.');
-        } else {
-          if (data?.session) {
-            router.push(redirectTarget);
-          } else {
-            setSuccessMessage(
-              'Registration successful! A verification email has been sent to your address. Please verify to sign in.'
-            );
-            setMode('signin');
-          }
-        }
-      }
-    } catch (err: any) {
-      setErrorMessage(err.message || 'An unexpected error occurred during authentication.');
+      await signInWithPassword(targetEmail, password);
+      router.push(redirectTarget);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col lg:flex-row bg-[#F7F8F6] text-[#202723] font-sans selection:bg-[#477A60]/15 selection:text-[#202723]">
+    <div className="min-h-screen w-full flex flex-col lg:flex-row bg-[#F7F8F6] text-[#0A0D0C] font-sans selection:bg-[#477A60]/15 selection:text-[#0A0D0C]">
       {/* ========================================================================= */}
       {/* LEFT PANEL — ORGANIC MONOCHROME BRANDING HERO                             */}
       {/* ========================================================================= */}
-      <div className="relative w-full lg:w-[46%] xl:w-[44%] min-h-[380px] lg:min-h-screen bg-[#ECEFEC] border-b lg:border-b-0 lg:border-r border-[#DDE2DC] flex flex-col justify-between p-8 sm:p-12 lg:p-16 overflow-hidden z-10">
+      <div className="relative w-full lg:w-[42%] xl:w-[40%] min-h-[380px] lg:min-h-screen bg-[#ECEFEC] border-b lg:border-b-0 lg:border-r border-[#DDE2DC] flex flex-col justify-between p-8 sm:p-12 lg:p-16 overflow-hidden z-10">
         {/* Subtle geometric dot pattern */}
         <div className="absolute inset-0 pointer-events-none opacity-40">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -158,275 +79,177 @@ export default function LoginPage() {
         {/* Top Header Badge */}
         <div className="relative z-10 flex items-center justify-between">
           <div className="flex items-center gap-2.5 bg-[#FFFFFF] px-3.5 py-1.5 rounded-full border border-[#DDE2DC] shadow-xs">
-            <ShieldCheck className="h-4 w-4 text-[#477A60]" />
-            <span className="text-xs font-mono tracking-wider font-semibold text-[#202723] uppercase">
-              SAFENET GUARD
+            <ShieldCheck className="h-4 w-4 text-[#194D34]" />
+            <span className="text-xs font-mono tracking-wider font-extrabold text-[#0A0D0C] uppercase">
+              SAFENET DEMO PORTAL
             </span>
           </div>
-          <span className="text-[11px] font-mono text-[#858D86] hidden sm:inline-block">
-            DRP v2.4 • PROD
+          <span className="text-[12px] font-mono text-[#3A453F] font-bold hidden sm:inline-block">
+            AUTHENTICATION BYPASS ACTIVE
           </span>
         </div>
 
         {/* Center Hero Card */}
         <div className="relative z-10 my-auto py-10 lg:py-0 space-y-6 max-w-md">
-          <p className="text-[#626B65] text-base sm:text-lg font-medium tracking-wide">
-            Enterprise Security Portal
+          <p className="text-[#313B36] text-base sm:text-lg font-bold tracking-wide">
+            Digital Risk Protection Console
           </p>
 
           {/* Central Emblem Badge */}
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-[#FFFFFF] border border-[#DDE2DC] text-[#477A60] shadow-[0_4px_16px_rgba(0,0,0,0.04)]">
-            <ShieldCheck className="w-10 h-10 stroke-[2] text-[#477A60]" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-[#FFFFFF] border border-[#DDE2DC] text-[#194D34] shadow-[0_4px_16px_rgba(0,0,0,0.04)]">
+            <ShieldCheck className="w-10 h-10 stroke-[2] text-[#194D34]" />
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#202723]">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A0D0C]">
               SAFENET
             </h1>
-            <p className="text-lg sm:text-xl font-semibold text-[#477A60]">
-              Digital Risk Decision System
+            <p className="text-lg sm:text-xl font-bold text-[#194D34]">
+              Decision-First Risk Platform
             </p>
-            <p className="text-sm text-[#626B65] leading-relaxed max-w-sm pt-1">
-              Secure authentication for the enterprise digital risk protection and social threat monitoring console.
+            <p className="text-[15px] text-[#313B36] leading-relaxed max-w-sm pt-1 font-medium">
+              Immediate simulated access enabled. Pick any fake demo identity to test social perimeter defense, rogue APK static audits, lookalike triage, and incident response.
             </p>
           </div>
         </div>
 
         {/* Bottom Metadata */}
-        <div className="relative z-10 pt-6 border-t border-[#DDE2DC] flex flex-wrap items-center justify-between text-xs text-[#858D86] font-mono gap-2">
-          <span className="tracking-wider uppercase text-[#626B65] font-semibold">ZERO-TRUST ACCESS CONTROL</span>
+        <div className="relative z-10 pt-6 border-t border-[#DDE2DC] flex flex-wrap items-center justify-between text-xs text-[#313B36] font-mono gap-2 font-bold">
+          <span className="tracking-wider uppercase">NO CREDENTIALS REQUIRED</span>
           <span>•</span>
-          <span>ENTERPRISE SOC READY</span>
+          <span>INSTANT SOC ACCESS</span>
         </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* RIGHT PANEL — WHITE AUTHENTICATION FORM                                   */}
+      {/* RIGHT PANEL — DEMO ACCOUNT SELECTOR & INSTANT LOGIN FORM                  */}
       {/* ========================================================================= */}
-      <div className="flex-1 bg-[#F7F8F6] min-h-[500px] flex items-center justify-center p-6 sm:p-12 lg:p-16 relative">
-        <div className="w-full max-w-[440px] bg-[#FFFFFF] border border-[#DDE2DC] p-8 sm:p-10 rounded-2xl shadow-sm space-y-8">
+      <div className="flex-1 bg-[#F7F8F6] min-h-[500px] flex items-center justify-center p-6 sm:p-12 lg:p-14 relative">
+        <div className="w-full max-w-[560px] bg-[#FFFFFF] border border-[#DDE2DC] p-8 sm:p-10 rounded-2xl shadow-sm space-y-7">
           {/* Header Title */}
           <div className="space-y-2 text-left">
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#202723]">
-              {mode === 'signin'
-                ? 'Sign In to SAFENET'
-                : mode === 'signup'
-                ? 'Create Security Account'
-                : 'Reset Password'}
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#E3EFE7] text-[#194D34] text-[12px] font-bold">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>Select Any Fake Demo ID to Login</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0A0D0C]">
+              Sign In to SAFENET
             </h2>
-            <p className="text-sm text-[#626B65]">
-              {mode === 'signin'
-                ? 'Enter your credentials to access the security command center.'
-                : mode === 'signup'
-                ? 'Register to monitor and protect brand perimeters.'
-                : 'Enter your verified email to receive recovery instructions.'}
+            <p className="text-[14px] text-[#313B36] leading-relaxed font-normal">
+              Click any pre-configured demo account below to instantly launch the security command center with full analyst privileges.
             </p>
           </div>
 
-          {/* Environment Warning if Supabase is unconfigured */}
-          {!isConfigured && (
-            <div className="p-3.5 bg-[#FEF9F0] border border-[#FBE8CA] rounded-xl text-[#B7791F] text-xs flex items-start gap-2.5">
-              <AlertCircle className="h-4 w-4 text-[#B7791F] shrink-0 mt-0.5" />
-              <div>
-                <strong className="font-semibold">Supabase Configuration Notice:</strong>
-                <p className="mt-0.5 text-[#626B65] leading-relaxed">
-                  Supabase URL or Anon key is not detected in environment variables. Add them to{' '}
-                  <code className="font-mono bg-[#ECEFEC] px-1 py-0.5 rounded text-[#202723]">.env.local</code>.
-                </p>
-              </div>
+          {/* Fake Demo Account Grid */}
+          <div className="space-y-3">
+            <div className="text-[11px] font-mono uppercase tracking-wider text-[#4A554F] font-extrabold flex items-center justify-between">
+              <span>PRE-CONFIGURED DEMO PROFILES</span>
+              <span className="text-[#194D34] font-bold">1-Click Launch</span>
             </div>
-          )}
 
-          {/* Error Message Box */}
-          {errorMessage && (
-            <div className="p-3.5 bg-[#FDF2F3] border border-[#F8D3D6] rounded-xl text-[#C93643] text-xs flex items-start gap-2.5 animate-shake">
-              <AlertCircle className="h-4 w-4 text-[#C93643] shrink-0 mt-0.5" />
-              <div className="flex-1 leading-relaxed font-medium">{errorMessage}</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {DEMO_ACCOUNTS.map((account) => {
+                const isLogging = activeLoggingDemo === account.id;
+                return (
+                  <button
+                    key={account.id}
+                    type="button"
+                    disabled={loading || !!activeLoggingDemo}
+                    onClick={() => handleSelectDemo(account)}
+                    className="p-3.5 rounded-xl border border-[#DDE2DC] bg-[#F7F8F6] hover:bg-[#E3EFE7] hover:border-[#BFD9C7] transition-all text-left group cursor-pointer shadow-xs flex flex-col justify-between relative overflow-hidden"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-[#FFFFFF] border border-[#DDE2DC] text-[#194D34] group-hover:bg-[#194D34] group-hover:text-white transition-colors">
+                          {account.badge}
+                        </span>
+                        <ArrowRight className="h-4 w-4 text-[#4A554F] group-hover:text-[#194D34] group-hover:translate-x-0.5 transition-all" />
+                      </div>
+                      <h4 className="text-[14px] font-extrabold text-[#0A0D0C]">
+                        {account.name}
+                      </h4>
+                      <p className="text-[12px] font-mono text-[#313B36] font-semibold truncate mt-0.5">
+                        {account.email}
+                      </p>
+                    </div>
+                    <div className="mt-2.5 pt-2 border-t border-[#DDE2DC]/70 flex items-center justify-between text-[11px] text-[#3A453F]">
+                      <span className="truncate">{account.role}</span>
+                      {isLogging && <span className="font-bold text-[#194D34]">Opening...</span>}
+                    </div>
+                  </button>
+                );
+              })}
             </div>
-          )}
+          </div>
 
-          {/* Success Message Box */}
-          {successMessage && (
-            <div className="p-3.5 bg-[#EFF7F2] border border-[#CBE4D4] rounded-xl text-[#347653] text-xs flex items-start gap-2.5">
-              <CheckCircle2 className="h-4 w-4 text-[#347653] shrink-0 mt-0.5" />
-              <div className="flex-1 leading-relaxed font-medium">{successMessage}</div>
-            </div>
-          )}
+          {/* Divider */}
+          <div className="relative flex items-center justify-center">
+            <div className="border-t border-[#DDE2DC] w-full" />
+            <span className="bg-[#FFFFFF] px-3 text-[12px] font-mono text-[#4A554F] font-bold uppercase shrink-0">
+              OR CUSTOM DEMO ID
+            </span>
+          </div>
 
-          {/* Authentication Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email Field */}
-            <div className="space-y-2">
+          {/* Custom Demo Sign In Form */}
+          <form onSubmit={handleCustomSubmit} className="space-y-4">
+            <div className="space-y-1.5">
               <label
-                htmlFor="email-input"
-                className="block text-xs font-semibold uppercase tracking-wider text-[#626B65] font-mono"
+                htmlFor="demo-email-input"
+                className="block text-xs font-bold uppercase tracking-wider text-[#313B36] font-mono"
               >
-                E-mail Address
+                Custom Email or Identifier
               </label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#858D86] group-focus-within:text-[#477A60] transition-colors">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#4A554F]">
                   <Mail className="h-4 w-4" />
                 </div>
                 <input
-                  id="email-input"
-                  type="email"
+                  id="demo-email-input"
+                  type="text"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@company.com"
-                  autoComplete="email"
-                  disabled={loading}
-                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg pl-10 pr-10 py-2.5 text-sm text-[#202723] placeholder-[#858D86] outline-none transition-all focus:bg-[#FFFFFF] focus:border-[#477A60] focus:ring-1 focus:ring-[#477A60] disabled:opacity-60"
+                  placeholder="analyst@safenet.io or your-name@company.com"
+                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg pl-10 pr-4 py-2.5 text-sm text-[#0A0D0C] font-medium placeholder-[#525D57] outline-none transition-all focus:bg-[#FFFFFF] focus:border-[#194D34] focus:ring-1 focus:ring-[#194D34]"
                 />
-                {validateEmail(email) && (
-                  <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-[#347653]">
-                    <Check className="h-4 w-4" />
-                  </div>
-                )}
               </div>
             </div>
 
-            {/* Password Field (only for signin or signup) */}
-            {mode !== 'forgot' && (
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <label
-                    htmlFor="password-input"
-                    className="block text-xs font-semibold uppercase tracking-wider text-[#626B65] font-mono"
-                  >
-                    Password
-                  </label>
-                  {mode === 'signin' && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setMode('forgot');
-                        setErrorMessage(null);
-                        setSuccessMessage(null);
-                      }}
-                      className="text-xs text-[#477A60] hover:underline font-semibold transition-colors cursor-pointer"
-                    >
-                      Forgot password?
-                    </button>
-                  )}
-                </div>
-                <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#858D86] group-focus-within:text-[#477A60] transition-colors">
-                    <Lock className="h-4 w-4" />
-                  </div>
-                  <input
-                    id="password-input"
-                    type={showPassword ? 'text' : 'password'}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter password"
-                    autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
-                    disabled={loading}
-                    className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg pl-10 pr-10 py-2.5 text-sm text-[#202723] placeholder-[#858D86] outline-none transition-all focus:bg-[#FFFFFF] focus:border-[#477A60] focus:ring-1 focus:ring-[#477A60] disabled:opacity-60"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    tabIndex={-1}
-                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#858D86] hover:text-[#202723] transition-colors cursor-pointer"
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-4 w-4" />
-                    ) : (
-                      <Eye className="h-4 w-4" />
-                    )}
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {/* Checkbox agreement */}
-            {mode === 'signup' && (
-              <div className="flex items-center gap-2 pt-1">
-                <input
-                  type="checkbox"
-                  id="terms-checkbox"
-                  checked={agreeTerms}
-                  onChange={(e) => setAgreeTerms(e.target.checked)}
-                  className="h-4 w-4 rounded border-[#DDE2DC] text-[#477A60] focus:ring-[#477A60] cursor-pointer"
-                />
-                <label
-                  htmlFor="terms-checkbox"
-                  className="text-xs text-[#626B65] cursor-pointer select-none"
-                >
-                  By registering, I accept the{' '}
-                  <span className="text-[#477A60] font-semibold hover:underline">
-                    Terms &amp; Security Policy
-                  </span>
-                </label>
-              </div>
-            )}
-
-            {/* Action Buttons */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
-              {/* Primary Action Button */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full sm:flex-1 h-11 px-6 rounded-lg bg-[#477A60] hover:bg-[#365F49] text-white font-semibold text-sm shadow-sm transition-all flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
+            <div className="space-y-1.5">
+              <label
+                htmlFor="demo-password-input"
+                className="block text-xs font-bold uppercase tracking-wider text-[#313B36] font-mono"
               >
-                {loading ? (
-                  <>
-                    <RefreshCw className="h-4 w-4 animate-spin" />
-                    <span>Processing...</span>
-                  </>
-                ) : mode === 'signin' ? (
-                  <>
-                    <span>Sign In</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </>
-                ) : mode === 'signup' ? (
-                  <>
-                    <span>Sign Up</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </>
-                ) : (
-                  <>
-                    <span>Send Reset Link</span>
-                    <KeyRound className="h-4 w-4" />
-                  </>
-                )}
-              </button>
-
-              {/* Mode Toggle Button */}
-              {mode === 'signin' ? (
-                <button
-                  type="button"
-                  disabled={loading}
-                  onClick={() => {
-                    setMode('signup');
-                    setErrorMessage(null);
-                    setSuccessMessage(null);
-                  }}
-                  className="w-full sm:w-auto h-11 px-5 rounded-lg bg-transparent border border-[#DDE2DC] hover:border-[#C4CCC3] hover:bg-[#F7F8F6] text-[#626B65] hover:text-[#202723] font-medium text-sm transition-all cursor-pointer"
-                >
-                  Sign Up
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  disabled={loading}
-                  onClick={() => {
-                    setMode('signin');
-                    setErrorMessage(null);
-                    setSuccessMessage(null);
-                  }}
-                  className="w-full sm:w-auto h-11 px-5 rounded-lg bg-transparent border border-[#DDE2DC] hover:border-[#C4CCC3] hover:bg-[#F7F8F6] text-[#626B65] hover:text-[#202723] font-medium text-sm transition-all cursor-pointer"
-                >
-                  Sign In
-                </button>
-              )}
+                Password <span className="text-[#525D57] font-normal">(Optional for demo)</span>
+              </label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#4A554F]">
+                  <Lock className="h-4 w-4" />
+                </div>
+                <input
+                  id="demo-password-input"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Any password or leave empty"
+                  className="w-full bg-[#F7F8F6] border border-[#DDE2DC] rounded-lg pl-10 pr-4 py-2.5 text-sm text-[#0A0D0C] font-medium placeholder-[#525D57] outline-none transition-all focus:bg-[#FFFFFF] focus:border-[#194D34] focus:ring-1 focus:ring-[#194D34]"
+                />
+              </div>
             </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full h-11 px-6 rounded-lg bg-[#194D34] hover:bg-[#133C29] text-white font-bold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <LogIn className="h-4 w-4" />
+              <span>{loading ? 'Launching Dashboard...' : 'Sign In as Custom Demo User'}</span>
+            </button>
           </form>
 
-          {/* Privacy & Security Guarantee */}
-          <div className="pt-6 border-t border-[#DDE2DC] flex items-center justify-center gap-2 text-xs text-[#858D86] text-center">
-            <Lock className="h-3.5 w-3.5 text-[#858D86] shrink-0" />
-            <span>Protected by end-to-end encryption &amp; Zero-Trust policy.</span>
+          {/* Quick Notice */}
+          <div className="pt-4 border-t border-[#DDE2DC] flex items-center justify-center gap-2 text-xs text-[#3A453F] text-center font-medium">
+            <Lock className="h-3.5 w-3.5 text-[#194D34] shrink-0" />
+            <span>Zero-barrier sandbox environment. All threat feeds &amp; brand models are active.</span>
           </div>
         </div>
       </div>

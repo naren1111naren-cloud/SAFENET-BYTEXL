@@ -2,26 +2,115 @@
 
 /**
  * SAFENET - Authentication Context & Provider
- * Manages Supabase authentication state, active sessions, and auth actions.
- * Listens to onAuthStateChange and restores valid sessions upon reload.
+ * Supports Instant Demo IDs & Bypass Mode:
+ * - Pre-configured fake demo accounts for immediate access
+ * - Automatic fallback so visitors are never blocked by authentication walls
+ * - Persistent demo session via localStorage
  */
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import type { User, Session, AuthError } from '@supabase/supabase-js';
 import { getSupabaseBrowserClient } from '@/lib/supabase/browser';
 
+export interface DemoAccount {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  badge: string;
+  description: string;
+}
+
+export const DEMO_ACCOUNTS: DemoAccount[] = [
+  {
+    id: 'demo-analyst',
+    email: 'analyst@safenet.io',
+    name: 'Alex Vance',
+    role: 'Threat Intelligence Analyst',
+    badge: 'Tier 2 SecOps',
+    description: 'Investigates lookalikes, rogue APKs, and active brand impersonations.',
+  },
+  {
+    id: 'demo-secops-lead',
+    email: 'secops.lead@safenet.io',
+    name: 'Elena Rostova',
+    role: 'Digital Risk Protection Lead',
+    badge: 'Lead Responder',
+    description: 'Manages incident triage, correlation clusters, and take-down playbooks.',
+  },
+  {
+    id: 'demo-director',
+    email: 'director@safenet.io',
+    name: 'Marcus Chen',
+    role: 'Enterprise Security Director',
+    badge: 'Executive SOC',
+    description: 'Full perimeter visibility, executive briefings, and compliance audits.',
+  },
+  {
+    id: 'demo-bytexl',
+    email: 'demo@bytexl.com',
+    name: 'ByteXL Threat Cell',
+    role: 'ByteXL SOC Investigator',
+    badge: 'ByteXL Partner',
+    description: 'Monitors specialized academic and fintech threats across perimeters.',
+  },
+];
+
+function createMockUser(account: { id: string; email: string; name?: string; role?: string }): User {
+  return {
+    id: account.id,
+    app_metadata: { provider: 'demo' },
+    user_metadata: {
+      name: account.name || account.email.split('@')[0],
+      role: account.role || 'Security Analyst',
+    },
+    aud: 'authenticated',
+    confirmation_sent_at: new Date().toISOString(),
+    recovery_sent_at: '',
+    email_change_sent_at: '',
+    new_email: '',
+    invited_at: '',
+    action_link: '',
+    email: account.email,
+    phone: '',
+    created_at: new Date().toISOString(),
+    confirmed_at: new Date().toISOString(),
+    email_confirmed_at: new Date().toISOString(),
+    phone_confirmed_at: '',
+    last_sign_in_at: new Date().toISOString(),
+    role: 'authenticated',
+    updated_at: new Date().toISOString(),
+    identities: [],
+    factors: [],
+  };
+}
+
+function createMockSession(user: User): Session {
+  return {
+    access_token: `mock_jwt_token_${user.id}_${Date.now()}`,
+    token_type: 'bearer',
+    expires_in: 86400 * 30,
+    expires_at: Math.floor(Date.now() / 1000) + 86400 * 30,
+    refresh_token: `mock_refresh_${user.id}`,
+    user,
+  };
+}
+
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
   isConfigured: boolean;
+  isDemo: boolean;
+  demoAccounts: DemoAccount[];
+  loginWithDemo: (demoIdOrEmail: string) => Promise<void>;
   signInWithPassword: (
     email: string,
-    password: string
+    password?: string
   ) => Promise<{ error: AuthError | Error | null }>;
   signUp: (
     email: string,
-    password: string
+    password?: string
   ) => Promise<{ data: any; error: AuthError | Error | null }>;
   signOut: () => Promise<{ error: AuthError | Error | null }>;
   resetPassword: (
@@ -32,133 +121,151 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType>({
   user: null,
   session: null,
-  loading: true,
-  isConfigured: false,
+  loading: false,
+  isConfigured: true,
+  isDemo: true,
+  demoAccounts: DEMO_ACCOUNTS,
+  loginWithDemo: async () => {},
   signInWithPassword: async () => ({ error: null }),
   signUp: async () => ({ data: null, error: null }),
   signOut: async () => ({ error: null }),
   resetPassword: async () => ({ error: null }),
 });
 
+const STORAGE_KEY = 'safenet_demo_session';
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [isConfigured, setIsConfigured] = useState<boolean>(false);
+  const [isConfigured, setIsConfigured] = useState<boolean>(true);
+  const [isDemo, setIsDemo] = useState<boolean>(true);
 
   useEffect(() => {
-    let mounted = true;
+    // 1. Check local storage for existing session or demo user
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed?.email) {
+          const mockUser = createMockUser(parsed);
+          setUser(mockUser);
+          setSession(createMockSession(mockUser));
+          setLoading(false);
+          return;
+        }
+      }
+    } catch {
+      // Ignore storage read error
+    }
 
+    // 2. Try Supabase session if available
     try {
       const supabase = getSupabaseBrowserClient();
-      setIsConfigured(true);
-
-      // 1. Initial Session Retrieval
       supabase.auth.getSession().then(({ data: { session: initialSession }, error }) => {
-        if (!mounted) return;
-        if (error) {
-          console.warn('[SAFENET Auth] Error fetching initial session:', error.message);
+        if (!error && initialSession?.user) {
+          setSession(initialSession);
+          setUser(initialSession.user);
+          setIsDemo(false);
+          setLoading(false);
+          return;
         }
-        setSession(initialSession);
-        setUser(initialSession?.user ?? null);
+
+        // 3. If no active session, default automatically to first Demo Analyst
+        const defaultDemo = DEMO_ACCOUNTS[0];
+        const mockUser = createMockUser(defaultDemo);
+        setUser(mockUser);
+        setSession(createMockSession(mockUser));
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultDemo));
+        } catch {}
         setLoading(false);
       });
-
-      // 2. Auth State Change Listener
-      const {
-        data: { subscription },
-      } = supabase.auth.onAuthStateChange((_event, currentSession) => {
-        if (!mounted) return;
-        setSession(currentSession);
-        setUser(currentSession?.user ?? null);
-        setLoading(false);
-      });
-
-      return () => {
-        mounted = false;
-        subscription.unsubscribe();
-      };
-    } catch (err) {
-      console.error('[SAFENET Auth] Supabase client initialization failed:', err);
-      setIsConfigured(false);
+    } catch {
+      // Supabase unavailable; default to demo analyst
+      const defaultDemo = DEMO_ACCOUNTS[0];
+      const mockUser = createMockUser(defaultDemo);
+      setUser(mockUser);
+      setSession(createMockSession(mockUser));
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultDemo));
+      } catch {}
       setLoading(false);
     }
   }, []);
 
-  const signInWithPassword = async (email: string, password: string) => {
+  const loginWithDemo = async (demoIdOrEmail: string) => {
+    const match =
+      DEMO_ACCOUNTS.find(
+        (a) => a.id === demoIdOrEmail || a.email.toLowerCase() === demoIdOrEmail.toLowerCase()
+      ) || {
+        id: `demo-custom-${Date.now()}`,
+        email: demoIdOrEmail,
+        name: demoIdOrEmail.split('@')[0],
+        role: 'Security Analyst',
+        badge: 'Custom Demo',
+        description: 'Custom simulated analyst profile',
+      };
+
+    const mockUser = createMockUser(match);
+    const mockSession = createMockSession(mockUser);
+    setUser(mockUser);
+    setSession(mockSession);
+    setIsDemo(true);
     try {
-      const supabase = getSupabaseBrowserClient();
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
-        password,
-      });
-
-      if (error) {
-        return { error };
-      }
-
-      setSession(data.session);
-      setUser(data.user);
-      return { error: null };
-    } catch (err: any) {
-      return { error: err instanceof Error ? err : new Error('Authentication request failed') };
-    }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(match));
+    } catch {}
   };
 
-  const signUp = async (email: string, password: string) => {
+  const signInWithPassword = async (email: string, _password?: string) => {
+    const trimmed = email.trim();
+    // Check if matching predefined demo account
+    const matchedDemo = DEMO_ACCOUNTS.find(
+      (a) => a.email.toLowerCase() === trimmed.toLowerCase() || a.id === trimmed
+    );
+
+    const account = matchedDemo || {
+      id: `demo-${Date.now()}`,
+      email: trimmed,
+      name: trimmed.split('@')[0],
+      role: 'Security Analyst',
+      badge: 'Demo User',
+      description: 'Simulated analyst profile',
+    };
+
+    const mockUser = createMockUser(account);
+    const mockSession = createMockSession(mockUser);
+    setUser(mockUser);
+    setSession(mockSession);
+    setIsDemo(true);
     try {
-      const supabase = getSupabaseBrowserClient();
-      const { data, error } = await supabase.auth.signUp({
-        email: email.trim(),
-        password,
-        options: {
-          emailRedirectTo:
-            typeof window !== 'undefined'
-              ? `${window.location.origin}/auth/callback`
-              : undefined,
-        },
-      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(account));
+    } catch {}
 
-      if (error) {
-        return { data: null, error };
-      }
+    return { error: null };
+  };
 
-      return { data, error: null };
-    } catch (err: any) {
-      return { data: null, error: err instanceof Error ? err : new Error('Registration failed') };
-    }
+  const signUp = async (email: string, password?: string) => {
+    const res = await signInWithPassword(email, password);
+    return { data: { user }, error: res.error };
   };
 
   const signOut = async () => {
     try {
       const supabase = getSupabaseBrowserClient();
-      const { error } = await supabase.auth.signOut();
-      setUser(null);
-      setSession(null);
-      return { error };
-    } catch (err: any) {
-      setUser(null);
-      setSession(null);
-      return { error: err instanceof Error ? err : new Error('Sign out failed') };
-    }
+      await supabase.auth.signOut();
+    } catch {}
+
+    setUser(null);
+    setSession(null);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {}
+    return { error: null };
   };
 
-  const resetPassword = async (email: string) => {
-    try {
-      const supabase = getSupabaseBrowserClient();
-      const redirectUrl =
-        typeof window !== 'undefined'
-          ? `${window.location.origin}/auth/callback?next=/auth/reset-password`
-          : undefined;
-
-      const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
-        redirectTo: redirectUrl,
-      });
-
-      return { error };
-    } catch (err: any) {
-      return { error: err instanceof Error ? err : new Error('Password reset request failed') };
-    }
+  const resetPassword = async (_email: string) => {
+    return { error: null };
   };
 
   return (
@@ -168,6 +275,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         session,
         loading,
         isConfigured,
+        isDemo,
+        demoAccounts: DEMO_ACCOUNTS,
+        loginWithDemo,
         signInWithPassword,
         signUp,
         signOut,
@@ -186,3 +296,4 @@ export function useAuth() {
   }
   return context;
 }
+

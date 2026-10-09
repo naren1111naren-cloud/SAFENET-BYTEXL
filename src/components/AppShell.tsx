@@ -37,7 +37,7 @@ interface AppShellProps {
 export default function AppShell({ children, pageTitle, pageSubtitle }: AppShellProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, loading, signOut } = useAuth();
+  const { user, loading, signOut, demoAccounts, loginWithDemo, isDemo } = useAuth();
   const [loggingOut, setLoggingOut] = useState(false);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,17 +46,13 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
   const [alerts, setAlerts] = useState<AlertItem[]>([]);
   const [showAlertsDropdown, setShowAlertsDropdown] = useState(false);
   const [showBrandDropdown, setShowBrandDropdown] = useState(false);
-
-  useEffect(() => {
-    if (!loading && !user && pathname !== '/login' && pathname !== '/home') {
-      router.replace(`/login?redirect=${encodeURIComponent(pathname)}`);
-    }
-  }, [user, loading, pathname, router]);
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
 
   useEffect(() => {
     setMobileMenuOpen(false);
     setShowAlertsDropdown(false);
     setShowBrandDropdown(false);
+    setShowUserDropdown(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -286,40 +282,111 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
               )}
             </button>
 
-            {/* User Session Profile & Sign Out Action */}
+            {/* User Session Profile & Demo Account Switcher */}
             {user ? (
-              <div className="flex items-center gap-2 pl-3 border-l border-[#DDE2DC]">
-                <div
-                  title={user.email || 'Authenticated User'}
-                  className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#F7F8F6] border border-[#DDE2DC] text-[13px] font-mono text-[#0A0D0C] font-semibold max-w-[160px] truncate"
-                >
-                  <User className="h-3.5 w-3.5 text-[#2E6B47] shrink-0" />
-                  <span className="truncate">{user.email?.split('@')[0]}</span>
-                </div>
+              <div className="relative pl-3 border-l border-[#DDE2DC]">
                 <button
                   type="button"
-                  onClick={async () => {
-                    setLoggingOut(true);
-                    try {
-                      await signOut();
-                      router.push('/login');
-                    } finally {
-                      setLoggingOut(false);
-                    }
-                  }}
-                  disabled={loggingOut}
-                  title="Sign out of SAFENET"
-                  className="flex items-center gap-1 p-2 text-[#202723] hover:text-[#C93643] hover:bg-[#FDF2F3] rounded-lg transition-colors cursor-pointer"
+                  onClick={() => setShowUserDropdown(!showUserDropdown)}
+                  className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#F7F8F6] hover:bg-[#ECEFEC] border border-[#DDE2DC] text-[13px] text-[#0A0D0C] font-semibold transition-colors cursor-pointer shadow-xs"
                 >
-                  <LogOut className="h-4 w-4" />
+                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#E3EFE7] text-[#194D34] text-[10px] font-bold">
+                    ID
+                  </span>
+                  <div className="flex flex-col text-left leading-none">
+                    <span className="text-[12px] font-mono text-[#0A0D0C] font-bold max-w-[140px] truncate">
+                      {user.email}
+                    </span>
+                    <span className="text-[10px] text-[#2E6B47] font-semibold mt-0.5">
+                      Demo Account • Switch
+                    </span>
+                  </div>
+                  <ChevronDown className="h-3 w-3 text-[#4A554F]" />
                 </button>
+
+                {showUserDropdown && (
+                  <div className="absolute right-0 mt-2 w-72 bg-[#FFFFFF] border border-[#DDE2DC] rounded-xl shadow-xl z-50 p-2 text-[13px] animate-fadeIn">
+                    <div className="px-2.5 py-1.5 mb-1 border-b border-[#DDE2DC] flex items-center justify-between">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-[#4A554F] font-bold">
+                        SELECT DEMO IDENTITY
+                      </span>
+                      <span className="text-[10px] bg-[#E3EFE7] text-[#194D34] font-bold px-1.5 py-0.5 rounded">
+                        BYPASS ACTIVE
+                      </span>
+                    </div>
+
+                    <div className="space-y-1 py-1">
+                      {demoAccounts.map((acc) => {
+                        const isCurrent = user.email?.toLowerCase() === acc.email.toLowerCase();
+                        return (
+                          <button
+                            key={acc.id}
+                            type="button"
+                            onClick={async () => {
+                              await loginWithDemo(acc.id);
+                              setShowUserDropdown(false);
+                            }}
+                            className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between transition-colors cursor-pointer ${
+                              isCurrent
+                                ? 'bg-[#E3EFE7] text-[#194D34]'
+                                : 'text-[#202723] hover:text-[#000000] hover:bg-[#F7F8F6]'
+                            }`}
+                          >
+                            <div className="flex flex-col">
+                              <span className="font-bold text-[13px] text-[#0A0D0C]">
+                                {acc.name}
+                              </span>
+                              <span className="text-[11px] font-mono text-[#4A554F]">
+                                {acc.email}
+                              </span>
+                              <span className="text-[10px] text-[#2E6B47] font-medium">
+                                {acc.badge}
+                              </span>
+                            </div>
+                            {isCurrent && (
+                              <span className="text-xs font-bold text-[#194D34]">Active ✓</span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="border-t border-[#DDE2DC] mt-1 pt-1.5 flex items-center justify-between px-1">
+                      <Link
+                        href="/login"
+                        onClick={() => setShowUserDropdown(false)}
+                        className="text-[12px] text-[#2E6B47] hover:underline font-semibold"
+                      >
+                        More Demo IDs
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={async () => {
+                          setLoggingOut(true);
+                          setShowUserDropdown(false);
+                          try {
+                            await signOut();
+                            router.push('/login');
+                          } finally {
+                            setLoggingOut(false);
+                          }
+                        }}
+                        disabled={loggingOut}
+                        className="flex items-center gap-1 px-2.5 py-1 text-[12px] text-[#C93643] hover:bg-[#FDF2F3] rounded-md font-semibold transition-colors cursor-pointer"
+                      >
+                        <LogOut className="h-3.5 w-3.5" />
+                        <span>Sign Out</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <Link
                 href="/login"
                 className="px-3.5 py-1.5 rounded-lg bg-[#2E6B47] hover:bg-[#235337] text-[13px] text-white font-bold transition-all shadow-xs"
               >
-                Sign In
+                Demo Login
               </Link>
             )}
           </div>
