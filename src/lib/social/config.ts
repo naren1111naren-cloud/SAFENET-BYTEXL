@@ -21,17 +21,10 @@ export interface SocialMonitoringConfig {
     meta: {
       enabled: boolean;
       hasAccessToken: boolean;
-      hasConfigId: boolean;
-      isConfigIdOnly: boolean;
     };
     linkedin: {
       enabled: boolean;
       hasAccessToken: boolean;
-    };
-    searchFallback: {
-      enabled: boolean;
-      provider: 'serper' | 'tavily' | 'serpapi' | 'brave' | 'custom' | null;
-      hasKey: boolean;
     };
   };
 }
@@ -48,32 +41,12 @@ export function getSocialMonitoringConfig(): SocialMonitoringConfig {
   const xEnabled = xEnabledEnv === 'true' || (Boolean(xToken) && xEnabledEnv !== 'false');
 
   const metaToken = process.env.META_ACCESS_TOKEN?.trim() || '';
-  const metaConfigId = process.env.META_CONFIG_ID?.trim() || '';
   const metaEnabledEnv = process.env.SOCIAL_PROVIDER_META_ENABLED?.trim();
-  const metaEnabled = metaEnabledEnv === 'true' || (Boolean(metaToken || metaConfigId) && metaEnabledEnv !== 'false');
-
-  const isNumericConfigId = /^\d{10,24}$/.test(metaToken);
-  const isPlaceholder = /^(YOUR_|placeholder|undefined|null)/i.test(metaToken) || metaToken.length < 15;
-  const isConfigIdOnly = isNumericConfigId || (Boolean(metaConfigId) && (!metaToken || isPlaceholder));
-  const hasValidMetaToken = Boolean(metaToken) && !isNumericConfigId && !isPlaceholder;
+  const metaEnabled = metaEnabledEnv === 'true' || (Boolean(metaToken) && metaEnabledEnv !== 'false');
 
   const linkedinToken = process.env.LINKEDIN_ACCESS_TOKEN?.trim() || '';
   const linkedinEnabledEnv = process.env.SOCIAL_PROVIDER_LINKEDIN_ENABLED?.trim();
   const linkedinEnabled = linkedinEnabledEnv === 'true' || (Boolean(linkedinToken) && linkedinEnabledEnv !== 'false');
-
-  // Search providers for candidate discovery fallback
-  const serper = process.env.SERPER_API_KEY?.trim();
-  const tavily = process.env.TAVILY_API_KEY?.trim();
-  const serpapi = process.env.SERPAPI_KEY?.trim();
-  const brave = process.env.BRAVE_API_KEY?.trim();
-  const custom = process.env.SEARCH_PROVIDER_API_KEY?.trim();
-
-  let searchProv: 'serper' | 'tavily' | 'serpapi' | 'brave' | 'custom' | null = null;
-  if (serper) searchProv = 'serper';
-  else if (tavily) searchProv = 'tavily';
-  else if (serpapi) searchProv = 'serpapi';
-  else if (brave) searchProv = 'brave';
-  else if (custom) searchProv = 'custom';
 
   // Demo mode is ONLY active when explicitly set to 'true' in environment
   const demoModeEnv = process.env.SOCIAL_MONITORING_DEMO_MODE?.trim();
@@ -93,18 +66,11 @@ export function getSocialMonitoringConfig(): SocialMonitoringConfig {
       },
       meta: {
         enabled: metaEnabled,
-        hasAccessToken: hasValidMetaToken,
-        hasConfigId: Boolean(metaConfigId || isNumericConfigId),
-        isConfigIdOnly,
+        hasAccessToken: Boolean(metaToken) && metaToken !== '2266934170818569',
       },
       linkedin: {
         enabled: linkedinEnabled,
         hasAccessToken: Boolean(linkedinToken) && linkedinToken !== 'your_token',
-      },
-      searchFallback: {
-        enabled: Boolean(searchProv),
-        provider: searchProv,
-        hasKey: Boolean(searchProv),
       },
     },
   };
@@ -112,21 +78,6 @@ export function getSocialMonitoringConfig(): SocialMonitoringConfig {
 
 export function getProviderStatuses(): Record<SocialPlatform | 'demo', ProviderConfigStatus> {
   const config = getSocialMonitoringConfig();
-
-  // Determine Instagram status
-  let igStatus: ProviderConfigStatus['status'] = 'not_configured';
-  let igMessage = 'Instagram discovery requires META_ACCESS_TOKEN or a Search Provider (SERPER_API_KEY / TAVILY_API_KEY).';
-
-  if (config.providers.meta.hasAccessToken) {
-    igStatus = 'connected';
-    igMessage = 'Connected to Meta Graph API for Instagram Business Discovery.';
-  } else if (config.providers.meta.isConfigIdOnly) {
-    igStatus = 'unauthorized';
-    igMessage = 'Meta Configuration ID is present. Complete Meta Login or configure META_ACCESS_TOKEN for direct Graph API access.';
-  } else if (config.providers.searchFallback.hasKey) {
-    igStatus = 'connected';
-    igMessage = `Active via Public Search Fallback (${config.providers.searchFallback.provider?.toUpperCase()}). Meta API not connected.`;
-  }
 
   return {
     youtube: {
@@ -153,11 +104,13 @@ export function getProviderStatuses(): Record<SocialPlatform | 'demo', ProviderC
     },
     instagram: {
       platform: 'instagram',
-      name: 'Instagram (Meta Graph API & Search Fallback)',
-      status: igStatus,
-      enabled: config.providers.meta.enabled || config.providers.searchFallback.enabled,
-      message: igMessage,
-      requiresKeys: ['META_ACCESS_TOKEN', 'META_CONFIG_ID (optional)'],
+      name: 'Instagram (Meta Graph API)',
+      status: config.providers.meta.hasAccessToken ? 'connected' : 'unauthorized',
+      enabled: config.providers.meta.enabled,
+      message: config.providers.meta.hasAccessToken
+        ? 'Connected to Meta Graph API'
+        : 'Meta API unauthorized — requires Meta App review and permissions',
+      requiresKeys: ['META_ACCESS_TOKEN'],
     },
     facebook: {
       platform: 'facebook',
@@ -166,7 +119,7 @@ export function getProviderStatuses(): Record<SocialPlatform | 'demo', ProviderC
       enabled: config.providers.meta.enabled,
       message: config.providers.meta.hasAccessToken
         ? 'Connected to Meta Graph API'
-        : 'Meta API unauthorized — requires Meta App review and Page permissions',
+        : 'Meta API unauthorized — requires Meta App review and permissions',
       requiresKeys: ['META_ACCESS_TOKEN'],
     },
     linkedin: {

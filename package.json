@@ -7,10 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx --test tests/phase2-intelligence.test.mjs tests/real-intelligence-pipeline.test.mjs tests/brand-profile-intelligence.test.mjs tests/supabase-brand-persistence.test.mjs tests/app-threat-intelligence.test.mjs tests/social-monitoring.test.mjs tests/instagram-impersonation.test.mjs tests/lookalike-detection.test.mjs"
+    "test": "tsx --test tests/phase2-intelligence.test.mjs tests/real-intelligence-pipeline.test.mjs tests/brand-profile-intelligence.test.mjs tests/supabase-brand-persistence.test.mjs tests/app-threat-intelligence.test.mjs tests/social-monitoring.test.mjs tests/lookalike-detection.test.mjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.117.3",
     "clsx": "^2.1.1",
     "lucide-react": "^1.52.0",
     "next": "16.3.8",

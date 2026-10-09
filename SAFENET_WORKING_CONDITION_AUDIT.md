@@ -12,7 +12,7 @@
 
 **Answer:**  
 1. **At the Frontend (`/` or `/check`):** You type or paste an input (e.g. `http://suspicious-paytm-login.com` or an SMS message) and click **"CHECK RISK"**.
-2. **At the Backend (`/api/check`):** The server receives your input and attempts to invoke Google Gemini AI (`gemini-1.5-flash`). **The AI call immediately fails with a 404/Invalid API Key error** because the key in `.env.local` is not a valid Google AI Studio key (`AQ.Ab8RN6I4...` instead of `AIzaSy...`). The backend catches this error silently and activates a local heuristic fallback.
+2. **At the Backend (`/api/check`):** The server receives your input and attempts to invoke Google Gemini AI (`gemini-1.5-flash`). **The AI call immediately fails with a 404/Invalid API Key error** because the key in `.env.local` is not a valid Google AI Studio key format. The backend catches this error silently and activates a local heuristic fallback.
 3. **At the Heuristic Engines:** Local rule-based algorithms inspect the string:
    - For domains: It checks string edit distance, character swaps, and keywords against a target brand (defaulting to Paytm). Because of a bug in the homoglyph engine where the standard Latin letter `'l'` is registered as a homoglyph for `'i'`, **almost any domain with an 'l' is flagged as a homoglyph spoof**. Furthermore, the TLD (`.com`) is flagged as an unauthorized affix (combosquatting), and `logoSimilarityRatio: 0.6` is hardcoded.
    - For messages: Regex pattern matching identifies urgency and financial phrases.
@@ -201,7 +201,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 ```
 1. **API Key Status:**
-   - The value stored in `.env.local`: `GEMINI_API_KEY=YOUR_GEMINI_API_KEY`.
+   - The value previously tested in `.env.local`: `GEMINI_API_KEY=[REDACTED_INVALID_KEY]`.
    - **Root Cause of Failure:** This token does not match the Google AI Studio API key format (`AIzaSy...`). When the API is invoked, Google returns `404 Not Found: models/gemini-1.5-flash is not found for API version v1beta`.
 2. **Fallback Behavior:**
    - The code contains a `try / catch` block:

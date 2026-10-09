@@ -129,9 +129,12 @@ export function evaluateSocialCandidateRisk(input: RiskEngineInput): SocialRiskR
   } else if (finalScore >= 30) {
     riskLevel = 'MEDIUM';
     threatClassification = 'SUSPICIOUS';
-  } else {
+  } else if (finalScore >= 12) {
     riskLevel = 'LOW';
     threatClassification = 'LOW_CONCERN';
+  } else {
+    riskLevel = 'LOW';
+    threatClassification = 'LIKELY_OFFICIAL';
   }
 
   // Confidence Calculation based on signal coverage

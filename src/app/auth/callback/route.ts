@@ -1,0 +1,24 @@
+import { NextResponse } from 'next/server';
+import { getSupabaseServerClient } from '@/lib/supabase/server';
+
+export async function GET(request: Request) {
+  const { searchParams, origin } = new URL(request.url);
+  const code = searchParams.get('code');
+  const next = searchParams.get('next') || '/overview';
+
+  if (code) {
+    try {
+      const supabase = await getSupabaseServerClient();
+      const { error } = await supabase.auth.exchangeCodeForSession(code);
+      if (!error) {
+        return NextResponse.redirect(`${origin}${next}`);
+      }
+      console.error('[Auth Callback] Code exchange error:', error.message);
+    } catch (err) {
+      console.error('[Auth Callback] Unexpected error:', err);
+    }
+  }
+
+  // Return user to login page with notice if code exchange fails
+  return NextResponse.redirect(`${origin}/login?error=auth_callback_failed`);
+}

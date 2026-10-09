@@ -19,10 +19,9 @@ import {
   User,
   Smartphone,
   Share2,
-  Radio,
-  CheckCircle2,
-  ShieldCheck,
+  LogOut,
 } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 import GlobalSearchModal from '@/components/GlobalSearchModal';
 import SafenetLogo from '@/components/SafenetLogo';
 import { BrandStore, PRESET_BRANDS } from '@/lib/brand-store';
@@ -37,6 +36,8 @@ interface AppShellProps {
 export default function AppShell({ children, pageTitle, pageSubtitle }: AppShellProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const { user, loading, signOut } = useAuth();
+  const [loggingOut, setLoggingOut] = useState(false);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -44,6 +45,12 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
   const [alerts, setAlerts] = useState<AlertItem[]>([]);
   const [showAlertsDropdown, setShowAlertsDropdown] = useState(false);
   const [showBrandDropdown, setShowBrandDropdown] = useState(false);
+
+  useEffect(() => {
+    if (!loading && !user && pathname !== '/login' && pathname !== '/home') {
+      router.replace(`/login?redirect=${encodeURIComponent(pathname)}`);
+    }
+  }, [user, loading, pathname, router]);
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -88,97 +95,78 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
   const unreadAlerts = alerts.filter((a) => !a.read);
 
   return (
-    <div className="min-h-screen flex bg-[#06080C] text-[#F3F6FB] font-sans antialiased selection:bg-[#00D2FF]/25 selection:text-white relative cyber-grid">
-      {/* Sentinel Ambient Radial Telemetry Lighting */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[300px] bg-[#00D2FF]/[0.035] blur-[120px] rounded-full" />
-        <div className="absolute top-1/3 right-10 w-[500px] h-[400px] bg-[#00F5A0]/[0.025] blur-[140px] rounded-full" />
-      </div>
+    <div className="min-h-screen flex bg-[#080A0B] text-[#F2F4F3] font-sans antialiased selection:bg-[#18E6A3]/20 selection:text-white relative">
+      {/* Ambient Network Telemetry Background */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 opacity-25 bg-cover bg-top bg-no-repeat"
+        style={{ backgroundImage: "url('/images/dark-bg.jpg')" }}
+      />
 
-      {/* ── SENTINEL DARK DESKTOP SIDEBAR ── */}
-      <aside className="hidden lg:flex w-60 flex-col bg-[#080C14]/90 backdrop-blur-xl border-r border-slate-800/80 shrink-0 sticky top-0 h-screen z-30 select-none shadow-[4px_0_24px_rgba(0,0,0,0.5)]">
-        {/* Brand / Logo Header */}
-        <div className="h-16 px-5 border-b border-slate-800/80 flex items-center justify-between bg-[#0B101A]/40">
-          <Link href="/" className="hover:opacity-95 transition-opacity">
+      {/* ── LEFT QUIET EDITORIAL SIDEBAR (DESKTOP) ── */}
+      <aside className="hidden lg:flex w-56 flex-col bg-[#080A0B]/90 backdrop-blur-md border-r border-[rgba(255,255,255,0.08)] shrink-0 sticky top-0 h-screen z-30 select-none">
+        {/* Logo Header */}
+        <div className="h-14 px-5 border-b border-[rgba(255,255,255,0.08)] flex items-center">
+          <Link href="/" className="hover:opacity-90 transition-opacity">
             <SafenetLogo size={16} showWordmark={true} />
           </Link>
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00D2FF] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00D2FF]" />
-          </span>
         </div>
 
-        {/* Navigation Section */}
-        <div className="flex-1 py-5 px-3 space-y-6 overflow-y-auto">
+        {/* Sidebar Nav Items */}
+        <div className="flex-1 py-4 px-3 space-y-6 overflow-y-auto">
           {/* Intelligence Section */}
-          <div className="space-y-1">
-            <div className="px-3 py-1 flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748B] font-semibold">
-              <span>INTELLIGENCE</span>
-              <span className="text-[9px] text-[#00D2FF]/80 bg-[#00D2FF]/10 px-1 rounded font-mono">SOC</span>
+          <div className="space-y-0.5">
+            <div className="px-2.5 py-1 text-[10px] font-sans uppercase tracking-[0.08em] text-[#59625F] font-semibold">
+              INTELLIGENCE
             </div>
             {intelligenceNav.map((item) => {
               const isActive =
                 pathname === item.href ||
                 (item.href === '/investigate' && pathname.startsWith('/threat')) ||
                 (item.href === '/overview' && pathname === '/dashboard');
-              const Icon = item.icon;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center justify-between px-3 py-2 rounded-[4px] text-[13px] font-medium transition-all group relative ${
+                  className={`flex items-center justify-between px-2.5 py-1.5 rounded-[4px] text-[13px] transition-colors relative ${
                     isActive
-                      ? 'text-[#FFFFFF] bg-gradient-to-r from-cyan-500/15 to-transparent border border-cyan-500/30 shadow-[0_0_12px_rgba(0,210,255,0.08)]'
-                      : 'text-[#94A3B8] hover:text-[#FFFFFF] hover:bg-slate-800/40 border border-transparent'
+                      ? 'text-[#F2F4F3] bg-[rgba(255,255,255,0.04)] font-medium'
+                      : 'text-[#8A9390] hover:text-[#F2F4F3] hover:bg-[rgba(255,255,255,0.02)]'
                   }`}
                 >
-                  <span className="flex items-center gap-3">
-                    <Icon
-                      className={`h-4 w-4 shrink-0 transition-colors ${
-                        isActive ? 'text-[#00D2FF]' : 'text-[#64748B] group-hover:text-[#94A3B8]'
-                      }`}
-                    />
-                    <span>{item.label}</span>
+                  <span className="flex items-center gap-2.5">
+                    {item.label}
                   </span>
                   {isActive && (
-                    <span className="h-4 w-1 rounded-full bg-[#00D2FF] shadow-[0_0_8px_#00D2FF]" />
+                    <span className="h-3.5 w-0.5 rounded-full bg-[#18E6A3]" />
                   )}
                 </Link>
               );
             })}
           </div>
 
-          {/* Cyber Hairline Divider */}
-          <div className="border-t border-slate-800/80 mx-2" />
+          {/* Thin Hairline Divider */}
+          <div className="border-t border-[rgba(255,255,255,0.06)] mx-2" />
 
           {/* Workspace Section */}
-          <div className="space-y-1">
-            <div className="px-3 py-1 text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748B] font-semibold">
+          <div className="space-y-0.5">
+            <div className="px-2.5 py-1 text-[10px] font-sans uppercase tracking-[0.08em] text-[#59625F] font-semibold">
               WORKSPACE
             </div>
             {workspaceNav.map((item) => {
               const isActive = pathname === item.href;
-              const Icon = item.icon;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center justify-between px-3 py-2 rounded-[4px] text-[13px] font-medium transition-all group relative ${
+                  className={`flex items-center justify-between px-2.5 py-1.5 rounded-[4px] text-[13px] transition-colors ${
                     isActive
-                      ? 'text-[#FFFFFF] bg-gradient-to-r from-cyan-500/15 to-transparent border border-cyan-500/30'
-                      : 'text-[#94A3B8] hover:text-[#FFFFFF] hover:bg-slate-800/40 border border-transparent'
+                      ? 'text-[#F2F4F3] bg-[rgba(255,255,255,0.04)] font-medium'
+                      : 'text-[#8A9390] hover:text-[#F2F4F3] hover:bg-[rgba(255,255,255,0.02)]'
                   }`}
                 >
-                  <span className="flex items-center gap-3">
-                    <Icon
-                      className={`h-4 w-4 shrink-0 transition-colors ${
-                        isActive ? 'text-[#00D2FF]' : 'text-[#64748B] group-hover:text-[#94A3B8]'
-                      }`}
-                    />
-                    <span>{item.label}</span>
-                  </span>
+                  <span>{item.label}</span>
                   {isActive && (
-                    <span className="h-4 w-1 rounded-full bg-[#00D2FF] shadow-[0_0_8px_#00D2FF]" />
+                    <span className="h-3.5 w-0.5 rounded-full bg-[#18E6A3]" />
                   )}
                 </Link>
               );
@@ -186,33 +174,25 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
           </div>
         </div>
 
-        {/* Active Perimeter Status Card */}
-        <div className="p-3.5 m-3 border border-slate-800/90 rounded-[4px] bg-[#0B101A]/80 backdrop-blur-md space-y-2">
-          <div className="flex items-center justify-between text-[10px] font-mono text-[#64748B] uppercase tracking-wider">
-            <span className="flex items-center gap-1.5 text-[#00F5A0]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#00F5A0] shadow-[0_0_6px_#00F5A0]" />
-              PERIMETER GUARD
-            </span>
-            <span className="text-[#00D2FF] font-semibold">ACTIVE</span>
-          </div>
-          <div className="flex items-center justify-between pt-1 border-t border-slate-800/60 text-[12px]">
-            <span className="text-[#94A3B8]">Target:</span>
-            <span className="font-mono text-[#F3F6FB] font-semibold flex items-center gap-1.5">
-              {brand?.name || 'Paytm'}
-            </span>
-          </div>
+        {/* Quiet Bottom Environment Indicator */}
+        <div className="p-4 border-t border-[rgba(255,255,255,0.08)] flex items-center justify-between text-[11px] text-[#8A9390]">
+          <span>Protected</span>
+          <span className="text-[#F2F4F3] font-medium flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#18E6A3]" />
+            {brand?.name || 'Paytm'}
+          </span>
         </div>
       </aside>
 
       {/* ── RIGHT MAIN COLUMN ── */}
       <div className="flex-1 flex flex-col min-w-0 relative z-10">
-        {/* ── TOP NAVIGATION (SENTINEL COMMAND BAR) ── */}
-        <header className="h-16 bg-[#080C14]/85 backdrop-blur-xl border-b border-slate-800/80 px-4 sm:px-6 flex items-center justify-between gap-4 sticky top-0 z-40 shrink-0 shadow-lg shadow-black/20">
+        {/* ── TOP NAVIGATION (SUBTLE & UNCLUTTERED) ── */}
+        <header className="h-14 bg-[#080A0B]/85 backdrop-blur-md border-b border-[rgba(255,255,255,0.08)] px-4 sm:px-6 flex items-center justify-between gap-4 sticky top-0 z-40 shrink-0">
           {/* Left: Mobile Toggle & Minimal Title */}
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-1.5 rounded text-[#94A3B8] hover:text-[#FFFFFF] hover:bg-slate-800/50"
+              className="lg:hidden p-1 text-[#8A9390] hover:text-[#F2F4F3]"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -222,140 +202,135 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
               <SafenetLogo size={16} showWordmark={false} />
             </Link>
 
-            <div className="hidden sm:flex items-center gap-2 text-[12px] font-mono text-[#64748B]">
-              <span className="text-[#00D2FF] font-semibold">SAFENET</span>
-              <span>/</span>
-              <span className="text-[#94A3B8]">DIGITAL RISK DECISION SYSTEM</span>
-            </div>
+            <span className="hidden sm:inline text-[13px] text-[#8A9390]">
+              SAFENET <span className="text-[#59625F] mx-1">/</span> Digital Risk Decision System
+            </span>
           </div>
 
-          {/* Center: Command Palette Global Search (⌘K) */}
+          {/* Center: Subtle Global Search */}
           <div className="flex-1 max-w-md hidden md:block">
             <button
               onClick={() => setSearchOpen(true)}
-              className="w-full flex items-center justify-between px-3.5 py-2 rounded-[4px] bg-[#0B101A]/90 hover:bg-[#101726] border border-slate-800 hover:border-cyan-500/40 text-[12px] text-[#94A3B8] transition-all cursor-pointer shadow-inner group"
+              className="w-full flex items-center justify-between px-3 py-1.5 rounded-[4px] bg-[rgba(255,255,255,0.02)] hover:bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] text-[12px] text-[#8A9390] transition-colors cursor-pointer"
             >
-              <div className="flex items-center gap-2.5">
-                <Search className="h-3.5 w-3.5 text-[#64748B] group-hover:text-[#00D2FF] transition-colors" />
-                <span className="group-hover:text-[#F3F6FB] transition-colors">Search domains, URLs, IPs, incidents...</span>
+              <div className="flex items-center gap-2">
+                <Search className="h-3.5 w-3.5 text-[#59625F]" />
+                <span>Search domains, URLs, IPs, incidents...</span>
               </div>
-              <kbd className="text-[10px] font-mono bg-slate-800/80 border border-slate-700/80 text-[#94A3B8] px-1.5 py-0.5 rounded shadow-sm">
+              <kbd className="text-[10px] font-mono bg-[rgba(255,255,255,0.06)] text-[#8A9390] px-1.5 py-0.2 rounded">
                 ⌘K
               </kbd>
             </button>
           </div>
 
-          {/* Right: Telemetry / Quick Check / Brand / Alerts */}
+          {/* Right: Quick Check + Brand Profile + User */}
           <div className="flex items-center gap-3">
             <Link
               href="/check"
-              className="px-3 py-1.5 rounded-[4px] bg-cyan-500/10 border border-cyan-500/30 text-[12px] text-[#00D2FF] hover:bg-cyan-500/20 transition-all font-mono font-medium hidden sm:flex items-center gap-1.5 shadow-[0_0_10px_rgba(0,210,255,0.1)]"
+              className="text-[12px] text-[#8A9390] hover:text-[#18E6A3] transition-colors font-medium hidden sm:inline"
             >
-              <Search className="h-3 w-3" />
-              <span>Quick Check</span>
+              Quick Check
             </Link>
 
             {/* Brand Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setShowBrandDropdown(!showBrandDropdown)}
-                className="flex items-center gap-2 px-2.5 py-1.5 rounded-[4px] border border-slate-800 bg-[#0B101A]/90 text-[12px] font-mono text-[#F3F6FB] hover:border-slate-700 hover:bg-[#101726] transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-2 py-1 rounded-[4px] border border-[rgba(255,255,255,0.08)] text-[12px] text-[#F2F4F3] hover:bg-[rgba(255,255,255,0.03)] transition-colors cursor-pointer"
               >
-                <span className="h-2 w-2 rounded-full bg-[#00F5A0] shadow-[0_0_6px_#00F5A0]" />
-                <span className="font-semibold">{brand?.name || 'Paytm'}</span>
-                <ChevronDown className="h-3 w-3 text-[#64748B]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#18E6A3]" />
+                <span>{brand?.name || 'Paytm'}</span>
+                <ChevronDown className="h-3 w-3 text-[#59625F]" />
               </button>
 
               {showBrandDropdown && (
-                <div className="absolute right-0 mt-2 w-52 bg-[#0B101A] border border-slate-800 rounded-[4px] shadow-2xl z-50 p-1.5 text-[12px] font-mono">
-                  <div className="px-2.5 py-1 text-[10px] uppercase text-[#64748B] font-semibold border-b border-slate-800/80 mb-1">
-                    TARGET ENVIRONMENT
-                  </div>
+                <div className="absolute right-0 mt-1.5 w-48 bg-[#0D1011] border border-[rgba(255,255,255,0.10)] rounded-[4px] shadow-xl z-50 p-1 text-[12px]">
                   <button
                     onClick={() => handleSelectPreset('Paytm')}
-                    className={`w-full text-left px-2.5 py-1.5 rounded-[3px] flex items-center justify-between hover:bg-slate-800/60 transition-colors ${
-                      brand?.name === 'Paytm' ? 'text-[#00F5A0] bg-emerald-500/10' : 'text-[#F3F6FB]'
+                    className={`w-full text-left px-2.5 py-1.5 rounded-[3px] flex items-center justify-between hover:bg-[rgba(255,255,255,0.04)] ${
+                      brand?.name === 'Paytm' ? 'text-[#18E6A3]' : 'text-[#F2F4F3]'
                     }`}
                   >
                     <span>Paytm (Fintech)</span>
-                    {brand?.name === 'Paytm' && <span className="text-[#00F5A0]">✓</span>}
+                    {brand?.name === 'Paytm' && <span>✓</span>}
                   </button>
                   <button
                     onClick={() => handleSelectPreset('Nike')}
-                    className={`w-full text-left px-2.5 py-1.5 rounded-[3px] flex items-center justify-between hover:bg-slate-800/60 transition-colors ${
-                      brand?.name === 'Nike' ? 'text-[#00F5A0] bg-emerald-500/10' : 'text-[#F3F6FB]'
+                    className={`w-full text-left px-2.5 py-1.5 rounded-[3px] flex items-center justify-between hover:bg-[rgba(255,255,255,0.04)] ${
+                      brand?.name === 'Nike' ? 'text-[#18E6A3]' : 'text-[#F2F4F3]'
                     }`}
                   >
                     <span>Nike (Retail)</span>
-                    {brand?.name === 'Nike' && <span className="text-[#00F5A0]">✓</span>}
+                    {brand?.name === 'Nike' && <span>✓</span>}
                   </button>
                 </div>
               )}
             </div>
 
-            {/* Notification Bell with Alerts Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setShowAlertsDropdown(!showAlertsDropdown)}
-                className="relative p-2 rounded-[4px] border border-slate-800 bg-[#0B101A]/90 text-[#94A3B8] hover:text-[#FFFFFF] hover:border-slate-700 transition-colors cursor-pointer"
-                title="Alerts"
-              >
-                <Bell className="h-4 w-4" />
-                {unreadAlerts.length > 0 && (
-                  <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-[#FF3366] shadow-[0_0_6px_#FF3366]" />
-                )}
-              </button>
-
-              {showAlertsDropdown && (
-                <div className="absolute right-0 mt-2 w-72 bg-[#0B101A] border border-slate-800 rounded-[4px] shadow-2xl z-50 p-2 font-mono text-[12px]">
-                  <div className="px-2.5 py-1.5 text-[10px] uppercase text-[#64748B] font-semibold border-b border-slate-800/80 flex items-center justify-between">
-                    <span>SECURITY ALERTS</span>
-                    <span className="text-[#FF3366]">{unreadAlerts.length} UNREAD</span>
-                  </div>
-                  <div className="max-h-56 overflow-y-auto divide-y divide-slate-800/60">
-                    {alerts.length === 0 ? (
-                      <div className="p-3 text-center text-[#64748B] text-[11px]">
-                        No active security alerts.
-                      </div>
-                    ) : (
-                      alerts.slice(0, 5).map((alert) => (
-                        <div key={alert.id} className="p-2 hover:bg-slate-800/40 transition-colors space-y-0.5">
-                          <div className="text-[11px] text-[#F3F6FB] font-medium truncate">
-                            {alert.title}
-                          </div>
-                          <div className="text-[10px] text-[#94A3B8] line-clamp-1">
-                            {alert.message}
-                          </div>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                </div>
+            {/* Notification Bell */}
+            <button
+              onClick={() => setShowAlertsDropdown(!showAlertsDropdown)}
+              className="relative p-1.5 text-[#8A9390] hover:text-[#F2F4F3] cursor-pointer"
+              title="Alerts"
+            >
+              <Bell className="h-4 w-4" />
+              {unreadAlerts.length > 0 && (
+                <span className="absolute top-1 right-1 h-1.5 w-1.5 rounded-full bg-[#FF5C5C]" />
               )}
-            </div>
+            </button>
+
+            {/* User Session Profile & Sign Out Action */}
+            {user ? (
+              <div className="flex items-center gap-1.5 pl-2 border-l border-[rgba(255,255,255,0.08)]">
+                <div
+                  title={user.email || 'Authenticated User'}
+                  className="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-[2px] bg-[#07090A] border border-[rgba(255,255,255,0.08)] text-[11px] font-mono text-[#8A9390] max-w-[140px] truncate"
+                >
+                  <User className="h-3 w-3 text-[#18E6A3] shrink-0" />
+                  <span className="truncate">{user.email?.split('@')[0]}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={async () => {
+                    setLoggingOut(true);
+                    try {
+                      await signOut();
+                      router.push('/login');
+                    } finally {
+                      setLoggingOut(false);
+                    }
+                  }}
+                  disabled={loggingOut}
+                  title="Sign out of SAFENET"
+                  className="flex items-center gap-1 p-1.5 text-[#8A9390] hover:text-[#FF5C5C] hover:bg-[#FF5C5C]/10 rounded-[2px] transition-colors cursor-pointer"
+                >
+                  <LogOut className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="px-2.5 py-1 rounded-[2px] bg-[#18E6A3]/10 hover:bg-[#18E6A3]/20 border border-[#18E6A3]/30 text-[11px] text-[#18E6A3] font-mono uppercase font-semibold transition-colors"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
         </header>
 
         {/* ── MOBILE NAV DRAWER ── */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#080C14] border-b border-slate-800 px-4 py-3 space-y-1.5 z-30 shadow-2xl font-mono">
-            {intelligenceNav.map((item) => {
-              const Icon = item.icon;
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`flex items-center gap-3 px-3 py-2 rounded-[4px] text-[13px] ${
-                    isActive ? 'bg-cyan-500/15 text-[#00D2FF] font-semibold' : 'text-[#94A3B8] hover:text-[#FFFFFF]'
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{item.label}</span>
-                </Link>
-              );
-            })}
-            <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-[#64748B]">
+          <div className="lg:hidden bg-[#0D1011] border-b border-[rgba(255,255,255,0.08)] px-4 py-3 space-y-1 z-30">
+            {intelligenceNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block px-3 py-2 text-[13px] text-[#8A9390] hover:text-[#F2F4F3]"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="pt-2 border-t border-[rgba(255,255,255,0.08)] flex items-center justify-between text-[11px] text-[#59625F]">
               <Link href="/guide" className="hover:text-white">Safety Guide</Link>
               <Link href="/setup" className="hover:text-white">Settings</Link>
             </div>
@@ -363,22 +338,16 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
         )}
 
         {/* ── CONTINUOUS INTELLIGENCE CANVAS ── */}
-        <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+        <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
           {(pageTitle || pageSubtitle) && (
-            <div className="mb-10 pb-5 border-b border-slate-800/80 space-y-1.5">
-              <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#00D2FF] shadow-[0_0_6px_#00D2FF]" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#00D2FF]">
-                  SAFENET SENTINEL TELEMETRY
-                </span>
-              </div>
+            <div className="mb-8 pb-4 border-b border-[rgba(255,255,255,0.08)]">
               {pageTitle && (
-                <h1 className="text-[26px] sm:text-[34px] font-bold text-[#F3F6FB] tracking-[-0.025em]">
+                <h1 className="text-[24px] sm:text-[30px] font-semibold text-[#F2F4F3] tracking-[-0.02em]">
                   {pageTitle}
                 </h1>
               )}
               {pageSubtitle && (
-                <p className="text-[13px] sm:text-[14px] text-[#94A3B8] font-normal leading-relaxed max-w-3xl">
+                <p className="text-[13px] text-[#8A9390] mt-1 font-normal">
                   {pageSubtitle}
                 </p>
               )}
@@ -388,20 +357,15 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
         </main>
 
         {/* ── SYSTEM FOOTER ── */}
-        <footer className="border-t border-slate-800/80 bg-[#080C14]/90 text-[#64748B] text-[11px] font-mono py-6 px-4 sm:px-8 mt-auto">
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#00F5A0]" />
-              <span>SAFENET • Digital Risk Decision System • Sentinel Dark</span>
-            </div>
-            <div className="flex items-center gap-4 text-[#94A3B8]">
-              <Link href="/check" className="hover:text-[#00D2FF] transition-colors">Check</Link>
-              <Link href="/overview" className="hover:text-[#00D2FF] transition-colors">Overview</Link>
-              <Link href="/apps" className="hover:text-[#00D2FF] transition-colors">Apps</Link>
-              <Link href="/social" className="hover:text-[#00D2FF] transition-colors">Social</Link>
-              <Link href="/campaigns" className="hover:text-[#00D2FF] transition-colors">Campaigns</Link>
-              <Link href="/reports" className="hover:text-[#00D2FF] transition-colors">Reports</Link>
-              <Link href="/setup" className="hover:text-[#00D2FF] transition-colors">Settings</Link>
+        <footer className="border-t border-[rgba(255,255,255,0.08)] bg-[#080A0B] text-[#59625F] text-[11px] py-6 px-4 sm:px-8 mt-auto">
+          <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span>SAFENET • Digital Risk Decision System • Check before you trust.</span>
+            <div className="flex items-center gap-4 text-[#8A9390]">
+              <Link href="/check" className="hover:text-white">Check</Link>
+              <Link href="/overview" className="hover:text-white">Overview</Link>
+              <Link href="/campaigns" className="hover:text-white">Campaigns</Link>
+              <Link href="/reports" className="hover:text-white">Reports</Link>
+              <Link href="/setup" className="hover:text-white">Settings</Link>
             </div>
           </div>
         </footer>
@@ -412,4 +376,3 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
     </div>
   );
 }
-

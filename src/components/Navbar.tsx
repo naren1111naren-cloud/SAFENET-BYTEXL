@@ -17,7 +17,10 @@ import {
   Zap,
   Smartphone,
   Share2,
+  LogOut,
+  User,
 } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 import { BrandStore, PRESET_BRANDS } from '@/lib/brand-store';
 import { BrandProfile, AlertItem } from '@/types/brand';
 import SafenetLogo from '@/components/SafenetLogo';
@@ -25,6 +28,8 @@ import SafenetLogo from '@/components/SafenetLogo';
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const { user, signOut } = useAuth();
+  const [loggingOut, setLoggingOut] = useState(false);
   const [brand, setBrand] = useState<BrandProfile | null>(null);
   const [alerts, setAlerts] = useState<AlertItem[]>([]);
   const [showAlertsDropdown, setShowAlertsDropdown] = useState(false);
@@ -227,6 +232,46 @@ export default function Navbar() {
               </div>
             )}
           </div>
+
+          {/* User Session Profile & Logout Action */}
+          {user ? (
+            <div className="flex items-center gap-2 pl-2 border-l border-slate-800">
+              <div
+                title={user.email || 'Authenticated User'}
+                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300 max-w-[160px] truncate"
+              >
+                <User className="h-3 w-3 text-cyan-400 shrink-0" />
+                <span className="truncate">{user.email?.split('@')[0]}</span>
+              </div>
+              <button
+                type="button"
+                onClick={async () => {
+                  setLoggingOut(true);
+                  try {
+                    await signOut();
+                    router.push('/login');
+                    router.refresh();
+                  } finally {
+                    setLoggingOut(false);
+                  }
+                }}
+                disabled={loggingOut}
+                title="Sign out of SAFENET"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 hover:bg-rose-500/10 border border-slate-800 hover:border-rose-500/30 text-xs text-slate-300 hover:text-rose-400 transition-all cursor-pointer disabled:opacity-50"
+              >
+                <LogOut className="h-3.5 w-3.5" />
+                <span className="hidden sm:inline font-medium">Logout</span>
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-xs text-cyan-400 font-semibold transition-all"
+            >
+              <User className="h-3.5 w-3.5" />
+              <span>Sign In</span>
+            </Link>
+          )}
         </div>
       </div>
     </header>

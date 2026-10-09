@@ -551,8 +551,8 @@ export class BrandDiscoveryService {
     // ========================================================
     // 3. META (INSTAGRAM & FACEBOOK) DISCOVERY & VERIFICATION
     // ========================================================
-    const metaToken = process.env.META_ACCESS_TOKEN?.trim() || '';
-    const isMetaAuthorized = Boolean(metaToken) && !/^\d{10,24}$/.test(metaToken) && !/^(YOUR_|placeholder)/i.test(metaToken);
+    const metaToken = process.env.META_ACCESS_TOKEN?.trim();
+    const isMetaAuthorized = Boolean(metaToken) && metaToken !== '2266934170818569';
 
     // Instagram
     if (websiteVerified && (websiteCrossLinks.instagram || knownBaseline?.handles?.instagram)) {
@@ -566,7 +566,6 @@ export class BrandDiscoveryService {
         brandDescriptionSimilarity: true,
       });
 
-      const igStatus = isMetaAuthorized ? igScore.status : 'LIKELY';
       officialProfiles.push({
         platform: 'instagram',
         name: cleanBrand,
@@ -574,7 +573,7 @@ export class BrandDiscoveryService {
         url: `https://www.instagram.com/${handle}`,
         confidence: igScore.score,
         verificationScore: igScore.score,
-        verificationStatus: igStatus,
+        verificationStatus: isMetaAuthorized ? igScore.status : 'LIKELY',
         verificationReason: isMetaAuthorized
           ? `Verified via official website link and Meta Graph API.`
           : `Handle discovered via official website cross-links (Meta API access unauthorized).`,
@@ -590,14 +589,6 @@ export class BrandDiscoveryService {
         },
         trustEvidence: igScore.trustEvidence,
         isPrimaryOfficial: true,
-      });
-
-      evidenceList.push({
-        signal: 'instagram_identity_verified',
-        value: `@${handle}`,
-        severity: 'INFO',
-        source: isMetaAuthorized ? 'Meta Graph API (Business Discovery)' : 'Official Website Cross-Link',
-        explanation: `Discovered official Instagram handle "@${handle}" (${igStatus}).`,
       });
     } else {
       officialProfiles.push({
@@ -635,7 +626,6 @@ export class BrandDiscoveryService {
         brandDescriptionSimilarity: true,
       });
 
-      const fbStatus = isMetaAuthorized ? fbScore.status : 'LIKELY';
       officialProfiles.push({
         platform: 'facebook',
         name: cleanBrand,
@@ -643,7 +633,7 @@ export class BrandDiscoveryService {
         url: `https://www.facebook.com/${handle}`,
         confidence: fbScore.score,
         verificationScore: fbScore.score,
-        verificationStatus: fbStatus,
+        verificationStatus: isMetaAuthorized ? fbScore.status : 'LIKELY',
         verificationReason: isMetaAuthorized
           ? `Verified via official website link and Meta Graph API.`
           : `Handle discovered via official website cross-links (Meta API access unauthorized).`,
@@ -659,14 +649,6 @@ export class BrandDiscoveryService {
         },
         trustEvidence: fbScore.trustEvidence,
         isPrimaryOfficial: true,
-      });
-
-      evidenceList.push({
-        signal: 'facebook_identity_verified',
-        value: handle,
-        severity: 'INFO',
-        source: isMetaAuthorized ? 'Meta Graph API' : 'Official Website Cross-Link',
-        explanation: `Discovered official Facebook page "${handle}" (${fbStatus}).`,
       });
     } else {
       officialProfiles.push({
@@ -710,7 +692,6 @@ export class BrandDiscoveryService {
         brandDescriptionSimilarity: true,
       });
 
-      const xStatus = isXOperational ? xScore.status : 'LIKELY';
       officialProfiles.push({
         platform: 'twitter',
         name: cleanBrand,
@@ -718,7 +699,7 @@ export class BrandDiscoveryService {
         url: `https://x.com/${handle}`,
         confidence: xScore.score,
         verificationScore: xScore.score,
-        verificationStatus: xStatus,
+        verificationStatus: isXOperational ? xScore.status : 'LIKELY',
         verificationReason: isXOperational
           ? `Handle verified via official website cross-link.`
           : `Handle discovered via official website cross-link (X API credits unavailable).`,
@@ -734,14 +715,6 @@ export class BrandDiscoveryService {
         },
         trustEvidence: xScore.trustEvidence,
         isPrimaryOfficial: true,
-      });
-
-      evidenceList.push({
-        signal: 'twitter_identity_verified',
-        value: `@${handle}`,
-        severity: 'INFO',
-        source: isXOperational ? 'X API v2' : 'Official Website Cross-Link',
-        explanation: `Discovered official X handle "@${handle}" (${xStatus}).`,
       });
     } else {
       officialProfiles.push({
@@ -783,18 +756,17 @@ export class BrandDiscoveryService {
         brandDescriptionSimilarity: true,
       });
 
-      const lnStatus = isLinkedinAuthorized ? lnScore.status : 'LIKELY';
       officialProfiles.push({
         platform: 'linkedin',
         name: cleanBrand,
-        username: `company/${handle}`,
+        username: handle,
         url: `https://www.linkedin.com/company/${handle}`,
         confidence: lnScore.score,
         verificationScore: lnScore.score,
-        verificationStatus: lnStatus,
+        verificationStatus: isLinkedinAuthorized ? lnScore.status : 'LIKELY',
         verificationReason: isLinkedinAuthorized
-          ? `Verified via official website cross-link and LinkedIn API.`
-          : `Handle discovered via official website cross-links (LinkedIn partner credentials required).`,
+          ? `Verified via official website link and LinkedIn API.`
+          : `Page discovered via official website cross-link (LinkedIn API access not available).`,
         signals: {
           nameSimilarity: 95,
           usernameSimilarity: 95,
@@ -807,14 +779,6 @@ export class BrandDiscoveryService {
         },
         trustEvidence: lnScore.trustEvidence,
         isPrimaryOfficial: true,
-      });
-
-      evidenceList.push({
-        signal: 'linkedin_identity_verified',
-        value: `company/${handle}`,
-        severity: 'INFO',
-        source: isLinkedinAuthorized ? 'LinkedIn API' : 'Official Website Cross-Link',
-        explanation: `Discovered official LinkedIn organization "company/${handle}" (${lnStatus}).`,
       });
     } else {
       officialProfiles.push({

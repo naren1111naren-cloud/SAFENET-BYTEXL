@@ -3,69 +3,65 @@
 @layer base {
   :root,
   .dark {
-    /* === SAFENET CYBER THREAT OPS / SENTINEL DARK SYSTEM === */
-    --sn-bg: #06080C;
-    --sn-canvas: #080C14;
-    --sn-surface: #0B101A;
-    --sn-surface-hover: #101726;
-    --sn-surface-elevated: #151F33;
-    --sn-surface-glass: rgba(11, 16, 26, 0.75);
+    /* === SAFENET CONTINUOUS EDITORIAL INTELLIGENCE CANVAS === */
+    --sn-bg: #080A0B;
+    --sn-surface: #0D1011;
+    --sn-surface-hover: #121618;
+    --sn-surface-elevated: #161A1D;
 
-    /* Typography Palette */
-    --sn-text-primary: #F3F6FB;
-    --sn-text-secondary: #94A3B8;
-    --sn-text-muted: #5B6B82;
+    /* Editorial Typography Palette */
+    --sn-text-primary: #F2F4F3;
+    --sn-text-secondary: #8A9390;
+    --sn-text-muted: #59625F;
 
-    /* Hairline Cyber Separators & Subtle Borders */
+    /* Hairline Separators & Subtle Borders */
     --sn-border: rgba(255, 255, 255, 0.08);
     --sn-border-subtle: rgba(255, 255, 255, 0.04);
-    --sn-border-strong: rgba(255, 255, 255, 0.16);
-    --sn-border-cyan: rgba(6, 182, 212, 0.25);
-    --sn-border-emerald: rgba(16, 185, 129, 0.25);
+    --sn-border-strong: rgba(255, 255, 255, 0.14);
 
-    /* Telemetry Accents */
-    --sn-cyan: #00D2FF;
-    --sn-cyan-glow: rgba(0, 210, 255, 0.18);
-    --sn-emerald: #00F5A0;
-    --sn-emerald-glow: rgba(0, 245, 160, 0.18);
-    --sn-crimson: #FF3366;
-    --sn-crimson-glow: rgba(255, 51, 102, 0.18);
-    --sn-amber: #F59E0B;
-    --sn-amber-glow: rgba(245, 158, 11, 0.18);
-    --sn-violet: #8B5CF6;
-    --sn-violet-glow: rgba(139, 92, 246, 0.18);
+    /* Restrained Primary Accent (#18E6A3) - 90% neutral, 8% accent, 2% status */
+    --sn-accent: #18E6A3;
+    --sn-accent-hover: #15D294;
+    --sn-accent-subtle: rgba(24, 230, 163, 0.08);
 
-    --background: #06080C;
-    --foreground: #F3F6FB;
+    /* Semantic Status */
+    --sn-danger: #FF5C5C;
+    --sn-danger-subtle: rgba(255, 92, 92, 0.08);
+    --sn-warning: #F5B84B;
+    --sn-warning-subtle: rgba(245, 184, 75, 0.08);
+    --sn-info: #4DA3FF;
+    --sn-info-subtle: rgba(77, 163, 255, 0.08);
+
+    --background: #080A0B;
+    --foreground: #F2F4F3;
   }
 }
 
-/* === Sentinel Dark Layout === */
+/* === Base Editorial Layout === */
 html {
   color-scheme: dark !important;
-  background-color: #06080C !important;
+  background-color: #080A0B !important;
 }
 
 body {
-  background-color: #06080C;
+  background-color: #080A0B;
   background-image: 
-    radial-gradient(ellipse 90% 45% at 50% -15%, rgba(0, 210, 255, 0.06), transparent),
-    radial-gradient(ellipse 60% 30% at 80% 30%, rgba(0, 245, 160, 0.03), transparent),
-    linear-gradient(to bottom, rgba(6, 8, 12, 0.92), rgba(6, 8, 12, 0.98)),
+    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(24, 230, 163, 0.04), transparent),
+    linear-gradient(to bottom, rgba(8, 10, 11, 0.86), rgba(8, 10, 11, 0.97)),
     url('/images/dark-bg.jpg');
   background-repeat: no-repeat;
-  background-size: 100% auto, 100% 100%, 100% 100%, 100% auto;
+  background-size: 100% auto, 100% 100%, 100% auto;
   background-attachment: fixed;
-  color: #F3F6FB;
+  color: #F2F4F3;
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Monospace font for telemetry, data, domains, hashes, and indicators */
+/* Monospace font ONLY for technical data (URLs, domains, IPs, hashes, timestamps) */
 code, kbd, samp, pre, .font-mono {
-  font-family: var(--font-jetbrains-mono), "SF Mono", Consolas, "Liberation Mono", monospace;
+  font-family: var(--font-jetbrains-mono), "SF Mono", Consolas, monospace;
   font-feature-settings: "tnum" 1;
 }
 
@@ -73,154 +69,82 @@ code, kbd, samp, pre, .font-mono {
   font-variant-numeric: tabular-nums;
 }
 
-/* === Cyber Telemetry Grid Backdrop === */
-.cyber-grid {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-}
-
 /* === Minimal Hairline Scrollbar === */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.10);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 210, 255, 0.35);
+  background: rgba(255, 255, 255, 0.20);
 }
 
 /* === Selection === */
 ::selection {
-  background: rgba(0, 210, 255, 0.25);
+  background: rgba(24, 230, 163, 0.20);
   color: #FFFFFF;
 }
 
-/* === Precision Cyber Focus === */
+/* === Precision Focus === */
 :focus-visible {
-  outline: 1px solid var(--sn-cyan);
+  outline: 1px solid var(--sn-accent);
   outline-offset: 1px;
 }
 
-/* Hairline Cyber Separators */
+/* Hairline Separators */
 .sn-separator {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Continuous Rows with Subtle Cyber Hover */
+/* Continuous Rows with Subtle Hover */
 .sn-row {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease;
 }
 .sn-row:hover {
-  background-color: rgba(0, 210, 255, 0.025);
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
-/* Cyber Surface Cards with Glass and Telemetry Borders */
-.cyber-card {
-  background: rgba(11, 16, 26, 0.65);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.cyber-card:hover {
-  border-color: rgba(0, 210, 255, 0.3);
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.06);
-}
-
-.cyber-card-elevated {
-  background: rgba(16, 23, 38, 0.85);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 210, 255, 0.2);
-  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.5), 0 0 16px rgba(0, 210, 255, 0.08);
-}
-
-/* Primary Sentinel Action */
+/* Restrained Primary Action */
 .btn-accent {
-  background: linear-gradient(135deg, #00D2FF 0%, #00F5A0 100%);
-  color: #040910;
+  background-color: #18E6A3;
+  color: #051911;
   font-weight: 600;
-  border-radius: 4px;
-  box-shadow: 0 0 16px rgba(0, 210, 255, 0.25);
-  transition: all 0.18s ease;
+  border-radius: 6px;
+  transition: all 0.15s ease;
 }
 .btn-accent:hover {
-  box-shadow: 0 0 24px rgba(0, 210, 255, 0.45);
-  filter: brightness(1.08);
+  background-color: #1cf0ab;
 }
 
 .btn-quiet {
-  background-color: rgba(255, 255, 255, 0.02);
-  color: #F3F6FB;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
-  transition: all 0.18s ease;
+  background-color: transparent;
+  color: #F2F4F3;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 6px;
+  transition: all 0.15s ease;
 }
 .btn-quiet:hover {
-  border-color: rgba(0, 210, 255, 0.4);
-  background-color: rgba(0, 210, 255, 0.05);
-  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.20);
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
-/* Semantic Badges */
-.badge-critical {
-  color: #FF3366;
-  background-color: rgba(255, 51, 102, 0.12);
-  border: 1px solid rgba(255, 51, 102, 0.35);
-}
-
-.badge-high {
-  color: #F59E0B;
-  background-color: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-}
-
-.badge-nominal {
-  color: #00F5A0;
-  background-color: rgba(0, 245, 160, 0.12);
-  border: 1px solid rgba(0, 245, 160, 0.35);
-}
-
-.badge-telemetry {
-  color: #00D2FF;
-  background-color: rgba(0, 210, 255, 0.12);
-  border: 1px solid rgba(0, 210, 255, 0.35);
-}
-
-/* Status Indicators */
+/* Restrained Status Indicators */
 .status-danger {
-  color: #FF3366;
+  color: #FF5C5C;
 }
 .status-warning {
-  color: #F59E0B;
+  color: #F5B84B;
 }
 .status-accent {
-  color: #00F5A0;
+  color: #18E6A3;
 }
 .status-info {
-  color: #00D2FF;
+  color: #4DA3FF;
 }
-
-/* Telemetry Ping Animations */
-@keyframes cyber-pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(0.92);
-  }
-}
-.animate-cyber-pulse {
-  animation: cyber-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-

@@ -14,9 +14,9 @@ export default function SafenetLogo({ size = 16, className = '', showWordmark = 
 
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
-      {/* Official SAFENET Search-Lens Brand Mark with Sentinel Telemetry Glow */}
+      {/* Official SAFENET Search-Lens Browser Brand Mark */}
       <div
-        className="relative flex items-center justify-center shrink-0 overflow-hidden rounded-[4px] border border-cyan-500/30 bg-[#0B101A]/80 shadow-[0_0_12px_rgba(0,210,255,0.18)]"
+        className="flex items-center justify-center shrink-0 overflow-hidden rounded-[4px]"
         style={{ width, height }}
       >
         <Image
@@ -25,24 +25,22 @@ export default function SafenetLogo({ size = 16, className = '', showWordmark = 
           width={346}
           height={222}
           priority
-          className="h-full w-full object-contain p-0.5"
+          className="h-full w-full object-contain"
         />
       </div>
 
       {showWordmark && (
         <div className="flex flex-col select-none">
           <div className="flex items-center gap-1.5 leading-none">
-            <span className="font-mono font-bold text-[13px] tracking-[0.08em] text-[#F3F6FB]">
+            <span className="font-sans font-bold text-[14px] tracking-[0.04em] text-[#F2F4F3]">
               SAFENET
             </span>
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#00D2FF] shadow-[0_0_6px_#00D2FF]" />
           </div>
-          <span className="text-[10px] text-[#64748B] font-mono tracking-tight mt-0.5 leading-none">
-            RISK DECISION SYSTEM
+          <span className="text-[10px] text-[#8A9390] font-sans tracking-tight mt-0.5 leading-none">
+            Risk Decision System
           </span>
         </div>
       )}
     </div>
   );
 }
-

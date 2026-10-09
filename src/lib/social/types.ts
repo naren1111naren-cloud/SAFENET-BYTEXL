@@ -209,7 +209,7 @@ export interface SocialCandidateAnalysis {
 export interface SocialProviderResult {
   platform: SocialPlatform;
   provider: string;
-  status: 'connected' | 'not_configured' | 'unauthorized' | 'restricted' | 'error' | 'rate_limited';
+  status: 'connected' | 'not_configured' | 'error' | 'rate_limited';
   candidates: SocialCandidate[];
   message?: string;
   queryCount: number;

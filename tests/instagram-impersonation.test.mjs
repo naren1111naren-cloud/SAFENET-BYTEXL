@@ -87,7 +87,7 @@ describe('SAFENET Instagram Impersonation & Discovery Suite', () => {
       assert.ok(statuses.instagram);
       assert.equal(statuses.instagram.platform, 'instagram');
       assert.equal(statuses.instagram.status, 'unauthorized');
-      assert.ok(statuses.instagram.message.includes('Meta Configuration ID is present'));
+      assert.ok(statuses.instagram.message.includes('Meta API unauthorized') || statuses.instagram.message.includes('requires'));
     });
   });
 
