@@ -22,14 +22,16 @@ import {
   Shield,
   Layers,
   Sparkles,
+  Image as ImageIcon,
 } from 'lucide-react';
 import AppShell from '@/components/AppShell';
 import { BrandStore, PRESET_BRANDS } from '@/lib/brand-store';
 import { generateCustomerAdvisories } from '@/lib/advisory/customer-advisory';
 import { ThreatItem, RiskLevel } from '@/types/brand';
 import LookalikeDetectionWorkbench from '@/components/LookalikeDetectionWorkbench';
+import LogoCheckWorkbench from '@/components/LogoCheckWorkbench';
 
-type CheckType = 'url' | 'message' | 'social' | 'app' | 'lookalike';
+type CheckType = 'url' | 'message' | 'social' | 'app' | 'lookalike' | 'logo';
 
 function RiskArcGauge({ score, maxScore = 100 }: { score: number; maxScore?: number }) {
   const size = 140;
@@ -338,12 +340,28 @@ function CheckRiskContent() {
               <Sparkles className="h-3.5 w-3.5 text-[#00F5A0]" />
               <span>LOOK-ALIKE ENGINE</span>
             </button>
+            <button
+              type="button"
+              onClick={() => loadDemoPreset('logo')}
+              className={`px-3 py-2 rounded transition-all cursor-pointer flex items-center gap-2 shrink-0 ${
+                checkType === 'logo'
+                  ? 'bg-[#121826] text-[#00D9F5] border border-[#00D9F5]/30 shadow-[0_0_12px_rgba(0,217,245,0.15)] font-bold'
+                  : 'text-[#8B949E] hover:text-[#F0F6FC] hover:bg-[#121826]/50'
+              }`}
+            >
+              <ImageIcon className="h-3.5 w-3.5 text-[#00D9F5]" />
+              <span>LOGO CHECK</span>
+            </button>
           </div>
 
-          {/* Look-alike Workbench or standard Check Input Surface */}
+          {/* Look-alike Workbench, Logo Check Workbench, or standard Check Input Surface */}
           {checkType === 'lookalike' ? (
             <div className="pt-2">
               <LookalikeDetectionWorkbench />
+            </div>
+          ) : checkType === 'logo' ? (
+            <div className="pt-2">
+              <LogoCheckWorkbench />
             </div>
           ) : (
             <div className="cyber-card p-6 space-y-5">
