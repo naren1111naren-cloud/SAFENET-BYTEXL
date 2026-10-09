@@ -41,7 +41,7 @@ function RiskArcGauge({ score, maxScore = 100 }: { score: number; maxScore?: num
   const arcLength = circumference * 0.75;
   const strokeDashoffset = arcLength - (arcLength * Math.min(score, maxScore)) / maxScore;
 
-  const color = score >= 80 ? '#FF5C5C' : score >= 50 ? '#F5B84B' : '#18E6A3';
+  const color = score >= 80 ? '#DC2626' : score >= 50 ? '#D97706' : '#059669';
 
   return (
     <div className="relative flex flex-col items-center justify-center">
@@ -51,7 +51,7 @@ function RiskArcGauge({ score, maxScore = 100 }: { score: number; maxScore?: num
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke="rgba(255,255,255,0.08)"
+          stroke="#E2E8F0"
           strokeWidth={strokeWidth}
           fill="none"
           strokeDasharray={`${arcLength} ${circumference}`}
@@ -72,10 +72,10 @@ function RiskArcGauge({ score, maxScore = 100 }: { score: number; maxScore?: num
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center pt-1">
-        <span className="font-mono text-[32px] font-semibold text-[#F2F4F3] leading-none tracking-tight">
+        <span className="font-mono text-[32px] font-bold text-slate-900 leading-none tracking-tight">
           {score}
         </span>
-        <span className="font-mono text-[11px] text-[#59625F] mt-1">/ {maxScore}</span>
+        <span className="font-mono text-[11px] text-slate-400 mt-1">/ {maxScore}</span>
       </div>
     </div>
   );
@@ -265,77 +265,77 @@ function CheckRiskContent() {
         {/* ========================================================================= */}
         <section className="space-y-6 pt-2">
           <div className="space-y-2">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-[#59625F]">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-blue-600 font-bold">
               CHECK RISK
             </span>
-            <h1 className="text-[28px] sm:text-[34px] font-normal tracking-tight text-[#F2F4F3]">
+            <h1 className="text-[28px] sm:text-[34px] font-bold tracking-tight text-slate-900">
               What are you checking?
             </h1>
-            <p className="text-[14px] text-[#8A9390] max-w-2xl leading-relaxed">
+            <p className="text-[14px] text-slate-600 max-w-2xl leading-relaxed">
               Paste a URL, domain, message, account or application to investigate its risk signals across brand baseline and live telemetry.
             </p>
           </div>
 
-          {/* Mode Selector Tabs (Clean underline / text styling) */}
-          <div className="flex items-center gap-6 border-b border-[rgba(255,255,255,0.08)] pb-2 text-[12px] font-mono">
+          {/* Mode Selector Tabs (Clean underline styling) */}
+          <div className="flex items-center gap-6 border-b border-slate-200 pb-2 text-[12px] font-mono">
             <button
               type="button"
               onClick={() => loadDemoPreset('url')}
-              className={`pb-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
+              className={`pb-2.5 transition-all cursor-pointer flex items-center gap-2 ${
                 checkType === 'url'
-                  ? 'text-[#F2F4F3] border-b-2 border-[#18E6A3] font-medium'
-                  : 'text-[#59625F] hover:text-[#8A9390]'
+                  ? 'text-blue-700 border-b-2 border-blue-600 font-bold'
+                  : 'text-slate-500 hover:text-slate-900 font-medium'
               }`}
             >
-              <Globe className="h-3.5 w-3.5" />
+              <Globe className={`h-3.5 w-3.5 ${checkType === 'url' ? 'text-blue-600' : 'text-slate-400'}`} />
               URL / DOMAIN
             </button>
             <button
               type="button"
               onClick={() => loadDemoPreset('message')}
-              className={`pb-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
+              className={`pb-2.5 transition-all cursor-pointer flex items-center gap-2 ${
                 checkType === 'message'
-                  ? 'text-[#F2F4F3] border-b-2 border-[#18E6A3] font-medium'
-                  : 'text-[#59625F] hover:text-[#8A9390]'
+                  ? 'text-blue-700 border-b-2 border-blue-600 font-bold'
+                  : 'text-slate-500 hover:text-slate-900 font-medium'
               }`}
             >
-              <MessageSquare className="h-3.5 w-3.5" />
+              <MessageSquare className={`h-3.5 w-3.5 ${checkType === 'message' ? 'text-blue-600' : 'text-slate-400'}`} />
               MESSAGE / EMAIL
             </button>
             <button
               type="button"
               onClick={() => loadDemoPreset('social')}
-              className={`pb-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
+              className={`pb-2.5 transition-all cursor-pointer flex items-center gap-2 ${
                 checkType === 'social'
-                  ? 'text-[#F2F4F3] border-b-2 border-[#18E6A3] font-medium'
-                  : 'text-[#59625F] hover:text-[#8A9390]'
+                  ? 'text-blue-700 border-b-2 border-blue-600 font-bold'
+                  : 'text-slate-500 hover:text-slate-900 font-medium'
               }`}
             >
-              <AtSign className="h-3.5 w-3.5" />
+              <AtSign className={`h-3.5 w-3.5 ${checkType === 'social' ? 'text-blue-600' : 'text-slate-400'}`} />
               SOCIAL ACCOUNT
             </button>
             <button
               type="button"
               onClick={() => loadDemoPreset('app')}
-              className={`pb-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
+              className={`pb-2.5 transition-all cursor-pointer flex items-center gap-2 ${
                 checkType === 'app'
-                  ? 'text-[#F2F4F3] border-b-2 border-[#18E6A3] font-medium'
-                  : 'text-[#59625F] hover:text-[#8A9390]'
+                  ? 'text-blue-700 border-b-2 border-blue-600 font-bold'
+                  : 'text-slate-500 hover:text-slate-900 font-medium'
               }`}
             >
-              <Smartphone className="h-3.5 w-3.5" />
+              <Smartphone className={`h-3.5 w-3.5 ${checkType === 'app' ? 'text-blue-600' : 'text-slate-400'}`} />
               APP / APK
             </button>
             <button
               type="button"
               onClick={() => loadDemoPreset('lookalike')}
-              className={`pb-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
+              className={`pb-2.5 transition-all cursor-pointer flex items-center gap-2 ${
                 checkType === 'lookalike'
-                  ? 'text-[#F2F4F3] border-b-2 border-[#18E6A3] font-medium'
-                  : 'text-[#59625F] hover:text-[#8A9390]'
+                  ? 'text-blue-700 border-b-2 border-blue-600 font-bold'
+                  : 'text-slate-500 hover:text-slate-900 font-medium'
               }`}
             >
-              <Sparkles className="h-3.5 w-3.5 text-[#18E6A3]" />
+              <Sparkles className={`h-3.5 w-3.5 ${checkType === 'lookalike' ? 'text-blue-600' : 'text-slate-400'}`} />
               LOOK-ALIKE DETECTION
             </button>
           </div>
@@ -353,29 +353,29 @@ function CheckRiskContent() {
                   e.preventDefault();
                   handleRunAnalysis();
                 }}
-                className="space-y-4"
+                className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xs space-y-4"
               >
                 <div className="relative">
                   <textarea
                     rows={checkType === 'message' ? 3 : 2}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Paste something suspicious..."
-                    className="w-full bg-[#0D1011] border border-[rgba(255,255,255,0.08)] rounded-[2px] px-4 py-3.5 text-[14px] text-[#F2F4F3] placeholder-[#59625F] focus:border-[rgba(255,255,255,0.25)] outline-none font-mono resize-none transition-colors"
+                    placeholder="Paste a suspicious URL, message, account handle, or package name..."
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-[14px] text-slate-900 placeholder-slate-400 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none font-mono resize-none transition-all shadow-xs"
                   />
                 </div>
 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
-                  {/* Presets in subtle monospace */}
-                  <div className="flex items-center gap-2 text-[12px] font-mono text-[#59625F] overflow-x-auto">
-                    <span>Presets:</span>
+                  {/* Presets in clean pills */}
+                  <div className="flex items-center gap-2 text-[12px] font-mono text-slate-400 overflow-x-auto">
+                    <span className="font-semibold text-slate-500">Presets:</span>
                     <button
                       type="button"
                       onClick={() => {
                         setCheckType('url');
                         setInputValue('http://paytm-support-verify.xyz');
                       }}
-                      className="text-[#8A9390] hover:text-[#F2F4F3] transition-colors underline underline-offset-4"
+                      className="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded transition-colors"
                     >
                       paytm-support-verify.xyz
                     </button>
@@ -386,7 +386,7 @@ function CheckRiskContent() {
                         setCheckType('social');
                         setInputValue('@Paytm_CareHelp');
                       }}
-                      className="text-[#8A9390] hover:text-[#F2F4F3] transition-colors underline underline-offset-4"
+                      className="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded transition-colors"
                     >
                       @Paytm_CareHelp
                     </button>
@@ -397,7 +397,7 @@ function CheckRiskContent() {
                         setCheckType('app');
                         setInputValue('com.paytm.cashback.reward.apk');
                       }}
-                      className="text-[#8A9390] hover:text-[#F2F4F3] transition-colors underline underline-offset-4"
+                      className="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded transition-colors"
                     >
                       com.paytm.cashback.reward.apk
                     </button>
@@ -406,17 +406,17 @@ function CheckRiskContent() {
                   <button
                     type="submit"
                     disabled={analyzing || !inputValue.trim()}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#F2F4F3] text-[#080A0B] text-[13px] font-medium tracking-tight rounded-[2px] hover:bg-white transition-all cursor-pointer disabled:opacity-40 shrink-0"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-blue-600 hover:bg-blue-700 text-white text-[13px] font-bold tracking-tight rounded-xl shadow-xs transition-all cursor-pointer disabled:opacity-40 shrink-0"
                   >
                     {analyzing ? (
                       <>
-                        <RefreshCw className="h-3.5 w-3.5 animate-spin" />
-                        <span>INVESTIGATING...</span>
+                        <RefreshCw className="h-4 w-4 animate-spin" />
+                        <span>Investigating...</span>
                       </>
                     ) : (
                       <>
-                        <span>CHECK RISK</span>
-                        <ArrowRight className="h-3.5 w-3.5" />
+                        <span>Check Risk</span>
+                        <ArrowRight className="h-4 w-4" />
                       </>
                     )}
                   </button>
@@ -473,37 +473,37 @@ function CheckRiskContent() {
         {/* 2. RISK RESULT EXPERIENCE (THE CORE DECISION SYSTEM)                       */}
         {/* ========================================================================= */}
         {result && !analyzing && checkType !== 'lookalike' && (
-          <div className="space-y-16 border-t border-[rgba(255,255,255,0.08)] pt-12">
+          <div className="space-y-12 border-t border-slate-200 pt-10">
             {/* ── TOP RESULT HERO: SCORE + VERDICT ── */}
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 pb-12 border-b border-[rgba(255,255,255,0.08)]">
-              <div className="space-y-3 flex-1">
-                <div className="flex items-center gap-3">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#59625F]">
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row md:items-start justify-between gap-8">
+              <div className="space-y-4 flex-1">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                     RISK ASSESSMENT
                   </span>
-                  <span className="text-[#59625F]">/</span>
+                  <span className="text-slate-300">/</span>
                   <span
-                    className={`font-mono text-[11px] uppercase tracking-wider font-semibold ${
+                    className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold uppercase border ${
                       result.riskScore >= 70
-                        ? 'text-[#FF5C5C]'
+                        ? 'bg-rose-50 text-rose-700 border-rose-200'
                         : result.riskScore >= 40
-                        ? 'text-[#F5B84B]'
-                        : 'text-[#18E6A3]'
+                        ? 'bg-amber-50 text-amber-700 border-amber-200'
+                        : 'bg-emerald-50 text-emerald-700 border-emerald-200'
                     }`}
                   >
                     {result.riskLevel || (result.riskScore >= 70 ? 'HIGH RISK' : result.riskScore >= 40 ? 'MEDIUM RISK' : 'SAFE / LOW RISK')}
                   </span>
-                  <span className="text-[#59625F]">/</span>
-                  <span className="font-mono text-[10px] text-[#8A9390] uppercase tracking-wider">
+                  <span className="text-slate-300">/</span>
+                  <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider bg-slate-100 px-2 py-0.5 rounded">
                     {result.isLLMPowered ? 'AI + HEURISTIC' : 'DETERMINISTIC HEURISTIC'}
                   </span>
                 </div>
 
-                <h2 className="text-[24px] sm:text-[30px] font-mono text-[#F2F4F3] font-normal break-all leading-tight">
+                <h2 className="text-[24px] sm:text-[30px] font-mono text-slate-900 font-bold break-all leading-tight">
                   {result.targetInput}
                 </h2>
 
-                <p className="text-[15px] text-[#8A9390] leading-relaxed max-w-2xl">
+                <p className="text-[15px] text-slate-600 leading-relaxed max-w-2xl">
                   {result.summaryPhrase || (
                     result.riskScore >= 70
                       ? `SAFENET detected high-risk indicators targeting ${result.brand?.name || 'protected assets'}.`
@@ -514,55 +514,55 @@ function CheckRiskContent() {
                 </p>
 
                 {/* Primary Response Action Bar */}
-                <div className="flex flex-wrap items-center gap-4 pt-4">
+                <div className="flex flex-wrap items-center gap-3 pt-3">
                   <button
                     type="button"
                     onClick={handleCreateIncident}
                     disabled={incidentCreated}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-[2px] text-[12px] font-mono cursor-pointer transition-all ${
+                    className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold cursor-pointer transition-all shadow-xs ${
                       incidentCreated
-                        ? 'bg-[#0D1011] text-[#18E6A3] border border-[rgba(24,230,163,0.3)]'
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                         : result.riskScore >= 50
-                        ? 'bg-[#FF5C5C] text-[#080A0B] font-semibold hover:bg-[#ff7070]'
-                        : 'bg-[#18E6A3] text-[#080A0B] font-semibold hover:bg-[#34eeb2]'
+                        ? 'bg-rose-600 text-white hover:bg-rose-700'
+                        : 'bg-blue-600 text-white hover:bg-blue-700'
                     }`}
                   >
-                    <AlertOctagon className="h-3.5 w-3.5" />
-                    {incidentCreated ? '✓ INCIDENT LOGGED' : 'CREATE INCIDENT'}
+                    <AlertOctagon className="h-4 w-4" />
+                    {incidentCreated ? '✓ Incident Logged' : 'Create Incident'}
                   </button>
 
                   <Link
                     href="/campaigns"
-                    className="inline-flex items-center gap-2 px-4 py-2 border border-[rgba(255,255,255,0.08)] text-[#F2F4F3] text-[12px] font-mono hover:border-[rgba(255,255,255,0.25)] transition-colors rounded-[2px]"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 border border-slate-200 bg-white text-slate-700 text-[13px] font-medium hover:bg-slate-50 rounded-lg shadow-xs transition-colors"
                   >
-                    <GitBranch className="h-3.5 w-3.5 text-[#8A9390]" />
-                    INVESTIGATE CAMPAIGN
+                    <GitBranch className="h-4 w-4 text-slate-500" />
+                    Investigate Campaign
                   </Link>
 
                   <button
                     type="button"
                     onClick={() => setAdvisoryModalOpen(true)}
-                    className="inline-flex items-center gap-2 px-4 py-2 border border-[rgba(255,255,255,0.08)] text-[#F2F4F3] text-[12px] font-mono hover:border-[rgba(255,255,255,0.25)] transition-colors rounded-[2px] cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 border border-slate-200 bg-white text-slate-700 text-[13px] font-medium hover:bg-slate-50 rounded-lg shadow-xs transition-colors cursor-pointer"
                   >
-                    <FileText className="h-3.5 w-3.5 text-[#8A9390]" />
-                    CUSTOMER ADVISORY
+                    <FileText className="h-4 w-4 text-slate-500" />
+                    Customer Advisory
                   </button>
 
                   <button
                     type="button"
                     onClick={handleShareResult}
-                    className="inline-flex items-center gap-2 px-3 py-2 text-[#8A9390] hover:text-[#F2F4F3] text-[12px] font-mono transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 px-3.5 py-2.5 text-slate-600 hover:text-slate-900 text-[13px] font-medium rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
                   >
-                    <Share2 className="h-3.5 w-3.5" />
-                    {copiedShare ? 'COPIED LINK' : 'SHARE'}
+                    <Share2 className="h-4 w-4" />
+                    {copiedShare ? 'Copied Link' : 'Share'}
                   </button>
                 </div>
 
                 {incidentCreated && (
-                  <div className="pt-2 flex items-center gap-3 text-[12px] font-mono text-[#8A9390]">
-                    <span className="text-[#18E6A3]">●</span>
+                  <div className="pt-2 flex items-center gap-2 text-[13px] font-medium text-emerald-700">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500" />
                     <span>Incident successfully queued in response center.</span>
-                    <Link href="/incidents" className="text-[#F2F4F3] hover:underline">
+                    <Link href="/incidents" className="text-blue-600 hover:underline font-semibold ml-1">
                       View in queue →
                     </Link>
                   </div>
@@ -570,12 +570,12 @@ function CheckRiskContent() {
               </div>
 
               {/* Sophisticated SVG Arc Gauge */}
-              <div className="flex flex-col items-center justify-center shrink-0 border border-[rgba(255,255,255,0.08)] p-6 rounded-[2px] bg-[#0D1011]/40 min-w-[200px]">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#59625F] mb-3">
+              <div className="flex flex-col items-center justify-center shrink-0 border border-slate-200 p-6 rounded-2xl bg-slate-50/70 min-w-[200px] shadow-xs">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-3">
                   THREAT SCORE
                 </span>
                 <RiskArcGauge score={result.riskScore ?? 0} />
-                <span className="font-mono text-[11px] text-[#8A9390] mt-3">
+                <span className="text-[12px] font-medium text-slate-500 mt-3 font-sans">
                   {typeof result.confidence === 'number' ? `Confidence: ${result.confidence}%` : 'Confidence unavailable'}
                 </span>
               </div>

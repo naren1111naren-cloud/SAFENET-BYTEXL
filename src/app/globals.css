@@ -2,57 +2,58 @@
 
 @layer base {
   :root,
-  .dark {
-    /* === SAFENET CONTINUOUS EDITORIAL INTELLIGENCE CANVAS === */
-    --sn-bg: #080A0B;
-    --sn-surface: #0D1011;
-    --sn-surface-hover: #121618;
-    --sn-surface-elevated: #161A1D;
+  .light {
+    /* === SAFENET ENTERPRISE WHITE THEME + === */
+    --sn-bg: #F8FAFC;
+    --sn-surface: #FFFFFF;
+    --sn-surface-hover: #F1F5F9;
+    --sn-surface-elevated: #FFFFFF;
 
-    /* Editorial Typography Palette */
-    --sn-text-primary: #F2F4F3;
-    --sn-text-secondary: #8A9390;
-    --sn-text-muted: #59625F;
+    /* High-Contrast Enterprise Typography Palette */
+    --sn-text-primary: #0F172A;
+    --sn-text-secondary: #475569;
+    --sn-text-muted: #64748B;
 
     /* Hairline Separators & Subtle Borders */
-    --sn-border: rgba(255, 255, 255, 0.08);
-    --sn-border-subtle: rgba(255, 255, 255, 0.04);
-    --sn-border-strong: rgba(255, 255, 255, 0.14);
+    --sn-border: #E2E8F0;
+    --sn-border-subtle: #F1F5F9;
+    --sn-border-strong: #CBD5E1;
 
-    /* Restrained Primary Accent (#18E6A3) - 90% neutral, 8% accent, 2% status */
-    --sn-accent: #18E6A3;
-    --sn-accent-hover: #15D294;
-    --sn-accent-subtle: rgba(24, 230, 163, 0.08);
+    /* Enterprise Primary Accent - Royal Electric Blue */
+    --sn-accent: #2563EB;
+    --sn-accent-hover: #1D4ED8;
+    --sn-accent-subtle: #EFF6FF;
 
-    /* Semantic Status */
-    --sn-danger: #FF5C5C;
-    --sn-danger-subtle: rgba(255, 92, 92, 0.08);
-    --sn-warning: #F5B84B;
-    --sn-warning-subtle: rgba(245, 184, 75, 0.08);
-    --sn-info: #4DA3FF;
-    --sn-info-subtle: rgba(77, 163, 255, 0.08);
+    /* Semantic Status (High-Contrast & Accessible) */
+    --sn-danger: #DC2626;
+    --sn-danger-subtle: #FEF2F2;
+    --sn-warning: #D97706;
+    --sn-warning-subtle: #FFFBEB;
+    --sn-info: #0284C7;
+    --sn-info-subtle: #F0F9FF;
+    --sn-success: #059669;
+    --sn-success-subtle: #ECFDF5;
 
-    --background: #080A0B;
-    --foreground: #F2F4F3;
+    --background: #F8FAFC;
+    --foreground: #0F172A;
   }
 }
 
 /* === Base Editorial Layout === */
 html {
-  color-scheme: dark !important;
-  background-color: #080A0B !important;
+  color-scheme: light !important;
+  background-color: #F8FAFC !important;
 }
 
 body {
-  background-color: #080A0B;
+  background-color: #F8FAFC;
   background-image: 
-    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(24, 230, 163, 0.04), transparent),
-    linear-gradient(to bottom, rgba(8, 10, 11, 0.86), rgba(8, 10, 11, 0.97)),
-    url('/images/dark-bg.jpg');
-  background-repeat: no-repeat;
-  background-size: 100% auto, 100% 100%, 100% auto;
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37, 99, 235, 0.05), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(14, 165, 233, 0.04), transparent),
+    radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.18) 1px, transparent 0);
+  background-size: 100% auto, 100% auto, 24px 24px;
   background-attachment: fixed;
-  color: #F2F4F3;
+  color: #0F172A;
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
@@ -71,80 +72,86 @@ code, kbd, samp, pre, .font-mono {
 
 /* === Minimal Hairline Scrollbar === */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.10);
-  border-radius: 2px;
+  background: #CBD5E1;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.20);
+  background: #94A3B8;
 }
 
 /* === Selection === */
 ::selection {
-  background: rgba(24, 230, 163, 0.20);
-  color: #FFFFFF;
+  background: rgba(37, 99, 235, 0.15);
+  color: #1D4ED8;
 }
 
 /* === Precision Focus === */
 :focus-visible {
-  outline: 1px solid var(--sn-accent);
+  outline: 2px solid var(--sn-accent);
   outline-offset: 1px;
 }
 
 /* Hairline Separators */
 .sn-separator {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: #E2E8F0;
 }
 
 /* Continuous Rows with Subtle Hover */
 .sn-row {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #E2E8F0;
   transition: background-color 0.15s ease;
 }
 .sn-row:hover {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: #F8FAFC;
 }
 
 /* Restrained Primary Action */
 .btn-accent {
-  background-color: #18E6A3;
-  color: #051911;
+  background-color: #2563EB;
+  color: #FFFFFF;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
   transition: all 0.15s ease;
 }
 .btn-accent:hover {
-  background-color: #1cf0ab;
+  background-color: #1D4ED8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
 .btn-quiet {
-  background-color: transparent;
-  color: #F2F4F3;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 6px;
+  background-color: #FFFFFF;
+  color: #0F172A;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   transition: all 0.15s ease;
 }
 .btn-quiet:hover {
-  border-color: rgba(255, 255, 255, 0.20);
-  background-color: rgba(255, 255, 255, 0.03);
+  border-color: #CBD5E1;
+  background-color: #F8FAFC;
 }
 
 /* Restrained Status Indicators */
 .status-danger {
-  color: #FF5C5C;
+  color: #DC2626;
 }
 .status-warning {
-  color: #F5B84B;
+  color: #D97706;
 }
 .status-accent {
-  color: #18E6A3;
+  color: #2563EB;
 }
 .status-info {
-  color: #4DA3FF;
+  color: #0284C7;
+}
+.status-success {
+  color: #059669;
 }

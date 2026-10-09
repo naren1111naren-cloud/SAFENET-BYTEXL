@@ -2,35 +2,36 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-export type Theme = 'dark';
+export type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
-  theme: 'dark';
-  resolvedTheme: 'dark';
-  setTheme: (theme: any) => void;
+  theme: Theme;
+  resolvedTheme: Theme;
+  setTheme: (theme: Theme) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'dark',
-  resolvedTheme: 'dark',
+  theme: 'light',
+  resolvedTheme: 'light',
   setTheme: () => {},
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setTheme] = useState<Theme>('light');
+
   useEffect(() => {
-    // Cloudflare Radar is dark-only
     const root = document.documentElement;
-    root.classList.add('dark');
-    root.classList.remove('light');
-    root.style.colorScheme = 'dark';
+    root.classList.remove('dark');
+    root.classList.add('light');
+    root.style.colorScheme = 'light';
   }, []);
 
   return (
     <ThemeContext.Provider
       value={{
-        theme: 'dark',
-        resolvedTheme: 'dark',
-        setTheme: () => {},
+        theme,
+        resolvedTheme: theme,
+        setTheme,
       }}
     >
       {children}

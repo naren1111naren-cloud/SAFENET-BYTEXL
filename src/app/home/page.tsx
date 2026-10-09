@@ -8,6 +8,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { Search, ArrowRight, ShieldCheck, Sparkles, Globe, MessageSquare, AtSign, Smartphone } from 'lucide-react';
 import AppShell from '@/components/AppShell';
 
 export default function EditorialHomePage() {
@@ -41,69 +42,70 @@ export default function EditorialHomePage() {
 
   return (
     <AppShell>
-      <div className="space-y-28 py-6 max-w-4xl mx-auto">
+      <div className="space-y-20 py-6 max-w-4xl mx-auto">
         <section className="space-y-10">
           <div className="space-y-6">
-            <span className="block text-[11px] sm:text-[12px] font-sans tracking-[0.08em] text-[#8A9390] uppercase font-medium">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-blue-50 text-blue-700 border border-blue-200 text-[11px] font-bold uppercase tracking-wider">
+              <ShieldCheck className="h-3.5 w-3.5 text-blue-600" />
               DIGITAL TRUST, VERIFIED
             </span>
-            <h1 className="text-[44px] sm:text-[68px] lg:text-[88px] font-bold text-[#F2F4F3] tracking-[-0.035em] leading-[0.98]">
-              DON&apos;T GUESS.<br />
-              KNOW.
+            <h1 className="text-[44px] sm:text-[68px] lg:text-[80px] font-extrabold text-slate-900 tracking-[-0.035em] leading-[1.02]">
+              Don&apos;t guess.<br />
+              <span className="text-blue-600">Know.</span>
             </h1>
-            <p className="text-[18px] sm:text-[20px] text-[#8A9390] max-w-[640px] leading-relaxed pt-1">
-              Investigate the links, accounts, messages and apps you don&apos;t trust — and see the evidence before you act.
+            <p className="text-[18px] sm:text-[20px] text-slate-600 max-w-[640px] leading-relaxed pt-1">
+              Investigate the links, accounts, messages, and apps you don&apos;t trust — and examine forensic evidence before you act.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href="/check"
-                className="btn-accent inline-flex items-center gap-2 px-6 py-3 rounded-[4px] text-[13px] sm:text-[14px] font-semibold uppercase tracking-wider cursor-pointer"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-[14px] font-bold shadow-xs transition-all cursor-pointer"
               >
-                <span>CHECK SOMETHING</span>
-                <span>→</span>
+                <span>Check Something</span>
+                <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/overview"
-                className="btn-quiet inline-flex items-center px-5 py-3 rounded-[4px] text-[13px] sm:text-[14px] font-medium text-[#8A9390] hover:text-[#F2F4F3] transition-colors cursor-pointer"
+                className="inline-flex items-center px-6 py-3.5 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 rounded-xl text-[14px] font-semibold shadow-xs transition-colors cursor-pointer"
               >
-                <span>EXPLORE DASHBOARD</span>
+                <span>Explore Dashboard</span>
               </Link>
             </div>
           </div>
 
-          <div className="pt-10 space-y-4 border-t border-[rgba(255,255,255,0.08)]">
+          <div className="pt-8 space-y-5 border-t border-slate-200">
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-              <h2 className="text-[12px] sm:text-[13px] font-sans uppercase tracking-[0.08em] text-[#F2F4F3] font-semibold">
+              <h2 className="text-[13px] font-sans uppercase tracking-wider text-slate-800 font-bold">
                 WHAT ARE YOU CHECKING?
               </h2>
-              <span className="text-[12px] text-[#8A9390]">
-                Paste a URL, domain, message, account or application to investigate its risk signals.
+              <span className="text-[13px] text-slate-500">
+                Paste a URL, domain, message, account or application to investigate.
               </span>
             </div>
 
-            <form onSubmit={handleAnalyze} className="space-y-3">
+            <form onSubmit={handleAnalyze} className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xs space-y-4">
               <div className="relative">
                 <input
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder={typePlaceholders[selectedType]}
-                  className="w-full bg-[#0D1011] border border-[rgba(255,255,255,0.08)] focus:border-[#18E6A3] rounded-[4px] px-4 py-3.5 text-[14px] text-[#F2F4F3] placeholder-[#59625F] outline-none font-mono transition-colors"
+                  className="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 rounded-xl px-4 py-3.5 text-[14px] text-slate-900 placeholder-slate-400 outline-none font-mono transition-all shadow-xs"
                 />
               </div>
 
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
-                <div className="flex items-center gap-1 text-[11px] font-sans">
+                <div className="flex flex-wrap items-center gap-1.5 text-[12px] font-medium">
                   {(['url', 'message', 'social', 'app', 'lookalike'] as const).map((mode) => (
                     <button
                       key={mode}
                       type="button"
                       onClick={() => setSelectedType(mode)}
-                      className={`px-3 py-1.5 rounded-[4px] uppercase tracking-wider transition-colors cursor-pointer ${
+                      className={`px-3 py-1.5 rounded-lg uppercase tracking-wider transition-all cursor-pointer ${
                         selectedType === mode
-                          ? 'bg-[rgba(255,255,255,0.08)] text-[#F2F4F3] font-semibold'
-                          : 'text-[#8A9390] hover:text-[#F2F4F3]'
+                          ? 'bg-blue-50 text-blue-700 border border-blue-200 font-bold'
+                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                       }`}
                     >
                       {mode === 'lookalike' ? 'Look-alike' : mode}
@@ -113,66 +115,66 @@ export default function EditorialHomePage() {
 
                 <button
                   type="submit"
-                  className="btn-accent inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-[4px] text-[12px] font-semibold uppercase tracking-wider cursor-pointer self-start sm:self-auto"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-[13px] font-bold uppercase tracking-wider cursor-pointer shadow-xs transition-all self-start sm:self-auto"
                 >
-                  <span>CHECK RISK</span>
-                  <span>→</span>
+                  <span>Check Risk</span>
+                  <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
             </form>
           </div>
         </section>
 
-        <section className="space-y-3 pt-4 border-t border-[rgba(255,255,255,0.08)]">
-          <div className="text-[11px] font-sans uppercase tracking-[0.08em] text-[#59625F] font-semibold pb-1">
+        <section className="space-y-4 pt-4 border-t border-slate-200">
+          <div className="text-[11px] font-sans uppercase tracking-wider text-slate-400 font-bold pb-1">
             COMMON INVESTIGATIONS
           </div>
 
-          <div className="divide-y divide-[rgba(255,255,255,0.06)] border-y border-[rgba(255,255,255,0.06)]">
+          <div className="divide-y divide-slate-100 border-y border-slate-200 bg-white rounded-2xl shadow-xs overflow-hidden">
             <div
               onClick={() => setSample('url', 'http://paytm-support-verify.xyz')}
-              className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 group cursor-pointer hover:bg-[rgba(255,255,255,0.015)] transition-colors"
+              className="p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 group cursor-pointer hover:bg-slate-50 transition-colors"
             >
-              <span className="text-[14px] text-[#F2F4F3] group-hover:text-[#18E6A3] transition-colors">
+              <span className="text-[14px] font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
                 “Is this website legitimate?”
               </span>
-              <span className="font-mono text-[12px] text-[#8A9390]">
+              <span className="font-mono text-[13px] text-slate-500">
                 paytm-support-verify.xyz
               </span>
             </div>
 
             <div
               onClick={() => setSample('social', '@Paytm_CareHelp')}
-              className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 group cursor-pointer hover:bg-[rgba(255,255,255,0.015)] transition-colors"
+              className="p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 group cursor-pointer hover:bg-slate-50 transition-colors"
             >
-              <span className="text-[14px] text-[#F2F4F3] group-hover:text-[#18E6A3] transition-colors">
+              <span className="text-[14px] font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
                 “Is this support account real?”
               </span>
-              <span className="font-mono text-[12px] text-[#8A9390]">
+              <span className="font-mono text-[13px] text-slate-500">
                 @Paytm_CareHelp
               </span>
             </div>
 
             <div
               onClick={() => setSample('message', 'URGENT: Your account KYC expires today. Update PAN via link to avoid suspension.')}
-              className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 group cursor-pointer hover:bg-[rgba(255,255,255,0.015)] transition-colors"
+              className="p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 group cursor-pointer hover:bg-slate-50 transition-colors"
             >
-              <span className="text-[14px] text-[#F2F4F3] group-hover:text-[#18E6A3] transition-colors">
+              <span className="text-[14px] font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
                 “Is this payment request a scam?”
               </span>
-              <span className="font-mono text-[12px] text-[#8A9390]">
+              <span className="font-mono text-[13px] text-slate-500">
                 Account suspension SMS lure
               </span>
             </div>
 
             <div
               onClick={() => setSample('lookalike', 'Paytm Customer Support Helpline')}
-              className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 group cursor-pointer hover:bg-[rgba(255,255,255,0.015)] transition-colors"
+              className="p-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 group cursor-pointer hover:bg-slate-50 transition-colors"
             >
-              <span className="text-[14px] text-[#F2F4F3] group-hover:text-[#18E6A3] transition-colors">
+              <span className="text-[14px] font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
                 “Is this look-alike support account legitimate?”
               </span>
-              <span className="font-mono text-[12px] text-[#8A9390]">
+              <span className="font-mono text-[13px] text-slate-500">
                 Combosquatting &amp; name resemblance check
               </span>
             </div>

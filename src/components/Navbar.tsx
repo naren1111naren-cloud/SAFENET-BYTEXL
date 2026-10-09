@@ -64,14 +64,16 @@ export default function Navbar() {
   const unreadAlerts = alerts.filter((a) => !a.read);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-md shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo & Title */}
         <div className="flex items-center gap-8">
-            <SafenetLogo size={24} showWordmark={true} />
+          <Link href="/" className="hover:opacity-90 transition-opacity">
+            <SafenetLogo size={20} showWordmark={true} />
+          </Link>
 
           {/* Navigation links */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1.5">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href;
@@ -79,13 +81,13 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-[13px] font-medium transition-all ${
                     isActive
-                      ? 'bg-slate-800 text-cyan-400 border border-slate-700'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                      ? 'bg-blue-50 text-blue-700 border border-blue-200/60 font-semibold shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 border border-transparent'
                   }`}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className={`h-4 w-4 ${isActive ? 'text-blue-600' : 'text-slate-400'}`} />
                   {item.label}
                 </Link>
               );
@@ -93,13 +95,13 @@ export default function Navbar() {
           </nav>
         </div>
 
-        {/* Right side: Alerts + Demo Brand Selector */}
+        {/* Right side: Alerts + Demo Brand Selector + User */}
         <div className="flex items-center gap-3">
           {/* Alerts Notification Bell */}
           <div className="relative">
             <button
               onClick={() => setShowAlertsDropdown(!showAlertsDropdown)}
-              className="relative p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+              className="relative p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors shadow-xs"
               title="Security Alerts"
             >
               <Bell className="h-4 w-4" />
@@ -111,10 +113,10 @@ export default function Navbar() {
             </button>
 
             {showAlertsDropdown && (
-              <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-4 z-50 animate-in fade-in zoom-in-95">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
-                    <ShieldAlert className="h-4 w-4 text-rose-400" />
+              <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl bg-white border border-slate-200 shadow-2xl p-4 z-50 animate-in fade-in zoom-in-95">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2">
+                    <ShieldAlert className="h-4 w-4 text-rose-500" />
                     Security Alerts ({unreadAlerts.length} new)
                   </span>
                   <button
@@ -122,7 +124,7 @@ export default function Navbar() {
                       alerts.forEach((a) => BrandStore.markAlertRead(a.id));
                       setAlerts(BrandStore.getAlerts());
                     }}
-                    className="text-[11px] text-cyan-400 hover:underline"
+                    className="text-[11px] text-blue-600 hover:underline font-medium"
                   >
                     Mark all read
                   </button>
@@ -144,23 +146,23 @@ export default function Navbar() {
                         }}
                         className={`block p-3 rounded-xl border text-left transition-all ${
                           alert.riskLevel === 'CRITICAL'
-                            ? 'bg-rose-500/10 border-rose-500/30 hover:border-rose-500/60'
-                            : 'bg-amber-500/10 border-amber-500/30 hover:border-amber-500/60'
+                            ? 'bg-rose-50 border-rose-200 hover:border-rose-300'
+                            : 'bg-amber-50 border-amber-200 hover:border-amber-300'
                         }`}
                       >
                         <div className="flex items-center justify-between text-xs font-semibold">
                           <span
                             className={
-                              alert.riskLevel === 'CRITICAL' ? 'text-rose-400' : 'text-amber-400'
+                              alert.riskLevel === 'CRITICAL' ? 'text-rose-700' : 'text-amber-700'
                             }
                           >
                             {alert.title}
                           </span>
-                          <span className="text-[10px] text-slate-400 font-mono">
+                          <span className="text-[10px] text-slate-500 font-mono">
                             {alert.riskScore}/100
                           </span>
                         </div>
-                        <p className="text-[11px] text-slate-300 mt-1 line-clamp-2">
+                        <p className="text-[11px] text-slate-600 mt-1 line-clamp-2">
                           {alert.message}
                         </p>
                       </Link>
@@ -175,17 +177,17 @@ export default function Navbar() {
           <div className="relative">
             <button
               onClick={() => setShowBrandDropdown(!showBrandDropdown)}
-              className="flex items-center gap-2.5 bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-full px-3.5 py-1.5 text-xs text-slate-300 shadow-inner transition-all"
+              className="flex items-center gap-2.5 bg-white border border-slate-200 hover:border-slate-300 rounded-full px-3.5 py-1.5 text-xs text-slate-700 shadow-xs transition-all"
             >
-              <div className="h-5 w-5 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-[10px] ring-1 ring-cyan-500/30">
-                {brand?.name.charAt(0).toUpperCase() || 'N'}
+              <div className="h-5 w-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-[10px] ring-1 ring-blue-200">
+                {brand?.name.charAt(0).toUpperCase() || 'P'}
               </div>
               <div className="flex flex-col text-left">
-                <span className="font-semibold text-white leading-none">
-                  {brand?.name || 'Nike'}
+                <span className="font-semibold text-slate-900 leading-none">
+                  {brand?.name || 'Paytm'}
                 </span>
-                <span className="text-[10px] text-slate-400 leading-none mt-0.5 font-mono">
-                  {brand?.domain || 'nike.com'}
+                <span className="text-[10px] text-slate-500 leading-none mt-0.5 font-mono">
+                  {brand?.domain || 'paytm.com'}
                 </span>
               </div>
               <span className="flex h-2 w-2 relative ml-1">
@@ -196,35 +198,35 @@ export default function Navbar() {
             </button>
 
             {showBrandDropdown && (
-              <div className="absolute right-0 mt-2 w-56 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-2 z-50">
-                <div className="px-3 py-1.5 text-[10px] font-mono uppercase text-slate-400 tracking-wider">
+              <div className="absolute right-0 mt-2 w-56 rounded-2xl bg-white border border-slate-200 shadow-2xl p-2 z-50">
+                <div className="px-3 py-1.5 text-[10px] font-mono uppercase text-slate-400 tracking-wider font-semibold">
                   Active Organization
                 </div>
                 <button
                   onClick={() => handleSelectPreset('Nike')}
-                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-200 hover:bg-slate-800 transition-colors text-left"
+                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-700 hover:bg-slate-50 transition-colors text-left"
                 >
                   <div className="flex items-center gap-2">
-                    <Zap className="h-3.5 w-3.5 text-cyan-400" />
+                    <Zap className="h-3.5 w-3.5 text-blue-600" />
                     <span>Nike (Retail)</span>
                   </div>
-                  {brand?.name === 'Nike' && <CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" />}
+                  {brand?.name === 'Nike' && <CheckCircle2 className="h-3.5 w-3.5 text-blue-600" />}
                 </button>
                 <button
                   onClick={() => handleSelectPreset('Paytm')}
-                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-200 hover:bg-slate-800 transition-colors text-left"
+                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-700 hover:bg-slate-50 transition-colors text-left"
                 >
                   <div className="flex items-center gap-2">
-                    <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+                    <Sparkles className="h-3.5 w-3.5 text-blue-600" />
                     <span>Paytm (Fintech / UPI)</span>
                   </div>
-                  {brand?.name === 'Paytm' && <CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" />}
+                  {brand?.name === 'Paytm' && <CheckCircle2 className="h-3.5 w-3.5 text-blue-600" />}
                 </button>
-                <div className="border-t border-slate-800 my-1"></div>
+                <div className="border-t border-slate-100 my-1"></div>
                 <Link
                   href="/setup"
                   onClick={() => setShowBrandDropdown(false)}
-                  className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-cyan-400 hover:bg-cyan-500/10 transition-colors"
+                  className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-blue-600 hover:bg-blue-50 transition-colors font-medium"
                 >
                   <Settings className="h-3.5 w-3.5" />
                   <span>Custom Brand Setup</span>
@@ -235,12 +237,12 @@ export default function Navbar() {
 
           {/* User Session Profile & Logout Action */}
           {user ? (
-            <div className="flex items-center gap-2 pl-2 border-l border-slate-800">
+            <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
               <div
                 title={user.email || 'Authenticated User'}
-                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300 max-w-[160px] truncate"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-mono text-slate-700 max-w-[160px] truncate"
               >
-                <User className="h-3 w-3 text-cyan-400 shrink-0" />
+                <User className="h-3 w-3 text-blue-600 shrink-0" />
                 <span className="truncate">{user.email?.split('@')[0]}</span>
               </div>
               <button
@@ -257,7 +259,7 @@ export default function Navbar() {
                 }}
                 disabled={loggingOut}
                 title="Sign out of SAFENET"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 hover:bg-rose-500/10 border border-slate-800 hover:border-rose-500/30 text-xs text-slate-300 hover:text-rose-400 transition-all cursor-pointer disabled:opacity-50"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white hover:bg-rose-50 border border-slate-200 hover:border-rose-200 text-xs text-slate-700 hover:text-rose-600 transition-all cursor-pointer shadow-xs disabled:opacity-50"
               >
                 <LogOut className="h-3.5 w-3.5" />
                 <span className="hidden sm:inline font-medium">Logout</span>
@@ -266,7 +268,7 @@ export default function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-xs text-cyan-400 font-semibold transition-all"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-xs text-white font-semibold shadow-xs transition-all"
             >
               <User className="h-3.5 w-3.5" />
               <span>Sign In</span>

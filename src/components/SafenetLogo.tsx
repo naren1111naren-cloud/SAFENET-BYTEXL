@@ -32,11 +32,11 @@ export default function SafenetLogo({ size = 16, className = '', showWordmark = 
       {showWordmark && (
         <div className="flex flex-col select-none">
           <div className="flex items-center gap-1.5 leading-none">
-            <span className="font-sans font-bold text-[14px] tracking-[0.04em] text-[#F2F4F3]">
+            <span className="font-sans font-bold text-[14px] tracking-[0.05em] text-slate-900">
               SAFENET
             </span>
           </div>
-          <span className="text-[10px] text-[#8A9390] font-sans tracking-tight mt-0.5 leading-none">
+          <span className="text-[10px] text-slate-500 font-sans tracking-tight mt-0.5 leading-none">
             Risk Decision System
           </span>
         </div>
