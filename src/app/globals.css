@@ -3,349 +3,244 @@
 @layer base {
   :root,
   .dark {
-    /* === CLOUDFLARE RADAR DARK THEME DESIGN TOKENS === */
-    --sn-bg-app: #080B11;
-    --sn-bg-secondary: #0E131F;
-    --sn-surface-elevated: #111625;
-    --sn-surface-hover: #161D2F;
+    /* === EVENTOR COSMIC VIOLET / MAGENTA LUXURY THEME === */
+    --sn-bg: #090414;
+    --sn-canvas: #0D0722;
+    --sn-surface: #130D2E;
+    --sn-surface-hover: #1C1344;
+    --sn-surface-elevated: #241957;
+    --sn-surface-glass: rgba(19, 13, 46, 0.75);
 
-    /* High-Contrast Visible Pearl & Pure White Typography */
-    --sn-text-primary: #FFFFFF;
-    --sn-text-secondary: #F3F4F6;
-    --sn-text-muted: #9CA3AF;
+    /* Typography Palette */
+    --sn-text-primary: #F8FAFC;
+    --sn-text-secondary: #CBD5E1;
+    --sn-text-muted: #818CF8;
 
-    /* Cloudflare Radar Precision Separators */
-    --sn-border: #1E2638;
-    --sn-border-subtle: #141A28;
-    --sn-border-strong: #28334E;
-    --sn-focus-ring: #F6821F;
+    /* Separators & Glowing Borders */
+    --sn-border: rgba(168, 85, 247, 0.16);
+    --sn-border-subtle: rgba(255, 255, 255, 0.06);
+    --sn-border-strong: rgba(217, 70, 239, 0.35);
+    --sn-border-purple: rgba(168, 85, 247, 0.35);
+    --sn-border-pink: rgba(236, 72, 153, 0.35);
 
-    /* Cloudflare Iconic Accents */
-    --sn-accent-orange: #F6821F;
-    --sn-accent-blue: #2C7BE5;
-    --sn-accent-cyan: #00D2FF;
+    /* Telemetry Accents */
+    --sn-violet: #8B5CF6;
+    --sn-violet-glow: rgba(139, 92, 246, 0.3);
+    --sn-magenta: #D946EF;
+    --sn-magenta-glow: rgba(217, 70, 239, 0.3);
+    --sn-pink: #EC4899;
+    --sn-pink-glow: rgba(236, 72, 153, 0.3);
+    --sn-cyan: #38BDF8;
+    --sn-cyan-glow: rgba(56, 189, 248, 0.2);
+    --sn-emerald: #10B981;
+    --sn-emerald-glow: rgba(16, 185, 129, 0.2);
+    --sn-crimson: #F43F5E;
+    --sn-crimson-glow: rgba(244, 63, 94, 0.2);
+    --sn-amber: #F59E0B;
+    --sn-amber-glow: rgba(245, 158, 11, 0.2);
 
-    /* Security Severity Status */
-    --sn-status-critical: #FF4D4D;
-    --sn-status-high: #F6821F;
-    --sn-status-medium: #FBBF24;
-    --sn-status-low: #2C7BE5;
-    --sn-status-safe: #10B981;
-
-    --background: #080B11;
-    --foreground: #FFFFFF;
+    --background: #090414;
+    --foreground: #F8FAFC;
   }
 }
 
-/* === Base HTML & Layout: Reduced Boldness, Crisp & High Visibility === */
+/* === Eventor Cosmic Violet Layout === */
 html {
   color-scheme: dark !important;
-  background-color: #080B11 !important;
-  font-size: 16px;
+  background-color: #090414 !important;
 }
 
 body {
-  background-color: #080B11;
+  background-color: #090414;
   background-image: 
-    radial-gradient(circle at 1px 1px, rgba(246, 130, 31, 0.03) 1px, transparent 0),
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(44, 123, 229, 0.06), transparent);
-  background-size: 32px 32px, 100% 100%;
+    radial-gradient(ellipse 70% 45% at 20% 0%, rgba(139, 92, 246, 0.22), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 85% 35%, rgba(236, 72, 153, 0.16), transparent 70%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(99, 102, 241, 0.15), transparent 70%),
+    linear-gradient(to bottom, #090414 0%, #0D0722 50%, #090414 100%);
+  background-repeat: no-repeat;
   background-attachment: fixed;
-  color: #FFFFFF;
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  font-weight: 400; /* Clean normal weight: reduces excessive boldness */
-  letter-spacing: -0.01em;
+  color: #F8FAFC;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.012em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings: Semi-bold, Clear Hierarchy without heavy thickness */
-h1 {
-  font-size: clamp(30px, 3.2vw, 40px);
-  font-weight: 650;
-  color: #FFFFFF;
-  line-height: 1.25;
-  letter-spacing: -0.025em;
-}
-
-h2 {
-  font-size: clamp(24px, 2.5vw, 30px);
-  font-weight: 600;
-  color: #FFFFFF;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-}
-
-h3 {
-  font-size: clamp(19px, 2vw, 22px);
-  font-weight: 600;
-  color: #FFFFFF;
-  line-height: 1.35;
-}
-
-h4, h5, h6 {
-  font-size: 17px;
-  font-weight: 600;
-  color: #FFFFFF;
-  line-height: 1.4;
-}
-
-/* Paragraphs & Spans: High-contrast visible text in natural regular weight */
-p {
-  font-weight: 400;
-  color: #F3F4F6;
-  line-height: 1.6;
-}
-
-span, td, th {
-  font-weight: inherit;
-}
-
-label {
-  font-weight: 500;
-  color: #F3F4F6;
-}
-
-/* Monospace font for IOCs, IPs, ASNs, and network telemetry */
+/* Monospace font for telemetry, data, domains, hashes, and indicators */
 code, kbd, samp, pre, .font-mono {
-  font-family: var(--font-jetbrains-mono), "SF Mono", Consolas, monospace;
+  font-family: var(--font-jetbrains-mono), "SF Mono", Consolas, "Liberation Mono", monospace;
   font-feature-settings: "tnum" 1;
-  font-weight: 500;
 }
 
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
 
-/* === Cloudflare Radar Dark Hairline Scrollbar === */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-}
-::-webkit-scrollbar-track {
-  background: #080B11;
-}
-::-webkit-scrollbar-thumb {
-  background: #1E2638;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #28334E;
+/* === Geometric Cyber Grid Backdrop === */
+.cyber-grid {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
 }
 
-/* === Text Selection === */
+/* === Minimal Violet Scrollbar === */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 70, 239, 0.5);
+}
+
+/* === Selection === */
 ::selection {
-  background: rgba(246, 130, 31, 0.35);
+  background: rgba(217, 70, 239, 0.35);
   color: #FFFFFF;
 }
 
-/* === Precision Focus State === */
+/* === Precision Focus === */
 :focus-visible {
-  outline: 2px solid #F6821F;
+  outline: 2px solid var(--sn-magenta);
   outline-offset: 2px;
 }
 
-/* === Cloudflare Radar Surfaces & Cards === */
-.sn-surface {
-  background-color: #0E131F;
-  border-bottom: 1px solid #1E2638;
+/* Hairline Separators */
+.sn-separator {
+  border-color: rgba(168, 85, 247, 0.16);
 }
 
-.sn-surface-elevated {
-  background-color: #111625;
+/* Continuous Rows with Subtle Violet Hover */
+.sn-row {
+  border-bottom: 1px solid rgba(168, 85, 247, 0.12);
+  transition: all 0.15s ease;
+}
+.sn-row:hover {
+  background-color: rgba(168, 85, 247, 0.06);
 }
 
-.sn-card {
-  background-color: #0E131F;
-  border: 1px solid #1E2638;
-  border-radius: 10px;
-  transition: border-color 0.18s ease, background-color 0.18s ease;
+/* Eventor Glassmorphism Cards */
+.cyber-card {
+  background: rgba(19, 13, 46, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 16px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.sn-card:hover {
-  border-color: #28334E;
-  background-color: #111625;
-}
-
-.sn-divider {
-  height: 1px;
-  background-color: #1E2638;
-  width: 100%;
+.cyber-card:hover {
+  border-color: rgba(217, 70, 239, 0.45);
+  box-shadow: 0 12px 32px -8px rgba(217, 70, 239, 0.15), 0 0 20px rgba(139, 92, 246, 0.1);
+  transform: translateY(-2px);
 }
 
-/* === Cloudflare Radar Buttons === */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  height: 42px;
-  padding: 0 20px;
-  background-color: #F6821F;
+.cyber-card-elevated {
+  background: rgba(28, 19, 68, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(217, 70, 239, 0.3);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 24px rgba(217, 70, 239, 0.15);
+}
+
+/* Primary Vibrant Gradient Pill Buttons */
+.btn-accent {
+  background: linear-gradient(135deg, #8B5CF6 0%, #D946EF 50%, #EC4899 100%);
   color: #FFFFFF;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 7px;
-  transition: all 0.16s ease;
-  cursor: pointer;
-  user-select: none;
-  box-shadow: 0 1px 4px rgba(246, 130, 31, 0.25);
+  font-weight: 700;
+  border-radius: 9999px;
+  box-shadow: 0 8px 24px -4px rgba(217, 70, 239, 0.45), 0 0 12px rgba(139, 92, 246, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.btn-primary:hover:not(:disabled) {
-  background-color: #FA8B28;
-  box-shadow: 0 0 12px rgba(246, 130, 31, 0.35);
-}
-.btn-primary:active:not(:disabled) {
-  transform: translateY(1px);
-}
-.btn-primary:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+.btn-accent:hover {
+  box-shadow: 0 12px 32px -4px rgba(217, 70, 239, 0.65), 0 0 20px rgba(236, 72, 153, 0.5);
+  filter: brightness(1.1);
+  transform: translateY(-1px) scale(1.02);
 }
 
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  height: 42px;
-  padding: 0 18px;
-  background-color: #111625;
-  color: #FFFFFF;
-  font-size: 15px;
-  font-weight: 500;
-  border: 1px solid #1E2638;
-  border-radius: 7px;
-  transition: all 0.16s ease;
-  cursor: pointer;
+.btn-quiet {
+  background: rgba(255, 255, 255, 0.05);
+  color: #F8FAFC;
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
 }
-.btn-secondary:hover:not(:disabled) {
-  background-color: #161D2F;
-  border-color: #28334E;
+.btn-quiet:hover {
+  border-color: rgba(217, 70, 239, 0.5);
+  background: rgba(168, 85, 247, 0.15);
   color: #FFFFFF;
-}
-.btn-secondary:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2);
 }
 
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  height: 38px;
-  padding: 0 14px;
-  background-color: transparent;
-  color: #FFFFFF;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 7px;
-  transition: all 0.16s ease;
-  cursor: pointer;
-}
-.btn-ghost:hover:not(:disabled) {
-  background-color: #161D2F;
-  color: #F6821F;
+/* Eventor Gradient Text Utilities */
+.text-gradient-eventor {
+  background: linear-gradient(135deg, #C084FC 0%, #F472B6 50%, #818CF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* === Form Inputs === */
-.sn-input {
-  width: 100%;
-  height: 42px;
-  background-color: #0E131F;
-  border: 1px solid #1E2638;
-  border-radius: 7px;
-  padding: 0 14px;
-  font-size: 15px;
-  color: #FFFFFF;
-  font-weight: 450;
-  outline: none;
-  transition: border-color 0.16s ease, box-shadow 0.16s ease;
-}
-.sn-input::placeholder {
-  color: #9CA3AF;
-  font-weight: 400;
-  opacity: 0.8;
-}
-.sn-input:focus {
-  border-color: #F6821F;
-  box-shadow: 0 0 0 2px rgba(246, 130, 31, 0.2);
+.text-gradient-pink {
+  background: linear-gradient(135deg, #F472B6 0%, #FB7185 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* === Cloudflare Radar Badges === */
+/* Semantic Badges */
 .badge-critical {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 5px;
-  color: #FFFFFF;
-  background-color: rgba(255, 77, 77, 0.18);
-  border: 1px solid rgba(255, 77, 77, 0.45);
+  color: #FB7185;
+  background-color: rgba(244, 63, 94, 0.15);
+  border: 1px solid rgba(244, 63, 94, 0.4);
 }
 
 .badge-high {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 5px;
-  color: #FFFFFF;
-  background-color: rgba(246, 130, 31, 0.18);
-  border: 1px solid rgba(246, 130, 31, 0.45);
+  color: #FBBF24;
+  background-color: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
 }
 
-.badge-medium {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 5px;
-  color: #FFFFFF;
-  background-color: rgba(251, 191, 36, 0.18);
-  border: 1px solid rgba(251, 191, 36, 0.45);
+.badge-nominal {
+  color: #34D399;
+  background-color: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
 }
 
-.badge-low {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 5px;
-  color: #FFFFFF;
-  background-color: rgba(44, 123, 229, 0.18);
-  border: 1px solid rgba(44, 123, 229, 0.45);
+.badge-telemetry {
+  color: #C084FC;
+  background-color: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.4);
 }
 
-.badge-safe {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 5px;
-  color: #FFFFFF;
-  background-color: rgba(16, 185, 129, 0.18);
-  border: 1px solid rgba(16, 185, 129, 0.45);
+/* Status Indicators */
+.status-danger {
+  color: #FB7185;
+}
+.status-warning {
+  color: #FBBF24;
+}
+.status-accent {
+  color: #34D399;
+}
+.status-info {
+  color: #38BDF8;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Telemetry Glow Pulse Animations */
+@keyframes cosmic-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
 }
-
-.animate-fade-in {
-  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-cyber-pulse {
+  animation: cosmic-pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

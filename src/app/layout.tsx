@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { AuthProvider } from '@/context/AuthContext';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -18,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'SAFENET — Digital Risk Decision System',
-  description: 'Enterprise digital risk protection and social threat monitoring platform.',
+  description: 'Investigate suspicious links, messages, accounts and applications before you trust them.',
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#080B11',
+  themeColor: '#090414',
 };
 
 export default function RootLayout({
@@ -44,14 +43,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased dark`}
-      style={{ colorScheme: 'dark', backgroundColor: '#080B11' }}
+      style={{ colorScheme: 'dark', backgroundColor: '#090414' }}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col antialiased bg-[#080B11] text-[#FFFFFF]">
+      <body className="min-h-full flex flex-col antialiased bg-[#090414] text-[#F8FAFC]">
         <ThemeProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>
