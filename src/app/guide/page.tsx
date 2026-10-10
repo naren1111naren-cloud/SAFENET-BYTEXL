@@ -62,6 +62,7 @@ export default function SafetyGuidePage() {
 
   return (
     <AppShell
+      pageEyebrow="Security Operations Knowledge Base"
       pageTitle="Safety Decision Guide"
       pageSubtitle="Knowledge principles to identify deception patterns, verify indicators, and protect organizations."
     >
@@ -69,31 +70,31 @@ export default function SafetyGuidePage() {
         {/* ========================================================================= */}
         {/* 1. THE 4-STEP VERIFICATION PROCESS (Open, Non-Boxy)                       */}
         {/* ========================================================================= */}
-        <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-8">
+        <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-6 sm:p-8 shadow-xl space-y-8">
           <div className="border-b border-[#1E2638] pb-5">
-            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
+            <span className="eyebrow-text font-sans text-xs font-semibold uppercase tracking-wider text-[#F6821F]">
               DECISION ARCHITECTURE
             </span>
-            <h2 className="text-[30px] sm:text-[38px] font-semibold text-[#FFFFFF] mt-1">
+            <h2 className="section-title text-xl sm:text-2xl font-bold font-display text-white mt-1">
               The 4-step verification loop
             </h2>
           </div>
 
           <div className="divide-y divide-[#1E2638]">
             {steps.map((s) => (
-              <div key={s.num} className="py-7 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
-                <div className="md:col-span-1 font-mono text-[22px] text-[#F6821F] font-semibold">
+              <div key={s.num} className="py-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
+                <div className="md:col-span-1 font-mono text-xl sm:text-2xl text-[#F6821F] font-bold tabular-nums">
                   {s.num}
                 </div>
-                <div className="md:col-span-4">
-                  <div className="text-[22px] text-[#FFFFFF] font-semibold">
+                <div className="md:col-span-4 space-y-1">
+                  <div className="card-title text-base sm:text-lg font-semibold font-display text-white">
                     {s.title}
                   </div>
-                  <div className="text-[16px] text-[#64A9FF] mt-1 font-mono font-bold">
+                  <div className="font-sans text-xs sm:text-sm text-sky-400 font-medium">
                     {s.subtitle}
                   </div>
                 </div>
-                <div className="md:col-span-7 text-[19px] text-[#9CA3AF] leading-relaxed font-bold">
+                <div className="md:col-span-7 body-text text-sm sm:text-base text-slate-300 leading-relaxed font-normal font-sans">
                   {s.description}
                 </div>
               </div>
@@ -104,28 +105,28 @@ export default function SafetyGuidePage() {
         {/* ========================================================================= */}
         {/* 2. COMMON DECEPTION PATTERNS                                              */}
         {/* ========================================================================= */}
-        <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-8">
+        <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-6 sm:p-8 shadow-xl space-y-8">
           <div className="border-b border-[#1E2638] pb-5">
-            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
+            <span className="eyebrow-text font-sans text-xs font-semibold uppercase tracking-wider text-[#F6821F]">
               REAL-WORLD LURES
             </span>
-            <h3 className="text-[28px] font-semibold text-[#FFFFFF] mt-1">
+            <h3 className="section-title text-xl sm:text-2xl font-bold font-display text-white mt-1">
               Common impersonation archetypes
             </h3>
           </div>
 
           <div className="divide-y divide-[#1E2638]">
             {commonLures.map((lure, idx) => (
-              <div key={idx} className="py-7 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
-                <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-semibold">
+              <div key={idx} className="py-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
+                <div className="md:col-span-1 font-mono text-sm text-slate-400 font-semibold tabular-nums">
                   {String(idx + 1).padStart(2, '0')}
                 </div>
-                <div className="md:col-span-4">
-                  <div className="text-[20px] text-[#FFFFFF] font-semibold">
+                <div className="md:col-span-4 space-y-1.5">
+                  <div className="card-title text-base sm:text-lg font-semibold font-display text-white">
                     {lure.title}
                   </div>
-                  <div className="font-mono text-[14px] font-semibold mt-1.5">
-                    <span className={`px-3 py-1 rounded-md border ${
+                  <div>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-sans font-semibold uppercase tracking-wider border ${
                       lure.severity === 'CRITICAL'
                         ? 'text-[#FF5C6C] bg-[#2D1216] border-[#FF5C6C]/40'
                         : 'text-[#FFAB40] bg-[#2C1C0D] border-[#FFAB40]/40'
@@ -135,11 +136,11 @@ export default function SafetyGuidePage() {
                   </div>
                 </div>
                 <div className="md:col-span-7 space-y-3">
-                  <div className="font-mono text-[16px] text-[#FFFFFF] bg-[#111625] p-4 border border-[#1E2638] rounded-xl font-bold">
+                  <div className="font-mono text-xs sm:text-sm text-slate-200 bg-[#111625] p-3.5 border border-[#1E2638] rounded-xl font-normal leading-relaxed">
                     {lure.pattern}
                   </div>
-                  <p className="text-[18px] text-[#9CA3AF] leading-relaxed font-bold">
-                    <strong className="text-[#F6821F]">Reality: </strong> {lure.reality}
+                  <p className="body-text text-sm sm:text-base text-slate-300 leading-relaxed font-normal font-sans">
+                    <strong className="text-[#F6821F] font-semibold">Reality: </strong> {lure.reality}
                   </p>
                 </div>
               </div>
@@ -150,49 +151,49 @@ export default function SafetyGuidePage() {
         {/* ========================================================================= */}
         {/* 3. ESCALATION PROTOCOL                                                    */}
         {/* ========================================================================= */}
-        <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-8">
+        <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-6 sm:p-8 shadow-xl space-y-8">
           <div className="border-b border-[#1E2638] pb-5">
-            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
+            <span className="eyebrow-text font-sans text-xs font-semibold uppercase tracking-wider text-[#F6821F]">
               EMERGENCY PROTOCOL
             </span>
-            <h3 className="text-[28px] font-semibold text-[#FFFFFF] mt-1">
+            <h3 className="section-title text-xl sm:text-2xl font-bold font-display text-white mt-1">
               National escalation helplines
             </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-[#1E2638]">
             <div className="space-y-1.5">
-              <div className="font-mono text-[14px] text-[#9CA3AF] uppercase font-semibold">
+              <div className="stat-label font-sans text-xs text-slate-400 uppercase tracking-wider font-semibold">
                 Financial Fraud Helpline
               </div>
-              <div className="font-mono text-[42px] font-semibold text-[#F6821F]">
+              <div className="stat-value font-mono text-3xl sm:text-4xl font-bold text-[#F6821F] tabular-nums tracking-tight">
                 1930
               </div>
-              <p className="text-[17px] text-[#9CA3AF] font-bold">
+              <p className="small-text text-xs sm:text-sm text-slate-400 leading-relaxed font-normal font-sans">
                 National Cyber Crime Reporting Portal helpline for immediate fund freeze.
               </p>
             </div>
 
             <div className="space-y-1.5 md:pl-6 pt-4 md:pt-0">
-              <div className="font-mono text-[14px] text-[#9CA3AF] uppercase font-semibold">
+              <div className="stat-label font-sans text-xs text-slate-400 uppercase tracking-wider font-semibold">
                 Reporting Portal
               </div>
-              <div className="font-mono text-[22px] text-[#FFFFFF] font-semibold pt-2">
+              <div className="data-text font-mono text-base sm:text-lg text-white font-semibold pt-1">
                 cybercrime.gov.in
               </div>
-              <p className="text-[17px] text-[#9CA3AF] font-bold">
+              <p className="small-text text-xs sm:text-sm text-slate-400 leading-relaxed font-normal font-sans">
                 Official MHA portal for formal FIR registration and digital evidence tracking.
               </p>
             </div>
 
             <div className="space-y-1.5 md:pl-6 pt-4 md:pt-0">
-              <div className="font-mono text-[14px] text-[#9CA3AF] uppercase font-semibold">
+              <div className="stat-label font-sans text-xs text-slate-400 uppercase tracking-wider font-semibold">
                 Telecom Disconnection (Chakshu)
               </div>
-              <div className="font-mono text-[22px] text-[#FFFFFF] font-semibold pt-2">
+              <div className="data-text font-mono text-base sm:text-lg text-white font-semibold pt-1">
                 sancharsaathi.gov.in
               </div>
-              <p className="text-[17px] text-[#9CA3AF] font-bold">
+              <p className="small-text text-xs sm:text-sm text-slate-400 leading-relaxed font-normal font-sans">
                 DoT facility for reporting fraudulent calls, SMS headers, and rogue WhatsApp numbers.
               </p>
             </div>
