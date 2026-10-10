@@ -509,12 +509,13 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
     <AppShell
       pageTitle="App Threat Intelligence"
       pageSubtitle="Continuous mobile perimeter surveillance, brand impersonation discovery, and static APK artifact correlation."
+      pageEyebrow="Mobile Threat Intelligence"
     >
       <div className="space-y-6 pb-20">
         {/* Toast Feedback */}
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 bg-[#130D2E] text-white px-4 py-2.5 rounded-xl font-sans text-sm font-medium flex items-center gap-2 shadow-2xl border border-pink-500/40">
-            <Check className="h-4 w-4 text-[#00F5A0]" />
+          <div className="fixed bottom-6 right-6 z-50 bg-[#111625] text-white px-4 py-2.5 rounded-xl font-sans text-xs font-medium flex items-center gap-2 shadow-2xl border border-[#1E2638]">
+            <Check className="h-4 w-4 text-[#F6821F]" />
             <span>{toastMessage}</span>
           </div>
         )}
@@ -522,46 +523,46 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {/* TOP: PROTECTION OVERVIEW METRICS DASHBOARD */}
         {/* ═════════════════════════════════════════════════════════════════════ */}
-        <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-purple-500/20 p-5 rounded-2xl shadow-xl">
-          <div className="flex items-center justify-between pb-3 border-b border-purple-900/40">
+        <div className="bg-[#0E131F] border border-[#1E2638] p-5 sm:p-6 rounded-2xl shadow-xl space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#1E2638]">
             <div className="flex items-center gap-2">
-              <BarChart2 className="h-4 w-4 text-purple-400" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-purple-300 font-sans">
+              <BarChart2 className="h-4 w-4 text-[#F6821F]" />
+              <span className="eyebrow-text text-brand-orange font-semibold">
                 PROTECTION OVERVIEW
               </span>
             </div>
             <div className="flex items-center gap-3 text-xs text-slate-400 font-sans">
               <span className="flex items-center gap-1.5">
-                <Clock className="h-3.5 w-3.5 text-purple-400" />
-                Last Scan: <span className="text-white font-mono font-medium">{monitoringConfig.last_scan ? new Date(monitoringConfig.last_scan).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today, 14:42'}</span>
+                <Clock className="h-3.5 w-3.5 text-slate-400" />
+                Last Scan: <span className="data-text text-white font-medium">{monitoringConfig.last_scan ? new Date(monitoringConfig.last_scan).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today, 14:42'}</span>
               </span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-4">
-            <div className="bg-[#0D0722]/80 p-3 rounded-xl border border-purple-900/40">
-              <span className="text-slate-400 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">Applications Monitored</span>
-              <span className="text-white font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{totalMonitoredCount}</span>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-1">
+            <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638]">
+              <span className="stat-label text-slate-400 block whitespace-normal sm:whitespace-nowrap">Applications Monitored</span>
+              <span className="stat-value text-2xl sm:text-3xl text-white mt-1 block">{totalMonitoredCount}</span>
             </div>
-            <div className="bg-[#0D0722]/80 p-3 rounded-xl border border-purple-900/40">
-              <span className="text-purple-300 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">New Threats</span>
-              <span className="text-purple-300 font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{newThreatsCount}</span>
+            <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638]">
+              <span className="stat-label text-slate-300 block whitespace-normal sm:whitespace-nowrap">New Threats</span>
+              <span className="stat-value text-2xl sm:text-3xl text-white mt-1 block">{newThreatsCount}</span>
             </div>
-            <div className="bg-rose-950/30 p-3 rounded-xl border border-rose-500/30">
-              <span className="text-rose-400 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">High / Critical</span>
-              <span className="text-rose-400 font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{highCriticalTotal}</span>
+            <div className="bg-[#2D1216] p-3.5 rounded-xl border border-rose-500/30">
+              <span className="stat-label text-rose-400 block whitespace-normal sm:whitespace-nowrap">High / Critical</span>
+              <span className="stat-value text-2xl sm:text-3xl text-rose-400 mt-1 block">{highCriticalTotal}</span>
             </div>
-            <div className="bg-[#0D0722]/80 p-3 rounded-xl border border-purple-900/40">
-              <span className="text-amber-300 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">Under Review</span>
-              <span className="text-amber-300 font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{underReviewCount}</span>
+            <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638]">
+              <span className="stat-label text-amber-300 block whitespace-normal sm:whitespace-nowrap">Under Review</span>
+              <span className="stat-value text-2xl sm:text-3xl text-amber-300 mt-1 block">{underReviewCount}</span>
             </div>
-            <div className="bg-[#0D0722]/80 p-3 rounded-xl border border-purple-900/40">
-              <span className="text-pink-300 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">Confirmed Suspicious</span>
-              <span className="text-pink-300 font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{confirmedSuspiciousCount}</span>
+            <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638]">
+              <span className="stat-label text-pink-300 block whitespace-normal sm:whitespace-nowrap">Confirmed Suspicious</span>
+              <span className="stat-value text-2xl sm:text-3xl text-pink-300 mt-1 block">{confirmedSuspiciousCount}</span>
             </div>
-            <div className="bg-[#0D0722]/80 p-3 rounded-xl border border-purple-900/40">
-              <span className="text-emerald-400 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">Resolved</span>
-              <span className="text-emerald-400 font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{resolvedCount}</span>
+            <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638]">
+              <span className="stat-label text-emerald-400 block whitespace-normal sm:whitespace-nowrap">Resolved</span>
+              <span className="stat-value text-2xl sm:text-3xl text-emerald-400 mt-1 block">{resolvedCount}</span>
             </div>
           </div>
         </div>
@@ -571,15 +572,15 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Protected Brand Baseline */}
-          <div className="lg:col-span-2 bg-[#130D2E]/80 backdrop-blur-xl border border-purple-500/20 p-5 rounded-2xl shadow-xl relative flex flex-col justify-between">
+          <div className="lg:col-span-2 bg-[#0E131F] border border-[#1E2638] p-5 sm:p-6 rounded-2xl shadow-xl relative flex flex-col justify-between space-y-4">
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-purple-400" />
-                  <span className="text-xs font-semibold uppercase tracking-wider text-purple-300 font-sans">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <Shield className="h-4 w-4 text-[#F6821F]" />
+                  <span className="eyebrow-text text-brand-orange font-semibold">
                     PROTECTED BRAND TARGET
                   </span>
-                  <span className="text-[11px] font-mono bg-emerald-950/60 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30 font-medium">
+                  <span className="font-mono text-xs bg-[#347653]/10 text-[#F6821F] px-2.5 py-0.5 rounded-full border border-[#F6821F]/40 font-semibold">
                     VERIFIED BASELINE
                   </span>
                 </div>
@@ -588,15 +589,15 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => setShowBrandSelector(!showBrandSelector)}
-                    className="px-3 py-1.5 bg-[#0D0722] border border-purple-900/50 text-slate-200 text-xs font-sans rounded-xl hover:bg-purple-900/30 transition flex items-center gap-1.5"
+                    className="button-text px-3 py-1.5 bg-[#111625] border border-[#1E2638] text-slate-200 text-xs rounded-xl hover:bg-[#161D2F] transition flex items-center gap-1.5 cursor-pointer"
                   >
                     <span>Change ({currentBrand?.name})</span>
-                    <ChevronDown className="h-3.5 w-3.5 text-purple-400" />
+                    <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
                   </button>
 
                   {showBrandSelector && (
-                    <div className="absolute right-0 top-9 z-40 w-56 bg-[#130D2E] border border-purple-500/30 shadow-2xl rounded-2xl p-1.5 font-sans text-xs">
-                      <div className="px-3 py-1.5 text-[10px] uppercase text-purple-400 border-b border-purple-900/40 font-semibold">
+                    <div className="absolute right-0 top-9 z-40 w-56 bg-[#0E131F] border border-[#1E2638] shadow-2xl rounded-2xl p-1.5 font-sans text-xs">
+                      <div className="px-3 py-1.5 eyebrow-text text-slate-400 border-b border-[#1E2638]">
                         SELECT AUTHORITATIVE BRAND
                       </div>
                       {Object.keys(PRESET_BRANDS).map((bKey) => (
@@ -604,11 +605,11 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                           key={bKey}
                           type="button"
                           onClick={() => handleSelectBrand(bKey)}
-                          className="w-full text-left px-3 py-2 text-slate-200 hover:bg-purple-900/40 rounded-xl flex items-center justify-between"
+                          className="w-full text-left px-3 py-2 text-slate-200 hover:bg-[#111625] rounded-xl flex items-center justify-between cursor-pointer"
                         >
                           <span>{bKey}</span>
                           {currentBrand?.name === bKey && (
-                            <Check className="h-3.5 w-3.5 text-[#00F5A0]" />
+                            <Check className="h-3.5 w-3.5 text-[#F6821F]" />
                           )}
                         </button>
                       ))}
@@ -618,52 +619,52 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               </div>
 
               <div className="flex flex-wrap items-baseline gap-3 pt-1">
-                <h2 className="text-lg font-semibold font-display text-white">
+                <h2 className="section-title text-white">
                   {currentBrand?.name || 'PayPal'}
                 </h2>
-                <span className="text-xs text-slate-400">
-                  Official Domain: <span className="font-mono text-purple-300 font-medium">{currentBrand?.domain || 'paypal.com'}</span>
+                <span className="small-text text-slate-400">
+                  Official Domain: <span className="data-text text-[#F6821F] font-medium">{currentBrand?.domain || 'paypal.com'}</span>
                 </span>
                 {currentBrand?.officialDevelopers && currentBrand.officialDevelopers.length > 0 ? (
-                  <span className="text-xs text-slate-400">
-                    · Publisher: <span className="text-slate-200 font-medium">{currentBrand.officialDevelopers[0]}</span>
+                  <span className="small-text text-slate-400">
+                    · Publisher: <span className="text-white font-medium">{currentBrand.officialDevelopers[0]}</span>
                   </span>
                 ) : (
-                  <span className="text-xs font-mono text-amber-400">
+                  <span className="small-text font-mono text-amber-400">
                     (Official identity partially verified)
                   </span>
                 )}
                 {currentBrand?.appPackageName && (
-                  <span className="hidden sm:inline text-xs font-mono text-slate-400">
+                  <span className="hidden sm:inline data-text text-xs text-slate-400">
                     · Pkg: {currentBrand.appPackageName}
                   </span>
                 )}
               </div>
 
-              <p className="text-sm text-slate-300 pt-1 leading-relaxed">
+              <p className="body-text text-xs sm:text-sm text-slate-300 pt-1">
                 SAFENET protects this organization from brand impersonation, deceptive app look-alikes, publisher spoofing, and malicious credential phishing across Android application perimeters.
               </p>
             </div>
           </div>
 
           {/* Monitoring Status & Controls Box */}
-          <div className="bg-[#0E131F] border border-[#1E2638] p-5 rounded-xl shadow-xs flex flex-col justify-between space-y-4">
+          <div className="bg-[#0E131F] border border-[#1E2638] p-5 sm:p-6 rounded-2xl shadow-xl flex flex-col justify-between space-y-4">
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#9CA3AF] font-bold">
+                <span className="eyebrow-text text-slate-400">
                   APP MONITORING
                 </span>
-                <span className="inline-flex items-center gap-1.5 text-[21px] font-bold font-mono text-[#F6821F] font-bold bg-[#347653]/10 px-2.5 py-0.5 rounded-full border border-[#F6821F]/40 font-semibold">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#347653] animate-pulse" />
+                <span className="inline-flex items-center gap-1.5 font-mono text-xs text-[#F6821F] bg-[#347653]/10 px-2.5 py-0.5 rounded-full border border-[#F6821F]/40 font-semibold">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#F6821F] animate-pulse" />
                   ACTIVE
                 </span>
               </div>
 
-              <div className="font-mono text-[17px] font-bold space-y-1 text-[#9CA3AF] font-bold">
-                <div>Platform: <span className="text-[#FFFFFF] font-bold font-semibold">Google Play Store</span></div>
-                <div>Schedule: <span className="text-[#FFFFFF] font-bold uppercase font-semibold">{monitoringConfig.schedule.replace('_', ' ')}</span></div>
-                <div>Last scan: <span className="text-[#FFFFFF] font-bold">{monitoringConfig.last_scan ? new Date(monitoringConfig.last_scan).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today, 14:42'}</span></div>
-                <div>Discovered: <span className="text-[#FFFFFF] font-bold">{totalMonitoredCount}</span> · High/Critical: <span className="text-[#FF5C6C] font-bold">{highCriticalTotal}</span></div>
+              <div className="space-y-1 text-xs text-slate-400">
+                <div>Platform: <span className="font-sans text-white font-medium">Google Play Store</span></div>
+                <div>Schedule: <span className="data-text text-white font-medium uppercase">{monitoringConfig.schedule.replace('_', ' ')}</span></div>
+                <div>Last scan: <span className="data-text text-white">{monitoringConfig.last_scan ? new Date(monitoringConfig.last_scan).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today, 14:42'}</span></div>
+                <div>Discovered: <span className="data-text text-white">{totalMonitoredCount}</span> · High/Critical: <span className="data-text text-rose-400 font-semibold">{highCriticalTotal}</span></div>
               </div>
             </div>
 
@@ -672,17 +673,17 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 type="button"
                 onClick={() => handleSearch(undefined, true)}
                 disabled={isSearching}
-                className="flex-1 px-4 py-2 bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-white font-mono text-[17px] font-bold rounded-lg transition flex items-center justify-center gap-2 shadow-xs disabled:opacity-50"
+                className="button-text flex-1 px-4 py-2.5 bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-xs rounded-xl transition flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 cursor-pointer"
               >
                 {isSearching ? (
                   <>
                     <RefreshCw className="h-3.5 w-3.5 animate-spin" />
-                    <span>SCANNING...</span>
+                    <span>Scanning...</span>
                   </>
                 ) : (
                   <>
                     <RefreshCw className="h-3.5 w-3.5" />
-                    <span>RUN SCAN</span>
+                    <span>Run Scan</span>
                   </>
                 )}
               </button>
@@ -690,11 +691,11 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               <button
                 type="button"
                 onClick={() => setShowScheduleModal(true)}
-                className="px-3.5 py-2 bg-[#0E131F] border border-[#1E2638] hover:bg-[#161D2F] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold font-mono text-[17px] font-bold rounded-lg transition flex items-center gap-1.5"
+                className="button-text px-3.5 py-2.5 bg-[#111625] border border-[#1E2638] hover:bg-[#161D2F] text-slate-300 hover:text-white text-xs rounded-xl transition flex items-center gap-1.5 cursor-pointer"
                 title="Configure monitoring frequency"
               >
-                <Calendar className="h-3.5 w-3.5" />
-                <span>SCHEDULE</span>
+                <Calendar className="h-3.5 w-3.5 text-slate-400" />
+                <span>Schedule</span>
               </button>
             </div>
           </div>
@@ -704,14 +705,14 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* SCAN RESULTS SUMMARY BANNER */}
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {scanSummary && (
-          <div className="bg-[#0F2620] border border-[#F6821F]/40 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 font-mono text-[17px] font-bold shadow-xs animate-in fade-in duration-300">
+          <div className="bg-[#0F2620] border border-[#F6821F]/40 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 small-text text-slate-300 shadow-xs animate-in fade-in duration-300">
             <div className="flex items-center gap-3">
-              <CheckCircle2 className="h-5 w-5 text-[#F6821F] font-bold shrink-0" />
+              <CheckCircle2 className="h-5 w-5 text-[#F6821F] shrink-0" />
               <div>
-                <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold block tracking-wider">
+                <span className="eyebrow-text text-[#F6821F] block mb-0.5">
                   SCAN COMPLETE · PERIMETER DISCOVERY UPDATED
                 </span>
-                <span className="text-[#9CA3AF] font-bold">
+                <span className="text-slate-300 text-xs">
                   Discovered {scanSummary.applications_discovered} listings ({scanSummary.new_candidates} new candidates, {scanSummary.existing_candidates} refreshed) · {scanSummary.high_critical_count} high-risk · {scanSummary.new_domains_count} external domains correlated.
                 </span>
               </div>
@@ -723,7 +724,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 const el = document.getElementById('threat-inbox-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-3.5 py-1.5 bg-[#0E131F] text-[#F6821F] font-bold border border-[#F6821F]/40 rounded-lg hover:bg-[#111625] transition text-[28px] font-bold font-bold flex items-center gap-1.5 shrink-0"
+              className="px-3.5 py-1.5 bg-[#0E131F] text-[#F6821F] border border-[#F6821F]/40 rounded-lg hover:bg-[#111625] transition button-text flex items-center gap-1.5 shrink-0"
             >
               <span>VIEW THREAT INBOX</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -736,28 +737,28 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
           <button
             type="button"
             onClick={() => setActiveTab('search')}
-            className={`flex items-center gap-2 pb-3 text-[24px] font-bold font-mono font-bold transition relative ${
-              activeTab === 'search' ? 'text-[#FFFFFF] font-bold' : 'text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold'
+            className={`flex items-center gap-2 pb-3 font-sans text-xs tracking-wider uppercase font-semibold transition relative ${
+              activeTab === 'search' ? 'text-white' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Search className="h-4 w-4" />
             <span>1. APP THREAT DISCOVERY & INBOX</span>
             {activeTab === 'search' && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F6821F] text-[#080B11] font-semibold rounded-t-sm" />
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#F6821F] rounded-t-sm" />
             )}
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('apk')}
-            className={`flex items-center gap-2 pb-3 text-[24px] font-bold font-mono font-bold transition relative ${
-              activeTab === 'apk' ? 'text-[#FFFFFF] font-bold' : 'text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold'
+            className={`flex items-center gap-2 pb-3 font-sans text-xs tracking-wider uppercase font-semibold transition relative ${
+              activeTab === 'apk' ? 'text-white' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Smartphone className="h-4 w-4" />
             <span>2. STATIC APK ARTIFACT INSPECTION</span>
             {activeTab === 'apk' && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F6821F] text-[#080B11] font-semibold rounded-t-sm" />
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#F6821F] rounded-t-sm" />
             )}
           </button>
         </div>
@@ -768,12 +769,12 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {activeTab === 'search' && (
           <div className="space-y-6">
             {/* Search Input Bar */}
-            <div className="bg-[#0E131F] border border-[#1E2638] p-6 rounded-xl space-y-4 shadow-xs">
+            <div className="bg-[#0E131F] border border-[#1E2638] p-5 rounded-xl space-y-4 shadow-xs">
               <div className="space-y-1">
-                <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#F6821F] font-bold">
+                <span className="eyebrow-text text-[#F6821F] block">
                   PERIMETER DISCOVERY QUERY
                 </span>
-                <p className="text-[24px] font-bold text-[#9CA3AF] font-bold">
+                <p className="small-text text-slate-400">
                   Query public Google Play store listings via SerpApi to discover potential brand impersonators, unauthorized publishers, and deceptive look-alikes.
                 </p>
               </div>
@@ -783,16 +784,16 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   e.preventDefault();
                   handleSearch();
                 }}
-                className="flex flex-col sm:flex-row gap-3 pt-2"
+                className="flex flex-col sm:flex-row gap-3 pt-1"
               >
                 <div className="relative flex-1">
-                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9CA3AF] font-bold" />
+                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Enter brand name, company, or application keyword (e.g. PayPal, Microsoft, Paytm)..."
-                    className="w-full bg-[#111625] border border-[#1E2638] rounded-xl pl-10 pr-4 py-2.5 text-[24px] font-bold text-[#FFFFFF] font-bold font-mono placeholder:text-[#9CA3AF] font-bold focus:outline-none focus:border-[#F6821F]/40 transition"
+                    className="w-full bg-[#111625] border border-[#1E2638] rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#F6821F]/60 transition"
                   />
                 </div>
 
@@ -800,7 +801,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <select
                     value={searchCountry}
                     onChange={(e) => setSearchCountry(e.target.value)}
-                    className="bg-[#0E131F] border border-[#1E2638] text-[#9CA3AF] font-bold text-[17px] font-bold font-mono rounded-xl px-3 py-2.5 focus:outline-none focus:border-[#F6821F]/40"
+                    className="bg-[#0E131F] border border-[#1E2638] text-slate-300 small-text rounded-xl px-3 py-2.5 focus:outline-none focus:border-[#F6821F]/60"
                   >
                     <option value="in">Region: India (gl=in)</option>
                     <option value="us">Region: United States (gl=us)</option>
@@ -811,7 +812,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="submit"
                     disabled={isSearching}
-                    className="px-5 py-2.5 bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-white font-mono text-[24px] font-bold font-bold rounded-xl transition flex items-center gap-2 shadow-xs disabled:opacity-50 shrink-0"
+                    className="px-5 py-2.5 bg-[#F6821F] hover:bg-[#ff9438] text-[#080B11] button-text font-semibold rounded-xl transition flex items-center gap-2 shadow-xs disabled:opacity-50 shrink-0"
                   >
                     {isSearching ? (
                       <>
@@ -829,8 +830,8 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               </form>
 
               {/* Fast Triage Quick-Picks */}
-              <div className="flex flex-wrap items-center gap-2 pt-1 text-[28px] font-bold font-bold font-mono text-[#9CA3AF] font-bold">
-                <span className="font-semibold">FAST TRIAGE EXAMPLES:</span>
+              <div className="flex flex-wrap items-center gap-2 pt-1 small-text text-slate-400">
+                <span className="eyebrow-text text-slate-500">FAST TRIAGE EXAMPLES:</span>
                 {['PayPal', 'Microsoft', 'WhatsApp', 'Paytm', 'Nike'].map((ex) => (
                   <button
                     key={ex}
@@ -839,7 +840,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       setSearchQuery(ex);
                       handleSearch(ex);
                     }}
-                    className="hover:text-[#F6821F] font-bold transition underline underline-offset-2"
+                    className="text-xs text-slate-400 hover:text-[#F6821F] transition underline underline-offset-2"
                   >
                     {ex}
                   </button>
@@ -849,11 +850,11 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
             {/* Error Message */}
             {searchError && (
-              <div className="border border-[#FF5C6C]/40 bg-[#2D1216] p-4 rounded-xl flex items-start gap-3 text-[24px] font-bold text-[#FF5C6C] font-bold font-medium">
+              <div className="border border-[#FF5C6C]/40 bg-[#2D1216] p-4 rounded-xl flex items-start gap-3 small-text text-[#FF5C6C]">
                 <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold block uppercase">Search Request Error</span>
-                  <span>{searchError}</span>
+                  <span className="font-semibold block uppercase">Search Request Error</span>
+                  <span className="text-slate-300">{searchError}</span>
                 </div>
               </div>
             )}
@@ -865,37 +866,37 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1E2638] pb-3">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <ListFilter className="h-4 w-4 text-[#F6821F] font-bold" />
-                    <h3 className="text-[28px] font-bold font-bold text-[#FFFFFF] font-bold font-mono uppercase tracking-wider">
+                    <ListFilter className="h-4 w-4 text-[#F6821F]" />
+                    <h3 className="section-title text-white">
                       THREAT INBOX
                     </h3>
                   </div>
-                  <p className="text-[17px] font-bold text-[#9CA3AF] font-bold font-mono">
+                  <p className="small-text text-slate-400">
                     Prioritized queue of discovered applications targeting the protected brand perimeter.
                   </p>
                 </div>
 
                 {/* Counter Breakdown */}
-                <div className="flex items-center gap-2 font-mono text-[28px] font-bold font-bold">
-                  <span className="px-2.5 py-1 bg-[#2D1216] border border-[#FF5C6C]/40 text-[#FF5C6C] font-bold rounded-md font-bold">
-                    CRITICAL: {criticalThreatCount}
+                <div className="flex items-center gap-2 font-mono text-xs">
+                  <span className="px-2.5 py-1 bg-[#2D1216] border border-[#FF5C6C]/40 text-[#FF5C6C] rounded-md font-semibold">
+                    CRITICAL: <span className="tabular-nums font-bold">{criticalThreatCount}</span>
                   </span>
-                  <span className="px-2.5 py-1 bg-[#2C1C0D] border border-[#FFAB40]/40 text-[#FFAB40] font-bold rounded-md font-bold">
-                    HIGH: {highThreatCount}
+                  <span className="px-2.5 py-1 bg-[#2C1C0D] border border-[#FFAB40]/40 text-[#FFAB40] rounded-md font-semibold">
+                    HIGH: <span className="tabular-nums font-bold">{highThreatCount}</span>
                   </span>
-                  <span className="px-2.5 py-1 bg-[#2C1C0D] border border-[#FFAB40]/40 text-[#FFAB40] font-bold rounded-md font-bold">
-                    MEDIUM: {allCandidates.filter((c) => c.risk_level === 'MEDIUM').length}
+                  <span className="px-2.5 py-1 bg-[#2C1C0D] border border-[#FFAB40]/40 text-[#FFAB40] rounded-md font-semibold">
+                    MEDIUM: <span className="tabular-nums font-bold">{allCandidates.filter((c) => c.risk_level === 'MEDIUM').length}</span>
                   </span>
-                  <span className="px-2.5 py-1 bg-[#161D2F] border border-[#1E2638] text-[#9CA3AF] font-bold rounded-md font-semibold">
-                    REVIEW: {underReviewCount}
+                  <span className="px-2.5 py-1 bg-[#161D2F] border border-[#1E2638] text-slate-400 rounded-md font-medium">
+                    REVIEW: <span className="tabular-nums font-bold">{underReviewCount}</span>
                   </span>
                 </div>
               </div>
 
               {/* Filters & Sorting Controls */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-                <div className="flex flex-wrap items-center gap-1.5 font-mono text-[28px] font-bold font-bold">
-                  <span className="text-[#9CA3AF] font-bold mr-1 flex items-center gap-1 font-semibold">
+                <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                  <span className="eyebrow-text text-slate-400 mr-1 flex items-center gap-1">
                     <Filter className="h-3 w-3" /> FILTER:
                   </span>
                   {(
@@ -916,10 +917,10 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       key={f.key}
                       type="button"
                       onClick={() => setThreatStatusFilter(f.key)}
-                      className={`px-2.5 py-1 rounded-md transition font-semibold ${
+                      className={`px-2.5 py-1 rounded-md transition font-sans text-xs uppercase font-medium ${
                         threatStatusFilter === f.key
-                          ? 'bg-[#111625] text-white'
-                          : 'bg-[#0E131F] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold border border-[#1E2638]'
+                          ? 'bg-[#111625] text-white font-semibold border border-[#F6821F]/40'
+                          : 'bg-[#0E131F] text-slate-400 hover:text-white border border-[#1E2638]'
                       }`}
                     >
                       {f.label}
@@ -927,13 +928,13 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   ))}
                 </div>
 
-                <div className="flex items-center gap-2 font-mono text-[28px] font-bold font-bold">
-                  <SlidersHorizontal className="h-3.5 w-3.5 text-[#9CA3AF] font-bold" />
-                  <span className="text-[#9CA3AF] font-bold font-semibold">SORT:</span>
+                <div className="flex items-center gap-2 text-xs">
+                  <SlidersHorizontal className="h-3.5 w-3.5 text-slate-400" />
+                  <span className="eyebrow-text text-slate-400">SORT:</span>
                   <select
                     value={threatSort}
                     onChange={(e) => setThreatSort(e.target.value as ThreatSortOption)}
-                    className="bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold rounded-lg px-2.5 py-1 text-[28px] font-bold font-bold focus:outline-none focus:border-[#F6821F]/40"
+                    className="bg-[#0E131F] border border-[#1E2638] text-slate-200 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-[#F6821F]/60"
                   >
                     <option value="severity">Severity (Highest Risk First)</option>
                     <option value="confidence">Confidence (Highest First)</option>
@@ -958,16 +959,16 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     <div
                       key={cand.id}
                       onClick={() => setSelectedCandidate(cand)}
-                      className={`bg-[#0E131F] border transition-all p-4 rounded-xl font-mono text-[17px] font-bold flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer relative shadow-xs hover:shadow-sm ${
+                      className={`bg-[#0E131F] border transition-all p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer relative shadow-xs hover:shadow-sm ${
                         cand.is_verified_official
-                          ? 'border-[#F6821F]/40 hover:border-[#F6821F]/40'
+                          ? 'border-[#F6821F]/40 hover:border-[#F6821F]/60'
                           : cand.risk_level === 'CRITICAL'
-                          ? 'border-[#FF5C6C]/40 hover:border-[#FF5C6C]/40 bg-[#C93643]/[0.02]'
+                          ? 'border-[#FF5C6C]/40 hover:border-[#FF5C6C]/60 bg-[#C93643]/[0.02]'
                           : cand.risk_level === 'HIGH'
-                          ? 'border-[#FFAB40]/40 hover:border-[#FFAB40]/40'
+                          ? 'border-[#FFAB40]/40 hover:border-[#FFAB40]/60'
                           : cand.risk_level === 'MEDIUM'
-                          ? 'border-[#FFAB40]/40 hover:border-[#FFAB40]/40'
-                          : 'border-[#1E2638] hover:border-[#F6821F]'
+                          ? 'border-[#FFAB40]/40 hover:border-[#FFAB40]/60'
+                          : 'border-[#1E2638] hover:border-[#F6821F]/40'
                       }`}
                     >
                       {/* Left: App Identity */}
@@ -980,104 +981,104 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                           />
                         ) : (
                           <div className="h-12 w-12 rounded-lg bg-[#111625] border border-[#1E2638] flex items-center justify-center shrink-0">
-                            <Smartphone className="h-5 w-5 text-[#9CA3AF] font-bold" />
+                            <Smartphone className="h-5 w-5 text-slate-400" />
                           </div>
                         )}
 
                         <div className="space-y-1.5 min-w-0 flex-1">
                           <div className="flex flex-wrap items-center gap-2">
-                            <h4 className="text-[19px] font-bold text-[#FFFFFF] font-bold truncate max-w-md">
+                            <h4 className="card-title text-white truncate max-w-md">
                               {cand.app_name}
                             </h4>
 
                             {cand.is_verified_official ? (
-                              <span className="text-[21px] font-bold bg-[#347653]/10 text-[#F6821F] font-bold border border-[#F6821F]/40 px-2 py-0.5 rounded font-bold">
+                              <span className="eyebrow-text bg-[#347653]/10 text-[#F6821F] border border-[#F6821F]/40 px-2 py-0.5 rounded font-bold">
                                 ✓ VERIFIED OFFICIAL APP
                               </span>
                             ) : cand.risk_level === 'CRITICAL' || cand.risk_level === 'HIGH' ? (
-                              <span className="text-[21px] font-bold bg-[#2D1216] text-[#FF5C6C] font-bold border border-[#FF5C6C]/40 px-2 py-0.5 rounded font-bold">
+                              <span className="eyebrow-text bg-[#2D1216] text-[#FF5C6C] border border-[#FF5C6C]/40 px-2 py-0.5 rounded font-bold">
                                 ⚠ POTENTIAL IMPERSONATION
                               </span>
                             ) : (
-                              <span className="text-[21px] font-bold bg-[#161D2F] text-[#9CA3AF] font-bold px-2 py-0.5 rounded font-medium">
+                              <span className="eyebrow-text bg-[#161D2F] text-slate-400 px-2 py-0.5 rounded font-medium">
                                 THIRD-PARTY LISTING
                               </span>
                             )}
 
                             {/* Lifecycle Status Badge */}
                             <span
-                              className={`text-[9px] uppercase px-2 py-0.5 rounded font-bold border ${
+                              className={`eyebrow-text px-2 py-0.5 rounded font-bold border ${
                                 cand.lifecycle_status === 'ESCALATED'
-                                  ? 'bg-[#C93643]/15 text-[#FF5C6C] font-bold border-[#FF5C6C]/40'
+                                  ? 'bg-[#C93643]/15 text-[#FF5C6C] border-[#FF5C6C]/40'
                                   : cand.lifecycle_status === 'CONFIRMED SUSPICIOUS'
-                                  ? 'bg-[#D95F36]/15 text-[#FFAB40] font-bold border-[#FFAB40]/40'
+                                  ? 'bg-[#D95F36]/15 text-[#FFAB40] border-[#FFAB40]/40'
                                   : cand.lifecycle_status === 'UNDER REVIEW'
-                                  ? 'bg-[#B7791F]/15 text-[#FFAB40] font-bold border-[#FFAB40]/40'
+                                  ? 'bg-[#B7791F]/15 text-[#FFAB40] border-[#FFAB40]/40'
                                   : cand.lifecycle_status === 'RESOLVED'
-                                  ? 'bg-[#347653]/10 text-[#F6821F] font-bold border-[#F6821F]/40'
-                                  : 'bg-[#161D2F] text-[#9CA3AF] font-bold border-[#1E2638]'
+                                  ? 'bg-[#347653]/10 text-[#F6821F] border-[#F6821F]/40'
+                                  : 'bg-[#161D2F] text-slate-400 border-[#1E2638]'
                               }`}
                             >
                               {cand.lifecycle_status || 'DISCOVERED'}
                             </span>
                           </div>
 
-                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[28px] font-bold font-bold text-[#9CA3AF] font-bold">
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
                             <span>
-                              Developer: <span className="text-[#FFFFFF] font-bold font-medium">{cand.developer || 'Unknown'}</span>
+                              Developer: <span className="text-slate-200 font-medium">{cand.developer || 'Unknown'}</span>
                             </span>
                             {cand.package_id && (
                               <span>
-                                · Pkg: <span className="text-[#9CA3AF] font-bold">{cand.package_id}</span>
+                                · Pkg: <span className="data-text text-slate-300">{cand.package_id}</span>
                               </span>
                             )}
                             {cand.installs && (
                               <span>
-                                · Installs: <span className="text-[#FFFFFF] font-bold">{cand.installs}</span>
+                                · Installs: <span className="text-slate-200 font-medium">{cand.installs}</span>
                               </span>
                             )}
                             {cand.rating !== undefined && (
                               <span>
-                                · Rating: <span className="text-[#FFFFFF] font-bold font-semibold">{cand.rating}★</span>
+                                · Rating: <span className="text-amber-400 font-semibold">{cand.rating}★</span>
                               </span>
                             )}
-                            <span className="text-[#9CA3AF] font-bold">
-                              · First seen: {cand.first_seen_at ? cand.first_seen_at.slice(0, 10) : 'Today'}
+                            <span className="text-slate-400">
+                              · First seen: <span className="font-mono text-slate-300">{cand.first_seen_at ? cand.first_seen_at.slice(0, 10) : 'Today'}</span>
                             </span>
                           </div>
 
                           {/* Primary Threat Detection Signal */}
-                          <div className="text-[17px] font-bold text-[#9CA3AF] font-bold line-clamp-1 pt-0.5">
-                            <span className="text-[#9CA3AF] font-bold font-semibold">DETECTION: </span>
+                          <div className="text-xs text-slate-300 line-clamp-1 pt-0.5">
+                            <span className="eyebrow-text text-slate-400">DETECTION: </span>
                             {cand.why_flagged && cand.why_flagged.length > 0 ? (
-                              <span className="text-[#FFFFFF] font-bold font-medium">{cand.why_flagged[0]}</span>
+                              <span className="text-slate-200">{cand.why_flagged[0]}</span>
                             ) : cand.evidence && cand.evidence.length > 0 ? (
-                              <span className="text-[#FFFFFF] font-bold font-medium">{cand.evidence[0]}</span>
+                              <span className="text-slate-200">{cand.evidence[0]}</span>
                             ) : (
-                              <span className="text-[#9CA3AF] font-bold">Evaluated against protected brand perimeter</span>
+                              <span className="text-slate-400">Evaluated against protected brand perimeter</span>
                             )}
                           </div>
 
                           {/* Signal Pills */}
                           <div className="flex flex-wrap items-center gap-1.5 pt-1">
                             {cand.risk_breakdown?.name_similarity > 0 && (
-                              <span className="text-[21px] font-bold bg-[#161D2F] text-[#9CA3AF] font-bold px-2 py-0.5 rounded border border-[#1E2638]">
+                              <span className="eyebrow-text bg-[#161D2F] text-slate-300 px-2 py-0.5 rounded border border-[#1E2638]">
                                 Name Sim ({cand.risk_breakdown.name_similarity}/20)
                               </span>
                             )}
                             {cand.risk_breakdown?.developer_mismatch > 0 && (
-                              <span className="text-[21px] font-bold bg-[#2D1216] text-[#FF5C6C] font-bold px-2 py-0.5 rounded border border-[#FF5C6C]/40 font-semibold">
+                              <span className="eyebrow-text bg-[#2D1216] text-[#FF5C6C] px-2 py-0.5 rounded border border-[#FF5C6C]/40 font-semibold">
                                 Developer Mismatch
                               </span>
                             )}
                             {cand.risk_breakdown?.logo_similarity > 0 && (
-                              <span className="text-[21px] font-bold bg-[#2C1C0D] text-[#FFAB40] font-bold px-2 py-0.5 rounded border border-[#FFAB40]/40 font-semibold">
+                              <span className="eyebrow-text bg-[#2C1C0D] text-[#FFAB40] px-2 py-0.5 rounded border border-[#FFAB40]/40 font-semibold">
                                 Logo Resemblance
                               </span>
                             )}
                             {cand.extracted_domains && cand.extracted_domains.length > 0 && (
-                              <span className="text-[21px] font-bold bg-[#0F2620] text-[#F6821F] font-bold px-2 py-0.5 rounded border border-[#F6821F]/40 font-semibold">
-                                Extracted Domain ({cand.extracted_domains[0]})
+                              <span className="eyebrow-text bg-[#0F2620] text-[#F6821F] px-2 py-0.5 rounded border border-[#F6821F]/40 font-semibold">
+                                Domain Correlated ({cand.extracted_domains[0]})
                               </span>
                             )}
                           </div>
@@ -1088,24 +1089,24 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       <div className="flex md:flex-col items-end justify-between gap-3 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-[#1E2638]">
                         <div className="text-right">
                           <div className="flex items-center gap-2 justify-end">
-                            <span className="text-[21px] font-bold text-[#9CA3AF] font-bold uppercase font-semibold">Risk</span>
+                            <span className="eyebrow-text text-slate-400">Risk</span>
                             <span
-                              className={`text-[21px] font-bold ${
+                              className={`data-text text-sm font-bold ${
                                 cand.risk_level === 'CRITICAL'
-                                  ? 'text-[#FF5C6C] font-bold'
+                                  ? 'text-[#FF5C6C]'
                                   : cand.risk_level === 'HIGH'
-                                  ? 'text-[#FFAB40] font-bold'
+                                  ? 'text-[#FFAB40]'
                                   : cand.risk_level === 'MEDIUM'
-                                  ? 'text-[#FFAB40] font-bold'
-                                  : 'text-[#F6821F] font-bold'
+                                  ? 'text-[#FFAB40]'
+                                  : 'text-[#F6821F]'
                               }`}
                             >
                               {cand.risk_score} / 100
                             </span>
                           </div>
 
-                          <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold">
-                            Confidence: <span className="text-[#FFFFFF] font-bold font-semibold">{cand.confidence_score ? `${cand.confidence_score}%` : cand.confidence}</span>
+                          <div className="text-xs text-slate-400">
+                            Confidence: <span className="text-slate-200 font-semibold">{cand.confidence_score ? `${cand.confidence_score}%` : cand.confidence}</span>
                           </div>
                         </div>
 
@@ -1115,8 +1116,8 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                             onClick={(e) => handleToggleWatchlist(cand, e)}
                             className={`p-2 rounded-lg border transition ${
                               isWatchlisted
-                                ? 'bg-[#0F2620] border-[#F6821F]/40 text-[#F6821F] font-bold'
-                                : 'bg-[#0E131F] border-[#1E2638] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold'
+                                ? 'bg-[#0F2620] border-[#F6821F]/40 text-[#F6821F]'
+                                : 'bg-[#0E131F] border-[#1E2638] text-slate-400 hover:text-white'
                             }`}
                             title={isWatchlisted ? 'Remove from Watchlist' : 'Add to Watchlist'}
                           >
@@ -1133,7 +1134,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                               setEscalateCandidate(cand);
                               setShowEscalateModal(true);
                             }}
-                            className="p-2 rounded-lg border border-[#1E2638] bg-[#0E131F] text-[#9CA3AF] font-bold hover:text-[#FF5C6C] font-bold hover:border-[#FF5C6C]/40 transition"
+                            className="p-2 rounded-lg border border-[#1E2638] bg-[#0E131F] text-slate-400 hover:text-[#FF5C6C] hover:border-[#FF5C6C]/40 transition"
                             title="Escalate Threat"
                           >
                             <Send className="h-4 w-4" />
@@ -1142,7 +1143,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                           <button
                             type="button"
                             onClick={() => setSelectedCandidate(cand)}
-                            className="px-3 py-1.5 bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-white rounded-lg transition flex items-center gap-1 font-bold text-[28px] font-bold font-bold shadow-xs"
+                            className="px-3 py-1.5 bg-[#F6821F] hover:bg-[#ff9438] text-[#080B11] rounded-lg transition flex items-center gap-1 button-text font-semibold shadow-xs"
                           >
                             <span>INVESTIGATE</span>
                             <ChevronRight className="h-3 w-3" />
@@ -1155,13 +1156,13 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               </div>
             ) : (
               /* Safe State / Empty State */
-              <div className="bg-[#0E131F] border border-[#1E2638] p-12 text-center rounded-xl font-mono space-y-3 shadow-xs">
-                <ShieldCheck className="h-10 w-10 text-[#F6821F] font-bold mx-auto opacity-80" />
+              <div className="bg-[#0E131F] border border-[#1E2638] p-12 text-center rounded-xl space-y-3 shadow-xs">
+                <ShieldCheck className="h-10 w-10 text-[#F6821F] mx-auto opacity-80" />
                 <div className="space-y-1">
-                  <h4 className="text-[19px] font-bold text-[#FFFFFF] font-bold uppercase tracking-wider">
+                  <h4 className="card-title text-white">
                     NO SIGNIFICANT THREATS IDENTIFIED
                   </h4>
-                  <p className="text-[17px] font-bold text-[#9CA3AF] font-bold max-w-md mx-auto leading-relaxed">
+                  <p className="small-text text-slate-400 max-w-md mx-auto leading-relaxed">
                     SAFENET did not identify applications with sufficient impersonation signals for this brand in the current search.
                   </p>
                 </div>
@@ -1175,26 +1176,26 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {activeTab === 'apk' && (
           <div className="space-y-6">
-            <div className="bg-[#0E131F] border border-[#1E2638] p-6 rounded-xl space-y-4 shadow-xs">
+            <div className="bg-[#0E131F] border border-[#1E2638] p-5 rounded-xl space-y-4 shadow-xs">
               <div className="space-y-1">
-                <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#F6821F] font-bold">
+                <span className="eyebrow-text text-[#F6821F] block">
                   ANDROID APK STATIC CORRELATION ENGINE
                 </span>
-                <p className="text-[24px] font-bold text-[#9CA3AF] font-bold">
+                <p className="small-text text-slate-400">
                   Inspect untrusted Android application packages (.apk) to decompile manifests, detect sensitive capabilities, extract hardcoded URLs, and correlate with Google Play listings.
                 </p>
               </div>
 
               {/* Upload Box */}
               <div className="border-2 border-dashed border-[#1E2638] hover:border-[#F6821F]/40 p-8 rounded-xl text-center space-y-3 bg-[#111625] transition">
-                <Upload className="h-8 w-8 text-[#F6821F] font-bold mx-auto" />
+                <Upload className="h-8 w-8 text-[#F6821F] mx-auto" />
                 <div className="space-y-1">
-                  <p className="text-[19px] font-bold text-[#FFFFFF] font-bold">Drag & drop Android APK file here</p>
-                  <p className="text-[17px] font-bold text-[#9CA3AF] font-bold">Static manifest inspection, signature check & DEX domain correlation</p>
+                  <p className="card-title text-white">Drag & drop Android APK file here</p>
+                  <p className="small-text text-slate-400">Static manifest inspection, signature check & DEX domain correlation</p>
                 </div>
 
                 <div>
-                  <label className="inline-block px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold text-[17px] font-bold font-semibold rounded-lg hover:bg-[#161D2F] transition cursor-pointer shadow-xs">
+                  <label className="inline-block px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-white button-text font-semibold rounded-lg hover:bg-[#161D2F] transition cursor-pointer shadow-xs">
                     <span>Browse APK File</span>
                     <input
                       type="file"
@@ -1210,20 +1211,20 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               </div>
 
               {/* Sample Presets */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-[#1E2638] text-[17px] font-bold text-[#9CA3AF] font-bold">
-                <span className="font-medium">NO APK ON HAND? TEST SAMPLE PAYLOADS:</span>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-[#1E2638] text-xs text-slate-400">
+                <span className="eyebrow-text text-slate-400">NO APK ON HAND? TEST SAMPLE PAYLOADS:</span>
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => handleLoadSampleApk('trojan')}
-                    className="px-3 py-1.5 rounded-lg bg-[#2D1216] border border-[#FF5C6C]/40 text-[#FF5C6C] font-bold hover:bg-[#C93643]/20 transition font-bold"
+                    className="px-3 py-1.5 rounded-lg bg-[#2D1216] border border-[#FF5C6C]/40 text-[#FF5C6C] hover:bg-[#C93643]/20 transition button-text font-semibold"
                   >
                     Simulate Rogue Trojan APK
                   </button>
                   <button
                     type="button"
                     onClick={() => handleLoadSampleApk('clean')}
-                    className="px-3 py-1.5 rounded-lg bg-[#347653]/10 border border-[#F6821F]/40 text-[#F6821F] font-bold hover:bg-[#347653]/20 transition font-bold"
+                    className="px-3 py-1.5 rounded-lg bg-[#347653]/10 border border-[#F6821F]/40 text-[#F6821F] hover:bg-[#347653]/20 transition button-text font-semibold"
                   >
                     Simulate Clean Release APK
                   </button>
@@ -1233,12 +1234,12 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
             {/* Analysis Loading Spinner */}
             {isAnalyzingApk && (
-              <div className="bg-[#0E131F] border border-[#1E2638] p-8 rounded-xl text-center font-mono space-y-2 shadow-xs">
-                <RefreshCw className="h-6 w-6 text-[#F6821F] font-bold animate-spin mx-auto" />
-                <p className="text-[19px] font-bold text-[#FFFFFF] font-bold">
+              <div className="bg-[#0E131F] border border-[#1E2638] p-8 rounded-xl text-center space-y-2 shadow-xs">
+                <RefreshCw className="h-6 w-6 text-[#F6821F] animate-spin mx-auto" />
+                <p className="card-title text-white">
                   Decompressing APK structure & parsing binary AndroidManifest...
                 </p>
-                <p className="text-[17px] font-bold text-[#9CA3AF] font-bold">
+                <p className="small-text text-slate-400">
                   Extracting permissions, cryptographic hashes, and embedded C2 domains.
                 </p>
               </div>
@@ -1246,46 +1247,46 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
             {/* Error Banner */}
             {apkError && (
-              <div className="border border-[#FF5C6C]/40 bg-[#2D1216] p-4 rounded-xl flex items-start gap-3 text-[24px] font-bold text-[#FF5C6C] font-bold font-medium">
+              <div className="border border-[#FF5C6C]/40 bg-[#2D1216] p-4 rounded-xl flex items-start gap-3 small-text text-[#FF5C6C]">
                 <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-bold block uppercase">APK Analysis Error</span>
-                  <span>{apkError}</span>
+                  <span className="font-semibold block uppercase">APK Analysis Error</span>
+                  <span className="text-slate-300">{apkError}</span>
                 </div>
               </div>
             )}
 
             {/* Full APK Correlation Report */}
             {apkReport && (
-              <div className="bg-[#0E131F] border border-[#1E2638] p-6 rounded-xl space-y-6 font-mono shadow-xs">
+              <div className="bg-[#0E131F] border border-[#1E2638] p-6 rounded-xl space-y-6 shadow-xs">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1E2638] pb-4">
                   <div className="space-y-1">
-                    <span className="text-[21px] font-bold uppercase tracking-wider text-[#9CA3AF] font-bold">
+                    <span className="eyebrow-text text-slate-400 block">
                       STATIC ARTIFACT REPORT
                     </span>
-                    <h3 className="text-[24px] font-bold text-[#FFFFFF] font-bold flex items-center gap-2">
+                    <h3 className="section-title text-white flex items-center gap-2">
                       <span>{apkReport.apk.application_label}</span>
-                      <span className="text-[17px] font-bold text-[#9CA3AF] font-bold font-normal">({apkReport.apk.file_name})</span>
+                      <span className="data-text text-xs text-slate-400 font-normal">({apkReport.apk.file_name})</span>
                     </h3>
                   </div>
 
                   <div className="text-right">
-                    <span className="text-[21px] font-bold text-[#9CA3AF] font-bold block uppercase font-bold">COMBINED THREAT LEVEL</span>
-                    <div className="flex items-center gap-2">
+                    <span className="eyebrow-text text-slate-400 block">COMBINED THREAT LEVEL</span>
+                    <div className="flex items-center gap-2 justify-end">
                       <span
-                        className={`text-[32px] font-semibold font-bold ${
+                        className={`stat-value text-2xl ${
                           apkReport.combined_risk_level === 'CRITICAL'
-                            ? 'text-[#FF5C6C] font-bold'
+                            ? 'text-[#FF5C6C]'
                             : apkReport.combined_risk_level === 'HIGH'
-                            ? 'text-[#FFAB40] font-bold'
+                            ? 'text-[#FFAB40]'
                             : apkReport.combined_risk_level === 'MEDIUM'
-                            ? 'text-[#FFAB40] font-bold'
-                            : 'text-[#F6821F] font-bold'
+                            ? 'text-[#FFAB40]'
+                            : 'text-[#F6821F]'
                         }`}
                       >
                         {apkReport.combined_risk_level}
                       </span>
-                      <span className="text-[19px] font-bold text-[#9CA3AF] font-bold">
+                      <span className="data-text text-sm text-slate-400">
                         ({apkReport.combined_risk_score} / 100)
                       </span>
                     </div>
@@ -1294,19 +1295,19 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
                 {/* Permissions Breakdown */}
                 <div className="space-y-2">
-                  <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold">
+                  <span className="eyebrow-text text-[#F6821F] block">
                     ANDROID PERMISSIONS & SENSITIVE CAPABILITIES
                   </span>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-[28px] font-bold font-bold">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
                     {apkReport.apk.permissions.sensitive.map((perm, idx) => (
                       <div
                         key={idx}
                         className="bg-[#111625] p-3 rounded-lg border border-[#FF5C6C]/40 flex items-start gap-2"
                       >
-                        <AlertTriangle className="h-3.5 w-3.5 text-[#FF5C6C] font-bold shrink-0 mt-0.5" />
+                        <AlertTriangle className="h-3.5 w-3.5 text-[#FF5C6C] shrink-0 mt-0.5" />
                         <div>
-                          <span className="text-[#FFFFFF] font-bold block">{perm.permission}</span>
-                          <span className="text-[#9CA3AF] font-bold text-[21px] font-bold">{perm.description}</span>
+                          <span className="data-text text-xs text-white block">{perm.permission}</span>
+                          <span className="small-text text-slate-400 text-xs">{perm.description}</span>
                         </div>
                       </div>
                     ))}
@@ -1316,14 +1317,14 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 {/* Embedded Network Domains */}
                 {apkReport.apk.extracted_domains.length > 0 && (
                   <div className="space-y-2">
-                    <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold">
+                    <span className="eyebrow-text text-[#F6821F] block">
                       EXTRACTED EMBEDDED NETWORK ENDPOINTS
                     </span>
-                    <div className="bg-[#111625] p-3.5 rounded-lg border border-[#1E2638] text-[17px] font-bold space-y-1">
+                    <div className="bg-[#111625] p-3.5 rounded-lg border border-[#1E2638] text-xs space-y-1">
                       {apkReport.apk.extracted_domains.map((dom, i) => (
-                        <div key={i} className="flex items-center justify-between text-[#9CA3AF] font-bold">
-                          <span className="text-[#FFFFFF] font-bold font-mono">{dom}</span>
-                          <span className="text-[#9CA3AF] font-bold text-[28px] font-bold font-bold">Correlated with URL Intelligence</span>
+                        <div key={i} className="flex items-center justify-between text-slate-400">
+                          <span className="data-text text-slate-200">{dom}</span>
+                          <span className="eyebrow-text text-slate-500">Correlated with URL Intelligence</span>
                         </div>
                       ))}
                     </div>
@@ -1339,12 +1340,12 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {selectedCandidate && (
           <div className="fixed inset-0 z-50 bg-[#080B11]/80 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="bg-[#0E131F] border border-[#1E2638] w-full max-w-4xl max-h-[92vh] overflow-y-auto p-6 rounded-2xl space-y-6 font-mono text-[#FFFFFF] font-bold relative shadow-xl">
+            <div className="bg-[#0E131F] border border-[#1E2638] w-full max-w-4xl max-h-[92vh] overflow-y-auto p-6 rounded-2xl space-y-6 text-white relative shadow-xl">
               {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setSelectedCandidate(null)}
-                className="absolute top-4 right-4 p-1.5 text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold bg-[#111625] border border-[#1E2638] rounded-lg transition"
+                className="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-white bg-[#111625] border border-[#1E2638] rounded-lg transition"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -1360,60 +1361,60 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     />
                   ) : (
                     <div className="h-14 w-14 rounded-xl bg-[#111625] border border-[#1E2638] flex items-center justify-center shrink-0">
-                      <Smartphone className="h-6 w-6 text-[#9CA3AF] font-bold" />
+                      <Smartphone className="h-6 w-6 text-slate-400" />
                     </div>
                   )}
 
                   <div className="space-y-1">
-                    <span className="text-[21px] font-bold uppercase tracking-wider text-[#F6821F] font-bold">
+                    <span className="eyebrow-text text-[#F6821F] block">
                       APPLICATION INVESTIGATION WORKSPACE
                     </span>
-                    <h3 className="text-[24px] font-bold text-[#FFFFFF] font-bold leading-tight">
+                    <h3 className="section-title text-white leading-tight">
                       {selectedCandidate.app_name}
                     </h3>
-                    <div className="flex flex-wrap items-center gap-x-3 text-[28px] font-bold font-bold text-[#9CA3AF] font-bold">
-                      <span>Publisher: <span className="text-[#FFFFFF] font-bold font-semibold">{selectedCandidate.developer}</span></span>
-                      <span>Pkg: <span className="text-[#9CA3AF] font-bold">{selectedCandidate.package_id}</span></span>
-                      <span>First Seen: <span className="text-[#FFFFFF] font-bold">{selectedCandidate.first_seen_at ? selectedCandidate.first_seen_at.slice(0, 10) : 'Today'}</span></span>
-                      <span>Last Seen: <span className="text-[#FFFFFF] font-bold">{selectedCandidate.last_seen_at ? selectedCandidate.last_seen_at.slice(0, 10) : 'Today'}</span></span>
+                    <div className="flex flex-wrap items-center gap-x-3 text-xs text-slate-400">
+                      <span>Publisher: <span className="text-slate-200 font-semibold">{selectedCandidate.developer}</span></span>
+                      <span>Pkg: <span className="data-text text-slate-300">{selectedCandidate.package_id}</span></span>
+                      <span>First Seen: <span className="data-text text-slate-300">{selectedCandidate.first_seen_at ? selectedCandidate.first_seen_at.slice(0, 10) : 'Today'}</span></span>
+                      <span>Last Seen: <span className="data-text text-slate-300">{selectedCandidate.last_seen_at ? selectedCandidate.last_seen_at.slice(0, 10) : 'Today'}</span></span>
                     </div>
                   </div>
                 </div>
 
                 <div className="text-right shrink-0">
-                  <span className="text-[21px] font-bold text-[#9CA3AF] font-bold uppercase block font-bold">THREAT VERDICT</span>
+                  <span className="eyebrow-text text-slate-400 block">THREAT VERDICT</span>
                   <div className="flex items-center gap-2 justify-end">
                     <span
-                      className={`text-[32px] font-semibold font-bold ${
+                      className={`stat-value text-2xl ${
                         selectedCandidate.risk_level === 'CRITICAL'
-                          ? 'text-[#FF5C6C] font-bold'
+                          ? 'text-[#FF5C6C]'
                           : selectedCandidate.risk_level === 'HIGH'
-                          ? 'text-[#FFAB40] font-bold'
+                          ? 'text-[#FFAB40]'
                           : selectedCandidate.risk_level === 'MEDIUM'
-                          ? 'text-[#FFAB40] font-bold'
-                          : 'text-[#F6821F] font-bold'
+                          ? 'text-[#FFAB40]'
+                          : 'text-[#F6821F]'
                       }`}
                     >
                       {selectedCandidate.risk_level}
                     </span>
-                    <span className="text-[19px] font-bold text-[#9CA3AF] font-bold">
+                    <span className="data-text text-sm text-slate-400">
                       ({selectedCandidate.risk_score} / 100)
                     </span>
                   </div>
-                  <span className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold">
-                    Confidence: <span className="text-[#FFFFFF] font-bold font-semibold">{selectedCandidate.confidence_score ? `${selectedCandidate.confidence_score}%` : selectedCandidate.confidence}</span>
+                  <span className="text-xs text-slate-400">
+                    Confidence: <span className="text-slate-200 font-semibold">{selectedCandidate.confidence_score ? `${selectedCandidate.confidence_score}%` : selectedCandidate.confidence}</span>
                   </span>
                 </div>
               </div>
 
               {/* Threat Lifecycle Selector & Quick Actions */}
-              <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[28px] font-bold font-bold">
+              <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                 <div className="flex items-center gap-2">
-                  <span className="text-[#9CA3AF] font-bold uppercase">LIFECYCLE STATUS:</span>
+                  <span className="eyebrow-text text-slate-400">LIFECYCLE STATUS:</span>
                   <select
                     value={selectedCandidate.lifecycle_status || 'DISCOVERED'}
                     onChange={(e) => handleUpdateStatus(selectedCandidate, e.target.value as ThreatLifecycleStatus)}
-                    className="bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold rounded-lg px-2.5 py-1 text-[28px] font-bold font-bold focus:outline-none focus:border-[#F6821F]/40"
+                    className="bg-[#0E131F] border border-[#1E2638] text-slate-200 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-[#F6821F]/60"
                   >
                     <option value="DISCOVERED">DISCOVERED</option>
                     <option value="UNDER REVIEW">UNDER REVIEW</option>
@@ -1428,16 +1429,16 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => handleToggleWatchlist(selectedCandidate)}
-                    className="px-3 py-1.5 bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold hover:bg-[#161D2F] rounded-lg flex items-center gap-1.5 transition"
+                    className="px-3 py-1.5 bg-[#0E131F] border border-[#1E2638] text-white hover:bg-[#161D2F] rounded-lg flex items-center gap-1.5 button-text transition"
                   >
                     {selectedCandidate.watchlisted || BrandStore.isInAppWatchlist(selectedCandidate.package_id || selectedCandidate.id) ? (
                       <>
-                        <BookmarkCheck className="h-3.5 w-3.5 text-[#F6821F] font-bold" />
+                        <BookmarkCheck className="h-3.5 w-3.5 text-[#F6821F]" />
                         <span>WATCHLISTED</span>
                       </>
                     ) : (
                       <>
-                        <Bookmark className="h-3.5 w-3.5 text-[#9CA3AF] font-bold" />
+                        <Bookmark className="h-3.5 w-3.5 text-slate-400" />
                         <span>ADD TO WATCHLIST</span>
                       </>
                     )}
@@ -1446,7 +1447,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => handleCopyEvidence(selectedCandidate)}
-                    className="px-3 py-1.5 bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold hover:bg-[#161D2F] rounded-lg flex items-center gap-1.5 transition"
+                    className="px-3 py-1.5 bg-[#0E131F] border border-[#1E2638] text-white hover:bg-[#161D2F] rounded-lg flex items-center gap-1.5 button-text transition"
                   >
                     <Copy className="h-3 w-3" />
                     <span>COPY EVIDENCE</span>
@@ -1455,7 +1456,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => handleExportReport(selectedCandidate)}
-                    className="px-3 py-1.5 bg-[#0F2620] border border-[#F6821F]/40 text-[#F6821F] font-bold hover:bg-[#F6821F] text-[#080B11] font-semibold hover:text-white rounded-lg flex items-center gap-1.5 font-bold transition"
+                    className="px-3 py-1.5 bg-[#0F2620] border border-[#F6821F]/40 text-[#F6821F] hover:bg-[#F6821F] hover:text-[#080B11] rounded-lg flex items-center gap-1.5 button-text font-semibold transition"
                   >
                     <Download className="h-3 w-3" />
                     <span>EXPORT INVESTIGATION</span>
@@ -1467,7 +1468,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       setEscalateCandidate(selectedCandidate);
                       setShowEscalateModal(true);
                     }}
-                    className="px-3 py-1.5 bg-[#2D1216] border border-[#FF5C6C]/40 text-[#FF5C6C] font-bold hover:bg-[#C93643] hover:text-white rounded-lg flex items-center gap-1.5 font-bold transition"
+                    className="px-3 py-1.5 bg-[#2D1216] border border-[#FF5C6C]/40 text-[#FF5C6C] hover:bg-[#C93643] hover:text-white rounded-lg flex items-center gap-1.5 button-text font-semibold transition"
                   >
                     <Send className="h-3 w-3" />
                     <span>ESCALATE THREAT</span>
@@ -1477,13 +1478,13 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
               {/* Escalation Record */}
               {selectedCandidate.escalation_record && (
-                <div className="bg-[#2D1216] border border-[#FF5C6C]/40 p-3.5 rounded-xl text-[17px] font-bold space-y-1">
-                  <div className="flex items-center gap-2 text-[#FF5C6C] font-bold">
+                <div className="bg-[#2D1216] border border-[#FF5C6C]/40 p-3.5 rounded-xl small-text space-y-1">
+                  <div className="flex items-center gap-2 text-[#FF5C6C] font-semibold">
                     <AlertOctagon className="h-4 w-4" />
                     <span>INTERNAL SECURITY ESCALATION ACTIVE</span>
                   </div>
-                  <div className="text-[#9CA3AF] font-bold">
-                    Reason: <span className="text-[#FFFFFF] font-bold font-semibold">{selectedCandidate.escalation_record.reason}</span> · Escalated at: <span className="text-[#FFFFFF] font-bold">{selectedCandidate.escalation_record.timestamp.slice(0, 16)}</span> · Evidence prepared for external reporting.
+                  <div className="text-slate-300 text-xs">
+                    Reason: <span className="text-white font-medium">{selectedCandidate.escalation_record.reason}</span> · Escalated at: <span className="data-text text-slate-300">{selectedCandidate.escalation_record.timestamp.slice(0, 16)}</span> · Evidence prepared for external reporting.
                   </div>
                 </div>
               )}
@@ -1491,133 +1492,133 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               {/* 6-VECTOR IDENTITY COMPARISON TABLE */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold tracking-wider">
+                  <span className="eyebrow-text text-[#F6821F] block">
                     IDENTITY COMPARISON MATRIX (OFFICIAL vs CANDIDATE)
                   </span>
-                  <span className="text-[21px] font-bold text-[#9CA3AF] font-bold">
+                  <span className="eyebrow-text text-slate-400">
                     ✓ MATCH · ⚠ SIMILAR · 🚨 MISMATCH
                   </span>
                 </div>
 
                 <div className="overflow-x-auto border border-[#1E2638] rounded-xl">
-                  <table className="w-full text-left text-[28px] font-bold font-bold border-collapse font-mono">
+                  <table className="w-full text-left text-xs border-collapse">
                     <thead>
-                      <tr className="bg-[#111625] text-[#9CA3AF] font-bold border-b border-[#1E2638]">
-                        <th className="p-3">EVALUATION VECTOR</th>
-                        <th className="p-3">OFFICIAL BASELINE</th>
-                        <th className="p-3">CANDIDATE LISTING</th>
-                        <th className="p-3 text-center">SIGNAL STATE</th>
+                      <tr className="bg-[#111625] text-slate-400 border-b border-[#1E2638]">
+                        <th className="table-header-text p-3">EVALUATION VECTOR</th>
+                        <th className="table-header-text p-3">OFFICIAL BASELINE</th>
+                        <th className="table-header-text p-3">CANDIDATE LISTING</th>
+                        <th className="table-header-text p-3 text-center">SIGNAL STATE</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-[#1E2638]">
                       {/* 1. App Name */}
                       <tr className="hover:bg-[#111625]">
-                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">App Name</td>
-                        <td className="p-3 text-[#FFFFFF] font-bold">
+                        <td className="p-3 text-slate-400 font-medium font-sans">App Name</td>
+                        <td className="p-3 text-white font-medium">
                           {selectedCandidate.identity_comparison?.app_name.official || currentBrand?.name || 'PayPal'}
                         </td>
-                        <td className="p-3 text-[#FFFFFF] font-bold">{selectedCandidate.app_name}</td>
-                        <td className="p-3 text-center font-bold">
+                        <td className="p-3 text-white font-medium">{selectedCandidate.app_name}</td>
+                        <td className="p-3 text-center">
                           {selectedCandidate.identity_comparison?.app_name.status === 'MATCH' ? (
-                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
+                            <span className="eyebrow-text text-[#F6821F]">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.app_name.status === 'SIMILAR' ? (
-                            <span className="text-[#FFAB40] font-bold">⚠ SIMILAR</span>
+                            <span className="eyebrow-text text-[#FFAB40]">⚠ SIMILAR</span>
                           ) : (
-                            <span className="text-[#FF5C6C] font-bold">🚨 MISMATCH</span>
+                            <span className="eyebrow-text text-[#FF5C6C]">🚨 MISMATCH</span>
                           )}
                         </td>
                       </tr>
 
                       {/* 2. Developer */}
                       <tr className="hover:bg-[#111625]">
-                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">Developer / Publisher</td>
-                        <td className="p-3 text-[#FFFFFF] font-bold">
+                        <td className="p-3 text-slate-400 font-medium font-sans">Developer / Publisher</td>
+                        <td className="p-3 text-white font-medium">
                           {selectedCandidate.identity_comparison?.developer.official || 'Verified Brand Entity'}
                         </td>
-                        <td className="p-3 text-[#FFFFFF] font-bold">{selectedCandidate.developer}</td>
-                        <td className="p-3 text-center font-bold">
+                        <td className="p-3 text-white font-medium">{selectedCandidate.developer}</td>
+                        <td className="p-3 text-center">
                           {selectedCandidate.identity_comparison?.developer.status === 'MATCH' ? (
-                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
+                            <span className="eyebrow-text text-[#F6821F]">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.developer.status === 'SIMILAR' ? (
-                            <span className="text-[#FFAB40] font-bold">⚠ SIMILAR</span>
+                            <span className="eyebrow-text text-[#FFAB40]">⚠ SIMILAR</span>
                           ) : (
-                            <span className="text-[#FF5C6C] font-bold">🚨 MISMATCH</span>
+                            <span className="eyebrow-text text-[#FF5C6C]">🚨 MISMATCH</span>
                           )}
                         </td>
                       </tr>
 
                       {/* 3. Logo / Icon */}
                       <tr className="hover:bg-[#111625]">
-                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">Brand Logo / Artwork</td>
-                        <td className="p-3 text-[#FFFFFF] font-bold">Verified Official Asset</td>
-                        <td className="p-3 text-[#9CA3AF] font-bold">
+                        <td className="p-3 text-slate-400 font-medium font-sans">Brand Logo / Artwork</td>
+                        <td className="p-3 text-white font-medium">Verified Official Asset</td>
+                        <td className="p-3 text-slate-400">
                           {selectedCandidate.logo_similarity_status || 'Perceptual inspection'}
                         </td>
-                        <td className="p-3 text-center font-bold">
+                        <td className="p-3 text-center">
                           {selectedCandidate.identity_comparison?.logo.status === 'MATCH' ? (
-                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
+                            <span className="eyebrow-text text-[#F6821F]">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.logo.status === 'SIMILAR' ? (
-                            <span className="text-[#FFAB40] font-bold">⚠ SIMILAR</span>
+                            <span className="eyebrow-text text-[#FFAB40]">⚠ SIMILAR</span>
                           ) : (
-                            <span className="text-[#FF5C6C] font-bold">🚨 MISMATCH</span>
+                            <span className="eyebrow-text text-[#FF5C6C]">🚨 MISMATCH</span>
                           )}
                         </td>
                       </tr>
 
                       {/* 4. Package ID */}
                       <tr className="hover:bg-[#111625]">
-                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">Package Identifier</td>
-                        <td className="p-3 text-[#FFFFFF] font-bold">
+                        <td className="p-3 text-slate-400 font-medium font-sans">Package Identifier</td>
+                        <td className="p-3 data-text text-slate-300">
                           {selectedCandidate.identity_comparison?.package_id.official || 'Authorized Namespace'}
                         </td>
-                        <td className="p-3 text-[#FFFFFF] font-bold">{selectedCandidate.package_id}</td>
-                        <td className="p-3 text-center font-bold">
+                        <td className="p-3 data-text text-slate-200">{selectedCandidate.package_id}</td>
+                        <td className="p-3 text-center">
                           {selectedCandidate.identity_comparison?.package_id.status === 'MATCH' ? (
-                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
+                            <span className="eyebrow-text text-[#F6821F]">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.package_id.status === 'SIMILAR' ? (
-                            <span className="text-[#FF5C6C] font-bold">⚠ SIMILAR (Combosquat)</span>
+                            <span className="eyebrow-text text-[#FFAB40]">⚠ SIMILAR (Combosquat)</span>
                           ) : (
-                            <span className="text-[#FF5C6C] font-bold">🚨 MISMATCH</span>
+                            <span className="eyebrow-text text-[#FF5C6C]">🚨 MISMATCH</span>
                           )}
                         </td>
                       </tr>
 
                       {/* 5. Description */}
                       <tr className="hover:bg-[#111625]">
-                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">Description Branding</td>
-                        <td className="p-3 text-[#FFFFFF] font-bold">Authorized Corporate Copy</td>
-                        <td className="p-3 text-[#9CA3AF] font-bold">
+                        <td className="p-3 text-slate-400 font-medium font-sans">Description Branding</td>
+                        <td className="p-3 text-white font-medium">Authorized Corporate Copy</td>
+                        <td className="p-3 text-slate-400">
                           {selectedCandidate.description
                             ? selectedCandidate.description.slice(0, 70) + '...'
                             : 'No description'}
                         </td>
-                        <td className="p-3 text-center font-bold">
+                        <td className="p-3 text-center">
                           {selectedCandidate.identity_comparison?.description.status === 'MATCH' ? (
-                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
+                            <span className="eyebrow-text text-[#F6821F]">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.description.status === 'SIMILAR' ? (
-                            <span className="text-[#FFAB40] font-bold">⚠ SIMILAR</span>
+                            <span className="eyebrow-text text-[#FFAB40]">⚠ SIMILAR</span>
                           ) : (
-                            <span className="text-[#9CA3AF] font-bold">STANDARD</span>
+                            <span className="eyebrow-text text-slate-500">STANDARD</span>
                           )}
                         </td>
                       </tr>
 
                       {/* 6. External Domain */}
                       <tr className="hover:bg-[#111625]">
-                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">Associated Web Domain</td>
-                        <td className="p-3 text-[#FFFFFF] font-bold">{currentBrand?.domain || 'paypal.com'}</td>
-                        <td className="p-3 text-[#FFFFFF] font-bold">
+                        <td className="p-3 text-slate-400 font-medium font-sans">Associated Web Domain</td>
+                        <td className="p-3 data-text text-slate-300">{currentBrand?.domain || 'paypal.com'}</td>
+                        <td className="p-3 data-text text-slate-200">
                           {selectedCandidate.extracted_domains && selectedCandidate.extracted_domains.length > 0
                             ? selectedCandidate.extracted_domains.join(', ')
                             : 'None declared in listing'}
                         </td>
-                        <td className="p-3 text-center font-bold">
+                        <td className="p-3 text-center">
                           {selectedCandidate.identity_comparison?.domain.status === 'MATCH' ? (
-                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
+                            <span className="eyebrow-text text-[#F6821F]">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.domain.status === 'MISMATCH' ? (
-                            <span className="text-[#FF5C6C] font-bold">🚨 MISMATCH</span>
+                            <span className="eyebrow-text text-[#FF5C6C]">🚨 MISMATCH</span>
                           ) : (
-                            <span className="text-[#9CA3AF] font-bold">? NONE</span>
+                            <span className="eyebrow-text text-slate-500">? NONE</span>
                           )}
                         </td>
                       </tr>
@@ -1628,13 +1629,13 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
               {/* "WHY DID SAFENET FLAG THIS APPLICATION" */}
               <div className="bg-[#111625] p-4 rounded-xl border border-[#1E2638] space-y-2">
-                <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold block tracking-wider">
+                <span className="eyebrow-text text-[#F6821F] block">
                   WHY SAFENET FLAGGED THIS APPLICATION
                 </span>
-                <div className="space-y-1.5 text-[17px] font-bold text-[#FFFFFF] font-bold">
+                <div className="space-y-1.5 text-xs text-slate-200">
                   {(selectedCandidate.why_flagged || selectedCandidate.evidence || []).map((reason, idx) => (
                     <div key={idx} className="flex items-start gap-2">
-                      <span className="text-[#F6821F] font-bold">{idx + 1}.</span>
+                      <span className="text-[#F6821F] font-mono">{idx + 1}.</span>
                       <p className="leading-relaxed">{reason}</p>
                     </div>
                   ))}
@@ -1643,55 +1644,55 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
               {/* DETERMINISTIC RISK CALCULATION METHODOLOGY */}
               <div className="space-y-2">
-                <span className="text-[28px] font-bold font-bold uppercase text-[#9CA3AF] font-bold block tracking-wider">
+                <span className="eyebrow-text text-slate-400 block">
                   DETERMINISTIC RISK CALCULATION METHODOLOGY (0 – 100)
                 </span>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[28px] font-bold font-bold">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                   <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
-                    <span className="text-[#9CA3AF] font-bold block">NAME SIMILARITY</span>
-                    <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
+                    <span className="eyebrow-text text-slate-400 block mb-1">NAME SIMILARITY</span>
+                    <span className="data-text text-sm font-semibold text-white">
                       {selectedCandidate.risk_breakdown?.name_similarity ?? 0} / 20
                     </span>
                   </div>
                   <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
-                    <span className="text-[#9CA3AF] font-bold block">LOGO SIMILARITY</span>
-                    <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
+                    <span className="eyebrow-text text-slate-400 block mb-1">LOGO SIMILARITY</span>
+                    <span className="data-text text-sm font-semibold text-white">
                       {selectedCandidate.risk_breakdown?.logo_similarity ?? 0} / 20
                     </span>
                   </div>
                   <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
-                    <span className="text-[#9CA3AF] font-bold block">DEV MISMATCH</span>
-                    <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
+                    <span className="eyebrow-text text-slate-400 block mb-1">DEV MISMATCH</span>
+                    <span className="data-text text-sm font-semibold text-white">
                       {selectedCandidate.risk_breakdown?.developer_mismatch ?? 0} / 15
                     </span>
                   </div>
                   <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
-                    <span className="text-[#9CA3AF] font-bold block">DESCRIPTION LURES</span>
-                    <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
+                    <span className="eyebrow-text text-slate-400 block mb-1">DESCRIPTION LURES</span>
+                    <span className="data-text text-sm font-semibold text-white">
                       {selectedCandidate.risk_breakdown?.description_similarity ?? 0} / 15
                     </span>
                   </div>
                   <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
-                    <span className="text-[#9CA3AF] font-bold block">PKG COMBOSQUAT</span>
-                    <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
+                    <span className="eyebrow-text text-slate-400 block mb-1">PKG COMBOSQUAT</span>
+                    <span className="data-text text-sm font-semibold text-white">
                       {selectedCandidate.risk_breakdown?.package_similarity ?? 0} / 10
                     </span>
                   </div>
                   <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
-                    <span className="text-[#9CA3AF] font-bold block">IDENTITY MISMATCH</span>
-                    <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
+                    <span className="eyebrow-text text-slate-400 block mb-1">IDENTITY MISMATCH</span>
+                    <span className="data-text text-sm font-semibold text-white">
                       {selectedCandidate.risk_breakdown?.identity_mismatch ?? 0} / 10
                     </span>
                   </div>
                   <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
-                    <span className="text-[#9CA3AF] font-bold block">SUSPICIOUS SIGNALS</span>
-                    <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
+                    <span className="eyebrow-text text-slate-400 block mb-1">SUSPICIOUS SIGNALS</span>
+                    <span className="data-text text-sm font-semibold text-white">
                       {selectedCandidate.risk_breakdown?.suspicious_signals ?? 0} / 10
                     </span>
                   </div>
                   <div className="bg-[#0F2620] p-2.5 rounded-lg border border-[#F6821F]/40">
-                    <span className="text-[#F6821F] font-bold block font-bold">TOTAL SCORE</span>
-                    <span className="text-[#F6821F] font-bold text-[24px] font-bold">
+                    <span className="eyebrow-text text-[#F6821F] block mb-1">TOTAL SCORE</span>
+                    <span className="data-text text-sm font-bold text-[#F6821F]">
                       {selectedCandidate.risk_score} / 100
                     </span>
                   </div>
@@ -1702,19 +1703,19 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               {selectedCandidate.threat_history && selectedCandidate.threat_history.length > 0 && (
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <History className="h-3.5 w-3.5 text-[#F6821F] font-bold" />
-                    <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold block tracking-wider">
+                    <History className="h-3.5 w-3.5 text-[#F6821F]" />
+                    <span className="eyebrow-text text-[#F6821F] block">
                       THREAT AUDIT TIMELINE
                     </span>
                   </div>
-                  <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638] space-y-2 text-[28px] font-bold font-bold">
+                  <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638] space-y-2 text-xs">
                     {selectedCandidate.threat_history.map((h, idx) => (
-                      <div key={idx} className="flex items-start justify-between gap-3 text-[#9CA3AF] font-bold border-b border-[#1E2638] pb-1.5 last:border-b-0 last:pb-0">
+                      <div key={idx} className="flex items-start justify-between gap-3 text-slate-400 border-b border-[#1E2638] pb-1.5 last:border-b-0 last:pb-0">
                         <div>
-                          <span className="text-[#FFFFFF] font-bold">{h.event}</span>
-                          {h.details && <span className="block text-[21px] font-bold text-[#9CA3AF] font-bold">{h.details}</span>}
+                          <span className="text-white font-medium">{h.event}</span>
+                          {h.details && <span className="block text-xs text-slate-400">{h.details}</span>}
                         </div>
-                        <span className="text-[21px] font-bold text-[#9CA3AF] font-bold shrink-0 font-mono">
+                        <span className="data-text text-slate-400 shrink-0">
                           {h.timestamp.slice(0, 10)}
                         </span>
                       </div>
@@ -1726,10 +1727,10 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               {/* Description Excerpt */}
               {selectedCandidate.description && (
                 <div className="space-y-1">
-                  <span className="text-[28px] font-bold font-bold uppercase text-[#9CA3AF] font-bold block">
+                  <span className="eyebrow-text text-slate-400 block">
                     PUBLIC STORE LISTING DESCRIPTION
                   </span>
-                  <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638] text-[17px] font-bold text-[#9CA3AF] font-bold max-h-32 overflow-y-auto whitespace-pre-wrap leading-relaxed">
+                  <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638] small-text text-slate-300 max-h-32 overflow-y-auto whitespace-pre-wrap leading-relaxed text-xs">
                     {selectedCandidate.description}
                   </div>
                 </div>
@@ -1741,7 +1742,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   href={selectedCandidate.app_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[17px] font-bold text-[#F6821F] font-bold hover:text-[#365F49] font-bold"
+                  className="inline-flex items-center gap-1.5 button-text text-[#F6821F] hover:text-[#ff9438]"
                 >
                   <span>VIEW PUBLIC STORE LISTING</span>
                   <ExternalLink className="h-3 w-3" />
@@ -1750,7 +1751,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 <button
                   type="button"
                   onClick={() => setSelectedCandidate(null)}
-                  className="px-5 py-2 bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg hover:bg-[#161D2F] transition cursor-pointer w-full sm:w-auto shadow-xs"
+                  className="px-5 py-2 bg-[#0E131F] border border-[#1E2638] text-white button-text font-semibold rounded-lg hover:bg-[#161D2F] transition cursor-pointer w-full sm:w-auto shadow-xs"
                 >
                   CLOSE INVESTIGATION
                 </button>
@@ -1764,26 +1765,26 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {showScheduleModal && (
           <div className="fixed inset-0 z-50 bg-[#080B11]/80 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="bg-[#0E131F] border border-[#1E2638] w-full max-w-md p-6 rounded-2xl space-y-4 font-mono text-[#FFFFFF] font-bold relative shadow-xl">
+            <div className="bg-[#0E131F] border border-[#1E2638] w-full max-w-md p-6 rounded-2xl space-y-4 text-white relative shadow-xl">
               <button
                 type="button"
                 onClick={() => setShowScheduleModal(false)}
-                className="absolute top-4 right-4 p-1.5 text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold bg-[#111625] border border-[#1E2638] rounded-lg transition"
+                className="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-white bg-[#111625] border border-[#1E2638] rounded-lg transition"
               >
                 <X className="h-4 w-4" />
               </button>
 
               <div className="space-y-1">
-                <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold tracking-wider">
+                <span className="eyebrow-text text-[#F6821F] block">
                   SCHEDULED APP PERIMETER MONITORING
                 </span>
-                <h3 className="text-[28px] font-bold font-bold text-[#FFFFFF] font-bold">Configure Scan Frequency</h3>
-                <p className="text-[17px] font-bold text-[#9CA3AF] font-bold">
+                <h3 className="card-title text-white">Configure Scan Frequency</h3>
+                <p className="small-text text-slate-400">
                   Configure automatic surveillance scans across Google Play for brand &quot;{currentBrand?.name}&quot;.
                 </p>
               </div>
 
-              <div className="space-y-2 pt-2 text-[17px] font-bold">
+              <div className="space-y-2 pt-2 text-xs">
                 {[
                   { key: 'daily', label: 'Daily (Every 24 hours)' },
                   { key: 'twelve_hours', label: 'High Frequency (Every 12 hours)' },
@@ -1794,8 +1795,8 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     key={opt.key}
                     className={`flex items-center justify-between p-3 rounded-lg border cursor-pointer transition ${
                       scheduleOption === opt.key
-                        ? 'bg-[#0F2620] border-[#F6821F]/40 text-[#FFFFFF] font-bold'
-                        : 'bg-[#111625] border-[#1E2638] text-[#9CA3AF] font-bold hover:border-[#F6821F]'
+                        ? 'bg-[#0F2620] border-[#F6821F]/40 text-white'
+                        : 'bg-[#111625] border-[#1E2638] text-slate-300 hover:border-[#F6821F]/40'
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -1805,7 +1806,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       value={opt.key}
                       checked={scheduleOption === opt.key}
                       onChange={() => setScheduleOption(opt.key as any)}
-                      className="accent-[#477A60]"
+                      className="accent-[#F6821F]"
                     />
                   </label>
                 ))}
@@ -1815,14 +1816,14 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 <button
                   type="button"
                   onClick={() => setShowScheduleModal(false)}
-                  className="px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg transition font-medium"
+                  className="px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-slate-400 hover:text-white button-text rounded-lg transition"
                 >
                   CANCEL
                 </button>
                 <button
                   type="button"
                   onClick={handleSaveSchedule}
-                  className="px-4 py-2 bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-white font-bold text-[17px] font-bold rounded-lg transition shadow-xs"
+                  className="px-4 py-2 bg-[#F6821F] hover:bg-[#ff9438] text-[#080B11] button-text font-semibold rounded-lg transition shadow-xs"
                 >
                   SAVE SCHEDULE
                 </button>
@@ -1836,36 +1837,36 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {showEscalateModal && escalateCandidate && (
           <div className="fixed inset-0 z-50 bg-[#080B11]/80 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="bg-[#0E131F] border border-[#1E2638] w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-2xl space-y-4 font-mono text-[#FFFFFF] font-bold relative shadow-xl">
+            <div className="bg-[#0E131F] border border-[#1E2638] w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-2xl space-y-4 text-white relative shadow-xl">
               <button
                 type="button"
                 onClick={() => setShowEscalateModal(false)}
-                className="absolute top-4 right-4 p-1.5 text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold bg-[#111625] border border-[#1E2638] rounded-lg transition"
+                className="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-white bg-[#111625] border border-[#1E2638] rounded-lg transition"
               >
                 <X className="h-4 w-4" />
               </button>
 
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-[#FF5C6C] font-bold">
+                <div className="flex items-center gap-2 text-[#FF5C6C]">
                   <AlertOctagon className="h-5 w-5" />
-                  <h3 className="text-[28px] font-bold font-bold uppercase">
+                  <h3 className="card-title text-[#FF5C6C] uppercase">
                     ESCALATE THREAT TO SECURITY QUEUE
                   </h3>
                 </div>
-                <p className="text-[17px] font-bold text-[#9CA3AF] font-bold">
+                <p className="small-text text-slate-400">
                   Record an internal security action for &quot;{escalateCandidate.app_name}&quot; and prepare evidence for legal takedown.
                 </p>
               </div>
 
-              <div className="space-y-3 pt-2 text-[17px] font-bold">
+              <div className="space-y-3 pt-2 text-xs">
                 <div>
-                  <label className="text-[28px] font-bold font-bold uppercase text-[#9CA3AF] font-bold block mb-1">
+                  <label className="eyebrow-text text-slate-400 block mb-1">
                     PRIMARY ESCALATION REASON:
                   </label>
                   <select
                     value={escalateReason}
                     onChange={(e) => setEscalateReason(e.target.value)}
-                    className="w-full bg-[#111625] border border-[#1E2638] text-[#FFFFFF] font-bold p-2.5 rounded-lg focus:outline-none focus:border-[#FF5C6C]/40"
+                    className="w-full bg-[#111625] border border-[#1E2638] text-slate-200 p-2.5 rounded-lg focus:outline-none focus:border-[#FF5C6C]/40 text-xs"
                   >
                     <option value="Potential brand impersonation">Potential brand impersonation</option>
                     <option value="Phishing domain detected">Phishing domain detected</option>
@@ -1876,7 +1877,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 </div>
 
                 <div>
-                  <label className="text-[28px] font-bold font-bold uppercase text-[#9CA3AF] font-bold block mb-1">
+                  <label className="eyebrow-text text-slate-400 block mb-1">
                     ANALYST NOTES / EVIDENCE CONTEXT:
                   </label>
                   <textarea
@@ -1884,15 +1885,15 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     onChange={(e) => setEscalateNotes(e.target.value)}
                     placeholder="Enter security reasoning or referral instructions..."
                     rows={3}
-                    className="w-full bg-[#111625] border border-[#1E2638] text-[#FFFFFF] font-bold p-2.5 rounded-lg focus:outline-none focus:border-[#FF5C6C]/40 text-[17px] font-bold"
+                    className="w-full bg-[#111625] border border-[#1E2638] text-slate-200 p-2.5 rounded-lg focus:outline-none focus:border-[#FF5C6C]/40 small-text"
                   />
                 </div>
 
                 {/* Pre-formatted Notice */}
-                <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638] text-[28px] font-bold font-bold space-y-1 text-[#9CA3AF] font-bold">
-                  <span className="text-[#F6821F] font-bold block">EVIDENCE SUMMARY PREPARED:</span>
-                  <div>• Target: {escalateCandidate.app_name} ({escalateCandidate.package_id})</div>
-                  <div>• Risk Score: {escalateCandidate.risk_score}/100 ({escalateCandidate.risk_level})</div>
+                <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638] space-y-1 text-xs text-slate-400">
+                  <span className="eyebrow-text text-[#F6821F] block">EVIDENCE SUMMARY PREPARED:</span>
+                  <div>• Target: <span className="text-slate-200">{escalateCandidate.app_name}</span> (<span className="data-text">{escalateCandidate.package_id}</span>)</div>
+                  <div>• Risk Score: <span className="data-text">{escalateCandidate.risk_score}/100</span> ({escalateCandidate.risk_level})</div>
                   <div>• Signals: {escalateCandidate.evidence?.length || 0} indicators documented</div>
                   <div>• Status: Evidence prepared for external reporting.</div>
                 </div>
@@ -1907,9 +1908,9 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     navigator.clipboard.writeText(noticeText);
                     triggerToast('Takedown notice copied to clipboard.');
                   }}
-                  className="px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg flex items-center gap-2 hover:bg-[#161D2F] transition cursor-pointer w-full sm:w-auto shadow-xs"
+                  className="px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-white button-text rounded-lg flex items-center gap-2 hover:bg-[#161D2F] transition cursor-pointer w-full sm:w-auto shadow-xs"
                 >
-                  <Copy className="h-3.5 w-3.5 text-[#F6821F] font-bold" />
+                  <Copy className="h-3.5 w-3.5 text-[#F6821F]" />
                   <span>COPY NOTICE</span>
                 </button>
 
@@ -1918,7 +1919,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     href="https://support.google.com/googleplay/android-developer/contact/takedown"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg flex items-center gap-1.5 transition font-medium"
+                    className="px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-slate-400 hover:text-white button-text rounded-lg flex items-center gap-1.5 transition"
                   >
                     <span>GOOGLE PLAY FORM</span>
                     <ExternalLink className="h-3 w-3" />
@@ -1927,7 +1928,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={handleConfirmEscalation}
-                    className="px-4 py-2 bg-[#C93643] hover:bg-[#A82834] text-white text-[17px] font-bold rounded-lg transition shadow-xs"
+                    className="px-4 py-2 bg-[#C93643] hover:bg-[#A82834] text-white button-text font-semibold rounded-lg transition shadow-xs"
                   >
                     CONFIRM ESCALATION
                   </button>
