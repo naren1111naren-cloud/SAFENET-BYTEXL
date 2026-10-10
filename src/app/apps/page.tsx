@@ -513,8 +513,8 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
       <div className="space-y-6 pb-20">
         {/* Toast Feedback */}
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 bg-[#121821] text-white px-4 py-2.5 rounded-lg font-mono text-[17px] font-bold flex items-center gap-2 shadow-xl animate-in slide-in-from-bottom-3 border border-[#35D0BA]/40">
-            <Check className="h-4 w-4 text-[#35D0BA] font-bold" />
+          <div className="fixed bottom-6 right-6 z-50 bg-[#111625] text-white px-4 py-2.5 rounded-lg font-mono text-[17px] font-bold flex items-center gap-2 shadow-xl animate-in slide-in-from-bottom-3 border border-[#F6821F]/40">
+            <Check className="h-4 w-4 text-[#F6821F] font-bold" />
             <span>{toastMessage}</span>
           </div>
         )}
@@ -522,28 +522,28 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {/* TOP: PROTECTION OVERVIEW METRICS DASHBOARD */}
         {/* ═════════════════════════════════════════════════════════════════════ */}
-        <div className="bg-[#0D1118] border border-[#303946] p-5 rounded-xl shadow-xs">
-          <div className="flex items-center justify-between pb-3 border-b border-[#303946]">
+        <div className="bg-[#0E131F] border border-[#1E2638] p-5 rounded-xl shadow-xs">
+          <div className="flex items-center justify-between pb-3 border-b border-[#1E2638]">
             <div className="flex items-center gap-2">
-              <BarChart2 className="h-4 w-4 text-[#35D0BA] font-bold" />
-              <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#35D0BA] font-bold">
+              <BarChart2 className="h-4 w-4 text-[#F6821F] font-bold" />
+              <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#F6821F] font-bold">
                 PROTECTION OVERVIEW
               </span>
             </div>
-            <div className="flex items-center gap-3 text-[28px] font-bold font-bold font-mono text-[#D0D7E0] font-bold">
+            <div className="flex items-center gap-3 text-[28px] font-bold font-bold font-mono text-[#9CA3AF] font-bold">
               <span className="flex items-center gap-1.5">
-                <Clock className="h-3.5 w-3.5 text-[#D0D7E0] font-bold" />
+                <Clock className="h-3.5 w-3.5 text-[#9CA3AF] font-bold" />
                 Last Scan: <span className="text-[#FFFFFF] font-bold font-medium">{monitoringConfig.last_scan ? new Date(monitoringConfig.last_scan).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today, 14:42'}</span>
               </span>
             </div>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-4 font-mono text-[28px] font-bold font-bold">
-            <div className="bg-[#121821] p-3 rounded-lg border border-[#303946]">
-              <span className="text-[#D0D7E0] font-bold block text-[21px] font-bold uppercase font-semibold">Applications Monitored</span>
+            <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638]">
+              <span className="text-[#9CA3AF] font-bold block text-[21px] font-bold uppercase font-semibold">Applications Monitored</span>
               <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">{totalMonitoredCount}</span>
             </div>
-            <div className="bg-[#121821] p-3 rounded-lg border border-[#303946]">
+            <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638]">
               <span className="text-[#FFAB40] font-bold block text-[21px] font-bold uppercase font-semibold">New Threats</span>
               <span className="text-[#FFAB40] font-bold text-[24px] font-bold">{newThreatsCount}</span>
             </div>
@@ -551,17 +551,17 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               <span className="text-[#FF5C6C] font-bold block text-[21px] font-bold uppercase font-bold">High / Critical</span>
               <span className="text-[#FF5C6C] font-bold text-[24px] font-bold">{highCriticalTotal}</span>
             </div>
-            <div className="bg-[#121821] p-3 rounded-lg border border-[#303946]">
+            <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638]">
               <span className="text-[#FFAB40] font-bold block text-[21px] font-bold uppercase font-semibold">Under Review</span>
               <span className="text-[#FFAB40] font-bold text-[24px] font-bold">{underReviewCount}</span>
             </div>
-            <div className="bg-[#121821] p-3 rounded-lg border border-[#303946]">
+            <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638]">
               <span className="text-[#FFAB40] font-bold block text-[21px] font-bold uppercase font-semibold">Confirmed Suspicious</span>
               <span className="text-[#FFAB40] font-bold text-[24px] font-bold">{confirmedSuspiciousCount}</span>
             </div>
-            <div className="bg-[#121821] p-3 rounded-lg border border-[#303946]">
-              <span className="text-[#35D0BA] font-bold block text-[21px] font-bold uppercase font-semibold">Resolved</span>
-              <span className="text-[#35D0BA] font-bold text-[24px] font-bold">{resolvedCount}</span>
+            <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638]">
+              <span className="text-[#F6821F] font-bold block text-[21px] font-bold uppercase font-semibold">Resolved</span>
+              <span className="text-[#F6821F] font-bold text-[24px] font-bold">{resolvedCount}</span>
             </div>
           </div>
         </div>
@@ -571,15 +571,15 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Protected Brand Baseline */}
-          <div className="lg:col-span-2 bg-[#0D1118] border border-[#303946] p-5 rounded-xl shadow-xs relative flex flex-col justify-between">
+          <div className="lg:col-span-2 bg-[#0E131F] border border-[#1E2638] p-5 rounded-xl shadow-xs relative flex flex-col justify-between">
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-[#35D0BA] font-bold" />
-                  <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#35D0BA] font-bold">
+                  <Shield className="h-4 w-4 text-[#F6821F] font-bold" />
+                  <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#F6821F] font-bold">
                     PROTECTED BRAND TARGET
                   </span>
-                  <span className="text-[21px] font-bold font-mono bg-[#0F2620] text-[#35D0BA] font-bold px-2 py-0.5 rounded-full border border-[#35D0BA]/40 font-semibold">
+                  <span className="text-[21px] font-bold font-mono bg-[#0F2620] text-[#F6821F] font-bold px-2 py-0.5 rounded-full border border-[#F6821F]/40 font-semibold">
                     VERIFIED BASELINE
                   </span>
                 </div>
@@ -588,15 +588,15 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => setShowBrandSelector(!showBrandSelector)}
-                    className="px-3 py-1.5 bg-[#121821] border border-[#303946] text-[#FFFFFF] font-bold text-[17px] font-bold font-mono rounded-lg hover:bg-[#19222D] transition flex items-center gap-1.5"
+                    className="px-3 py-1.5 bg-[#111625] border border-[#1E2638] text-[#FFFFFF] font-bold text-[17px] font-bold font-mono rounded-lg hover:bg-[#161D2F] transition flex items-center gap-1.5"
                   >
                     <span>Change ({currentBrand?.name})</span>
-                    <ChevronDown className="h-3.5 w-3.5 text-[#D0D7E0] font-bold" />
+                    <ChevronDown className="h-3.5 w-3.5 text-[#9CA3AF] font-bold" />
                   </button>
 
                   {showBrandSelector && (
-                    <div className="absolute right-0 top-9 z-40 w-56 bg-[#0D1118] border border-[#303946] shadow-xl rounded-xl p-1.5 font-mono text-[17px] font-bold">
-                      <div className="px-3 py-1.5 text-[21px] font-bold uppercase text-[#D0D7E0] font-bold border-b border-[#303946] font-semibold">
+                    <div className="absolute right-0 top-9 z-40 w-56 bg-[#0E131F] border border-[#1E2638] shadow-xl rounded-xl p-1.5 font-mono text-[17px] font-bold">
+                      <div className="px-3 py-1.5 text-[21px] font-bold uppercase text-[#9CA3AF] font-bold border-b border-[#1E2638] font-semibold">
                         SELECT AUTHORITATIVE BRAND
                       </div>
                       {Object.keys(PRESET_BRANDS).map((bKey) => (
@@ -604,11 +604,11 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                           key={bKey}
                           type="button"
                           onClick={() => handleSelectBrand(bKey)}
-                          className="w-full text-left px-3 py-2 text-[#FFFFFF] font-bold hover:bg-[#121821] rounded-lg flex items-center justify-between"
+                          className="w-full text-left px-3 py-2 text-[#FFFFFF] font-bold hover:bg-[#111625] rounded-lg flex items-center justify-between"
                         >
                           <span>{bKey}</span>
                           {currentBrand?.name === bKey && (
-                            <Check className="h-3.5 w-3.5 text-[#35D0BA] font-bold" />
+                            <Check className="h-3.5 w-3.5 text-[#F6821F] font-bold" />
                           )}
                         </button>
                       ))}
@@ -621,11 +621,11 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 <h2 className="text-[28px] font-bold text-[#FFFFFF] font-bold">
                   {currentBrand?.name || 'PayPal'}
                 </h2>
-                <span className="text-[17px] font-bold font-mono text-[#D0D7E0] font-bold">
+                <span className="text-[17px] font-bold font-mono text-[#9CA3AF] font-bold">
                   Official Domain: <span className="text-[#FFFFFF] font-bold font-semibold">{currentBrand?.domain || 'paypal.com'}</span>
                 </span>
                 {currentBrand?.officialDevelopers && currentBrand.officialDevelopers.length > 0 ? (
-                  <span className="text-[17px] font-bold font-mono text-[#D0D7E0] font-bold">
+                  <span className="text-[17px] font-bold font-mono text-[#9CA3AF] font-bold">
                     · Publisher: <span className="text-[#FFFFFF] font-bold font-semibold">{currentBrand.officialDevelopers[0]}</span>
                   </span>
                 ) : (
@@ -634,32 +634,32 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   </span>
                 )}
                 {currentBrand?.appPackageName && (
-                  <span className="hidden sm:inline text-[17px] font-bold font-mono text-[#D0D7E0] font-bold">
+                  <span className="hidden sm:inline text-[17px] font-bold font-mono text-[#9CA3AF] font-bold">
                     · Pkg: {currentBrand.appPackageName}
                   </span>
                 )}
               </div>
 
-              <p className="text-[24px] font-bold text-[#D0D7E0] font-bold pt-1 leading-relaxed">
+              <p className="text-[24px] font-bold text-[#9CA3AF] font-bold pt-1 leading-relaxed">
                 SAFENET protects this organization from brand impersonation, deceptive app look-alikes, publisher spoofing, and malicious credential phishing across Android application perimeters.
               </p>
             </div>
           </div>
 
           {/* Monitoring Status & Controls Box */}
-          <div className="bg-[#0D1118] border border-[#303946] p-5 rounded-xl shadow-xs flex flex-col justify-between space-y-4">
+          <div className="bg-[#0E131F] border border-[#1E2638] p-5 rounded-xl shadow-xs flex flex-col justify-between space-y-4">
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#D0D7E0] font-bold">
+                <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#9CA3AF] font-bold">
                   APP MONITORING
                 </span>
-                <span className="inline-flex items-center gap-1.5 text-[21px] font-bold font-mono text-[#35D0BA] font-bold bg-[#347653]/10 px-2.5 py-0.5 rounded-full border border-[#35D0BA]/40 font-semibold">
+                <span className="inline-flex items-center gap-1.5 text-[21px] font-bold font-mono text-[#F6821F] font-bold bg-[#347653]/10 px-2.5 py-0.5 rounded-full border border-[#F6821F]/40 font-semibold">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#347653] animate-pulse" />
                   ACTIVE
                 </span>
               </div>
 
-              <div className="font-mono text-[17px] font-bold space-y-1 text-[#D0D7E0] font-bold">
+              <div className="font-mono text-[17px] font-bold space-y-1 text-[#9CA3AF] font-bold">
                 <div>Platform: <span className="text-[#FFFFFF] font-bold font-semibold">Google Play Store</span></div>
                 <div>Schedule: <span className="text-[#FFFFFF] font-bold uppercase font-semibold">{monitoringConfig.schedule.replace('_', ' ')}</span></div>
                 <div>Last scan: <span className="text-[#FFFFFF] font-bold">{monitoringConfig.last_scan ? new Date(monitoringConfig.last_scan).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today, 14:42'}</span></div>
@@ -672,7 +672,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 type="button"
                 onClick={() => handleSearch(undefined, true)}
                 disabled={isSearching}
-                className="flex-1 px-4 py-2 bg-[#35D0BA] text-[#080B10] font-extrabold hover:bg-[#2EB8A5] text-white font-mono text-[17px] font-bold rounded-lg transition flex items-center justify-center gap-2 shadow-xs disabled:opacity-50"
+                className="flex-1 px-4 py-2 bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white font-mono text-[17px] font-bold rounded-lg transition flex items-center justify-center gap-2 shadow-xs disabled:opacity-50"
               >
                 {isSearching ? (
                   <>
@@ -690,7 +690,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               <button
                 type="button"
                 onClick={() => setShowScheduleModal(true)}
-                className="px-3.5 py-2 bg-[#0D1118] border border-[#303946] hover:bg-[#19222D] text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold font-mono text-[17px] font-bold rounded-lg transition flex items-center gap-1.5"
+                className="px-3.5 py-2 bg-[#0E131F] border border-[#1E2638] hover:bg-[#161D2F] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold font-mono text-[17px] font-bold rounded-lg transition flex items-center gap-1.5"
                 title="Configure monitoring frequency"
               >
                 <Calendar className="h-3.5 w-3.5" />
@@ -704,14 +704,14 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* SCAN RESULTS SUMMARY BANNER */}
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {scanSummary && (
-          <div className="bg-[#0F2620] border border-[#35D0BA]/40 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 font-mono text-[17px] font-bold shadow-xs animate-in fade-in duration-300">
+          <div className="bg-[#0F2620] border border-[#F6821F]/40 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 font-mono text-[17px] font-bold shadow-xs animate-in fade-in duration-300">
             <div className="flex items-center gap-3">
-              <CheckCircle2 className="h-5 w-5 text-[#35D0BA] font-bold shrink-0" />
+              <CheckCircle2 className="h-5 w-5 text-[#F6821F] font-bold shrink-0" />
               <div>
-                <span className="text-[28px] font-bold font-bold uppercase text-[#35D0BA] font-bold block tracking-wider">
+                <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold block tracking-wider">
                   SCAN COMPLETE · PERIMETER DISCOVERY UPDATED
                 </span>
-                <span className="text-[#D0D7E0] font-bold">
+                <span className="text-[#9CA3AF] font-bold">
                   Discovered {scanSummary.applications_discovered} listings ({scanSummary.new_candidates} new candidates, {scanSummary.existing_candidates} refreshed) · {scanSummary.high_critical_count} high-risk · {scanSummary.new_domains_count} external domains correlated.
                 </span>
               </div>
@@ -723,7 +723,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 const el = document.getElementById('threat-inbox-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-3.5 py-1.5 bg-[#0D1118] text-[#35D0BA] font-bold border border-[#35D0BA]/40 rounded-lg hover:bg-[#121821] transition text-[28px] font-bold font-bold flex items-center gap-1.5 shrink-0"
+              className="px-3.5 py-1.5 bg-[#0E131F] text-[#F6821F] font-bold border border-[#F6821F]/40 rounded-lg hover:bg-[#111625] transition text-[28px] font-bold font-bold flex items-center gap-1.5 shrink-0"
             >
               <span>VIEW THREAT INBOX</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -732,18 +732,18 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         )}
 
         {/* Navigation Tabs (Search vs APK) */}
-        <div className="flex items-center gap-6 border-b border-[#303946] pb-1">
+        <div className="flex items-center gap-6 border-b border-[#1E2638] pb-1">
           <button
             type="button"
             onClick={() => setActiveTab('search')}
             className={`flex items-center gap-2 pb-3 text-[24px] font-bold font-mono font-bold transition relative ${
-              activeTab === 'search' ? 'text-[#FFFFFF] font-bold' : 'text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold'
+              activeTab === 'search' ? 'text-[#FFFFFF] font-bold' : 'text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold'
             }`}
           >
             <Search className="h-4 w-4" />
             <span>1. APP THREAT DISCOVERY & INBOX</span>
             {activeTab === 'search' && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#35D0BA] text-[#080B10] font-extrabold rounded-t-sm" />
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F6821F] text-[#080B11] font-extrabold rounded-t-sm" />
             )}
           </button>
 
@@ -751,13 +751,13 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
             type="button"
             onClick={() => setActiveTab('apk')}
             className={`flex items-center gap-2 pb-3 text-[24px] font-bold font-mono font-bold transition relative ${
-              activeTab === 'apk' ? 'text-[#FFFFFF] font-bold' : 'text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold'
+              activeTab === 'apk' ? 'text-[#FFFFFF] font-bold' : 'text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold'
             }`}
           >
             <Smartphone className="h-4 w-4" />
             <span>2. STATIC APK ARTIFACT INSPECTION</span>
             {activeTab === 'apk' && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#35D0BA] text-[#080B10] font-extrabold rounded-t-sm" />
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F6821F] text-[#080B11] font-extrabold rounded-t-sm" />
             )}
           </button>
         </div>
@@ -768,12 +768,12 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {activeTab === 'search' && (
           <div className="space-y-6">
             {/* Search Input Bar */}
-            <div className="bg-[#0D1118] border border-[#303946] p-6 rounded-xl space-y-4 shadow-xs">
+            <div className="bg-[#0E131F] border border-[#1E2638] p-6 rounded-xl space-y-4 shadow-xs">
               <div className="space-y-1">
-                <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#35D0BA] font-bold">
+                <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#F6821F] font-bold">
                   PERIMETER DISCOVERY QUERY
                 </span>
-                <p className="text-[24px] font-bold text-[#D0D7E0] font-bold">
+                <p className="text-[24px] font-bold text-[#9CA3AF] font-bold">
                   Query public Google Play store listings via SerpApi to discover potential brand impersonators, unauthorized publishers, and deceptive look-alikes.
                 </p>
               </div>
@@ -786,13 +786,13 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 className="flex flex-col sm:flex-row gap-3 pt-2"
               >
                 <div className="relative flex-1">
-                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#D0D7E0] font-bold" />
+                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9CA3AF] font-bold" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Enter brand name, company, or application keyword (e.g. PayPal, Microsoft, Paytm)..."
-                    className="w-full bg-[#121821] border border-[#303946] rounded-xl pl-10 pr-4 py-2.5 text-[24px] font-bold text-[#FFFFFF] font-bold font-mono placeholder:text-[#D0D7E0] font-bold focus:outline-none focus:border-[#35D0BA]/40 transition"
+                    className="w-full bg-[#111625] border border-[#1E2638] rounded-xl pl-10 pr-4 py-2.5 text-[24px] font-bold text-[#FFFFFF] font-bold font-mono placeholder:text-[#9CA3AF] font-bold focus:outline-none focus:border-[#F6821F]/40 transition"
                   />
                 </div>
 
@@ -800,7 +800,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <select
                     value={searchCountry}
                     onChange={(e) => setSearchCountry(e.target.value)}
-                    className="bg-[#0D1118] border border-[#303946] text-[#D0D7E0] font-bold text-[17px] font-bold font-mono rounded-xl px-3 py-2.5 focus:outline-none focus:border-[#35D0BA]/40"
+                    className="bg-[#0E131F] border border-[#1E2638] text-[#9CA3AF] font-bold text-[17px] font-bold font-mono rounded-xl px-3 py-2.5 focus:outline-none focus:border-[#F6821F]/40"
                   >
                     <option value="in">Region: India (gl=in)</option>
                     <option value="us">Region: United States (gl=us)</option>
@@ -811,7 +811,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="submit"
                     disabled={isSearching}
-                    className="px-5 py-2.5 bg-[#35D0BA] text-[#080B10] font-extrabold hover:bg-[#2EB8A5] text-white font-mono text-[24px] font-bold font-bold rounded-xl transition flex items-center gap-2 shadow-xs disabled:opacity-50 shrink-0"
+                    className="px-5 py-2.5 bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white font-mono text-[24px] font-bold font-bold rounded-xl transition flex items-center gap-2 shadow-xs disabled:opacity-50 shrink-0"
                   >
                     {isSearching ? (
                       <>
@@ -829,7 +829,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               </form>
 
               {/* Fast Triage Quick-Picks */}
-              <div className="flex flex-wrap items-center gap-2 pt-1 text-[28px] font-bold font-bold font-mono text-[#D0D7E0] font-bold">
+              <div className="flex flex-wrap items-center gap-2 pt-1 text-[28px] font-bold font-bold font-mono text-[#9CA3AF] font-bold">
                 <span className="font-semibold">FAST TRIAGE EXAMPLES:</span>
                 {['PayPal', 'Microsoft', 'WhatsApp', 'Paytm', 'Nike'].map((ex) => (
                   <button
@@ -839,7 +839,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       setSearchQuery(ex);
                       handleSearch(ex);
                     }}
-                    className="hover:text-[#35D0BA] font-bold transition underline underline-offset-2"
+                    className="hover:text-[#F6821F] font-bold transition underline underline-offset-2"
                   >
                     {ex}
                   </button>
@@ -861,16 +861,16 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
             {/* ═════════════════════════════════════════════════════════════ */}
             {/* THREAT INBOX */}
             {/* ═════════════════════════════════════════════════════════════ */}
-            <div id="threat-inbox-section" className="bg-[#0D1118] border border-[#303946] p-5 rounded-xl space-y-4 shadow-xs">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#303946] pb-3">
+            <div id="threat-inbox-section" className="bg-[#0E131F] border border-[#1E2638] p-5 rounded-xl space-y-4 shadow-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1E2638] pb-3">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <ListFilter className="h-4 w-4 text-[#35D0BA] font-bold" />
+                    <ListFilter className="h-4 w-4 text-[#F6821F] font-bold" />
                     <h3 className="text-[28px] font-bold font-bold text-[#FFFFFF] font-bold font-mono uppercase tracking-wider">
                       THREAT INBOX
                     </h3>
                   </div>
-                  <p className="text-[17px] font-bold text-[#D0D7E0] font-bold font-mono">
+                  <p className="text-[17px] font-bold text-[#9CA3AF] font-bold font-mono">
                     Prioritized queue of discovered applications targeting the protected brand perimeter.
                   </p>
                 </div>
@@ -886,7 +886,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <span className="px-2.5 py-1 bg-[#2C1C0D] border border-[#FFAB40]/40 text-[#FFAB40] font-bold rounded-md font-bold">
                     MEDIUM: {allCandidates.filter((c) => c.risk_level === 'MEDIUM').length}
                   </span>
-                  <span className="px-2.5 py-1 bg-[#19222D] border border-[#303946] text-[#D0D7E0] font-bold rounded-md font-semibold">
+                  <span className="px-2.5 py-1 bg-[#161D2F] border border-[#1E2638] text-[#9CA3AF] font-bold rounded-md font-semibold">
                     REVIEW: {underReviewCount}
                   </span>
                 </div>
@@ -895,7 +895,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               {/* Filters & Sorting Controls */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
                 <div className="flex flex-wrap items-center gap-1.5 font-mono text-[28px] font-bold font-bold">
-                  <span className="text-[#D0D7E0] font-bold mr-1 flex items-center gap-1 font-semibold">
+                  <span className="text-[#9CA3AF] font-bold mr-1 flex items-center gap-1 font-semibold">
                     <Filter className="h-3 w-3" /> FILTER:
                   </span>
                   {(
@@ -918,8 +918,8 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       onClick={() => setThreatStatusFilter(f.key)}
                       className={`px-2.5 py-1 rounded-md transition font-semibold ${
                         threatStatusFilter === f.key
-                          ? 'bg-[#121821] text-white'
-                          : 'bg-[#0D1118] text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold border border-[#303946]'
+                          ? 'bg-[#111625] text-white'
+                          : 'bg-[#0E131F] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold border border-[#1E2638]'
                       }`}
                     >
                       {f.label}
@@ -928,12 +928,12 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 </div>
 
                 <div className="flex items-center gap-2 font-mono text-[28px] font-bold font-bold">
-                  <SlidersHorizontal className="h-3.5 w-3.5 text-[#D0D7E0] font-bold" />
-                  <span className="text-[#D0D7E0] font-bold font-semibold">SORT:</span>
+                  <SlidersHorizontal className="h-3.5 w-3.5 text-[#9CA3AF] font-bold" />
+                  <span className="text-[#9CA3AF] font-bold font-semibold">SORT:</span>
                   <select
                     value={threatSort}
                     onChange={(e) => setThreatSort(e.target.value as ThreatSortOption)}
-                    className="bg-[#0D1118] border border-[#303946] text-[#FFFFFF] font-bold rounded-lg px-2.5 py-1 text-[28px] font-bold font-bold focus:outline-none focus:border-[#35D0BA]/40"
+                    className="bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold rounded-lg px-2.5 py-1 text-[28px] font-bold font-bold focus:outline-none focus:border-[#F6821F]/40"
                   >
                     <option value="severity">Severity (Highest Risk First)</option>
                     <option value="confidence">Confidence (Highest First)</option>
@@ -958,16 +958,16 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     <div
                       key={cand.id}
                       onClick={() => setSelectedCandidate(cand)}
-                      className={`bg-[#0D1118] border transition-all p-4 rounded-xl font-mono text-[17px] font-bold flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer relative shadow-xs hover:shadow-sm ${
+                      className={`bg-[#0E131F] border transition-all p-4 rounded-xl font-mono text-[17px] font-bold flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer relative shadow-xs hover:shadow-sm ${
                         cand.is_verified_official
-                          ? 'border-[#35D0BA]/40 hover:border-[#35D0BA]/40'
+                          ? 'border-[#F6821F]/40 hover:border-[#F6821F]/40'
                           : cand.risk_level === 'CRITICAL'
                           ? 'border-[#FF5C6C]/40 hover:border-[#FF5C6C]/40 bg-[#C93643]/[0.02]'
                           : cand.risk_level === 'HIGH'
                           ? 'border-[#FFAB40]/40 hover:border-[#FFAB40]/40'
                           : cand.risk_level === 'MEDIUM'
                           ? 'border-[#FFAB40]/40 hover:border-[#FFAB40]/40'
-                          : 'border-[#303946] hover:border-[#35D0BA]'
+                          : 'border-[#1E2638] hover:border-[#F6821F]'
                       }`}
                     >
                       {/* Left: App Identity */}
@@ -976,11 +976,11 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                           <img
                             src={cand.icon}
                             alt={cand.app_name}
-                            className="h-12 w-12 rounded-lg object-cover bg-[#121821] border border-[#303946] shrink-0"
+                            className="h-12 w-12 rounded-lg object-cover bg-[#111625] border border-[#1E2638] shrink-0"
                           />
                         ) : (
-                          <div className="h-12 w-12 rounded-lg bg-[#121821] border border-[#303946] flex items-center justify-center shrink-0">
-                            <Smartphone className="h-5 w-5 text-[#D0D7E0] font-bold" />
+                          <div className="h-12 w-12 rounded-lg bg-[#111625] border border-[#1E2638] flex items-center justify-center shrink-0">
+                            <Smartphone className="h-5 w-5 text-[#9CA3AF] font-bold" />
                           </div>
                         )}
 
@@ -991,7 +991,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                             </h4>
 
                             {cand.is_verified_official ? (
-                              <span className="text-[21px] font-bold bg-[#347653]/10 text-[#35D0BA] font-bold border border-[#35D0BA]/40 px-2 py-0.5 rounded font-bold">
+                              <span className="text-[21px] font-bold bg-[#347653]/10 text-[#F6821F] font-bold border border-[#F6821F]/40 px-2 py-0.5 rounded font-bold">
                                 ✓ VERIFIED OFFICIAL APP
                               </span>
                             ) : cand.risk_level === 'CRITICAL' || cand.risk_level === 'HIGH' ? (
@@ -999,7 +999,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                                 ⚠ POTENTIAL IMPERSONATION
                               </span>
                             ) : (
-                              <span className="text-[21px] font-bold bg-[#19222D] text-[#D0D7E0] font-bold px-2 py-0.5 rounded font-medium">
+                              <span className="text-[21px] font-bold bg-[#161D2F] text-[#9CA3AF] font-bold px-2 py-0.5 rounded font-medium">
                                 THIRD-PARTY LISTING
                               </span>
                             )}
@@ -1014,21 +1014,21 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                                   : cand.lifecycle_status === 'UNDER REVIEW'
                                   ? 'bg-[#B7791F]/15 text-[#FFAB40] font-bold border-[#FFAB40]/40'
                                   : cand.lifecycle_status === 'RESOLVED'
-                                  ? 'bg-[#347653]/10 text-[#35D0BA] font-bold border-[#35D0BA]/40'
-                                  : 'bg-[#19222D] text-[#D0D7E0] font-bold border-[#303946]'
+                                  ? 'bg-[#347653]/10 text-[#F6821F] font-bold border-[#F6821F]/40'
+                                  : 'bg-[#161D2F] text-[#9CA3AF] font-bold border-[#1E2638]'
                               }`}
                             >
                               {cand.lifecycle_status || 'DISCOVERED'}
                             </span>
                           </div>
 
-                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[28px] font-bold font-bold text-[#D0D7E0] font-bold">
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[28px] font-bold font-bold text-[#9CA3AF] font-bold">
                             <span>
                               Developer: <span className="text-[#FFFFFF] font-bold font-medium">{cand.developer || 'Unknown'}</span>
                             </span>
                             {cand.package_id && (
                               <span>
-                                · Pkg: <span className="text-[#D0D7E0] font-bold">{cand.package_id}</span>
+                                · Pkg: <span className="text-[#9CA3AF] font-bold">{cand.package_id}</span>
                               </span>
                             )}
                             {cand.installs && (
@@ -1041,27 +1041,27 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                                 · Rating: <span className="text-[#FFFFFF] font-bold font-semibold">{cand.rating}★</span>
                               </span>
                             )}
-                            <span className="text-[#D0D7E0] font-bold">
+                            <span className="text-[#9CA3AF] font-bold">
                               · First seen: {cand.first_seen_at ? cand.first_seen_at.slice(0, 10) : 'Today'}
                             </span>
                           </div>
 
                           {/* Primary Threat Detection Signal */}
-                          <div className="text-[17px] font-bold text-[#D0D7E0] font-bold line-clamp-1 pt-0.5">
-                            <span className="text-[#D0D7E0] font-bold font-semibold">DETECTION: </span>
+                          <div className="text-[17px] font-bold text-[#9CA3AF] font-bold line-clamp-1 pt-0.5">
+                            <span className="text-[#9CA3AF] font-bold font-semibold">DETECTION: </span>
                             {cand.why_flagged && cand.why_flagged.length > 0 ? (
                               <span className="text-[#FFFFFF] font-bold font-medium">{cand.why_flagged[0]}</span>
                             ) : cand.evidence && cand.evidence.length > 0 ? (
                               <span className="text-[#FFFFFF] font-bold font-medium">{cand.evidence[0]}</span>
                             ) : (
-                              <span className="text-[#D0D7E0] font-bold">Evaluated against protected brand perimeter</span>
+                              <span className="text-[#9CA3AF] font-bold">Evaluated against protected brand perimeter</span>
                             )}
                           </div>
 
                           {/* Signal Pills */}
                           <div className="flex flex-wrap items-center gap-1.5 pt-1">
                             {cand.risk_breakdown?.name_similarity > 0 && (
-                              <span className="text-[21px] font-bold bg-[#19222D] text-[#D0D7E0] font-bold px-2 py-0.5 rounded border border-[#303946]">
+                              <span className="text-[21px] font-bold bg-[#161D2F] text-[#9CA3AF] font-bold px-2 py-0.5 rounded border border-[#1E2638]">
                                 Name Sim ({cand.risk_breakdown.name_similarity}/20)
                               </span>
                             )}
@@ -1076,7 +1076,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                               </span>
                             )}
                             {cand.extracted_domains && cand.extracted_domains.length > 0 && (
-                              <span className="text-[21px] font-bold bg-[#0F2620] text-[#35D0BA] font-bold px-2 py-0.5 rounded border border-[#35D0BA]/40 font-semibold">
+                              <span className="text-[21px] font-bold bg-[#0F2620] text-[#F6821F] font-bold px-2 py-0.5 rounded border border-[#F6821F]/40 font-semibold">
                                 Extracted Domain ({cand.extracted_domains[0]})
                               </span>
                             )}
@@ -1085,10 +1085,10 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       </div>
 
                       {/* Right: Risk Verdict & Action Buttons */}
-                      <div className="flex md:flex-col items-end justify-between gap-3 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-[#303946]">
+                      <div className="flex md:flex-col items-end justify-between gap-3 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-[#1E2638]">
                         <div className="text-right">
                           <div className="flex items-center gap-2 justify-end">
-                            <span className="text-[21px] font-bold text-[#D0D7E0] font-bold uppercase font-semibold">Risk</span>
+                            <span className="text-[21px] font-bold text-[#9CA3AF] font-bold uppercase font-semibold">Risk</span>
                             <span
                               className={`text-[21px] font-bold ${
                                 cand.risk_level === 'CRITICAL'
@@ -1097,14 +1097,14 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                                   ? 'text-[#FFAB40] font-bold'
                                   : cand.risk_level === 'MEDIUM'
                                   ? 'text-[#FFAB40] font-bold'
-                                  : 'text-[#35D0BA] font-bold'
+                                  : 'text-[#F6821F] font-bold'
                               }`}
                             >
                               {cand.risk_score} / 100
                             </span>
                           </div>
 
-                          <div className="text-[28px] font-bold font-bold text-[#D0D7E0] font-bold">
+                          <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold">
                             Confidence: <span className="text-[#FFFFFF] font-bold font-semibold">{cand.confidence_score ? `${cand.confidence_score}%` : cand.confidence}</span>
                           </div>
                         </div>
@@ -1115,8 +1115,8 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                             onClick={(e) => handleToggleWatchlist(cand, e)}
                             className={`p-2 rounded-lg border transition ${
                               isWatchlisted
-                                ? 'bg-[#0F2620] border-[#35D0BA]/40 text-[#35D0BA] font-bold'
-                                : 'bg-[#0D1118] border-[#303946] text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold'
+                                ? 'bg-[#0F2620] border-[#F6821F]/40 text-[#F6821F] font-bold'
+                                : 'bg-[#0E131F] border-[#1E2638] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold'
                             }`}
                             title={isWatchlisted ? 'Remove from Watchlist' : 'Add to Watchlist'}
                           >
@@ -1133,7 +1133,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                               setEscalateCandidate(cand);
                               setShowEscalateModal(true);
                             }}
-                            className="p-2 rounded-lg border border-[#303946] bg-[#0D1118] text-[#D0D7E0] font-bold hover:text-[#FF5C6C] font-bold hover:border-[#FF5C6C]/40 transition"
+                            className="p-2 rounded-lg border border-[#1E2638] bg-[#0E131F] text-[#9CA3AF] font-bold hover:text-[#FF5C6C] font-bold hover:border-[#FF5C6C]/40 transition"
                             title="Escalate Threat"
                           >
                             <Send className="h-4 w-4" />
@@ -1142,7 +1142,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                           <button
                             type="button"
                             onClick={() => setSelectedCandidate(cand)}
-                            className="px-3 py-1.5 bg-[#35D0BA] text-[#080B10] font-extrabold hover:bg-[#2EB8A5] text-white rounded-lg transition flex items-center gap-1 font-bold text-[28px] font-bold font-bold shadow-xs"
+                            className="px-3 py-1.5 bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white rounded-lg transition flex items-center gap-1 font-bold text-[28px] font-bold font-bold shadow-xs"
                           >
                             <span>INVESTIGATE</span>
                             <ChevronRight className="h-3 w-3" />
@@ -1155,13 +1155,13 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               </div>
             ) : (
               /* Safe State / Empty State */
-              <div className="bg-[#0D1118] border border-[#303946] p-12 text-center rounded-xl font-mono space-y-3 shadow-xs">
-                <ShieldCheck className="h-10 w-10 text-[#35D0BA] font-bold mx-auto opacity-80" />
+              <div className="bg-[#0E131F] border border-[#1E2638] p-12 text-center rounded-xl font-mono space-y-3 shadow-xs">
+                <ShieldCheck className="h-10 w-10 text-[#F6821F] font-bold mx-auto opacity-80" />
                 <div className="space-y-1">
                   <h4 className="text-[19px] font-bold text-[#FFFFFF] font-bold uppercase tracking-wider">
                     NO SIGNIFICANT THREATS IDENTIFIED
                   </h4>
-                  <p className="text-[17px] font-bold text-[#D0D7E0] font-bold max-w-md mx-auto leading-relaxed">
+                  <p className="text-[17px] font-bold text-[#9CA3AF] font-bold max-w-md mx-auto leading-relaxed">
                     SAFENET did not identify applications with sufficient impersonation signals for this brand in the current search.
                   </p>
                 </div>
@@ -1175,26 +1175,26 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {activeTab === 'apk' && (
           <div className="space-y-6">
-            <div className="bg-[#0D1118] border border-[#303946] p-6 rounded-xl space-y-4 shadow-xs">
+            <div className="bg-[#0E131F] border border-[#1E2638] p-6 rounded-xl space-y-4 shadow-xs">
               <div className="space-y-1">
-                <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#35D0BA] font-bold">
+                <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#F6821F] font-bold">
                   ANDROID APK STATIC CORRELATION ENGINE
                 </span>
-                <p className="text-[24px] font-bold text-[#D0D7E0] font-bold">
+                <p className="text-[24px] font-bold text-[#9CA3AF] font-bold">
                   Inspect untrusted Android application packages (.apk) to decompile manifests, detect sensitive capabilities, extract hardcoded URLs, and correlate with Google Play listings.
                 </p>
               </div>
 
               {/* Upload Box */}
-              <div className="border-2 border-dashed border-[#303946] hover:border-[#35D0BA]/40 p-8 rounded-xl text-center space-y-3 bg-[#121821] transition">
-                <Upload className="h-8 w-8 text-[#35D0BA] font-bold mx-auto" />
+              <div className="border-2 border-dashed border-[#1E2638] hover:border-[#F6821F]/40 p-8 rounded-xl text-center space-y-3 bg-[#111625] transition">
+                <Upload className="h-8 w-8 text-[#F6821F] font-bold mx-auto" />
                 <div className="space-y-1">
                   <p className="text-[19px] font-bold text-[#FFFFFF] font-bold">Drag & drop Android APK file here</p>
-                  <p className="text-[17px] font-bold text-[#D0D7E0] font-bold">Static manifest inspection, signature check & DEX domain correlation</p>
+                  <p className="text-[17px] font-bold text-[#9CA3AF] font-bold">Static manifest inspection, signature check & DEX domain correlation</p>
                 </div>
 
                 <div>
-                  <label className="inline-block px-4 py-2 bg-[#0D1118] border border-[#303946] text-[#FFFFFF] font-bold text-[17px] font-bold font-semibold rounded-lg hover:bg-[#19222D] transition cursor-pointer shadow-xs">
+                  <label className="inline-block px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold text-[17px] font-bold font-semibold rounded-lg hover:bg-[#161D2F] transition cursor-pointer shadow-xs">
                     <span>Browse APK File</span>
                     <input
                       type="file"
@@ -1210,7 +1210,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               </div>
 
               {/* Sample Presets */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-[#303946] text-[17px] font-bold text-[#D0D7E0] font-bold">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-[#1E2638] text-[17px] font-bold text-[#9CA3AF] font-bold">
                 <span className="font-medium">NO APK ON HAND? TEST SAMPLE PAYLOADS:</span>
                 <div className="flex items-center gap-2">
                   <button
@@ -1223,7 +1223,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => handleLoadSampleApk('clean')}
-                    className="px-3 py-1.5 rounded-lg bg-[#347653]/10 border border-[#35D0BA]/40 text-[#35D0BA] font-bold hover:bg-[#347653]/20 transition font-bold"
+                    className="px-3 py-1.5 rounded-lg bg-[#347653]/10 border border-[#F6821F]/40 text-[#F6821F] font-bold hover:bg-[#347653]/20 transition font-bold"
                   >
                     Simulate Clean Release APK
                   </button>
@@ -1233,12 +1233,12 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
             {/* Analysis Loading Spinner */}
             {isAnalyzingApk && (
-              <div className="bg-[#0D1118] border border-[#303946] p-8 rounded-xl text-center font-mono space-y-2 shadow-xs">
-                <RefreshCw className="h-6 w-6 text-[#35D0BA] font-bold animate-spin mx-auto" />
+              <div className="bg-[#0E131F] border border-[#1E2638] p-8 rounded-xl text-center font-mono space-y-2 shadow-xs">
+                <RefreshCw className="h-6 w-6 text-[#F6821F] font-bold animate-spin mx-auto" />
                 <p className="text-[19px] font-bold text-[#FFFFFF] font-bold">
                   Decompressing APK structure & parsing binary AndroidManifest...
                 </p>
-                <p className="text-[17px] font-bold text-[#D0D7E0] font-bold">
+                <p className="text-[17px] font-bold text-[#9CA3AF] font-bold">
                   Extracting permissions, cryptographic hashes, and embedded C2 domains.
                 </p>
               </div>
@@ -1257,20 +1257,20 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
             {/* Full APK Correlation Report */}
             {apkReport && (
-              <div className="bg-[#0D1118] border border-[#303946] p-6 rounded-xl space-y-6 font-mono shadow-xs">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#303946] pb-4">
+              <div className="bg-[#0E131F] border border-[#1E2638] p-6 rounded-xl space-y-6 font-mono shadow-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1E2638] pb-4">
                   <div className="space-y-1">
-                    <span className="text-[21px] font-bold uppercase tracking-wider text-[#D0D7E0] font-bold">
+                    <span className="text-[21px] font-bold uppercase tracking-wider text-[#9CA3AF] font-bold">
                       STATIC ARTIFACT REPORT
                     </span>
                     <h3 className="text-[24px] font-bold text-[#FFFFFF] font-bold flex items-center gap-2">
                       <span>{apkReport.apk.application_label}</span>
-                      <span className="text-[17px] font-bold text-[#D0D7E0] font-bold font-normal">({apkReport.apk.file_name})</span>
+                      <span className="text-[17px] font-bold text-[#9CA3AF] font-bold font-normal">({apkReport.apk.file_name})</span>
                     </h3>
                   </div>
 
                   <div className="text-right">
-                    <span className="text-[21px] font-bold text-[#D0D7E0] font-bold block uppercase font-bold">COMBINED THREAT LEVEL</span>
+                    <span className="text-[21px] font-bold text-[#9CA3AF] font-bold block uppercase font-bold">COMBINED THREAT LEVEL</span>
                     <div className="flex items-center gap-2">
                       <span
                         className={`text-[32px] font-extrabold font-bold ${
@@ -1280,12 +1280,12 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                             ? 'text-[#FFAB40] font-bold'
                             : apkReport.combined_risk_level === 'MEDIUM'
                             ? 'text-[#FFAB40] font-bold'
-                            : 'text-[#35D0BA] font-bold'
+                            : 'text-[#F6821F] font-bold'
                         }`}
                       >
                         {apkReport.combined_risk_level}
                       </span>
-                      <span className="text-[19px] font-bold text-[#D0D7E0] font-bold">
+                      <span className="text-[19px] font-bold text-[#9CA3AF] font-bold">
                         ({apkReport.combined_risk_score} / 100)
                       </span>
                     </div>
@@ -1294,19 +1294,19 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
                 {/* Permissions Breakdown */}
                 <div className="space-y-2">
-                  <span className="text-[28px] font-bold font-bold uppercase text-[#35D0BA] font-bold">
+                  <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold">
                     ANDROID PERMISSIONS & SENSITIVE CAPABILITIES
                   </span>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-[28px] font-bold font-bold">
                     {apkReport.apk.permissions.sensitive.map((perm, idx) => (
                       <div
                         key={idx}
-                        className="bg-[#121821] p-3 rounded-lg border border-[#FF5C6C]/40 flex items-start gap-2"
+                        className="bg-[#111625] p-3 rounded-lg border border-[#FF5C6C]/40 flex items-start gap-2"
                       >
                         <AlertTriangle className="h-3.5 w-3.5 text-[#FF5C6C] font-bold shrink-0 mt-0.5" />
                         <div>
                           <span className="text-[#FFFFFF] font-bold block">{perm.permission}</span>
-                          <span className="text-[#D0D7E0] font-bold text-[21px] font-bold">{perm.description}</span>
+                          <span className="text-[#9CA3AF] font-bold text-[21px] font-bold">{perm.description}</span>
                         </div>
                       </div>
                     ))}
@@ -1316,14 +1316,14 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 {/* Embedded Network Domains */}
                 {apkReport.apk.extracted_domains.length > 0 && (
                   <div className="space-y-2">
-                    <span className="text-[28px] font-bold font-bold uppercase text-[#35D0BA] font-bold">
+                    <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold">
                       EXTRACTED EMBEDDED NETWORK ENDPOINTS
                     </span>
-                    <div className="bg-[#121821] p-3.5 rounded-lg border border-[#303946] text-[17px] font-bold space-y-1">
+                    <div className="bg-[#111625] p-3.5 rounded-lg border border-[#1E2638] text-[17px] font-bold space-y-1">
                       {apkReport.apk.extracted_domains.map((dom, i) => (
-                        <div key={i} className="flex items-center justify-between text-[#D0D7E0] font-bold">
+                        <div key={i} className="flex items-center justify-between text-[#9CA3AF] font-bold">
                           <span className="text-[#FFFFFF] font-bold font-mono">{dom}</span>
-                          <span className="text-[#D0D7E0] font-bold text-[28px] font-bold font-bold">Correlated with URL Intelligence</span>
+                          <span className="text-[#9CA3AF] font-bold text-[28px] font-bold font-bold">Correlated with URL Intelligence</span>
                         </div>
                       ))}
                     </div>
@@ -1338,42 +1338,42 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* INVESTIGATION VIEW MODAL */}
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {selectedCandidate && (
-          <div className="fixed inset-0 z-50 bg-[#080B10]/80 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="bg-[#0D1118] border border-[#303946] w-full max-w-4xl max-h-[92vh] overflow-y-auto p-6 rounded-2xl space-y-6 font-mono text-[#FFFFFF] font-bold relative shadow-xl">
+          <div className="fixed inset-0 z-50 bg-[#080B11]/80 backdrop-blur-xs flex items-center justify-center p-4">
+            <div className="bg-[#0E131F] border border-[#1E2638] w-full max-w-4xl max-h-[92vh] overflow-y-auto p-6 rounded-2xl space-y-6 font-mono text-[#FFFFFF] font-bold relative shadow-xl">
               {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setSelectedCandidate(null)}
-                className="absolute top-4 right-4 p-1.5 text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold bg-[#121821] border border-[#303946] rounded-lg transition"
+                className="absolute top-4 right-4 p-1.5 text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold bg-[#111625] border border-[#1E2638] rounded-lg transition"
               >
                 <X className="h-4 w-4" />
               </button>
 
               {/* Investigation Header */}
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-[#303946] pb-4 pr-8">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-[#1E2638] pb-4 pr-8">
                 <div className="flex items-start gap-3.5">
                   {selectedCandidate.icon ? (
                     <img
                       src={selectedCandidate.icon}
                       alt={selectedCandidate.app_name}
-                      className="h-14 w-14 rounded-xl object-cover bg-[#121821] border border-[#303946] shrink-0"
+                      className="h-14 w-14 rounded-xl object-cover bg-[#111625] border border-[#1E2638] shrink-0"
                     />
                   ) : (
-                    <div className="h-14 w-14 rounded-xl bg-[#121821] border border-[#303946] flex items-center justify-center shrink-0">
-                      <Smartphone className="h-6 w-6 text-[#D0D7E0] font-bold" />
+                    <div className="h-14 w-14 rounded-xl bg-[#111625] border border-[#1E2638] flex items-center justify-center shrink-0">
+                      <Smartphone className="h-6 w-6 text-[#9CA3AF] font-bold" />
                     </div>
                   )}
 
                   <div className="space-y-1">
-                    <span className="text-[21px] font-bold uppercase tracking-wider text-[#35D0BA] font-bold">
+                    <span className="text-[21px] font-bold uppercase tracking-wider text-[#F6821F] font-bold">
                       APPLICATION INVESTIGATION WORKSPACE
                     </span>
                     <h3 className="text-[24px] font-bold text-[#FFFFFF] font-bold leading-tight">
                       {selectedCandidate.app_name}
                     </h3>
-                    <div className="flex flex-wrap items-center gap-x-3 text-[28px] font-bold font-bold text-[#D0D7E0] font-bold">
+                    <div className="flex flex-wrap items-center gap-x-3 text-[28px] font-bold font-bold text-[#9CA3AF] font-bold">
                       <span>Publisher: <span className="text-[#FFFFFF] font-bold font-semibold">{selectedCandidate.developer}</span></span>
-                      <span>Pkg: <span className="text-[#D0D7E0] font-bold">{selectedCandidate.package_id}</span></span>
+                      <span>Pkg: <span className="text-[#9CA3AF] font-bold">{selectedCandidate.package_id}</span></span>
                       <span>First Seen: <span className="text-[#FFFFFF] font-bold">{selectedCandidate.first_seen_at ? selectedCandidate.first_seen_at.slice(0, 10) : 'Today'}</span></span>
                       <span>Last Seen: <span className="text-[#FFFFFF] font-bold">{selectedCandidate.last_seen_at ? selectedCandidate.last_seen_at.slice(0, 10) : 'Today'}</span></span>
                     </div>
@@ -1381,7 +1381,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 </div>
 
                 <div className="text-right shrink-0">
-                  <span className="text-[21px] font-bold text-[#D0D7E0] font-bold uppercase block font-bold">THREAT VERDICT</span>
+                  <span className="text-[21px] font-bold text-[#9CA3AF] font-bold uppercase block font-bold">THREAT VERDICT</span>
                   <div className="flex items-center gap-2 justify-end">
                     <span
                       className={`text-[32px] font-extrabold font-bold ${
@@ -1391,29 +1391,29 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                           ? 'text-[#FFAB40] font-bold'
                           : selectedCandidate.risk_level === 'MEDIUM'
                           ? 'text-[#FFAB40] font-bold'
-                          : 'text-[#35D0BA] font-bold'
+                          : 'text-[#F6821F] font-bold'
                       }`}
                     >
                       {selectedCandidate.risk_level}
                     </span>
-                    <span className="text-[19px] font-bold text-[#D0D7E0] font-bold">
+                    <span className="text-[19px] font-bold text-[#9CA3AF] font-bold">
                       ({selectedCandidate.risk_score} / 100)
                     </span>
                   </div>
-                  <span className="text-[28px] font-bold font-bold text-[#D0D7E0] font-bold">
+                  <span className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold">
                     Confidence: <span className="text-[#FFFFFF] font-bold font-semibold">{selectedCandidate.confidence_score ? `${selectedCandidate.confidence_score}%` : selectedCandidate.confidence}</span>
                   </span>
                 </div>
               </div>
 
               {/* Threat Lifecycle Selector & Quick Actions */}
-              <div className="bg-[#121821] p-3.5 rounded-xl border border-[#303946] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[28px] font-bold font-bold">
+              <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[28px] font-bold font-bold">
                 <div className="flex items-center gap-2">
-                  <span className="text-[#D0D7E0] font-bold uppercase">LIFECYCLE STATUS:</span>
+                  <span className="text-[#9CA3AF] font-bold uppercase">LIFECYCLE STATUS:</span>
                   <select
                     value={selectedCandidate.lifecycle_status || 'DISCOVERED'}
                     onChange={(e) => handleUpdateStatus(selectedCandidate, e.target.value as ThreatLifecycleStatus)}
-                    className="bg-[#0D1118] border border-[#303946] text-[#FFFFFF] font-bold rounded-lg px-2.5 py-1 text-[28px] font-bold font-bold focus:outline-none focus:border-[#35D0BA]/40"
+                    className="bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold rounded-lg px-2.5 py-1 text-[28px] font-bold font-bold focus:outline-none focus:border-[#F6821F]/40"
                   >
                     <option value="DISCOVERED">DISCOVERED</option>
                     <option value="UNDER REVIEW">UNDER REVIEW</option>
@@ -1428,16 +1428,16 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => handleToggleWatchlist(selectedCandidate)}
-                    className="px-3 py-1.5 bg-[#0D1118] border border-[#303946] text-[#FFFFFF] font-bold hover:bg-[#19222D] rounded-lg flex items-center gap-1.5 transition"
+                    className="px-3 py-1.5 bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold hover:bg-[#161D2F] rounded-lg flex items-center gap-1.5 transition"
                   >
                     {selectedCandidate.watchlisted || BrandStore.isInAppWatchlist(selectedCandidate.package_id || selectedCandidate.id) ? (
                       <>
-                        <BookmarkCheck className="h-3.5 w-3.5 text-[#35D0BA] font-bold" />
+                        <BookmarkCheck className="h-3.5 w-3.5 text-[#F6821F] font-bold" />
                         <span>WATCHLISTED</span>
                       </>
                     ) : (
                       <>
-                        <Bookmark className="h-3.5 w-3.5 text-[#D0D7E0] font-bold" />
+                        <Bookmark className="h-3.5 w-3.5 text-[#9CA3AF] font-bold" />
                         <span>ADD TO WATCHLIST</span>
                       </>
                     )}
@@ -1446,7 +1446,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => handleCopyEvidence(selectedCandidate)}
-                    className="px-3 py-1.5 bg-[#0D1118] border border-[#303946] text-[#FFFFFF] font-bold hover:bg-[#19222D] rounded-lg flex items-center gap-1.5 transition"
+                    className="px-3 py-1.5 bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold hover:bg-[#161D2F] rounded-lg flex items-center gap-1.5 transition"
                   >
                     <Copy className="h-3 w-3" />
                     <span>COPY EVIDENCE</span>
@@ -1455,7 +1455,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => handleExportReport(selectedCandidate)}
-                    className="px-3 py-1.5 bg-[#0F2620] border border-[#35D0BA]/40 text-[#35D0BA] font-bold hover:bg-[#35D0BA] text-[#080B10] font-extrabold hover:text-white rounded-lg flex items-center gap-1.5 font-bold transition"
+                    className="px-3 py-1.5 bg-[#0F2620] border border-[#F6821F]/40 text-[#F6821F] font-bold hover:bg-[#F6821F] text-[#080B11] font-extrabold hover:text-white rounded-lg flex items-center gap-1.5 font-bold transition"
                   >
                     <Download className="h-3 w-3" />
                     <span>EXPORT INVESTIGATION</span>
@@ -1482,7 +1482,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     <AlertOctagon className="h-4 w-4" />
                     <span>INTERNAL SECURITY ESCALATION ACTIVE</span>
                   </div>
-                  <div className="text-[#D0D7E0] font-bold">
+                  <div className="text-[#9CA3AF] font-bold">
                     Reason: <span className="text-[#FFFFFF] font-bold font-semibold">{selectedCandidate.escalation_record.reason}</span> · Escalated at: <span className="text-[#FFFFFF] font-bold">{selectedCandidate.escalation_record.timestamp.slice(0, 16)}</span> · Evidence prepared for external reporting.
                   </div>
                 </div>
@@ -1491,35 +1491,35 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               {/* 6-VECTOR IDENTITY COMPARISON TABLE */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[28px] font-bold font-bold uppercase text-[#35D0BA] font-bold tracking-wider">
+                  <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold tracking-wider">
                     IDENTITY COMPARISON MATRIX (OFFICIAL vs CANDIDATE)
                   </span>
-                  <span className="text-[21px] font-bold text-[#D0D7E0] font-bold">
+                  <span className="text-[21px] font-bold text-[#9CA3AF] font-bold">
                     ✓ MATCH · ⚠ SIMILAR · 🚨 MISMATCH
                   </span>
                 </div>
 
-                <div className="overflow-x-auto border border-[#303946] rounded-xl">
+                <div className="overflow-x-auto border border-[#1E2638] rounded-xl">
                   <table className="w-full text-left text-[28px] font-bold font-bold border-collapse font-mono">
                     <thead>
-                      <tr className="bg-[#121821] text-[#D0D7E0] font-bold border-b border-[#303946]">
+                      <tr className="bg-[#111625] text-[#9CA3AF] font-bold border-b border-[#1E2638]">
                         <th className="p-3">EVALUATION VECTOR</th>
                         <th className="p-3">OFFICIAL BASELINE</th>
                         <th className="p-3">CANDIDATE LISTING</th>
                         <th className="p-3 text-center">SIGNAL STATE</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#303946]">
+                    <tbody className="divide-y divide-[#1E2638]">
                       {/* 1. App Name */}
-                      <tr className="hover:bg-[#121821]">
-                        <td className="p-3 text-[#D0D7E0] font-bold font-semibold">App Name</td>
+                      <tr className="hover:bg-[#111625]">
+                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">App Name</td>
                         <td className="p-3 text-[#FFFFFF] font-bold">
                           {selectedCandidate.identity_comparison?.app_name.official || currentBrand?.name || 'PayPal'}
                         </td>
                         <td className="p-3 text-[#FFFFFF] font-bold">{selectedCandidate.app_name}</td>
                         <td className="p-3 text-center font-bold">
                           {selectedCandidate.identity_comparison?.app_name.status === 'MATCH' ? (
-                            <span className="text-[#35D0BA] font-bold">✓ MATCH</span>
+                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.app_name.status === 'SIMILAR' ? (
                             <span className="text-[#FFAB40] font-bold">⚠ SIMILAR</span>
                           ) : (
@@ -1529,15 +1529,15 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       </tr>
 
                       {/* 2. Developer */}
-                      <tr className="hover:bg-[#121821]">
-                        <td className="p-3 text-[#D0D7E0] font-bold font-semibold">Developer / Publisher</td>
+                      <tr className="hover:bg-[#111625]">
+                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">Developer / Publisher</td>
                         <td className="p-3 text-[#FFFFFF] font-bold">
                           {selectedCandidate.identity_comparison?.developer.official || 'Verified Brand Entity'}
                         </td>
                         <td className="p-3 text-[#FFFFFF] font-bold">{selectedCandidate.developer}</td>
                         <td className="p-3 text-center font-bold">
                           {selectedCandidate.identity_comparison?.developer.status === 'MATCH' ? (
-                            <span className="text-[#35D0BA] font-bold">✓ MATCH</span>
+                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.developer.status === 'SIMILAR' ? (
                             <span className="text-[#FFAB40] font-bold">⚠ SIMILAR</span>
                           ) : (
@@ -1547,15 +1547,15 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       </tr>
 
                       {/* 3. Logo / Icon */}
-                      <tr className="hover:bg-[#121821]">
-                        <td className="p-3 text-[#D0D7E0] font-bold font-semibold">Brand Logo / Artwork</td>
+                      <tr className="hover:bg-[#111625]">
+                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">Brand Logo / Artwork</td>
                         <td className="p-3 text-[#FFFFFF] font-bold">Verified Official Asset</td>
-                        <td className="p-3 text-[#D0D7E0] font-bold">
+                        <td className="p-3 text-[#9CA3AF] font-bold">
                           {selectedCandidate.logo_similarity_status || 'Perceptual inspection'}
                         </td>
                         <td className="p-3 text-center font-bold">
                           {selectedCandidate.identity_comparison?.logo.status === 'MATCH' ? (
-                            <span className="text-[#35D0BA] font-bold">✓ MATCH</span>
+                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.logo.status === 'SIMILAR' ? (
                             <span className="text-[#FFAB40] font-bold">⚠ SIMILAR</span>
                           ) : (
@@ -1565,15 +1565,15 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       </tr>
 
                       {/* 4. Package ID */}
-                      <tr className="hover:bg-[#121821]">
-                        <td className="p-3 text-[#D0D7E0] font-bold font-semibold">Package Identifier</td>
+                      <tr className="hover:bg-[#111625]">
+                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">Package Identifier</td>
                         <td className="p-3 text-[#FFFFFF] font-bold">
                           {selectedCandidate.identity_comparison?.package_id.official || 'Authorized Namespace'}
                         </td>
                         <td className="p-3 text-[#FFFFFF] font-bold">{selectedCandidate.package_id}</td>
                         <td className="p-3 text-center font-bold">
                           {selectedCandidate.identity_comparison?.package_id.status === 'MATCH' ? (
-                            <span className="text-[#35D0BA] font-bold">✓ MATCH</span>
+                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.package_id.status === 'SIMILAR' ? (
                             <span className="text-[#FF5C6C] font-bold">⚠ SIMILAR (Combosquat)</span>
                           ) : (
@@ -1583,28 +1583,28 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                       </tr>
 
                       {/* 5. Description */}
-                      <tr className="hover:bg-[#121821]">
-                        <td className="p-3 text-[#D0D7E0] font-bold font-semibold">Description Branding</td>
+                      <tr className="hover:bg-[#111625]">
+                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">Description Branding</td>
                         <td className="p-3 text-[#FFFFFF] font-bold">Authorized Corporate Copy</td>
-                        <td className="p-3 text-[#D0D7E0] font-bold">
+                        <td className="p-3 text-[#9CA3AF] font-bold">
                           {selectedCandidate.description
                             ? selectedCandidate.description.slice(0, 70) + '...'
                             : 'No description'}
                         </td>
                         <td className="p-3 text-center font-bold">
                           {selectedCandidate.identity_comparison?.description.status === 'MATCH' ? (
-                            <span className="text-[#35D0BA] font-bold">✓ MATCH</span>
+                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.description.status === 'SIMILAR' ? (
                             <span className="text-[#FFAB40] font-bold">⚠ SIMILAR</span>
                           ) : (
-                            <span className="text-[#D0D7E0] font-bold">STANDARD</span>
+                            <span className="text-[#9CA3AF] font-bold">STANDARD</span>
                           )}
                         </td>
                       </tr>
 
                       {/* 6. External Domain */}
-                      <tr className="hover:bg-[#121821]">
-                        <td className="p-3 text-[#D0D7E0] font-bold font-semibold">Associated Web Domain</td>
+                      <tr className="hover:bg-[#111625]">
+                        <td className="p-3 text-[#9CA3AF] font-bold font-semibold">Associated Web Domain</td>
                         <td className="p-3 text-[#FFFFFF] font-bold">{currentBrand?.domain || 'paypal.com'}</td>
                         <td className="p-3 text-[#FFFFFF] font-bold">
                           {selectedCandidate.extracted_domains && selectedCandidate.extracted_domains.length > 0
@@ -1613,11 +1613,11 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                         </td>
                         <td className="p-3 text-center font-bold">
                           {selectedCandidate.identity_comparison?.domain.status === 'MATCH' ? (
-                            <span className="text-[#35D0BA] font-bold">✓ MATCH</span>
+                            <span className="text-[#F6821F] font-bold">✓ MATCH</span>
                           ) : selectedCandidate.identity_comparison?.domain.status === 'MISMATCH' ? (
                             <span className="text-[#FF5C6C] font-bold">🚨 MISMATCH</span>
                           ) : (
-                            <span className="text-[#D0D7E0] font-bold">? NONE</span>
+                            <span className="text-[#9CA3AF] font-bold">? NONE</span>
                           )}
                         </td>
                       </tr>
@@ -1627,14 +1627,14 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               </div>
 
               {/* "WHY DID SAFENET FLAG THIS APPLICATION" */}
-              <div className="bg-[#121821] p-4 rounded-xl border border-[#303946] space-y-2">
-                <span className="text-[28px] font-bold font-bold uppercase text-[#35D0BA] font-bold block tracking-wider">
+              <div className="bg-[#111625] p-4 rounded-xl border border-[#1E2638] space-y-2">
+                <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold block tracking-wider">
                   WHY SAFENET FLAGGED THIS APPLICATION
                 </span>
                 <div className="space-y-1.5 text-[17px] font-bold text-[#FFFFFF] font-bold">
                   {(selectedCandidate.why_flagged || selectedCandidate.evidence || []).map((reason, idx) => (
                     <div key={idx} className="flex items-start gap-2">
-                      <span className="text-[#35D0BA] font-bold">{idx + 1}.</span>
+                      <span className="text-[#F6821F] font-bold">{idx + 1}.</span>
                       <p className="leading-relaxed">{reason}</p>
                     </div>
                   ))}
@@ -1643,55 +1643,55 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
 
               {/* DETERMINISTIC RISK CALCULATION METHODOLOGY */}
               <div className="space-y-2">
-                <span className="text-[28px] font-bold font-bold uppercase text-[#D0D7E0] font-bold block tracking-wider">
+                <span className="text-[28px] font-bold font-bold uppercase text-[#9CA3AF] font-bold block tracking-wider">
                   DETERMINISTIC RISK CALCULATION METHODOLOGY (0 – 100)
                 </span>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[28px] font-bold font-bold">
-                  <div className="bg-[#121821] p-2.5 rounded-lg border border-[#303946]">
-                    <span className="text-[#D0D7E0] font-bold block">NAME SIMILARITY</span>
+                  <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
+                    <span className="text-[#9CA3AF] font-bold block">NAME SIMILARITY</span>
                     <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
                       {selectedCandidate.risk_breakdown?.name_similarity ?? 0} / 20
                     </span>
                   </div>
-                  <div className="bg-[#121821] p-2.5 rounded-lg border border-[#303946]">
-                    <span className="text-[#D0D7E0] font-bold block">LOGO SIMILARITY</span>
+                  <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
+                    <span className="text-[#9CA3AF] font-bold block">LOGO SIMILARITY</span>
                     <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
                       {selectedCandidate.risk_breakdown?.logo_similarity ?? 0} / 20
                     </span>
                   </div>
-                  <div className="bg-[#121821] p-2.5 rounded-lg border border-[#303946]">
-                    <span className="text-[#D0D7E0] font-bold block">DEV MISMATCH</span>
+                  <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
+                    <span className="text-[#9CA3AF] font-bold block">DEV MISMATCH</span>
                     <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
                       {selectedCandidate.risk_breakdown?.developer_mismatch ?? 0} / 15
                     </span>
                   </div>
-                  <div className="bg-[#121821] p-2.5 rounded-lg border border-[#303946]">
-                    <span className="text-[#D0D7E0] font-bold block">DESCRIPTION LURES</span>
+                  <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
+                    <span className="text-[#9CA3AF] font-bold block">DESCRIPTION LURES</span>
                     <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
                       {selectedCandidate.risk_breakdown?.description_similarity ?? 0} / 15
                     </span>
                   </div>
-                  <div className="bg-[#121821] p-2.5 rounded-lg border border-[#303946]">
-                    <span className="text-[#D0D7E0] font-bold block">PKG COMBOSQUAT</span>
+                  <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
+                    <span className="text-[#9CA3AF] font-bold block">PKG COMBOSQUAT</span>
                     <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
                       {selectedCandidate.risk_breakdown?.package_similarity ?? 0} / 10
                     </span>
                   </div>
-                  <div className="bg-[#121821] p-2.5 rounded-lg border border-[#303946]">
-                    <span className="text-[#D0D7E0] font-bold block">IDENTITY MISMATCH</span>
+                  <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
+                    <span className="text-[#9CA3AF] font-bold block">IDENTITY MISMATCH</span>
                     <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
                       {selectedCandidate.risk_breakdown?.identity_mismatch ?? 0} / 10
                     </span>
                   </div>
-                  <div className="bg-[#121821] p-2.5 rounded-lg border border-[#303946]">
-                    <span className="text-[#D0D7E0] font-bold block">SUSPICIOUS SIGNALS</span>
+                  <div className="bg-[#111625] p-2.5 rounded-lg border border-[#1E2638]">
+                    <span className="text-[#9CA3AF] font-bold block">SUSPICIOUS SIGNALS</span>
                     <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">
                       {selectedCandidate.risk_breakdown?.suspicious_signals ?? 0} / 10
                     </span>
                   </div>
-                  <div className="bg-[#0F2620] p-2.5 rounded-lg border border-[#35D0BA]/40">
-                    <span className="text-[#35D0BA] font-bold block font-bold">TOTAL SCORE</span>
-                    <span className="text-[#35D0BA] font-bold text-[24px] font-bold">
+                  <div className="bg-[#0F2620] p-2.5 rounded-lg border border-[#F6821F]/40">
+                    <span className="text-[#F6821F] font-bold block font-bold">TOTAL SCORE</span>
+                    <span className="text-[#F6821F] font-bold text-[24px] font-bold">
                       {selectedCandidate.risk_score} / 100
                     </span>
                   </div>
@@ -1702,19 +1702,19 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               {selectedCandidate.threat_history && selectedCandidate.threat_history.length > 0 && (
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <History className="h-3.5 w-3.5 text-[#35D0BA] font-bold" />
-                    <span className="text-[28px] font-bold font-bold uppercase text-[#35D0BA] font-bold block tracking-wider">
+                    <History className="h-3.5 w-3.5 text-[#F6821F] font-bold" />
+                    <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold block tracking-wider">
                       THREAT AUDIT TIMELINE
                     </span>
                   </div>
-                  <div className="bg-[#121821] p-3 rounded-lg border border-[#303946] space-y-2 text-[28px] font-bold font-bold">
+                  <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638] space-y-2 text-[28px] font-bold font-bold">
                     {selectedCandidate.threat_history.map((h, idx) => (
-                      <div key={idx} className="flex items-start justify-between gap-3 text-[#D0D7E0] font-bold border-b border-[#303946] pb-1.5 last:border-b-0 last:pb-0">
+                      <div key={idx} className="flex items-start justify-between gap-3 text-[#9CA3AF] font-bold border-b border-[#1E2638] pb-1.5 last:border-b-0 last:pb-0">
                         <div>
                           <span className="text-[#FFFFFF] font-bold">{h.event}</span>
-                          {h.details && <span className="block text-[21px] font-bold text-[#D0D7E0] font-bold">{h.details}</span>}
+                          {h.details && <span className="block text-[21px] font-bold text-[#9CA3AF] font-bold">{h.details}</span>}
                         </div>
-                        <span className="text-[21px] font-bold text-[#D0D7E0] font-bold shrink-0 font-mono">
+                        <span className="text-[21px] font-bold text-[#9CA3AF] font-bold shrink-0 font-mono">
                           {h.timestamp.slice(0, 10)}
                         </span>
                       </div>
@@ -1726,22 +1726,22 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               {/* Description Excerpt */}
               {selectedCandidate.description && (
                 <div className="space-y-1">
-                  <span className="text-[28px] font-bold font-bold uppercase text-[#D0D7E0] font-bold block">
+                  <span className="text-[28px] font-bold font-bold uppercase text-[#9CA3AF] font-bold block">
                     PUBLIC STORE LISTING DESCRIPTION
                   </span>
-                  <div className="bg-[#121821] p-3 rounded-lg border border-[#303946] text-[17px] font-bold text-[#D0D7E0] font-bold max-h-32 overflow-y-auto whitespace-pre-wrap leading-relaxed">
+                  <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638] text-[17px] font-bold text-[#9CA3AF] font-bold max-h-32 overflow-y-auto whitespace-pre-wrap leading-relaxed">
                     {selectedCandidate.description}
                   </div>
                 </div>
               )}
 
               {/* Footer Modal Actions */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[#303946]">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[#1E2638]">
                 <a
                   href={selectedCandidate.app_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[17px] font-bold text-[#35D0BA] font-bold hover:text-[#365F49] font-bold"
+                  className="inline-flex items-center gap-1.5 text-[17px] font-bold text-[#F6821F] font-bold hover:text-[#365F49] font-bold"
                 >
                   <span>VIEW PUBLIC STORE LISTING</span>
                   <ExternalLink className="h-3 w-3" />
@@ -1750,7 +1750,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 <button
                   type="button"
                   onClick={() => setSelectedCandidate(null)}
-                  className="px-5 py-2 bg-[#0D1118] border border-[#303946] text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg hover:bg-[#19222D] transition cursor-pointer w-full sm:w-auto shadow-xs"
+                  className="px-5 py-2 bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg hover:bg-[#161D2F] transition cursor-pointer w-full sm:w-auto shadow-xs"
                 >
                   CLOSE INVESTIGATION
                 </button>
@@ -1763,22 +1763,22 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* SCHEDULE MONITORING MODAL */}
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {showScheduleModal && (
-          <div className="fixed inset-0 z-50 bg-[#080B10]/80 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="bg-[#0D1118] border border-[#303946] w-full max-w-md p-6 rounded-2xl space-y-4 font-mono text-[#FFFFFF] font-bold relative shadow-xl">
+          <div className="fixed inset-0 z-50 bg-[#080B11]/80 backdrop-blur-xs flex items-center justify-center p-4">
+            <div className="bg-[#0E131F] border border-[#1E2638] w-full max-w-md p-6 rounded-2xl space-y-4 font-mono text-[#FFFFFF] font-bold relative shadow-xl">
               <button
                 type="button"
                 onClick={() => setShowScheduleModal(false)}
-                className="absolute top-4 right-4 p-1.5 text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold bg-[#121821] border border-[#303946] rounded-lg transition"
+                className="absolute top-4 right-4 p-1.5 text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold bg-[#111625] border border-[#1E2638] rounded-lg transition"
               >
                 <X className="h-4 w-4" />
               </button>
 
               <div className="space-y-1">
-                <span className="text-[28px] font-bold font-bold uppercase text-[#35D0BA] font-bold tracking-wider">
+                <span className="text-[28px] font-bold font-bold uppercase text-[#F6821F] font-bold tracking-wider">
                   SCHEDULED APP PERIMETER MONITORING
                 </span>
                 <h3 className="text-[28px] font-bold font-bold text-[#FFFFFF] font-bold">Configure Scan Frequency</h3>
-                <p className="text-[17px] font-bold text-[#D0D7E0] font-bold">
+                <p className="text-[17px] font-bold text-[#9CA3AF] font-bold">
                   Configure automatic surveillance scans across Google Play for brand &quot;{currentBrand?.name}&quot;.
                 </p>
               </div>
@@ -1794,8 +1794,8 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     key={opt.key}
                     className={`flex items-center justify-between p-3 rounded-lg border cursor-pointer transition ${
                       scheduleOption === opt.key
-                        ? 'bg-[#0F2620] border-[#35D0BA]/40 text-[#FFFFFF] font-bold'
-                        : 'bg-[#121821] border-[#303946] text-[#D0D7E0] font-bold hover:border-[#35D0BA]'
+                        ? 'bg-[#0F2620] border-[#F6821F]/40 text-[#FFFFFF] font-bold'
+                        : 'bg-[#111625] border-[#1E2638] text-[#9CA3AF] font-bold hover:border-[#F6821F]'
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -1811,18 +1811,18 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 ))}
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-3 border-t border-[#303946]">
+              <div className="flex items-center justify-end gap-2 pt-3 border-t border-[#1E2638]">
                 <button
                   type="button"
                   onClick={() => setShowScheduleModal(false)}
-                  className="px-4 py-2 bg-[#0D1118] border border-[#303946] text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg transition font-medium"
+                  className="px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg transition font-medium"
                 >
                   CANCEL
                 </button>
                 <button
                   type="button"
                   onClick={handleSaveSchedule}
-                  className="px-4 py-2 bg-[#35D0BA] text-[#080B10] font-extrabold hover:bg-[#2EB8A5] text-white font-bold text-[17px] font-bold rounded-lg transition shadow-xs"
+                  className="px-4 py-2 bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white font-bold text-[17px] font-bold rounded-lg transition shadow-xs"
                 >
                   SAVE SCHEDULE
                 </button>
@@ -1835,12 +1835,12 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ESCALATION DIALOG MODAL */}
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {showEscalateModal && escalateCandidate && (
-          <div className="fixed inset-0 z-50 bg-[#080B10]/80 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="bg-[#0D1118] border border-[#303946] w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-2xl space-y-4 font-mono text-[#FFFFFF] font-bold relative shadow-xl">
+          <div className="fixed inset-0 z-50 bg-[#080B11]/80 backdrop-blur-xs flex items-center justify-center p-4">
+            <div className="bg-[#0E131F] border border-[#1E2638] w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-2xl space-y-4 font-mono text-[#FFFFFF] font-bold relative shadow-xl">
               <button
                 type="button"
                 onClick={() => setShowEscalateModal(false)}
-                className="absolute top-4 right-4 p-1.5 text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold bg-[#121821] border border-[#303946] rounded-lg transition"
+                className="absolute top-4 right-4 p-1.5 text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold bg-[#111625] border border-[#1E2638] rounded-lg transition"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -1852,20 +1852,20 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     ESCALATE THREAT TO SECURITY QUEUE
                   </h3>
                 </div>
-                <p className="text-[17px] font-bold text-[#D0D7E0] font-bold">
+                <p className="text-[17px] font-bold text-[#9CA3AF] font-bold">
                   Record an internal security action for &quot;{escalateCandidate.app_name}&quot; and prepare evidence for legal takedown.
                 </p>
               </div>
 
               <div className="space-y-3 pt-2 text-[17px] font-bold">
                 <div>
-                  <label className="text-[28px] font-bold font-bold uppercase text-[#D0D7E0] font-bold block mb-1">
+                  <label className="text-[28px] font-bold font-bold uppercase text-[#9CA3AF] font-bold block mb-1">
                     PRIMARY ESCALATION REASON:
                   </label>
                   <select
                     value={escalateReason}
                     onChange={(e) => setEscalateReason(e.target.value)}
-                    className="w-full bg-[#121821] border border-[#303946] text-[#FFFFFF] font-bold p-2.5 rounded-lg focus:outline-none focus:border-[#FF5C6C]/40"
+                    className="w-full bg-[#111625] border border-[#1E2638] text-[#FFFFFF] font-bold p-2.5 rounded-lg focus:outline-none focus:border-[#FF5C6C]/40"
                   >
                     <option value="Potential brand impersonation">Potential brand impersonation</option>
                     <option value="Phishing domain detected">Phishing domain detected</option>
@@ -1876,7 +1876,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 </div>
 
                 <div>
-                  <label className="text-[28px] font-bold font-bold uppercase text-[#D0D7E0] font-bold block mb-1">
+                  <label className="text-[28px] font-bold font-bold uppercase text-[#9CA3AF] font-bold block mb-1">
                     ANALYST NOTES / EVIDENCE CONTEXT:
                   </label>
                   <textarea
@@ -1884,13 +1884,13 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     onChange={(e) => setEscalateNotes(e.target.value)}
                     placeholder="Enter security reasoning or referral instructions..."
                     rows={3}
-                    className="w-full bg-[#121821] border border-[#303946] text-[#FFFFFF] font-bold p-2.5 rounded-lg focus:outline-none focus:border-[#FF5C6C]/40 text-[17px] font-bold"
+                    className="w-full bg-[#111625] border border-[#1E2638] text-[#FFFFFF] font-bold p-2.5 rounded-lg focus:outline-none focus:border-[#FF5C6C]/40 text-[17px] font-bold"
                   />
                 </div>
 
                 {/* Pre-formatted Notice */}
-                <div className="bg-[#121821] p-3.5 rounded-xl border border-[#303946] text-[28px] font-bold font-bold space-y-1 text-[#D0D7E0] font-bold">
-                  <span className="text-[#35D0BA] font-bold block">EVIDENCE SUMMARY PREPARED:</span>
+                <div className="bg-[#111625] p-3.5 rounded-xl border border-[#1E2638] text-[28px] font-bold font-bold space-y-1 text-[#9CA3AF] font-bold">
+                  <span className="text-[#F6821F] font-bold block">EVIDENCE SUMMARY PREPARED:</span>
                   <div>• Target: {escalateCandidate.app_name} ({escalateCandidate.package_id})</div>
                   <div>• Risk Score: {escalateCandidate.risk_score}/100 ({escalateCandidate.risk_level})</div>
                   <div>• Signals: {escalateCandidate.evidence?.length || 0} indicators documented</div>
@@ -1899,7 +1899,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               </div>
 
               {/* Escalation Actions */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[#303946]">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[#1E2638]">
                 <button
                   type="button"
                   onClick={() => {
@@ -1907,9 +1907,9 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     navigator.clipboard.writeText(noticeText);
                     triggerToast('Takedown notice copied to clipboard.');
                   }}
-                  className="px-4 py-2 bg-[#0D1118] border border-[#303946] text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg flex items-center gap-2 hover:bg-[#19222D] transition cursor-pointer w-full sm:w-auto shadow-xs"
+                  className="px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg flex items-center gap-2 hover:bg-[#161D2F] transition cursor-pointer w-full sm:w-auto shadow-xs"
                 >
-                  <Copy className="h-3.5 w-3.5 text-[#35D0BA] font-bold" />
+                  <Copy className="h-3.5 w-3.5 text-[#F6821F] font-bold" />
                   <span>COPY NOTICE</span>
                 </button>
 
@@ -1918,7 +1918,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     href="https://support.google.com/googleplay/android-developer/contact/takedown"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-[#0D1118] border border-[#303946] text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg flex items-center gap-1.5 transition font-medium"
+                    className="px-4 py-2 bg-[#0E131F] border border-[#1E2638] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold text-[17px] font-bold rounded-lg flex items-center gap-1.5 transition font-medium"
                   >
                     <span>GOOGLE PLAY FORM</span>
                     <ExternalLink className="h-3 w-3" />

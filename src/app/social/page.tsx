@@ -75,13 +75,13 @@ function PlatformBadge({ platform }: { platform: string }) {
       );
     case 'website':
       return (
-        <span className="font-mono text-[21px] font-bold font-bold text-[#35D0BA] font-bold bg-[#0F2620] px-2 py-0.5 rounded border border-[#35D0BA]/40">
+        <span className="font-mono text-[21px] font-bold font-bold text-[#F6821F] font-bold bg-[#0F2620] px-2 py-0.5 rounded border border-[#F6821F]/40">
           OFFICIAL WEB
         </span>
       );
     default:
       return (
-        <span className="font-mono text-[21px] font-bold font-semibold text-[#D0D7E0] font-bold bg-[#19222D] px-2 py-0.5 rounded border border-[#303946]">
+        <span className="font-mono text-[21px] font-bold font-semibold text-[#9CA3AF] font-bold bg-[#161D2F] px-2 py-0.5 rounded border border-[#1E2638]">
           {platform.toUpperCase()}
         </span>
       );
@@ -93,7 +93,7 @@ function ThreatTierBadge({ tier, score }: { tier?: ThreatClassification; score: 
   switch (tier) {
     case 'LIKELY_OFFICIAL':
       return (
-        <span className="inline-flex items-center gap-1 font-mono text-[28px] font-bold font-bold text-[#35D0BA] font-bold bg-[#347653]/10 border border-[#35D0BA]/40 px-2 py-0.5 rounded">
+        <span className="inline-flex items-center gap-1 font-mono text-[28px] font-bold font-bold text-[#F6821F] font-bold bg-[#347653]/10 border border-[#F6821F]/40 px-2 py-0.5 rounded">
           <ShieldCheck className="h-3 w-3" />
           LIKELY OFFICIAL ({score}/100)
         </span>
@@ -368,13 +368,13 @@ export default function SocialMonitoringPage() {
         {/* ========================================================================= */}
         {/* 1. BRAND INVESTIGATION HEADER                                             */}
         {/* ========================================================================= */}
-        <section className="bg-[#0D1118] border border-[#303946] rounded-xl p-6 shadow-xs space-y-5">
+        <section className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-6 shadow-xs space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <span className="font-mono text-[28px] font-bold font-bold uppercase tracking-wider text-[#35D0BA] font-bold">
+              <span className="font-mono text-[28px] font-bold font-bold uppercase tracking-wider text-[#F6821F] font-bold">
                 BRAND PERIMETER PROTECTION
               </span>
-              <p className="text-[24px] font-bold text-[#D0D7E0] font-bold mt-0.5">
+              <p className="text-[24px] font-bold text-[#9CA3AF] font-bold mt-0.5">
                 Discover canonical enterprise identities, map official channels, and surface impersonation campaigns.
               </p>
             </div>
@@ -382,7 +382,7 @@ export default function SocialMonitoringPage() {
             {/* Quick Switcher of previously investigated brands */}
             {brands.length > 0 && (
               <div className="flex items-center gap-2 text-[17px] font-bold font-mono">
-                <span className="text-[#D0D7E0] font-bold">History:</span>
+                <span className="text-[#9CA3AF] font-bold">History:</span>
                 <div className="flex gap-1.5 flex-wrap">
                   {brands.slice(0, 4).map((b) => (
                     <button
@@ -395,8 +395,8 @@ export default function SocialMonitoringPage() {
                       }}
                       className={`px-2.5 py-1 rounded-md text-[28px] font-bold font-bold font-semibold transition ${
                         activeBrand?.id === b.id
-                          ? 'bg-[#0F2620] text-[#35D0BA] font-bold border border-[#35D0BA]/40'
-                          : 'bg-[#19222D] text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold hover:bg-[#19222D]'
+                          ? 'bg-[#0F2620] text-[#F6821F] font-bold border border-[#F6821F]/40'
+                          : 'bg-[#161D2F] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold hover:bg-[#161D2F]'
                       }`}
                     >
                       {b.brandName}
@@ -411,14 +411,14 @@ export default function SocialMonitoringPage() {
           <form onSubmit={handleInvestigateBrand} className="space-y-3">
             <div className="flex flex-col sm:flex-row items-stretch gap-3">
               <div className="relative flex-1">
-                <Search className="h-4 w-4 text-[#D0D7E0] font-bold absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Search className="h-4 w-4 text-[#9CA3AF] font-bold absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   required
                   placeholder="Enter brand name (e.g. Nike, Paytm, HDFC Bank, PayPal)..."
                   value={inputBrandName}
                   onChange={(e) => setInputBrandName(e.target.value)}
-                  className="w-full bg-[#121821] border border-[#303946] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] text-[19px] font-bold rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-[#35D0BA]/40 focus:ring-1 focus:ring-[#477A60] transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] text-[19px] font-bold rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-[#F6821F]/40 focus:ring-1 focus:ring-[#477A60] transition"
                 />
               </div>
 
@@ -427,8 +427,8 @@ export default function SocialMonitoringPage() {
                 disabled={isInvestigating || !inputBrandName.trim()}
                 className={`px-6 py-3 rounded-xl text-[24px] font-bold font-bold transition flex items-center justify-center gap-2 shrink-0 ${
                   isInvestigating
-                    ? 'bg-[#0F2620] text-[#35D0BA] font-bold border border-[#35D0BA]/40 cursor-not-allowed'
-                    : 'bg-[#35D0BA] text-[#080B10] font-extrabold hover:bg-[#2EB8A5] text-white shadow-xs'
+                    ? 'bg-[#0F2620] text-[#F6821F] font-bold border border-[#F6821F]/40 cursor-not-allowed'
+                    : 'bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white shadow-xs'
                 }`}
               >
                 <RefreshCw className={`h-4 w-4 ${isInvestigating ? 'animate-spin' : ''}`} />
@@ -437,7 +437,7 @@ export default function SocialMonitoringPage() {
             </div>
 
             {/* Optional manual fields toggle */}
-            <div className="flex items-center justify-between text-[17px] font-bold text-[#D0D7E0] font-bold">
+            <div className="flex items-center justify-between text-[17px] font-bold text-[#9CA3AF] font-bold">
               <button
                 type="button"
                 onClick={() => setShowAdvancedInputs(!showAdvancedInputs)}
@@ -448,7 +448,7 @@ export default function SocialMonitoringPage() {
               </button>
 
               {activeBrand && lastScanRecord && (
-                <div className="flex items-center gap-1.5 text-[#D0D7E0] font-bold">
+                <div className="flex items-center gap-1.5 text-[#9CA3AF] font-bold">
                   <Clock className="h-3.5 w-3.5" />
                   <span>
                     Last scanned: {new Date(lastScanRecord.completedAt || lastScanRecord.startedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -458,35 +458,35 @@ export default function SocialMonitoringPage() {
             </div>
 
             {showAdvancedInputs && (
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 bg-[#121821] border border-[#303946] rounded-xl text-[17px] font-bold">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 bg-[#111625] border border-[#1E2638] rounded-xl text-[17px] font-bold">
                 <div>
-                  <label className="text-[#D0D7E0] font-bold text-[28px] font-bold font-bold font-semibold block mb-1">Official Website (optional)</label>
+                  <label className="text-[#9CA3AF] font-bold text-[28px] font-bold font-bold font-semibold block mb-1">Official Website (optional)</label>
                   <input
                     type="text"
                     placeholder="https://nike.com"
                     value={optionalWebsite}
                     onChange={(e) => setOptionalWebsite(e.target.value)}
-                    className="w-full bg-[#0D1118] border border-[#303946] rounded-lg px-3 py-2 text-[#FFFFFF] font-bold text-[24px] font-bold focus:outline-none focus:border-[#35D0BA]/40"
+                    className="w-full bg-[#0E131F] border border-[#1E2638] rounded-lg px-3 py-2 text-[#FFFFFF] font-bold text-[24px] font-bold focus:outline-none focus:border-[#F6821F]/40"
                   />
                 </div>
                 <div>
-                  <label className="text-[#D0D7E0] font-bold text-[28px] font-bold font-bold font-semibold block mb-1">X (Twitter) Handle (optional)</label>
+                  <label className="text-[#9CA3AF] font-bold text-[28px] font-bold font-bold font-semibold block mb-1">X (Twitter) Handle (optional)</label>
                   <input
                     type="text"
                     placeholder="@Nike"
                     value={optionalTwitter}
                     onChange={(e) => setOptionalTwitter(e.target.value)}
-                    className="w-full bg-[#0D1118] border border-[#303946] rounded-lg px-3 py-2 text-[#FFFFFF] font-bold text-[24px] font-bold focus:outline-none focus:border-[#35D0BA]/40"
+                    className="w-full bg-[#0E131F] border border-[#1E2638] rounded-lg px-3 py-2 text-[#FFFFFF] font-bold text-[24px] font-bold focus:outline-none focus:border-[#F6821F]/40"
                   />
                 </div>
                 <div>
-                  <label className="text-[#D0D7E0] font-bold text-[28px] font-bold font-bold font-semibold block mb-1">Instagram Handle (optional)</label>
+                  <label className="text-[#9CA3AF] font-bold text-[28px] font-bold font-bold font-semibold block mb-1">Instagram Handle (optional)</label>
                   <input
                     type="text"
                     placeholder="@nike"
                     value={optionalInstagram}
                     onChange={(e) => setOptionalInstagram(e.target.value)}
-                    className="w-full bg-[#0D1118] border border-[#303946] rounded-lg px-3 py-2 text-[#FFFFFF] font-bold text-[24px] font-bold focus:outline-none focus:border-[#35D0BA]/40"
+                    className="w-full bg-[#0E131F] border border-[#1E2638] rounded-lg px-3 py-2 text-[#FFFFFF] font-bold text-[24px] font-bold focus:outline-none focus:border-[#F6821F]/40"
                   />
                 </div>
               </div>
@@ -498,13 +498,13 @@ export default function SocialMonitoringPage() {
         {/* 2. REAL SCAN STATUS & MULTI-STAGE PROGRESS                                */}
         {/* ========================================================================= */}
         {isInvestigating && (
-          <section className="bg-[#0D1118] border border-[#35D0BA]/40 rounded-xl p-5 space-y-4 shadow-sm">
-            <div className="flex items-center justify-between border-b border-[#303946] pb-3">
-              <div className="flex items-center gap-2 text-[#35D0BA] font-bold font-mono text-[24px] font-bold font-bold">
+          <section className="bg-[#0E131F] border border-[#F6821F]/40 rounded-xl p-5 space-y-4 shadow-sm">
+            <div className="flex items-center justify-between border-b border-[#1E2638] pb-3">
+              <div className="flex items-center gap-2 text-[#F6821F] font-bold font-mono text-[24px] font-bold font-bold">
                 <RefreshCw className="h-4 w-4 animate-spin" />
                 DIGITAL RISK INVESTIGATION RUNNING FOR &quot;{inputBrandName.toUpperCase()}&quot;
               </div>
-              <span className="font-mono text-[28px] font-bold font-bold text-[#D0D7E0] font-bold">
+              <span className="font-mono text-[28px] font-bold font-bold text-[#9CA3AF] font-bold">
                 Stage {activeScanStep + 1} of {scanStages.length}
               </span>
             </div>
@@ -518,24 +518,24 @@ export default function SocialMonitoringPage() {
                     key={stage.title}
                     className={`flex items-start gap-3 p-3 rounded-lg text-[17px] font-bold border ${
                       isCurrent
-                        ? 'bg-[#0F2620] border-[#35D0BA]/40 text-[#35D0BA] font-bold'
+                        ? 'bg-[#0F2620] border-[#F6821F]/40 text-[#F6821F] font-bold'
                         : isPast
-                        ? 'bg-[#121821] border-[#303946] text-[#35D0BA] font-bold'
-                        : 'bg-[#0D1118] border-[#303946] text-[#D0D7E0] font-bold'
+                        ? 'bg-[#111625] border-[#1E2638] text-[#F6821F] font-bold'
+                        : 'bg-[#0E131F] border-[#1E2638] text-[#9CA3AF] font-bold'
                     }`}
                   >
                     <div className="mt-0.5">
                       {isPast ? (
-                        <CheckCircle2 className="h-4 w-4 text-[#35D0BA] font-bold" />
+                        <CheckCircle2 className="h-4 w-4 text-[#F6821F] font-bold" />
                       ) : isCurrent ? (
-                        <RefreshCw className="h-4 w-4 text-[#35D0BA] font-bold animate-spin" />
+                        <RefreshCw className="h-4 w-4 text-[#F6821F] font-bold animate-spin" />
                       ) : (
-                        <div className="h-4 w-4 rounded-full border border-[#303946]" />
+                        <div className="h-4 w-4 rounded-full border border-[#1E2638]" />
                       )}
                     </div>
                     <div>
                       <div className="font-bold font-mono">{stage.title}</div>
-                      <div className="text-[28px] font-bold font-bold text-[#D0D7E0] font-bold mt-0.5">{stage.desc}</div>
+                      <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">{stage.desc}</div>
                     </div>
                   </div>
                 );
@@ -571,7 +571,7 @@ export default function SocialMonitoringPage() {
                   <AlertOctagon className="h-5 w-5 text-[#FFAB40] font-bold shrink-0 mt-0.5" />
                   <div>
                     <div className="font-bold">Trusted identity could not be established.</div>
-                    <div className="text-[#D0D7E0] font-bold text-[17px] font-bold mt-0.5">
+                    <div className="text-[#9CA3AF] font-bold text-[17px] font-bold mt-0.5">
                       SAFENET could not establish a trusted digital identity for &quot;{brandDisplayName}&quot; from the available sources.
                       Lookalike threat scanning and impersonation scoring are disabled until a verified identity baseline exists.
                     </div>
@@ -579,15 +579,15 @@ export default function SocialMonitoringPage() {
                 </div>
               )}
 
-              <section className="bg-[#0D1118] border border-[#303946] rounded-xl p-6 shadow-xs space-y-5">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#303946] pb-4">
+              <section className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-6 shadow-xs space-y-5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1E2638] pb-4">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-[28px] font-bold font-bold uppercase tracking-wider text-[#D0D7E0] font-bold">
+                      <span className="font-mono text-[28px] font-bold font-bold uppercase tracking-wider text-[#9CA3AF] font-bold">
                         OFFICIAL IDENTITY BASELINE
                       </span>
                       {isEstablished ? (
-                        <span className="inline-flex items-center gap-1 font-mono text-[28px] font-bold font-bold text-[#35D0BA] font-bold bg-[#347653]/10 border border-[#35D0BA]/40 px-2.5 py-0.5 rounded-full">
+                        <span className="inline-flex items-center gap-1 font-mono text-[28px] font-bold font-bold text-[#F6821F] font-bold bg-[#347653]/10 border border-[#F6821F]/40 px-2.5 py-0.5 rounded-full">
                           <ShieldCheck className="h-3 w-3" />
                           {status.replace('_', ' ')} • {confidence}% CONFIDENCE
                         </span>
@@ -604,11 +604,11 @@ export default function SocialMonitoringPage() {
                   </div>
 
                   {visualId ? (
-                    <div className="font-mono text-[17px] font-bold text-[#D0D7E0] font-bold bg-[#121821] border border-[#303946] px-3.5 py-1.5 rounded-lg">
-                      <span className="text-[#D0D7E0] font-bold">Visual Identity:</span> {visualId}
+                    <div className="font-mono text-[17px] font-bold text-[#9CA3AF] font-bold bg-[#111625] border border-[#1E2638] px-3.5 py-1.5 rounded-lg">
+                      <span className="text-[#9CA3AF] font-bold">Visual Identity:</span> {visualId}
                     </div>
                   ) : (
-                    <div className="font-mono text-[17px] font-bold text-[#D0D7E0] font-bold bg-[#121821] border border-[#303946] px-3.5 py-1.5 rounded-lg">
+                    <div className="font-mono text-[17px] font-bold text-[#9CA3AF] font-bold bg-[#111625] border border-[#1E2638] px-3.5 py-1.5 rounded-lg">
                       Visual Identity: None verified
                     </div>
                   )}
@@ -619,19 +619,19 @@ export default function SocialMonitoringPage() {
                   {profiles.map((prof) => (
                     <div
                       key={`${prof.platform}-${prof.username}`}
-                      className="p-3.5 bg-[#121821] border border-[#303946] rounded-xl space-y-2 text-[17px] font-bold"
+                      className="p-3.5 bg-[#111625] border border-[#1E2638] rounded-xl space-y-2 text-[17px] font-bold"
                     >
                       <div className="flex items-center justify-between">
                         <PlatformBadge platform={prof.platform} />
                         <span className={`text-[21px] font-bold font-bold px-2 py-0.5 rounded uppercase border ${
                           prof.verificationStatus === 'VERIFIED'
-                            ? 'bg-[#347653]/10 text-[#35D0BA] font-bold border-[#35D0BA]/40'
+                            ? 'bg-[#347653]/10 text-[#F6821F] font-bold border-[#F6821F]/40'
                             : prof.verificationStatus === 'LIKELY'
-                            ? 'bg-[#35D0BA] text-[#080B10] font-extrabold/10 text-[#35D0BA] font-bold border-[#35D0BA]/40'
+                            ? 'bg-[#F6821F] text-[#080B11] font-extrabold/10 text-[#F6821F] font-bold border-[#F6821F]/40'
                             : prof.verificationStatus === 'POSSIBLE'
                             ? 'bg-[#0D1B2A] text-[#64A9FF] font-bold border-[#64A9FF]/40'
                             : prof.verificationStatus === 'UNAVAILABLE'
-                            ? 'bg-[#19222D] text-[#D0D7E0] font-bold border-[#303946]'
+                            ? 'bg-[#161D2F] text-[#9CA3AF] font-bold border-[#1E2638]'
                             : 'bg-[#2C1C0D] text-[#FFAB40] font-bold border-[#FFAB40]/40'
                         }`}>
                           {prof.verificationStatus ? prof.verificationStatus.replace('_', ' ') : 'UNVERIFIED'}
@@ -642,33 +642,33 @@ export default function SocialMonitoringPage() {
                         {prof.username}
                       </div>
 
-                      <div className="text-[28px] font-bold font-bold text-[#D0D7E0] font-bold line-clamp-2">
+                      <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold line-clamp-2">
                         {prof.verificationReason}
                       </div>
 
                       {prof.trustEvidence && prof.trustEvidence.length > 0 ? (
-                        <div className="pt-2 border-t border-[#303946] text-[28px] font-bold font-bold space-y-1">
-                          <span className="text-[#D0D7E0] font-bold font-semibold block text-[21px] font-bold uppercase">Why SAFENET trusts this:</span>
+                        <div className="pt-2 border-t border-[#1E2638] text-[28px] font-bold font-bold space-y-1">
+                          <span className="text-[#9CA3AF] font-bold font-semibold block text-[21px] font-bold uppercase">Why SAFENET trusts this:</span>
                           {prof.trustEvidence.map((ev, i) => (
-                            <div key={i} className="flex items-center gap-1.5 text-[#35D0BA] font-bold text-[28px] font-bold font-bold">
+                            <div key={i} className="flex items-center gap-1.5 text-[#F6821F] font-bold text-[28px] font-bold font-bold">
                               <CheckCircle2 className="h-3 w-3 shrink-0" />
                               <span className="truncate">{ev}</span>
                             </div>
                           ))}
                         </div>
                       ) : (
-                        <div className="pt-2 border-t border-[#303946] text-[28px] font-bold font-bold text-[#D0D7E0] font-bold">
+                        <div className="pt-2 border-t border-[#1E2638] text-[28px] font-bold font-bold text-[#9CA3AF] font-bold">
                           ✕ Insufficient evidence to verify ownership
                         </div>
                       )}
 
                       {prof.url ? (
-                        <div className="pt-1.5 border-t border-[#303946]">
+                        <div className="pt-1.5 border-t border-[#1E2638]">
                           <a
                             href={prof.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[28px] font-bold font-bold text-[#35D0BA] font-bold hover:text-[#365F49] font-medium flex items-center gap-1 truncate"
+                            className="text-[28px] font-bold font-bold text-[#F6821F] font-bold hover:text-[#365F49] font-medium flex items-center gap-1 truncate"
                           >
                             <ExternalLink className="h-3 w-3 shrink-0" />
                             <span className="truncate">{prof.url}</span>
@@ -681,12 +681,12 @@ export default function SocialMonitoringPage() {
 
                 {/* Aliases & Known Keywords if established */}
                 {isEstablished && (aliases.length > 0 || keywords.length > 0) && (
-                  <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-[#303946] text-[17px] font-bold text-[#D0D7E0] font-bold">
+                  <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-[#1E2638] text-[17px] font-bold text-[#9CA3AF] font-bold">
                     {aliases.length > 0 && (
                       <>
-                        <span className="text-[#D0D7E0] font-bold font-semibold text-[28px] font-bold font-bold uppercase">Aliases:</span>
+                        <span className="text-[#9CA3AF] font-bold font-semibold text-[28px] font-bold font-bold uppercase">Aliases:</span>
                         {aliases.map((al) => (
-                          <span key={al} className="bg-[#19222D] px-2.5 py-0.5 rounded-md text-[28px] font-bold font-bold font-mono text-[#FFFFFF] font-bold">
+                          <span key={al} className="bg-[#161D2F] px-2.5 py-0.5 rounded-md text-[28px] font-bold font-bold font-mono text-[#FFFFFF] font-bold">
                             {al}
                           </span>
                         ))}
@@ -695,9 +695,9 @@ export default function SocialMonitoringPage() {
 
                     {keywords.length > 0 && (
                       <>
-                        <span className="text-[#D0D7E0] font-bold font-semibold text-[28px] font-bold font-bold uppercase ml-3">Keywords:</span>
+                        <span className="text-[#9CA3AF] font-bold font-semibold text-[28px] font-bold font-bold uppercase ml-3">Keywords:</span>
                         {keywords.map((kw) => (
-                          <span key={kw} className="bg-[#19222D] px-2.5 py-0.5 rounded-md text-[28px] font-bold font-bold font-mono text-[#FFFFFF] font-bold">
+                          <span key={kw} className="bg-[#161D2F] px-2.5 py-0.5 rounded-md text-[28px] font-bold font-bold font-mono text-[#FFFFFF] font-bold">
                             {kw}
                           </span>
                         ))}
@@ -714,12 +714,12 @@ export default function SocialMonitoringPage() {
         {/* 4. THREAT LANDSCAPE OVERVIEW                                              */}
         {/* ========================================================================= */}
         {discoveryResult && !discoveryResult.isIdentityEstablished ? (
-          <div className="border border-[#303946] bg-[#0D1118] rounded-xl p-12 text-center space-y-3 shadow-xs">
+          <div className="border border-[#1E2638] bg-[#0E131F] rounded-xl p-12 text-center space-y-3 shadow-xs">
             <ShieldAlert className="h-10 w-10 text-[#FFAB40] font-bold mx-auto" />
             <div className="text-[#FFFFFF] font-bold text-[21px] font-bold">
               Lookalike Threat Discovery Disabled
             </div>
-            <div className="text-[#D0D7E0] font-bold text-[24px] font-bold max-w-lg mx-auto leading-relaxed">
+            <div className="text-[#9CA3AF] font-bold text-[24px] font-bold max-w-lg mx-auto leading-relaxed">
               SAFENET could not establish a trusted digital identity for &quot;{discoveryResult.brandName}&quot; from the available sources.
               To prevent false positives, lookalike mutation scans and threat scoring require an established official identity baseline.
             </div>
@@ -727,9 +727,9 @@ export default function SocialMonitoringPage() {
         ) : (
           <>
             <section className="space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#303946] pb-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1E2638] pb-3">
                 <div>
-                  <span className="font-mono text-[28px] font-bold font-bold uppercase tracking-wider text-[#D0D7E0] font-bold">
+                  <span className="font-mono text-[28px] font-bold font-bold uppercase tracking-wider text-[#9CA3AF] font-bold">
                     THREAT LANDSCAPE
                   </span>
                   <div className="text-[24px] font-bold text-[#FFFFFF] font-bold mt-0.5">
@@ -739,11 +739,11 @@ export default function SocialMonitoringPage() {
 
                 {/* Provider Connectivity Summary Bar */}
                 <div className="flex items-center gap-2 text-[28px] font-bold font-bold font-mono flex-wrap">
-                  <span className="text-[#D0D7E0] font-bold">Sources:</span>
-                  <span className="px-2 py-0.5 rounded bg-[#19222D] border border-[#303946] text-[#FFFFFF] font-bold">
+                  <span className="text-[#9CA3AF] font-bold">Sources:</span>
+                  <span className="px-2 py-0.5 rounded bg-[#161D2F] border border-[#1E2638] text-[#FFFFFF] font-bold">
                     YouTube: {providerStatuses.youtube?.status === 'connected' ? '✓ LIVE' : 'NOT CONFIGURED'}
                   </span>
-                  <span className="px-2 py-0.5 rounded bg-[#19222D] border border-[#303946] text-[#FFFFFF] font-bold">
+                  <span className="px-2 py-0.5 rounded bg-[#161D2F] border border-[#1E2638] text-[#FFFFFF] font-bold">
                     X: {providerStatuses.twitter?.status === 'connected' ? '✓ ACTIVE' : 'UNAVAILABLE'}
                   </span>
                   {isDemoModeActive && (
@@ -756,34 +756,34 @@ export default function SocialMonitoringPage() {
 
               {/* Metric Tiles (Organic Monochrome Style) */}
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                <div className="p-4 rounded-xl bg-[#0D1118] border border-[#303946] shadow-xs">
+                <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
                   <div className="text-[28px] font-bold font-bold font-mono text-[#FF5C6C] font-bold uppercase tracking-wider">Critical Threats</div>
                   <div className="text-[36px] font-extrabold font-bold font-mono text-[#FF5C6C] font-bold mt-1">{criticalCount}</div>
-                  <div className="text-[28px] font-bold font-bold text-[#D0D7E0] font-bold mt-0.5">Urgent scam risks</div>
+                  <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Urgent scam risks</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0D1118] border border-[#303946] shadow-xs">
+                <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
                   <div className="text-[28px] font-bold font-bold font-mono text-[#FFAB40] font-bold uppercase tracking-wider">High Risk</div>
                   <div className="text-[36px] font-extrabold font-bold font-mono text-[#FFAB40] font-bold mt-1">{highRiskCount}</div>
-                  <div className="text-[28px] font-bold font-bold text-[#D0D7E0] font-bold mt-0.5">Impersonation alerts</div>
+                  <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Impersonation alerts</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0D1118] border border-[#303946] shadow-xs">
+                <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
                   <div className="text-[28px] font-bold font-bold font-mono text-[#FFAB40] font-bold uppercase tracking-wider">Suspicious</div>
                   <div className="text-[36px] font-extrabold font-bold font-mono text-[#FFAB40] font-bold mt-1">{suspiciousCount}</div>
-                  <div className="text-[28px] font-bold font-bold text-[#D0D7E0] font-bold mt-0.5">Combosquatting</div>
+                  <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Combosquatting</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0D1118] border border-[#303946] shadow-xs">
+                <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
                   <div className="text-[28px] font-bold font-bold font-mono text-[#64A9FF] font-bold uppercase tracking-wider">Low Concern</div>
                   <div className="text-[36px] font-extrabold font-bold font-mono text-[#64A9FF] font-bold mt-1">{lowConcernCount}</div>
-                  <div className="text-[28px] font-bold font-bold text-[#D0D7E0] font-bold mt-0.5">Related community</div>
+                  <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Related community</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0D1118] border border-[#303946] shadow-xs">
-                  <div className="text-[28px] font-bold font-bold font-mono text-[#35D0BA] font-bold uppercase tracking-wider">Likely Official</div>
-                  <div className="text-[36px] font-extrabold font-bold font-mono text-[#35D0BA] font-bold mt-1">{likelyOfficialCount}</div>
-                  <div className="text-[28px] font-bold font-bold text-[#D0D7E0] font-bold mt-0.5">Verified brand channels</div>
+                <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
+                  <div className="text-[28px] font-bold font-bold font-mono text-[#F6821F] font-bold uppercase tracking-wider">Likely Official</div>
+                  <div className="text-[36px] font-extrabold font-bold font-mono text-[#F6821F] font-bold mt-1">{likelyOfficialCount}</div>
+                  <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Verified brand channels</div>
                 </div>
               </div>
             </section>
@@ -794,7 +794,7 @@ export default function SocialMonitoringPage() {
             <section className="space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-1.5 flex-wrap text-[17px] font-bold font-mono">
-                  <span className="text-[#D0D7E0] font-bold font-semibold mr-1">Filter:</span>
+                  <span className="text-[#9CA3AF] font-bold font-semibold mr-1">Filter:</span>
                   {[
                     { label: 'ALL', id: 'ALL' },
                     { label: 'HIGH RISK & CRITICAL', id: 'HIGH_RISK' },
@@ -806,23 +806,23 @@ export default function SocialMonitoringPage() {
                       onClick={() => setFilterTier(f.id)}
                       className={`px-3 py-1 rounded-md transition ${
                         filterTier === f.id
-                          ? 'bg-[#121821] text-white font-bold'
-                          : 'bg-[#0D1118] border border-[#303946] text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold'
+                          ? 'bg-[#111625] text-white font-bold'
+                          : 'bg-[#0E131F] border border-[#1E2638] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold'
                       }`}
                     >
                       {f.label}
                     </button>
                   ))}
 
-                  <span className="text-[#D0D7E0] font-bold font-semibold ml-2 mr-1">Platform:</span>
+                  <span className="text-[#9CA3AF] font-bold font-semibold ml-2 mr-1">Platform:</span>
                   {['ALL', 'youtube', 'twitter', 'instagram', 'facebook', 'linkedin'].map((p) => (
                     <button
                       key={p}
                       onClick={() => setFilterPlatform(p)}
                       className={`px-3 py-1 rounded-md transition uppercase ${
                         filterPlatform === p
-                          ? 'bg-[#35D0BA] text-[#080B10] font-extrabold text-white font-bold'
-                          : 'bg-[#0D1118] border border-[#303946] text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold'
+                          ? 'bg-[#F6821F] text-[#080B11] font-extrabold text-white font-bold'
+                          : 'bg-[#0E131F] border border-[#1E2638] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold'
                       }`}
                     >
                       {p === 'twitter' ? 'X' : p}
@@ -831,30 +831,30 @@ export default function SocialMonitoringPage() {
                 </div>
 
                 <div className="relative">
-                  <Search className="h-3.5 w-3.5 text-[#D0D7E0] font-bold absolute left-3 top-1/2 -translate-y-1/2" />
+                  <Search className="h-3.5 w-3.5 text-[#9CA3AF] font-bold absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     placeholder="Search candidates by handle..."
                     value={feedSearch}
                     onChange={(e) => setFeedSearch(e.target.value)}
-                    className="bg-[#0D1118] border border-[#303946] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] text-[17px] font-bold rounded-lg pl-8 pr-3 py-1.5 focus:outline-none focus:border-[#35D0BA]/40 w-full sm:w-64"
+                    className="bg-[#0E131F] border border-[#1E2638] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] text-[17px] font-bold rounded-lg pl-8 pr-3 py-1.5 focus:outline-none focus:border-[#F6821F]/40 w-full sm:w-64"
                   />
                 </div>
               </div>
 
               {/* Candidate Feed Items */}
               {filteredCandidates.length === 0 ? (
-                <div className="border border-[#303946] bg-[#0D1118] rounded-xl p-12 text-center space-y-2 shadow-xs">
-                  <ShieldCheck className="h-8 w-8 text-[#35D0BA] font-bold mx-auto" />
+                <div className="border border-[#1E2638] bg-[#0E131F] rounded-xl p-12 text-center space-y-2 shadow-xs">
+                  <ShieldCheck className="h-8 w-8 text-[#F6821F] font-bold mx-auto" />
                   <div className="text-[#FFFFFF] font-bold text-[19px] font-bold">
                     No high-confidence impersonation threats discovered in the sources scanned.
                   </div>
-                  <div className="text-[#D0D7E0] font-bold text-[17px] font-bold">
+                  <div className="text-[#9CA3AF] font-bold text-[17px] font-bold">
                     The perimeter for &quot;{activeBrand?.brandName || inputBrandName}&quot; has been checked across configured discovery adapters.
                   </div>
                 </div>
               ) : (
-                <div className="border border-[#303946] rounded-xl overflow-hidden bg-[#0D1118] divide-y divide-[#303946] shadow-xs">
+                <div className="border border-[#1E2638] rounded-xl overflow-hidden bg-[#0E131F] divide-y divide-[#1E2638] shadow-xs">
                   {filteredCandidates.map((item) => {
                     const cand = item.candidate;
                     const risk = item.risk;
@@ -863,7 +863,7 @@ export default function SocialMonitoringPage() {
                     return (
                       <div
                         key={cand.id}
-                        className="p-4 hover:bg-[#121821] transition flex flex-col md:flex-row md:items-center justify-between gap-4"
+                        className="p-4 hover:bg-[#111625] transition flex flex-col md:flex-row md:items-center justify-between gap-4"
                       >
                         {/* Left: Identity info */}
                         <div className="space-y-1.5 min-w-0 flex-1">
@@ -875,7 +875,7 @@ export default function SocialMonitoringPage() {
                               {cand.username}
                             </span>
 
-                            <span className="text-[24px] font-bold text-[#D0D7E0] font-bold truncate">
+                            <span className="text-[24px] font-bold text-[#9CA3AF] font-bold truncate">
                               {cand.displayName}
                             </span>
 
@@ -886,20 +886,20 @@ export default function SocialMonitoringPage() {
                             )}
 
                             {item.status === 'watchlist' && (
-                              <span className="bg-[#35D0BA] text-[#080B10] font-extrabold/10 border border-[#35D0BA]/40 text-[#35D0BA] font-bold text-[21px] font-bold px-1.5 py-0.5 rounded font-bold font-mono">
+                              <span className="bg-[#F6821F] text-[#080B11] font-extrabold/10 border border-[#F6821F]/40 text-[#F6821F] font-bold text-[21px] font-bold px-1.5 py-0.5 rounded font-bold font-mono">
                                 WATCHLIST
                               </span>
                             )}
                           </div>
 
                           {cand.description && (
-                            <p className="text-[17px] font-bold text-[#D0D7E0] font-bold line-clamp-1">
+                            <p className="text-[17px] font-bold text-[#9CA3AF] font-bold line-clamp-1">
                               {cand.description}
                             </p>
                           )}
 
                           {/* Signals summary */}
-                          <div className="flex items-center gap-4 text-[28px] font-bold font-bold text-[#D0D7E0] font-bold pt-0.5 flex-wrap font-mono">
+                          <div className="flex items-center gap-4 text-[28px] font-bold font-bold text-[#9CA3AF] font-bold pt-0.5 flex-wrap font-mono">
                             <span>
                               Name Sim: <strong className="text-[#FFFFFF] font-bold">{risk.nameSimilarity}%</strong>
                             </span>
@@ -926,8 +926,8 @@ export default function SocialMonitoringPage() {
                             onClick={() => setInvestigatingCandidate(item)}
                             className={`px-3.5 py-1.5 rounded-lg text-[17px] font-bold transition flex items-center gap-1.5 font-bold ${
                               tier === 'LIKELY_OFFICIAL'
-                                ? 'bg-[#19222D] text-[#FFFFFF] font-bold hover:bg-[#19222D] border border-[#303946]'
-                                : 'bg-[#0F2620] text-[#35D0BA] font-bold hover:bg-[#35D0BA] text-[#080B10] font-extrabold hover:text-white border border-[#35D0BA]/40'
+                                ? 'bg-[#161D2F] text-[#FFFFFF] font-bold hover:bg-[#161D2F] border border-[#1E2638]'
+                                : 'bg-[#0F2620] text-[#F6821F] font-bold hover:bg-[#F6821F] text-[#080B11] font-extrabold hover:text-white border border-[#F6821F]/40'
                             }`}
                           >
                             <Eye className="h-3.5 w-3.5" />
@@ -947,10 +947,10 @@ export default function SocialMonitoringPage() {
         {/* 6. THREAT INVESTIGATION DRAWER / MODAL                                    */}
         {/* ========================================================================= */}
         {investigatingCandidate && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#080B10]/80 backdrop-blur-xs animate-in fade-in duration-200">
-            <div className="bg-[#0D1118] border border-[#303946] rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-xl p-6 space-y-6">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#080B11]/80 backdrop-blur-xs animate-in fade-in duration-200">
+            <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-xl p-6 space-y-6">
               {/* Header */}
-              <div className="flex items-start justify-between border-b border-[#303946] pb-4">
+              <div className="flex items-start justify-between border-b border-[#1E2638] pb-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
                     <ThreatTierBadge
@@ -968,14 +968,14 @@ export default function SocialMonitoringPage() {
                   <h2 className="text-[30px] font-extrabold font-bold text-[#FFFFFF] font-bold pt-1 font-mono">
                     {investigatingCandidate.candidate.username}
                   </h2>
-                  <div className="text-[24px] font-bold text-[#D0D7E0] font-bold">
+                  <div className="text-[24px] font-bold text-[#9CA3AF] font-bold">
                     {investigatingCandidate.candidate.displayName} • Source: {investigatingCandidate.candidate.source}
                   </div>
                 </div>
 
                 <button
                   onClick={() => setInvestigatingCandidate(null)}
-                  className="p-1.5 rounded-lg text-[#D0D7E0] font-bold hover:text-[#FFFFFF] font-bold hover:bg-[#19222D] transition"
+                  className="p-1.5 rounded-lg text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold hover:bg-[#161D2F] transition"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -983,38 +983,38 @@ export default function SocialMonitoringPage() {
 
               {/* Bio & Profile summary */}
               {investigatingCandidate.candidate.description && (
-                <div className="p-3.5 bg-[#121821] border border-[#303946] rounded-xl text-[24px] font-bold text-[#FFFFFF] font-bold">
-                  <span className="text-[#D0D7E0] font-bold block text-[21px] font-bold uppercase font-bold mb-0.5">Bio / Description:</span>
+                <div className="p-3.5 bg-[#111625] border border-[#1E2638] rounded-xl text-[24px] font-bold text-[#FFFFFF] font-bold">
+                  <span className="text-[#9CA3AF] font-bold block text-[21px] font-bold uppercase font-bold mb-0.5">Bio / Description:</span>
                   {investigatingCandidate.candidate.description}
                 </div>
               )}
 
               {/* Identity Analysis */}
               <div className="space-y-3">
-                <h3 className="text-[17px] font-bold uppercase tracking-wider text-[#D0D7E0] font-bold font-mono">
+                <h3 className="text-[17px] font-bold uppercase tracking-wider text-[#9CA3AF] font-bold font-mono">
                   1. Identity & Combosquatting Signals
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-[17px] font-bold">
-                  <div className="p-3 bg-[#121821] border border-[#303946] rounded-xl">
-                    <div className="text-[#D0D7E0] font-bold text-[21px] font-bold font-mono">USERNAME SIMILARITY</div>
+                  <div className="p-3 bg-[#111625] border border-[#1E2638] rounded-xl">
+                    <div className="text-[#9CA3AF] font-bold text-[21px] font-bold font-mono">USERNAME SIMILARITY</div>
                     <div className="text-xl font-bold text-[#FFFFFF] font-bold mt-0.5 font-mono">
                       {investigatingCandidate.risk.usernameSimilarity}%
                     </div>
                   </div>
-                  <div className="p-3 bg-[#121821] border border-[#303946] rounded-xl">
-                    <div className="text-[#D0D7E0] font-bold text-[21px] font-bold font-mono">DISPLAY NAME SIMILARITY</div>
+                  <div className="p-3 bg-[#111625] border border-[#1E2638] rounded-xl">
+                    <div className="text-[#9CA3AF] font-bold text-[21px] font-bold font-mono">DISPLAY NAME SIMILARITY</div>
                     <div className="text-xl font-bold text-[#FFFFFF] font-bold mt-0.5 font-mono">
                       {investigatingCandidate.risk.nameSimilarity}%
                     </div>
                   </div>
-                  <div className="p-3 bg-[#121821] border border-[#303946] rounded-xl">
-                    <div className="text-[#D0D7E0] font-bold text-[21px] font-bold font-mono">BRANDING INTENT</div>
+                  <div className="p-3 bg-[#111625] border border-[#1E2638] rounded-xl">
+                    <div className="text-[#9CA3AF] font-bold text-[21px] font-bold font-mono">BRANDING INTENT</div>
                     <div className="text-xl font-bold text-[#FFFFFF] font-bold mt-0.5 font-mono">
                       {investigatingCandidate.risk.brandingSimilarity}%
                     </div>
                   </div>
-                  <div className="p-3 bg-[#121821] border border-[#303946] rounded-xl">
-                    <div className="text-[#D0D7E0] font-bold text-[21px] font-bold font-mono">OFFICIAL STATUS</div>
+                  <div className="p-3 bg-[#111625] border border-[#1E2638] rounded-xl">
+                    <div className="text-[#9CA3AF] font-bold text-[21px] font-bold font-mono">OFFICIAL STATUS</div>
                     <div className="text-[17px] font-bold text-[#FFFFFF] font-bold mt-1 uppercase font-mono">
                       {investigatingCandidate.risk.officialAccountMatch ? 'AUTHENTICATED' : 'UNAUTHORIZED'}
                     </div>
@@ -1024,11 +1024,11 @@ export default function SocialMonitoringPage() {
 
               {/* Link Intelligence */}
               <div className="space-y-3">
-                <h3 className="text-[17px] font-bold uppercase tracking-wider text-[#D0D7E0] font-bold font-mono">
+                <h3 className="text-[17px] font-bold uppercase tracking-wider text-[#9CA3AF] font-bold font-mono">
                   2. Link Intelligence (SAFENET Domain Engine)
                 </h3>
                 {investigatingCandidate.candidate.externalUrls.length === 0 ? (
-                  <div className="p-3.5 bg-[#121821] border border-[#303946] rounded-xl text-[#D0D7E0] font-bold text-[17px] font-bold">
+                  <div className="p-3.5 bg-[#111625] border border-[#1E2638] rounded-xl text-[#9CA3AF] font-bold text-[17px] font-bold">
                     No external URLs linked in this profile.
                   </div>
                 ) : (
@@ -1036,23 +1036,23 @@ export default function SocialMonitoringPage() {
                     {investigatingCandidate.risk.domainAnalysis.map((dom, i) => (
                       <div
                         key={i}
-                        className="p-3.5 bg-[#121821] border border-[#303946] rounded-xl space-y-1.5 text-[17px] font-bold"
+                        className="p-3.5 bg-[#111625] border border-[#1E2638] rounded-xl space-y-1.5 text-[17px] font-bold"
                       >
                         <div className="flex items-center justify-between">
                           <span className="font-bold text-[#FFFFFF] font-bold font-mono">{dom.hostname}</span>
                           <span
                             className={`text-[21px] font-bold px-2 py-0.5 rounded font-bold font-mono ${
                               dom.isOfficialDomain
-                                ? 'bg-[#347653]/10 text-[#35D0BA] font-bold border border-[#35D0BA]/40'
+                                ? 'bg-[#347653]/10 text-[#F6821F] font-bold border border-[#F6821F]/40'
                                 : 'bg-[#2D1216] text-[#FF5C6C] font-bold border border-[#FF5C6C]/40'
                             }`}
                           >
                             {dom.isOfficialDomain ? 'OFFICIAL DOMAIN' : 'UNAUTHORIZED DOMAIN'}
                           </span>
                         </div>
-                        <div className="text-[#D0D7E0] font-bold text-[28px] font-bold font-bold break-all">{dom.url}</div>
+                        <div className="text-[#9CA3AF] font-bold text-[28px] font-bold font-bold break-all">{dom.url}</div>
                         {dom.details.length > 0 && (
-                          <div className="text-[#D0D7E0] font-bold text-[28px] font-bold font-bold pt-1.5 border-t border-[#303946]">
+                          <div className="text-[#9CA3AF] font-bold text-[28px] font-bold font-bold pt-1.5 border-t border-[#1E2638]">
                             {dom.details.join(' • ')}
                           </div>
                         )}
@@ -1064,14 +1064,14 @@ export default function SocialMonitoringPage() {
 
               {/* Evidence Attribution */}
               <div className="space-y-3">
-                <h3 className="text-[17px] font-bold uppercase tracking-wider text-[#D0D7E0] font-bold font-mono">
+                <h3 className="text-[17px] font-bold uppercase tracking-wider text-[#9CA3AF] font-bold font-mono">
                   3. Structured Risk Evidence Attribution
                 </h3>
                 <div className="space-y-2">
                   {(investigatingCandidate.risk.structuredEvidence || []).map((ev, i) => (
                     <div
                       key={i}
-                      className="p-3.5 bg-[#121821] border border-[#303946] rounded-xl text-[17px] font-bold flex items-start gap-3"
+                      className="p-3.5 bg-[#111625] border border-[#1E2638] rounded-xl text-[17px] font-bold flex items-start gap-3"
                     >
                       <span
                         className={`text-[21px] font-bold font-mono px-2 py-0.5 rounded uppercase font-bold shrink-0 mt-0.5 ${
@@ -1081,7 +1081,7 @@ export default function SocialMonitoringPage() {
                             ? 'bg-[#2C1C0D] text-[#FFAB40] font-bold border border-[#FFAB40]/40'
                             : ev.severity === 'MEDIUM'
                             ? 'bg-[#2C1C0D] text-[#FFAB40] font-bold border border-[#FFAB40]/40'
-                            : 'bg-[#19222D] text-[#D0D7E0] font-bold border border-[#303946]'
+                            : 'bg-[#161D2F] text-[#9CA3AF] font-bold border border-[#1E2638]'
                         }`}
                       >
                         {ev.severity}
@@ -1089,9 +1089,9 @@ export default function SocialMonitoringPage() {
                       <div className="space-y-0.5 flex-1">
                         <div className="flex items-center justify-between">
                           <span className="font-semibold text-[#FFFFFF] font-bold">{ev.signal}</span>
-                          <span className="text-[21px] font-bold text-[#D0D7E0] font-bold font-mono">{ev.source}</span>
+                          <span className="text-[21px] font-bold text-[#9CA3AF] font-bold font-mono">{ev.source}</span>
                         </div>
-                        <div className="text-[#D0D7E0] font-bold text-[28px] font-bold font-bold">{ev.explanation}</div>
+                        <div className="text-[#9CA3AF] font-bold text-[28px] font-bold font-bold">{ev.explanation}</div>
                       </div>
                     </div>
                   ))}
@@ -1099,12 +1099,12 @@ export default function SocialMonitoringPage() {
               </div>
 
               {/* Actions Footer */}
-              <div className="flex items-center justify-between pt-4 border-t border-[#303946] flex-wrap gap-3">
+              <div className="flex items-center justify-between pt-4 border-t border-[#1E2638] flex-wrap gap-3">
                 <a
                   href={investigatingCandidate.candidate.profileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#0D1118] border border-[#303946] hover:bg-[#19222D] text-[#FFFFFF] font-bold transition flex items-center gap-1.5 font-medium"
+                  className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#0E131F] border border-[#1E2638] hover:bg-[#161D2F] text-[#FFFFFF] font-bold transition flex items-center gap-1.5 font-medium"
                 >
                   <ExternalLink className="h-4 w-4" />
                   View Live Profile
@@ -1116,9 +1116,9 @@ export default function SocialMonitoringPage() {
                       onClick={() =>
                         handleUpdateStatus(investigatingCandidate.candidate.id, 'new')
                       }
-                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#19222D] text-[#FFFFFF] font-bold hover:bg-[#19222D] transition flex items-center gap-1.5 font-medium"
+                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#161D2F] text-[#FFFFFF] font-bold hover:bg-[#161D2F] transition flex items-center gap-1.5 font-medium"
                     >
-                      <BookmarkCheck className="h-4 w-4 text-[#35D0BA] font-bold" />
+                      <BookmarkCheck className="h-4 w-4 text-[#F6821F] font-bold" />
                       Remove from Watchlist
                     </button>
                   ) : (
@@ -1126,9 +1126,9 @@ export default function SocialMonitoringPage() {
                       onClick={() =>
                         handleUpdateStatus(investigatingCandidate.candidate.id, 'watchlist')
                       }
-                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#0D1118] border border-[#303946] hover:bg-[#19222D] text-[#FFFFFF] font-bold transition flex items-center gap-1.5 font-medium"
+                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#0E131F] border border-[#1E2638] hover:bg-[#161D2F] text-[#FFFFFF] font-bold transition flex items-center gap-1.5 font-medium"
                     >
-                      <Bookmark className="h-4 w-4 text-[#D0D7E0] font-bold" />
+                      <Bookmark className="h-4 w-4 text-[#9CA3AF] font-bold" />
                       Add to Watchlist
                     </button>
                   )}
@@ -1138,7 +1138,7 @@ export default function SocialMonitoringPage() {
                       onClick={() =>
                         handleUpdateStatus(investigatingCandidate.candidate.id, 'new')
                       }
-                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#0F2620] text-[#35D0BA] font-bold border border-[#35D0BA]/40 hover:bg-[#35D0BA] text-[#080B10] font-extrabold hover:text-white transition flex items-center gap-1.5 font-bold"
+                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#0F2620] text-[#F6821F] font-bold border border-[#F6821F]/40 hover:bg-[#F6821F] text-[#080B11] font-extrabold hover:text-white transition flex items-center gap-1.5 font-bold"
                     >
                       <Check className="h-4 w-4" />
                       Reviewed
@@ -1148,7 +1148,7 @@ export default function SocialMonitoringPage() {
                       onClick={() =>
                         handleUpdateStatus(investigatingCandidate.candidate.id, 'reviewed')
                       }
-                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#35D0BA] text-[#080B10] font-extrabold hover:bg-[#2EB8A5] text-white transition flex items-center gap-1.5 font-bold shadow-xs"
+                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white transition flex items-center gap-1.5 font-bold shadow-xs"
                     >
                       <Check className="h-4 w-4" />
                       Mark as Reviewed

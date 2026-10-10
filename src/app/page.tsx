@@ -25,10 +25,10 @@ export default function RootEntryPage() {
   // Loading state while checking active session
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#080B10] flex flex-col items-center justify-center space-y-5 font-mono text-[#FFFFFF]">
+      <div className="min-h-screen bg-[#080B11] flex flex-col items-center justify-center space-y-5 font-mono text-[#FFFFFF]">
         <div className="relative flex items-center justify-center">
-          <div className="w-16 h-16 rounded-full border-2 border-[#35D0BA]/20 border-t-[#35D0BA] animate-spin" />
-          <ShieldCheck className="w-8 h-8 text-[#35D0BA] absolute" />
+          <div className="w-16 h-16 rounded-full border-2 border-[#F6821F]/20 border-t-[#F6821F] animate-spin" />
+          <ShieldCheck className="w-8 h-8 text-[#F6821F] absolute" />
         </div>
         <p className="text-[16px] font-extrabold tracking-wider text-[#FFFFFF] uppercase">
           Initializing SAFENET Demo Environment...
@@ -40,7 +40,7 @@ export default function RootEntryPage() {
   // If already authenticated, show redirect placeholder while redirecting
   if (user) {
     return (
-      <div className="min-h-screen bg-[#080B10] flex items-center justify-center text-[18px] font-mono text-[#FFFFFF] font-extrabold">
+      <div className="min-h-screen bg-[#080B11] flex items-center justify-center text-[18px] font-mono text-[#FFFFFF] font-extrabold">
         Redirecting to SAFENET Dashboard...
       </div>
     );

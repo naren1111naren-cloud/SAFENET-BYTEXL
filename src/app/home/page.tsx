@@ -45,53 +45,53 @@ export default function EditorialHomePage() {
       <div className="space-y-24 py-8 max-w-5xl mx-auto">
         <section className="space-y-12">
           <div className="space-y-8">
-            <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-[#121821] text-[#35D0BA] border border-[#303946] text-[16px] font-extrabold uppercase tracking-wider">
-              <ShieldCheck className="h-5 w-5 text-[#35D0BA]" />
+            <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-[#111625] text-[#F6821F] border border-[#1E2638] text-[16px] font-extrabold uppercase tracking-wider">
+              <ShieldCheck className="h-5 w-5 text-[#F6821F]" />
               DIGITAL RISK PROTECTION &amp; SOCIAL THREAT MONITORING
             </span>
             <h1 className="text-[52px] sm:text-[76px] lg:text-[88px] font-extrabold text-[#FFFFFF] tracking-[-0.035em] leading-[1.05]">
               Don&apos;t guess.<br />
-              <span className="text-[#35D0BA]">Know.</span>
+              <span className="text-[#F6821F]">Know.</span>
             </h1>
-            <p className="text-[22px] sm:text-[24px] text-[#D0D7E0] max-w-[720px] leading-relaxed pt-1 font-bold">
+            <p className="text-[22px] sm:text-[24px] text-[#9CA3AF] max-w-[720px] leading-relaxed pt-1 font-bold">
               Investigate the links, accounts, messages, and apps you don&apos;t trust — and examine forensic evidence before granting trust.
             </p>
 
             <div className="flex flex-wrap items-center gap-5 pt-3">
               <Link
                 href="/check"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] rounded-xl text-[20px] font-extrabold shadow-lg transition-all cursor-pointer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] rounded-xl text-[20px] font-extrabold shadow-lg transition-all cursor-pointer"
               >
                 <span>Check Something</span>
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
                 href="/overview"
-                className="inline-flex items-center px-8 py-4 bg-[#121821] border border-[#303946] text-[#FFFFFF] hover:bg-[#19222D] rounded-xl text-[20px] font-extrabold shadow-md transition-colors cursor-pointer"
+                className="inline-flex items-center px-8 py-4 bg-[#111625] border border-[#1E2638] text-[#FFFFFF] hover:bg-[#161D2F] rounded-xl text-[20px] font-extrabold shadow-md transition-colors cursor-pointer"
               >
                 <span>Explore Dashboard</span>
               </Link>
             </div>
           </div>
 
-          <div className="pt-10 space-y-6 border-t border-[#303946]">
+          <div className="pt-10 space-y-6 border-t border-[#1E2638]">
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-              <h2 className="text-[19px] font-mono uppercase tracking-wider text-[#35D0BA] font-extrabold">
+              <h2 className="text-[19px] font-mono uppercase tracking-wider text-[#F6821F] font-extrabold">
                 WHAT ARE YOU CHECKING?
               </h2>
-              <span className="text-[17px] text-[#D0D7E0] font-bold">
+              <span className="text-[17px] text-[#9CA3AF] font-bold">
                 Paste a URL, domain, message, account or application to investigate.
               </span>
             </div>
 
-            <form onSubmit={handleAnalyze} className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-5">
+            <form onSubmit={handleAnalyze} className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-5">
               <div className="relative">
                 <input
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder={typePlaceholders[selectedType]}
-                  className="w-full bg-[#121821] border border-[#303946] focus:border-[#35D0BA] focus:ring-1 focus:ring-[#35D0BA] rounded-xl px-5 py-4 text-[19px] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] outline-none font-mono transition-all shadow-inner"
+                  className="w-full bg-[#111625] border border-[#1E2638] focus:border-[#F6821F] focus:ring-1 focus:ring-[#F6821F] rounded-xl px-5 py-4 text-[19px] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] outline-none font-mono transition-all shadow-inner"
                 />
               </div>
 
@@ -104,8 +104,8 @@ export default function EditorialHomePage() {
                       onClick={() => setSelectedType(mode)}
                       className={`px-4 py-2 rounded-xl uppercase tracking-wider transition-all cursor-pointer font-extrabold ${
                         selectedType === mode
-                          ? 'bg-[#121821] text-[#35D0BA] border border-[#35D0BA]'
-                          : 'text-[#D0D7E0] hover:text-[#FFFFFF] bg-[#080B10] border border-[#303946]'
+                          ? 'bg-[#111625] text-[#F6821F] border border-[#F6821F]'
+                          : 'text-[#9CA3AF] hover:text-[#FFFFFF] bg-[#080B11] border border-[#1E2638]'
                       }`}
                     >
                       {mode === 'lookalike' ? 'Look-alike' : mode}
@@ -115,7 +115,7 @@ export default function EditorialHomePage() {
 
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] rounded-xl text-[19px] font-extrabold uppercase tracking-wider cursor-pointer shadow-lg transition-all self-start sm:self-auto"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] rounded-xl text-[19px] font-extrabold uppercase tracking-wider cursor-pointer shadow-lg transition-all self-start sm:self-auto"
                 >
                   <span>Check Risk</span>
                   <ArrowRight className="h-5 w-5" />
@@ -125,17 +125,17 @@ export default function EditorialHomePage() {
           </div>
         </section>
 
-        <section className="space-y-5 pt-6 border-t border-[#303946]">
-          <div className="text-[16px] font-mono uppercase tracking-wider text-[#D0D7E0] font-extrabold pb-1">
+        <section className="space-y-5 pt-6 border-t border-[#1E2638]">
+          <div className="text-[16px] font-mono uppercase tracking-wider text-[#9CA3AF] font-extrabold pb-1">
             COMMON INVESTIGATIONS
           </div>
 
-          <div className="divide-y divide-[#303946] border-y border-[#303946] bg-[#0D1118] rounded-2xl shadow-lg overflow-hidden">
+          <div className="divide-y divide-[#1E2638] border-y border-[#1E2638] bg-[#0E131F] rounded-2xl shadow-lg overflow-hidden">
             <div
               onClick={() => setSample('url', 'http://paytm-support-verify.xyz')}
-              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#121821] transition-colors"
+              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#111625] transition-colors"
             >
-              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#35D0BA] transition-colors">
+              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#F6821F] transition-colors">
                 “Is this website legitimate?”
               </span>
               <span className="font-mono text-[17px] text-[#64A9FF] font-bold">
@@ -145,9 +145,9 @@ export default function EditorialHomePage() {
 
             <div
               onClick={() => setSample('social', '@Paytm_CareHelp')}
-              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#121821] transition-colors"
+              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#111625] transition-colors"
             >
-              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#35D0BA] transition-colors">
+              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#F6821F] transition-colors">
                 “Is this support account real?”
               </span>
               <span className="font-mono text-[17px] text-[#64A9FF] font-bold">
@@ -157,9 +157,9 @@ export default function EditorialHomePage() {
 
             <div
               onClick={() => setSample('message', 'URGENT: Your account KYC expires today. Update PAN via link to avoid suspension.')}
-              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#121821] transition-colors"
+              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#111625] transition-colors"
             >
-              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#35D0BA] transition-colors">
+              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#F6821F] transition-colors">
                 “Is this payment request a scam?”
               </span>
               <span className="font-mono text-[17px] text-[#FFAB40] font-bold">
@@ -169,9 +169,9 @@ export default function EditorialHomePage() {
 
             <div
               onClick={() => setSample('lookalike', 'Paytm Customer Support Helpline')}
-              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#121821] transition-colors"
+              className="p-5 sm:px-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group cursor-pointer hover:bg-[#111625] transition-colors"
             >
-              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#35D0BA] transition-colors">
+              <span className="text-[19px] font-extrabold text-[#FFFFFF] group-hover:text-[#F6821F] transition-colors">
                 “Is this look-alike support account legitimate?”
               </span>
               <span className="font-mono text-[17px] text-[#FF5C6C] font-bold">

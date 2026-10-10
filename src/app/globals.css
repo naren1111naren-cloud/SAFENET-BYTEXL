@@ -3,51 +3,52 @@
 @layer base {
   :root,
   .dark {
-    /* === SAFENET — DARK-ONLY PREMIUM CYBERSECURITY DESIGN TOKENS === */
-    --sn-bg-app: #080B10;
-    --sn-bg-secondary: #0D1118;
-    --sn-surface-elevated: #121821;
-    --sn-surface-hover: #19222D;
+    /* === CLOUDFLARE RADAR DARK THEME DESIGN TOKENS === */
+    --sn-bg-app: #080B11;
+    --sn-bg-secondary: #0E131F;
+    --sn-surface-elevated: #111625;
+    --sn-surface-hover: #161D2F;
 
     /* Pure & Pearl White Bold Typography */
     --sn-text-primary: #FFFFFF;
-    --sn-text-secondary: #F0F3F7;
-    --sn-text-muted: #D0D7E0;
+    --sn-text-secondary: #F3F4F6;
+    --sn-text-muted: #9CA3AF;
 
-    /* Subtle Architectural Separators */
-    --sn-border: #303946;
-    --sn-border-subtle: #1E2633;
-    --sn-border-strong: #455263;
-    --sn-focus-ring: #35D0BA;
+    /* Cloudflare Radar Precision Separators */
+    --sn-border: #1E2638;
+    --sn-border-subtle: #141A28;
+    --sn-border-strong: #28334E;
+    --sn-focus-ring: #F6821F;
 
-    /* Cyber Intelligence Accents */
-    --sn-accent-teal: #35D0BA;
-    --sn-accent-blue: #64A9FF;
+    /* Cloudflare Iconic Accents */
+    --sn-accent-orange: #F6821F;
+    --sn-accent-blue: #2C7BE5;
+    --sn-accent-cyan: #00D2FF;
 
-    /* Security Severity Status (High Contrast on Dark) */
-    --sn-status-critical: #FF5C6C;
-    --sn-status-high: #FF8E4D;
-    --sn-status-medium: #FFCD4D;
-    --sn-status-low: #64A9FF;
-    --sn-status-safe: #35D0BA;
+    /* Security Severity Status */
+    --sn-status-critical: #FF4D4D;
+    --sn-status-high: #F6821F;
+    --sn-status-medium: #FBBF24;
+    --sn-status-low: #2C7BE5;
+    --sn-status-safe: #10B981;
 
-    --background: #080B10;
+    --background: #080B11;
     --foreground: #FFFFFF;
   }
 }
 
-/* === Base HTML & Dark Body Layout (+6px Typography Increase) === */
+/* === Base HTML & Cloudflare Radar Dark Layout === */
 html {
   color-scheme: dark !important;
-  background-color: #080B10 !important;
-  font-size: 19px; /* Scaled up +6px across default typography */
+  background-color: #080B11 !important;
+  font-size: 19px;
 }
 
 body {
-  background-color: #080B10;
+  background-color: #080B11;
   background-image: 
-    radial-gradient(circle at 1px 1px, rgba(53, 208, 186, 0.04) 1px, transparent 0),
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(100, 169, 255, 0.06), transparent);
+    radial-gradient(circle at 1px 1px, rgba(246, 130, 31, 0.035) 1px, transparent 0),
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(44, 123, 229, 0.07), transparent);
   background-size: 32px 32px, 100% 100%;
   background-attachment: fixed;
   color: #FFFFFF;
@@ -96,7 +97,7 @@ p, span, label, td, th {
   color: #FFFFFF;
 }
 
-/* Monospace font for IOCs, hashes, and network telemetry */
+/* Monospace font for IOCs, IPs, ASNs, and network telemetry */
 code, kbd, samp, pre, .font-mono {
   font-family: var(--font-jetbrains-mono), "SF Mono", Consolas, monospace;
   font-feature-settings: "tnum" 1;
@@ -107,64 +108,62 @@ code, kbd, samp, pre, .font-mono {
   font-variant-numeric: tabular-nums;
 }
 
-/* === Sleek Dark Hairline Scrollbar === */
+/* === Cloudflare Radar Dark Hairline Scrollbar === */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #080B10;
+  background: #080B11;
 }
 ::-webkit-scrollbar-thumb {
-  background: #303946;
+  background: #1E2638;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #455263;
+  background: #28334E;
 }
 
 /* === Text Selection === */
 ::selection {
-  background: rgba(53, 208, 186, 0.3);
+  background: rgba(246, 130, 31, 0.35);
   color: #FFFFFF;
 }
 
 /* === Precision Focus State === */
 :focus-visible {
-  outline: 2px solid #35D0BA;
+  outline: 2px solid #F6821F;
   outline-offset: 2px;
 }
 
-/* === Non-Boxy Modern Organic Section Surfaces === */
+/* === Cloudflare Radar Surfaces & Cards === */
 .sn-surface {
-  background-color: #0D1118;
-  border-bottom: 1px solid #303946;
+  background-color: #0E131F;
+  border-bottom: 1px solid #1E2638;
 }
 
 .sn-surface-elevated {
-  background-color: #121821;
+  background-color: #111625;
 }
 
-/* De-boxed container: smooth subtle separation without thick boxed card appearance */
 .sn-card {
-  background-color: #0D1118;
-  border: 1px solid #303946;
-  border-radius: 12px;
+  background-color: #0E131F;
+  border: 1px solid #1E2638;
+  border-radius: 10px;
   transition: border-color 0.18s ease, background-color 0.18s ease;
 }
 .sn-card:hover {
-  border-color: #455263;
-  background-color: #121821;
+  border-color: #28334E;
+  background-color: #111625;
 }
 
-/* Organic Open Separator */
 .sn-divider {
   height: 1px;
-  background-color: #303946;
+  background-color: #1E2638;
   width: 100%;
 }
 
-/* === Modern Cybersecurity Buttons (Bold White Text) === */
+/* === Cloudflare Radar Buttons === */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -172,18 +171,19 @@ code, kbd, samp, pre, .font-mono {
   gap: 10px;
   height: 48px;
   padding: 0 24px;
-  background-color: #35D0BA;
-  color: #080B10;
+  background-color: #F6821F;
+  color: #FFFFFF;
   font-size: 20px;
   font-weight: 700;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: all 0.16s ease;
   cursor: pointer;
   user-select: none;
+  box-shadow: 0 2px 8px rgba(246, 130, 31, 0.25);
 }
 .btn-primary:hover:not(:disabled) {
-  background-color: #2bbca6;
-  box-shadow: 0 0 16px rgba(53, 208, 186, 0.25);
+  background-color: #FA8B28;
+  box-shadow: 0 0 16px rgba(246, 130, 31, 0.4);
 }
 .btn-primary:active:not(:disabled) {
   transform: translateY(1px);
@@ -200,18 +200,18 @@ code, kbd, samp, pre, .font-mono {
   gap: 10px;
   height: 48px;
   padding: 0 22px;
-  background-color: #121821;
+  background-color: #111625;
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 700;
-  border: 1px solid #303946;
-  border-radius: 10px;
+  border: 1px solid #1E2638;
+  border-radius: 8px;
   transition: all 0.16s ease;
   cursor: pointer;
 }
 .btn-secondary:hover:not(:disabled) {
-  background-color: #19222D;
-  border-color: #455263;
+  background-color: #161D2F;
+  border-color: #28334E;
   color: #FFFFFF;
 }
 .btn-secondary:disabled {
@@ -230,22 +230,22 @@ code, kbd, samp, pre, .font-mono {
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 700;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: all 0.16s ease;
   cursor: pointer;
 }
 .btn-ghost:hover:not(:disabled) {
-  background-color: #19222D;
-  color: #35D0BA;
+  background-color: #161D2F;
+  color: #F6821F;
 }
 
 /* === Form Inputs (Dark Surfaces & Bold White Text) === */
 .sn-input {
   width: 100%;
   height: 48px;
-  background-color: #0D1118;
-  border: 1px solid #303946;
-  border-radius: 10px;
+  background-color: #0E131F;
+  border: 1px solid #1E2638;
+  border-radius: 8px;
   padding: 0 16px;
   font-size: 20px;
   color: #FFFFFF;
@@ -254,16 +254,16 @@ code, kbd, samp, pre, .font-mono {
   transition: border-color 0.16s ease, box-shadow 0.16s ease;
 }
 .sn-input::placeholder {
-  color: #D0D7E0;
+  color: #9CA3AF;
   font-weight: 700;
   opacity: 0.75;
 }
 .sn-input:focus {
-  border-color: #35D0BA;
-  box-shadow: 0 0 0 3px rgba(53, 208, 186, 0.18);
+  border-color: #F6821F;
+  box-shadow: 0 0 0 3px rgba(246, 130, 31, 0.2);
 }
 
-/* === High-Contrast Cybersecurity Badges (Bold White Labels) === */
+/* === Cloudflare Radar Badges === */
 .badge-critical {
   display: inline-flex;
   align-items: center;
@@ -273,8 +273,8 @@ code, kbd, samp, pre, .font-mono {
   padding: 4px 12px;
   border-radius: 6px;
   color: #FFFFFF;
-  background-color: rgba(255, 92, 108, 0.2);
-  border: 1px solid rgba(255, 92, 108, 0.45);
+  background-color: rgba(255, 77, 77, 0.2);
+  border: 1px solid rgba(255, 77, 77, 0.5);
 }
 
 .badge-high {
@@ -286,8 +286,8 @@ code, kbd, samp, pre, .font-mono {
   padding: 4px 12px;
   border-radius: 6px;
   color: #FFFFFF;
-  background-color: rgba(255, 142, 77, 0.2);
-  border: 1px solid rgba(255, 142, 77, 0.45);
+  background-color: rgba(246, 130, 31, 0.2);
+  border: 1px solid rgba(246, 130, 31, 0.5);
 }
 
 .badge-medium {
@@ -299,8 +299,8 @@ code, kbd, samp, pre, .font-mono {
   padding: 4px 12px;
   border-radius: 6px;
   color: #FFFFFF;
-  background-color: rgba(255, 205, 77, 0.2);
-  border: 1px solid rgba(255, 205, 77, 0.45);
+  background-color: rgba(251, 191, 36, 0.2);
+  border: 1px solid rgba(251, 191, 36, 0.5);
 }
 
 .badge-low {
@@ -312,8 +312,8 @@ code, kbd, samp, pre, .font-mono {
   padding: 4px 12px;
   border-radius: 6px;
   color: #FFFFFF;
-  background-color: rgba(100, 169, 255, 0.2);
-  border: 1px solid rgba(100, 169, 255, 0.45);
+  background-color: rgba(44, 123, 229, 0.2);
+  border: 1px solid rgba(44, 123, 229, 0.5);
 }
 
 .badge-safe {
@@ -325,8 +325,8 @@ code, kbd, samp, pre, .font-mono {
   padding: 4px 12px;
   border-radius: 6px;
   color: #FFFFFF;
-  background-color: rgba(53, 208, 186, 0.2);
-  border: 1px solid rgba(53, 208, 186, 0.45);
+  background-color: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.5);
 }
 
 /* Animations */

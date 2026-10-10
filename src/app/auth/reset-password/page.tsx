@@ -57,14 +57,14 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080B10] flex items-center justify-center p-4 text-[#FFFFFF]">
-      <div className="w-full max-w-lg bg-[#0D1118] border border-[#303946] rounded-2xl p-8 sm:p-10 space-y-7 shadow-2xl">
+    <div className="min-h-screen bg-[#080B11] flex items-center justify-center p-4 text-[#FFFFFF]">
+      <div className="w-full max-w-lg bg-[#0E131F] border border-[#1E2638] rounded-2xl p-8 sm:p-10 space-y-7 shadow-2xl">
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#121821] text-[#35D0BA] mb-2 border border-[#303946] shadow-[0_0_20px_rgba(53,208,186,0.15)]">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#111625] text-[#F6821F] mb-2 border border-[#1E2638] shadow-[0_0_20px_rgba(246, 130, 31,0.15)]">
             <ShieldCheck className="w-8 h-8" />
           </div>
           <h1 className="text-3xl font-extrabold text-[#FFFFFF] tracking-tight">Set New Password</h1>
-          <p className="text-[17px] text-[#D0D7E0] font-bold">
+          <p className="text-[17px] text-[#9CA3AF] font-bold">
             Enter your new secure password to restore access to your SAFENET account.
           </p>
         </div>
@@ -77,7 +77,7 @@ export default function ResetPasswordPage() {
         )}
 
         {success && (
-          <div className="p-4 bg-[#0F2620] border border-[#35D0BA]/40 rounded-xl text-[#35D0BA] text-[16px] flex items-center gap-2.5 font-bold">
+          <div className="p-4 bg-[#0F2620] border border-[#F6821F]/40 rounded-xl text-[#F6821F] text-[16px] flex items-center gap-2.5 font-bold">
             <CheckCircle2 className="w-5 h-5 shrink-0" />
             <span>Password updated successfully! Redirecting to dashboard...</span>
           </div>
@@ -86,7 +86,7 @@ export default function ResetPasswordPage() {
         {!success && (
           <form onSubmit={handleUpdatePassword} className="space-y-5">
             <div className="space-y-2">
-              <label className="block text-[17px] font-mono uppercase text-[#D0D7E0] font-bold">
+              <label className="block text-[17px] font-mono uppercase text-[#9CA3AF] font-bold">
                 New Password
               </label>
               <div className="relative">
@@ -97,12 +97,12 @@ export default function ResetPasswordPage() {
                   placeholder="At least 6 characters"
                   required
                   disabled={loading}
-                  className="w-full bg-[#121821] border border-[#303946] focus:border-[#35D0BA] rounded-xl px-4 py-3.5 text-[18px] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] outline-none pr-12 transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] focus:border-[#F6821F] rounded-xl px-4 py-3.5 text-[18px] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] outline-none pr-12 transition"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-4 text-[#D0D7E0] hover:text-[#FFFFFF]"
+                  className="absolute right-4 top-4 text-[#9CA3AF] hover:text-[#FFFFFF]"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -110,7 +110,7 @@ export default function ResetPasswordPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-[17px] font-mono uppercase text-[#D0D7E0] font-bold">
+              <label className="block text-[17px] font-mono uppercase text-[#9CA3AF] font-bold">
                 Confirm Password
               </label>
               <input
@@ -120,14 +120,14 @@ export default function ResetPasswordPage() {
                 placeholder="Repeat new password"
                 required
                 disabled={loading}
-                className="w-full bg-[#121821] border border-[#303946] focus:border-[#35D0BA] rounded-xl px-4 py-3.5 text-[18px] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] outline-none transition"
+                className="w-full bg-[#111625] border border-[#1E2638] focus:border-[#F6821F] rounded-xl px-4 py-3.5 text-[18px] text-[#FFFFFF] font-bold placeholder-[#8F9CAE] outline-none transition"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 rounded-xl bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] font-extrabold text-[19px] transition flex items-center justify-center gap-2.5 disabled:opacity-50 cursor-pointer shadow-lg"
+              className="w-full py-4 rounded-xl bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] font-extrabold text-[19px] transition flex items-center justify-center gap-2.5 disabled:opacity-50 cursor-pointer shadow-lg"
             >
               {loading ? (
                 <>

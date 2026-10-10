@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowUpRight, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 type TimeRange = '24h' | '7d' | '30d' | '90d';
 type ViewMode = 'total' | 'vectors';
@@ -82,31 +82,31 @@ export default function ThreatActivityChart() {
   const activePoint = hoveredIdx !== null ? points[hoveredIdx] : points[points.length - 1];
 
   return (
-    <div className="bg-[#0D1118] border border-[#303946] rounded-xl overflow-hidden flex flex-col justify-between">
+    <div className="bg-[#0E131F] border border-[#1E2638] rounded-xl overflow-hidden flex flex-col justify-between shadow-sm">
       {/* ── HEADER & CONTROLS ── */}
-      <div className="px-6 py-5 border-b border-[#303946] flex flex-wrap items-center justify-between gap-4 bg-[#0D1118]">
+      <div className="px-6 py-5 border-b border-[#1E2638] flex flex-wrap items-center justify-between gap-4 bg-[#0E131F]">
         <div>
           <div className="flex items-center gap-3">
             <h3 className="text-[22px] font-bold text-[#FFFFFF] tracking-tight">
               Threat Activity Timeline
             </h3>
-            <span className="flex items-center gap-1.5 text-[15px] font-bold text-[#35D0BA] bg-[#35D0BA]/15 px-2.5 py-0.5 rounded-full border border-[#35D0BA]/30">
-              <span className="h-2 w-2 rounded-full bg-[#35D0BA] animate-pulse" />
+            <span className="flex items-center gap-1.5 text-[14px] font-bold text-[#F6821F] bg-[#F6821F]/15 px-2.5 py-0.5 rounded-full border border-[#F6821F]/30 font-mono">
+              <span className="h-2 w-2 rounded-full bg-[#F6821F] animate-pulse" />
               Live Ingestion
             </span>
           </div>
-          <p className="text-[17px] text-[#D0D7E0] font-bold mt-1">
-            Real-time multi-vector detection and automatic mitigation rate.
+          <p className="text-[16px] text-[#9CA3AF] font-bold mt-1">
+            Real-time multi-vector detection and mitigation timeline.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           {/* View Mode Toggle */}
-          <div className="flex items-center bg-[#121821] p-1 rounded-lg border border-[#303946] text-[16px] font-bold">
+          <div className="flex items-center bg-[#111625] p-1 rounded-lg border border-[#1E2638] text-[15px] font-bold">
             <button
               onClick={() => setViewMode('total')}
               className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'total' ? 'bg-[#35D0BA] text-[#080B10]' : 'text-[#FFFFFF] hover:text-[#35D0BA]'
+                viewMode === 'total' ? 'bg-[#F6821F] text-[#FFFFFF]' : 'text-[#9CA3AF] hover:text-[#FFFFFF]'
               }`}
             >
               Total
@@ -114,7 +114,7 @@ export default function ThreatActivityChart() {
             <button
               onClick={() => setViewMode('vectors')}
               className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'vectors' ? 'bg-[#35D0BA] text-[#080B10]' : 'text-[#FFFFFF] hover:text-[#35D0BA]'
+                viewMode === 'vectors' ? 'bg-[#F6821F] text-[#FFFFFF]' : 'text-[#9CA3AF] hover:text-[#FFFFFF]'
               }`}
             >
               Vectors
@@ -122,7 +122,7 @@ export default function ThreatActivityChart() {
           </div>
 
           {/* Time Range Selector */}
-          <div className="flex items-center bg-[#121821] p-1 rounded-lg border border-[#303946] text-[16px] font-bold">
+          <div className="flex items-center bg-[#111625] p-1 rounded-lg border border-[#1E2638] text-[15px] font-bold">
             {(['24h', '7d', '30d', '90d'] as TimeRange[]).map((t) => (
               <button
                 key={t}
@@ -131,7 +131,7 @@ export default function ThreatActivityChart() {
                   setHoveredIdx(null);
                 }}
                 className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
-                  range === t ? 'bg-[#35D0BA] text-[#080B10]' : 'text-[#FFFFFF] hover:text-[#35D0BA]'
+                  range === t ? 'bg-[#F6821F] text-[#FFFFFF]' : 'text-[#9CA3AF] hover:text-[#FFFFFF]'
                 }`}
               >
                 {t}
@@ -141,7 +141,7 @@ export default function ThreatActivityChart() {
 
           <button
             title="Download CSV"
-            className="p-2.5 rounded-lg text-[#FFFFFF] hover:text-[#35D0BA] hover:bg-[#121821] transition-colors cursor-pointer border border-[#303946]"
+            className="p-2.5 rounded-lg text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#111625] transition-colors cursor-pointer border border-[#1E2638]"
           >
             <Download className="h-4 w-4" />
           </button>
@@ -149,33 +149,33 @@ export default function ThreatActivityChart() {
       </div>
 
       {/* ── STAT SUMMARY STRIP ── */}
-      <div className="px-6 py-4 border-b border-[#303946] bg-[#121821] flex flex-wrap items-center justify-between gap-4">
+      <div className="px-6 py-4 border-b border-[#1E2638] bg-[#111625] flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-baseline gap-2">
-          <span className="text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">Active Interval:</span>
-          <span className="text-[17px] font-bold text-[#FFFFFF] font-mono">{activePoint.time}</span>
+          <span className="text-[14px] font-mono uppercase text-[#9CA3AF] font-bold">Interval:</span>
+          <span className="text-[16px] font-bold text-[#FFFFFF] font-mono">{activePoint.time}</span>
         </div>
 
-        <div className="flex items-center gap-6 text-[16px] font-mono font-bold">
+        <div className="flex items-center gap-6 text-[15px] font-mono font-bold">
           <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#35D0BA]" />
-            <span className="text-[#D0D7E0]">Detected:</span>
+            <span className="h-2.5 w-2.5 rounded-full bg-[#F6821F]" />
+            <span className="text-[#9CA3AF]">Detected:</span>
             <span className="text-[#FFFFFF] tabular-nums">{activePoint.detected.toLocaleString()}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#FF5C6C]" />
-            <span className="text-[#D0D7E0]">Impersonations:</span>
-            <span className="text-[#FF5C6C] tabular-nums">{activePoint.impersonation.toLocaleString()}</span>
+            <span className="h-2.5 w-2.5 rounded-full bg-[#FF4D4D]" />
+            <span className="text-[#9CA3AF]">Impersonations:</span>
+            <span className="text-[#FF4D4D] tabular-nums">{activePoint.impersonation.toLocaleString()}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#64A9FF]" />
-            <span className="text-[#D0D7E0]">Remediated:</span>
-            <span className="text-[#64A9FF] tabular-nums">{activePoint.blocked.toLocaleString()}</span>
+            <span className="h-2.5 w-2.5 rounded-full bg-[#2C7BE5]" />
+            <span className="text-[#9CA3AF]">Remediated:</span>
+            <span className="text-[#2C7BE5] tabular-nums">{activePoint.blocked.toLocaleString()}</span>
           </div>
         </div>
       </div>
 
       {/* ── CHART SVG CANVAS ── */}
-      <div className="p-6 bg-[#0D1118]">
+      <div className="p-6 bg-[#0E131F]">
         <div className="w-full relative">
           <svg
             viewBox={`0 0 ${width} ${height}`}
@@ -183,14 +183,14 @@ export default function ThreatActivityChart() {
             onMouseLeave={() => setHoveredIdx(null)}
           >
             <defs>
-              <linearGradient id="cyberTealGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#35D0BA" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#35D0BA" stopOpacity="0.0" />
+              <linearGradient id="radarOrangeGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#F6821F" stopOpacity="0.28" />
+                <stop offset="100%" stopColor="#F6821F" stopOpacity="0.0" />
               </linearGradient>
 
-              <linearGradient id="cyberRedGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#FF5C6C" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#FF5C6C" stopOpacity="0.0" />
+              <linearGradient id="radarRedGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#FF4D4D" stopOpacity="0.22" />
+                <stop offset="100%" stopColor="#FF4D4D" stopOpacity="0.0" />
               </linearGradient>
             </defs>
 
@@ -205,14 +205,14 @@ export default function ThreatActivityChart() {
                     y1={y}
                     x2={width}
                     y2={y}
-                    stroke="#1E2633"
+                    stroke="#1E2638"
                     strokeWidth="1"
                     strokeDasharray="4 4"
                   />
                   <text
                     x="4"
                     y={y - 6}
-                    fill="#D0D7E0"
+                    fill="#9CA3AF"
                     fontSize="13"
                     fontFamily="monospace"
                     fontWeight="bold"
@@ -224,16 +224,16 @@ export default function ThreatActivityChart() {
             })}
 
             {/* Area Fills */}
-            <path d={generateAreaPath('detected')} fill="url(#cyberTealGrad)" />
+            <path d={generateAreaPath('detected')} fill="url(#radarOrangeGrad)" />
             {viewMode === 'vectors' && (
-              <path d={generateAreaPath('impersonation')} fill="url(#cyberRedGrad)" />
+              <path d={generateAreaPath('impersonation')} fill="url(#radarRedGrad)" />
             )}
 
             {/* Trend Lines */}
             <path
               d={generateLinePath('detected')}
               fill="none"
-              stroke="#35D0BA"
+              stroke="#F6821F"
               strokeWidth="2.5"
               strokeLinecap="round"
             />
@@ -241,7 +241,7 @@ export default function ThreatActivityChart() {
               <path
                 d={generateLinePath('impersonation')}
                 fill="none"
-                stroke="#FF5C6C"
+                stroke="#FF4D4D"
                 strokeWidth="2"
                 strokeLinecap="round"
               />
@@ -254,7 +254,7 @@ export default function ThreatActivityChart() {
                 y1={0}
                 x2={getCoordinates(points[hoveredIdx].detected, hoveredIdx).x}
                 y2={height}
-                stroke="#35D0BA"
+                stroke="#F6821F"
                 strokeWidth="1.5"
                 strokeDasharray="3 3"
               />
@@ -267,7 +267,6 @@ export default function ThreatActivityChart() {
 
               return (
                 <g key={i}>
-                  {/* Invisible wide hitbox */}
                   <rect
                     x={detectedCoord.x - width / points.length / 2}
                     y={0}
@@ -278,13 +277,12 @@ export default function ThreatActivityChart() {
                     onMouseEnter={() => setHoveredIdx(i)}
                   />
 
-                  {/* Detected Node */}
                   <circle
                     cx={detectedCoord.x}
                     cy={detectedCoord.y}
                     r={isHovered ? 6 : 4}
-                    fill="#080B10"
-                    stroke="#35D0BA"
+                    fill="#080B11"
+                    stroke="#F6821F"
                     strokeWidth={isHovered ? 3 : 2}
                     className="transition-all duration-150 pointer-events-none"
                   />
@@ -294,7 +292,7 @@ export default function ThreatActivityChart() {
           </svg>
 
           {/* Time Labels */}
-          <div className="flex justify-between text-[15px] font-mono text-[#D0D7E0] font-bold mt-3 px-1">
+          <div className="flex justify-between text-[14px] font-mono text-[#9CA3AF] font-bold mt-3 px-1">
             {points.map((p, i) => (
               <span key={i} className="text-center">{p.time}</span>
             ))}

@@ -22,53 +22,55 @@ export default function StatCard({
 }: StatCardProps) {
   const accentColors = {
     default: '#FFFFFF',
-    danger: '#FF5C6C',
-    warning: '#FFCD4D',
-    success: '#35D0BA',
-    info: '#64A9FF',
+    danger: '#FF4D4D',
+    warning: '#FBBF24',
+    success: '#10B981',
+    info: '#2C7BE5',
   };
 
   const numberColor = accentColors[variant];
 
   return (
-    <div className="py-2 px-1 flex flex-col justify-between transition-colors group">
+    <div className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-5 flex flex-col justify-between transition-all hover:border-[#28334E] hover:bg-[#111625] group shadow-sm">
       {/* Label and Icon Header */}
-      <div className="flex items-center justify-between text-[#FFFFFF] gap-2">
-        <div className="text-[19px] font-bold text-[#FFFFFF] tracking-tight">
+      <div className="flex items-center justify-between text-[#FFFFFF] gap-2 mb-2">
+        <div className="text-[16px] font-bold text-[#9CA3AF] uppercase tracking-wider">
           {title}
         </div>
         {Icon ? (
-          <div className="p-2 rounded-lg bg-[#121821] text-[#35D0BA] border border-[#303946]/60">
+          <div className="p-2 rounded-lg bg-[#111625] text-[#F6821F] border border-[#1E2638] group-hover:border-[#F6821F]/40 transition-colors">
             <Icon className="h-5 w-5" />
           </div>
         ) : (
-          <Info className="h-4 w-4 text-[#D0D7E0]" />
+          <Info className="h-4 w-4 text-[#9CA3AF]" />
         )}
       </div>
 
       {/* Large Bold Statistic */}
-      <div className="my-2.5">
+      <div className="my-2">
         <div
-          className="text-[42px] sm:text-[52px] font-extrabold tabular-nums leading-none tracking-[-0.03em]"
+          className="text-[42px] sm:text-[50px] font-extrabold tabular-nums leading-none tracking-[-0.03em]"
           style={{ color: numberColor }}
         >
           {value}
         </div>
       </div>
 
-      {/* Floating Metadata & Change Rate */}
-      <div className="flex items-center justify-between text-[16px] text-[#D0D7E0] font-bold pt-2 border-t border-[#303946]/80">
-        <span className="truncate text-[#D0D7E0]">{subtitle || 'Live telemetry'}</span>
+      {/* Radar Metadata & Change Rate */}
+      <div className="flex items-center justify-between text-[15px] text-[#9CA3AF] font-bold pt-3 border-t border-[#1E2638]">
+        <span className="truncate text-[#9CA3AF]">{subtitle || 'Live radar telemetry'}</span>
         {changeRate && (
           <span
-            className={`flex items-center font-bold text-[16px] ${
-              isPositiveChange ? 'text-[#35D0BA]' : 'text-[#FF5C6C]'
+            className={`flex items-center font-bold text-[15px] px-2 py-0.5 rounded ${
+              isPositiveChange
+                ? 'text-[#10B981] bg-[#10B981]/10'
+                : 'text-[#FF4D4D] bg-[#FF4D4D]/10'
             }`}
           >
             {isPositiveChange ? (
-              <ArrowUpRight className="h-4 w-4 mr-0.5" />
+              <ArrowUpRight className="h-3.5 w-3.5 mr-0.5" />
             ) : (
-              <ArrowDownRight className="h-4 w-4 mr-0.5" />
+              <ArrowDownRight className="h-3.5 w-3.5 mr-0.5" />
             )}
             {changeRate}
           </span>

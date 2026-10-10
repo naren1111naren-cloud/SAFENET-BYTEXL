@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#080B10',
+  themeColor: '#080B11',
 };
 
 export default function RootLayout({
@@ -44,10 +44,10 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased dark`}
-      style={{ colorScheme: 'dark', backgroundColor: '#080B10' }}
+      style={{ colorScheme: 'dark', backgroundColor: '#080B11' }}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col antialiased bg-[#080B10] text-[#FFFFFF]">
+      <body className="min-h-full flex flex-col antialiased bg-[#080B11] text-[#FFFFFF]">
         <ThemeProvider>
           <AuthProvider>
             {children}

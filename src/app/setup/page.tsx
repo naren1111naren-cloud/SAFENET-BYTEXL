@@ -295,12 +295,12 @@ export default function SetupPage() {
     >
       <div className="max-w-6xl mx-auto space-y-12 pb-16">
         {/* Preset Selector Banner */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#303946] pb-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#1E2638] pb-5">
           <div className="space-y-1">
-            <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
               FAST-LOAD DEMO TEMPLATES
             </span>
-            <p className="text-[17px] text-[#D0D7E0] font-bold">
+            <p className="text-[17px] text-[#9CA3AF] font-bold">
               Select an authoritative baseline profile for instant sandbox evaluation:
             </p>
           </div>
@@ -311,8 +311,8 @@ export default function SetupPage() {
               onClick={() => handleLoadPreset('Paytm')}
               className={`px-4 py-2 rounded-xl transition font-extrabold text-[16px] cursor-pointer ${
                 brandName === 'Paytm'
-                  ? 'bg-[#35D0BA] text-[#080B10]'
-                  : 'bg-[#121821] text-[#D0D7E0] hover:text-[#FFFFFF] border border-[#303946]'
+                  ? 'bg-[#F6821F] text-[#080B11]'
+                  : 'bg-[#111625] text-[#9CA3AF] hover:text-[#FFFFFF] border border-[#1E2638]'
               }`}
             >
               Paytm (Fintech / India)
@@ -322,8 +322,8 @@ export default function SetupPage() {
               onClick={() => handleLoadPreset('Nike')}
               className={`px-4 py-2 rounded-xl transition font-extrabold text-[16px] cursor-pointer ${
                 brandName === 'Nike'
-                  ? 'bg-[#35D0BA] text-[#080B10]'
-                  : 'bg-[#121821] text-[#D0D7E0] hover:text-[#FFFFFF] border border-[#303946]'
+                  ? 'bg-[#F6821F] text-[#080B11]'
+                  : 'bg-[#111625] text-[#9CA3AF] hover:text-[#FFFFFF] border border-[#1E2638]'
               }`}
             >
               Nike (Retail / Global)
@@ -332,19 +332,19 @@ export default function SetupPage() {
         </div>
 
         {/* Feature 1: Real-Time Official Website Intelligence Banner (Open, Non-Boxy) */}
-        <div className="border border-[#303946] bg-[#0D1118] p-7 sm:p-9 rounded-2xl space-y-5 shadow-xl">
+        <div className="border border-[#1E2638] bg-[#0E131F] p-7 sm:p-9 rounded-2xl space-y-5 shadow-xl">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
             <div className="space-y-1.5">
               <div className="flex items-center gap-2.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#35D0BA] animate-pulse" />
-                <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#F6821F] animate-pulse" />
+                <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
                   REAL-TIME BRAND PROFILE INTELLIGENCE
                 </span>
               </div>
               <h4 className="text-[22px] font-extrabold text-[#FFFFFF]">
                 Extract ground truth from official website
               </h4>
-              <p className="text-[17px] text-[#D0D7E0] leading-relaxed font-bold">
+              <p className="text-[17px] text-[#9CA3AF] leading-relaxed font-bold">
                 Connects to the live website, inspects JSON-LD Organization schemas, sameAs profiles, OpenGraph images, and public app links to establish evidence-backed ground truth.
               </p>
             </div>
@@ -353,7 +353,7 @@ export default function SetupPage() {
               type="button"
               onClick={handleAnalyzeBrand}
               disabled={analysisState === 'VALIDATING' || analysisState === 'FETCHING_WEBSITE' || analysisState === 'EXTRACTING_IDENTITY'}
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer disabled:opacity-50 shrink-0 shadow-lg"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer disabled:opacity-50 shrink-0 shadow-lg"
             >
               {analysisState === 'VALIDATING' || analysisState === 'FETCHING_WEBSITE' || analysisState === 'EXTRACTING_IDENTITY' ? (
                 <>
@@ -371,8 +371,8 @@ export default function SetupPage() {
 
           {/* Analysis Real-time Status Notification */}
           {analysisState !== 'IDLE' && analysisState !== 'READY_FOR_REVIEW' && analysisState !== 'CONFIRMED' && (
-            <div className="border-t border-[#303946] pt-4 mt-2 font-mono text-[16px] text-[#FFFFFF] font-bold flex items-center gap-3">
-              <RefreshCw className="h-5 w-5 animate-spin text-[#35D0BA] shrink-0" />
+            <div className="border-t border-[#1E2638] pt-4 mt-2 font-mono text-[16px] text-[#FFFFFF] font-bold flex items-center gap-3">
+              <RefreshCw className="h-5 w-5 animate-spin text-[#F6821F] shrink-0" />
               <span>
                 {analysisState === 'VALIDATING' && 'Validating target URL & enforcing SSRF boundaries...'}
                 {analysisState === 'FETCHING_WEBSITE' && `Establishing TLS connection to ${domain} (HTTP GET inspection)...`}
@@ -395,16 +395,16 @@ export default function SetupPage() {
 
         {/* Interactive Discovered Identity Review Panel */}
         {discoveredIdentity && (
-          <div className="border border-[#303946] bg-[#0D1118] p-7 sm:p-9 rounded-2xl space-y-7 shadow-xl">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#303946] pb-5">
+          <div className="border border-[#1E2638] bg-[#0E131F] p-7 sm:p-9 rounded-2xl space-y-7 shadow-xl">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#1E2638] pb-5">
               <div className="space-y-1.5">
-                <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+                <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
                   DISCOVERED BRAND IDENTITY (REVIEW &amp; CONFIRM)
                 </span>
                 <h3 className="text-[26px] text-[#FFFFFF] font-extrabold flex items-center gap-2.5">
                   <span>{discoveredIdentity.brandName}</span>
                   {discoveredIdentity.legalName && (
-                    <span className="text-[17px] font-mono text-[#D0D7E0] font-normal">
+                    <span className="text-[17px] font-mono text-[#9CA3AF] font-normal">
                       ({discoveredIdentity.legalName})
                     </span>
                   )}
@@ -412,7 +412,7 @@ export default function SetupPage() {
               </div>
 
               {discoveredIdentity.logoUrl && (
-                <div className="flex items-center gap-3 bg-[#121821] px-4 py-2.5 rounded-xl border border-[#303946]">
+                <div className="flex items-center gap-3 bg-[#111625] px-4 py-2.5 rounded-xl border border-[#1E2638]">
                   <img
                     src={discoveredIdentity.logoUrl}
                     alt="Discovered Logo"
@@ -422,8 +422,8 @@ export default function SetupPage() {
                     }}
                   />
                   <div className="text-[14px] font-mono">
-                    <span className="text-[#D0D7E0] block text-[11px] uppercase font-bold">LOGO SOURCE</span>
-                    <span className="text-[#35D0BA] uppercase font-extrabold">{discoveredIdentity.logoSource || 'WEBSITE'}</span>
+                    <span className="text-[#9CA3AF] block text-[11px] uppercase font-bold">LOGO SOURCE</span>
+                    <span className="text-[#F6821F] uppercase font-extrabold">{discoveredIdentity.logoSource || 'WEBSITE'}</span>
                   </div>
                 </div>
               )}
@@ -434,18 +434,18 @@ export default function SetupPage() {
               {discoveredIdentity.signals.map((sig, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#121821] p-4 rounded-xl border border-[#303946] space-y-1 font-mono"
+                  className="bg-[#111625] p-4 rounded-xl border border-[#1E2638] space-y-1 font-mono"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[13px] text-[#D0D7E0] uppercase truncate font-bold">{sig.name}</span>
+                    <span className="text-[13px] text-[#9CA3AF] uppercase truncate font-bold">{sig.name}</span>
                     {sig.status === 'verified' || sig.status === 'detected' ? (
-                      <CheckCircle2 className="h-4 w-4 text-[#35D0BA]" />
+                      <CheckCircle2 className="h-4 w-4 text-[#F6821F]" />
                     ) : (
                       <span className="text-[13px] text-[#8F9CAE]">N/A</span>
                     )}
                   </div>
                   <span className={`text-[16px] block font-extrabold capitalize ${
-                    sig.status === 'verified' ? 'text-[#35D0BA]' : sig.status === 'detected' ? 'text-[#FFFFFF]' : 'text-[#8F9CAE]'
+                    sig.status === 'verified' ? 'text-[#F6821F]' : sig.status === 'detected' ? 'text-[#FFFFFF]' : 'text-[#8F9CAE]'
                   }`}>
                     {sig.status}
                   </span>
@@ -456,16 +456,16 @@ export default function SetupPage() {
             {/* Discovered Social Profiles */}
             <div className="space-y-4 font-mono">
               <div className="flex items-center justify-between">
-                <span className="text-[14px] text-[#D0D7E0] uppercase tracking-wider font-extrabold">
+                <span className="text-[14px] text-[#9CA3AF] uppercase tracking-wider font-extrabold">
                   DISCOVERED OFFICIAL SOCIAL PRESENCE ({discoveredIdentity.socialProfiles.length})
                 </span>
-                <span className="text-[14px] text-[#35D0BA] font-bold">
+                <span className="text-[14px] text-[#F6821F] font-bold">
                   Toggle to include in authoritative baseline
                 </span>
               </div>
 
               {discoveredIdentity.socialProfiles.length === 0 ? (
-                <div className="text-[16px] text-[#D0D7E0] bg-[#121821] p-4 rounded-xl border border-[#303946] font-bold">
+                <div className="text-[16px] text-[#9CA3AF] bg-[#111625] p-4 rounded-xl border border-[#1E2638] font-bold">
                   No official social media links detected on the official website.
                 </div>
               ) : (
@@ -478,16 +478,16 @@ export default function SetupPage() {
                         key={idx}
                         className={`p-4 rounded-xl border transition-all flex items-center justify-between ${
                           isSelected
-                            ? 'bg-[#121821] border-[#35D0BA]'
-                            : 'bg-[#080B10] border-[#303946] opacity-60'
+                            ? 'bg-[#111625] border-[#F6821F]'
+                            : 'bg-[#080B11] border-[#1E2638] opacity-60'
                         }`}
                       >
                         <div className="space-y-1 truncate pr-2">
                           <div className="flex items-center gap-2">
-                            <span className="text-[13px] uppercase font-extrabold text-[#35D0BA]">
+                            <span className="text-[13px] uppercase font-extrabold text-[#F6821F]">
                               {s.platform}
                             </span>
-                            <span className="text-[11px] text-[#D0D7E0] uppercase font-bold">
+                            <span className="text-[11px] text-[#9CA3AF] uppercase font-bold">
                               [{s.source}]
                             </span>
                           </div>
@@ -501,8 +501,8 @@ export default function SetupPage() {
                           onClick={() => toggleSocialSelection(key)}
                           className={`px-3 py-1.5 text-[14px] rounded-lg transition font-extrabold cursor-pointer shrink-0 ${
                             isSelected
-                              ? 'bg-[#35D0BA] text-[#080B10]'
-                              : 'bg-[#121821] text-[#D0D7E0] border border-[#303946] hover:text-[#FFFFFF]'
+                              ? 'bg-[#F6821F] text-[#080B11]'
+                              : 'bg-[#111625] text-[#9CA3AF] border border-[#1E2638] hover:text-[#FFFFFF]'
                           }`}
                         >
                           {isSelected ? 'CONFIRMED' : 'EXCLUDED'}
@@ -516,12 +516,12 @@ export default function SetupPage() {
 
             {/* Discovered Mobile Applications */}
             <div className="space-y-4 font-mono">
-              <span className="text-[14px] text-[#D0D7E0] uppercase tracking-wider block font-extrabold">
+              <span className="text-[14px] text-[#9CA3AF] uppercase tracking-wider block font-extrabold">
                 DISCOVERED MOBILE APPLICATIONS ({discoveredIdentity.applications.length})
               </span>
 
               {discoveredIdentity.applications.length === 0 ? (
-                <div className="text-[16px] text-[#D0D7E0] bg-[#121821] p-4 rounded-xl border border-[#303946] font-bold">
+                <div className="text-[16px] text-[#9CA3AF] bg-[#111625] p-4 rounded-xl border border-[#1E2638] font-bold">
                   No official mobile application links discovered on the website.
                 </div>
               ) : (
@@ -534,13 +534,13 @@ export default function SetupPage() {
                         key={idx}
                         className={`p-4 rounded-xl border transition-all flex items-center justify-between ${
                           isSelected
-                            ? 'bg-[#121821] border-[#35D0BA]'
-                            : 'bg-[#080B10] border-[#303946] opacity-60'
+                            ? 'bg-[#111625] border-[#F6821F]'
+                            : 'bg-[#080B11] border-[#1E2638] opacity-60'
                         }`}
                       >
                         <div className="space-y-1 truncate pr-2">
                           <div className="flex items-center gap-2">
-                            <span className="text-[13px] uppercase font-extrabold text-[#35D0BA]">
+                            <span className="text-[13px] uppercase font-extrabold text-[#F6821F]">
                               {app.store}
                             </span>
                           </div>
@@ -554,8 +554,8 @@ export default function SetupPage() {
                           onClick={() => toggleAppSelection(key)}
                           className={`px-3 py-1.5 text-[14px] rounded-lg transition font-extrabold cursor-pointer shrink-0 ${
                             isSelected
-                              ? 'bg-[#35D0BA] text-[#080B10]'
-                              : 'bg-[#121821] text-[#D0D7E0] border border-[#303946] hover:text-[#FFFFFF]'
+                              ? 'bg-[#F6821F] text-[#080B11]'
+                              : 'bg-[#111625] text-[#9CA3AF] border border-[#1E2638] hover:text-[#FFFFFF]'
                           }`}
                         >
                           {isSelected ? 'CONFIRMED' : 'EXCLUDED'}
@@ -568,15 +568,15 @@ export default function SetupPage() {
             </div>
 
             {/* Authoritative Review Confirmation Action */}
-            <div className="pt-5 border-t border-[#303946] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <span className="text-[16px] font-mono text-[#D0D7E0] font-bold">
+            <div className="pt-5 border-t border-[#1E2638] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <span className="text-[16px] font-mono text-[#9CA3AF] font-bold">
                 Confirming writes verified identities into the authoritative baseline for similarity audits.
               </span>
 
               <button
                 type="button"
                 onClick={handleConfirmDiscoveredIdentity}
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer shadow-lg"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer shadow-lg"
               >
                 <Check className="h-4 w-4" />
                 <span>CONFIRM OFFICIAL IDENTITY</span>
@@ -586,14 +586,14 @@ export default function SetupPage() {
         )}
 
         {/* Configuration Form (Open, Non-Boxy) */}
-        <form onSubmit={handleSave} className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-9">
+        <form onSubmit={handleSave} className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-9">
           <div className="space-y-7">
-            <div className="border-b border-[#303946] pb-3 flex items-center justify-between">
-              <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+            <div className="border-b border-[#1E2638] pb-3 flex items-center justify-between">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
                 IDENTITY PARAMETERS (SOURCE OF TRUTH)
               </span>
               {analysisState === 'CONFIRMED' && (
-                <span className="font-mono text-[14px] text-[#35D0BA] uppercase font-extrabold">
+                <span className="font-mono text-[14px] text-[#F6821F] uppercase font-extrabold">
                   VERIFIED WITH WEBSITE INTELLIGENCE
                 </span>
               )}
@@ -601,33 +601,33 @@ export default function SetupPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
               <div className="space-y-2">
-                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
+                <label className="block text-[15px] font-mono uppercase text-[#9CA3AF] font-bold">
                   Brand Name
                 </label>
                 <input
                   type="text"
                   value={brandName}
                   onChange={(e) => setBrandName(e.target.value)}
-                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#F6821F] outline-none transition"
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
+                <label className="block text-[15px] font-mono uppercase text-[#9CA3AF] font-bold">
                   Official Primary Domain
                 </label>
                 <input
                   type="text"
                   value={domain}
                   onChange={(e) => setDomain(e.target.value)}
-                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#F6821F] outline-none transition"
                   required
                 />
               </div>
 
               <div className="sm:col-span-2 space-y-2">
-                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
+                <label className="block text-[15px] font-mono uppercase text-[#9CA3AF] font-bold">
                   Official Domains Allowlist (Comma-separated)
                 </label>
                 <input
@@ -635,24 +635,24 @@ export default function SetupPage() {
                   value={officialDomains}
                   onChange={(e) => setOfficialDomains(e.target.value)}
                   placeholder="e.g. brand.com, brandbank.com, brandmoney.com"
-                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#F6821F] outline-none transition"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
+                <label className="block text-[15px] font-mono uppercase text-[#9CA3AF] font-bold">
                   Official Twitter / X Handle
                 </label>
                 <input
                   type="text"
                   value={twitter}
                   onChange={(e) => setTwitter(e.target.value)}
-                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#F6821F] outline-none transition"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
+                <label className="block text-[15px] font-mono uppercase text-[#9CA3AF] font-bold">
                   Official Telegram / Instagram Handle
                 </label>
                 <input
@@ -662,72 +662,72 @@ export default function SetupPage() {
                     setInstagram(e.target.value);
                     setTelegram(e.target.value);
                   }}
-                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#F6821F] outline-none transition"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
+                <label className="block text-[15px] font-mono uppercase text-[#9CA3AF] font-bold">
                   Official Mobile App Package ID
                 </label>
                 <input
                   type="text"
                   value={appPackage}
                   onChange={(e) => setAppPackage(e.target.value)}
-                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#F6821F] outline-none transition"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
+                <label className="block text-[15px] font-mono uppercase text-[#9CA3AF] font-bold">
                   Authorized Publishers / Developers (Comma-separated)
                 </label>
                 <input
                   type="text"
                   value={officialDevelopers}
                   onChange={(e) => setOfficialDevelopers(e.target.value)}
-                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#F6821F] outline-none transition"
                 />
               </div>
 
               <div className="sm:col-span-2 space-y-2">
-                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
+                <label className="block text-[15px] font-mono uppercase text-[#9CA3AF] font-bold">
                   Monitored Brand Keywords &amp; Aliases (Comma-separated)
                 </label>
                 <input
                   type="text"
                   value={keywords}
                   onChange={(e) => setKeywords(e.target.value)}
-                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#F6821F] outline-none transition"
                 />
               </div>
 
               <div className="sm:col-span-2 space-y-2">
-                <label className="block text-[15px] font-mono uppercase text-[#D0D7E0] font-bold">
+                <label className="block text-[15px] font-mono uppercase text-[#9CA3AF] font-bold">
                   Official Support Channels (Comma-separated)
                 </label>
                 <input
                   type="text"
                   value={supportChannels}
                   onChange={(e) => setSupportChannels(e.target.value)}
-                  className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#35D0BA] outline-none transition"
+                  className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold focus:border-[#F6821F] outline-none transition"
                 />
               </div>
             </div>
           </div>
 
           {/* Form Actions */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 pt-7 border-t border-[#303946]">
-            <span className="text-[16px] text-[#D0D7E0] font-bold">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 pt-7 border-t border-[#1E2638]">
+            <span className="text-[16px] text-[#9CA3AF] font-bold">
               Parameters establish the authoritative baseline for distance metrics, app developer comparison, and impersonation auditing.
             </span>
 
             <div className="flex items-center gap-3.5 shrink-0">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#303946] text-[#FFFFFF] text-[17px] font-mono font-extrabold rounded-xl hover:bg-[#121821] transition cursor-pointer shadow-md"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#1E2638] text-[#FFFFFF] text-[17px] font-mono font-extrabold rounded-xl hover:bg-[#111625] transition cursor-pointer shadow-md"
               >
-                {saved ? <Check className="h-4 w-4 text-[#35D0BA]" /> : <Save className="h-4 w-4" />}
+                {saved ? <Check className="h-4 w-4 text-[#F6821F]" /> : <Save className="h-4 w-4" />}
                 <span>{saved ? 'SAVED BASELINE' : 'SAVE BASELINE'}</span>
               </button>
 
@@ -735,7 +735,7 @@ export default function SetupPage() {
                 type="button"
                 onClick={handleStartInvestigation}
                 disabled={investigationState === 'INVESTIGATING' || investigationState === 'DISCOVERING' || investigationState === 'ANALYZING'}
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer disabled:opacity-50 shadow-lg"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer disabled:opacity-50 shadow-lg"
               >
                 {investigationState === 'INVESTIGATING' || investigationState === 'DISCOVERING' || investigationState === 'ANALYZING' ? (
                   <>
@@ -755,14 +755,14 @@ export default function SetupPage() {
 
         {/* Live Investigation Pipeline Status & Outcome */}
         {investigationState !== 'IDLE' && (
-          <div className="border border-[#303946] bg-[#0D1118] p-7 sm:p-9 rounded-2xl space-y-5 font-mono shadow-xl">
-            <div className="flex items-center justify-between border-b border-[#303946] pb-4">
+          <div className="border border-[#1E2638] bg-[#0E131F] p-7 sm:p-9 rounded-2xl space-y-5 font-mono shadow-xl">
+            <div className="flex items-center justify-between border-b border-[#1E2638] pb-4">
               <div className="flex items-center gap-3 text-[15px]">
-                <span className="text-[#D0D7E0] font-extrabold">STATUS:</span>
+                <span className="text-[#9CA3AF] font-extrabold">STATUS:</span>
                 <span
                   className={
                     investigationState === 'COMPLETED'
-                      ? 'text-[#35D0BA] font-extrabold'
+                      ? 'text-[#F6821F] font-extrabold'
                       : investigationState === 'ERROR'
                       ? 'text-[#FF5C6C] font-extrabold'
                       : 'text-[#FFAB40] font-extrabold'
@@ -771,7 +771,7 @@ export default function SetupPage() {
                   {investigationState}
                 </span>
               </div>
-              <span className="text-[14px] text-[#D0D7E0] font-bold">
+              <span className="text-[14px] text-[#9CA3AF] font-bold">
                 Pipeline: Apple iTunes API • Search Feeds • AI Synthesizer
               </span>
             </div>
@@ -782,27 +782,27 @@ export default function SetupPage() {
 
             {investigationSummary && (
               <div className="space-y-5 pt-3">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-[15px] bg-[#121821] p-5 rounded-xl border border-[#303946]">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-[15px] bg-[#111625] p-5 rounded-xl border border-[#1E2638]">
                   <div>
-                    <span className="text-[#D0D7E0] block text-[13px] font-extrabold uppercase">CANDIDATES</span>
+                    <span className="text-[#9CA3AF] block text-[13px] font-extrabold uppercase">CANDIDATES</span>
                     <span className="text-[#FFFFFF] text-[26px] font-extrabold">
                       {investigationSummary.candidatesCount || 0}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[#D0D7E0] block text-[13px] font-extrabold uppercase">ELEVATED / HIGH RISK</span>
+                    <span className="text-[#9CA3AF] block text-[13px] font-extrabold uppercase">ELEVATED / HIGH RISK</span>
                     <span className="text-[#FF5C6C] text-[26px] font-extrabold">
                       {investigationSummary.highRiskCount || 0}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[#D0D7E0] block text-[13px] font-extrabold uppercase">PROVIDERS QUERIED</span>
-                    <span className="text-[#35D0BA] text-[26px] font-extrabold">
+                    <span className="text-[#9CA3AF] block text-[13px] font-extrabold uppercase">PROVIDERS QUERIED</span>
+                    <span className="text-[#F6821F] text-[26px] font-extrabold">
                       {Object.keys(investigationSummary.providerRuns || {}).length}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[#D0D7E0] block text-[13px] font-extrabold uppercase">STATUS</span>
+                    <span className="text-[#9CA3AF] block text-[13px] font-extrabold uppercase">STATUS</span>
                     <span className="text-[#FFFFFF] text-[24px] font-extrabold uppercase">
                       {investigationSummary.status}
                     </span>
@@ -810,12 +810,12 @@ export default function SetupPage() {
                 </div>
 
                 <div className="flex items-center justify-between pt-3">
-                  <span className="text-[16px] text-[#D0D7E0] font-bold">
+                  <span className="text-[16px] text-[#9CA3AF] font-bold">
                     Results persisted to SAFENET Command Center.
                   </span>
                   <Link
                     href="/overview"
-                    className="inline-flex items-center gap-2 text-[16px] text-[#35D0BA] hover:text-[#2EB8A5] font-extrabold"
+                    className="inline-flex items-center gap-2 text-[16px] text-[#F6821F] hover:text-[#2EB8A5] font-extrabold"
                   >
                     <span>VIEW RESULTS IN DASHBOARD</span>
                     <ArrowRight className="h-4 w-4" />

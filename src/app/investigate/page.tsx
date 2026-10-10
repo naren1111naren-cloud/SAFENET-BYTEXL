@@ -58,13 +58,13 @@ function InvestigateContent() {
       <AppShell pageTitle="Investigation Dossier">
         <div className="max-w-4xl mx-auto py-24 text-center space-y-5 font-mono">
           <div className="text-[20px] text-[#FFFFFF] font-extrabold">No investigation entities selected or available.</div>
-          <p className="text-[17px] text-[#D0D7E0] max-w-md mx-auto font-bold">
+          <p className="text-[17px] text-[#9CA3AF] max-w-md mx-auto font-bold">
             Run an investigation from the Brand Baseline page to discover live candidate entities and inspect detailed forensic evidence.
           </p>
           <div className="pt-4">
             <Link
               href="/setup"
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[18px] font-extrabold rounded-xl transition-all shadow-lg"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[18px] font-extrabold rounded-xl transition-all shadow-lg"
             >
               <span>START BRAND INVESTIGATION</span>
               <ArrowRight className="h-5 w-5" />
@@ -94,14 +94,14 @@ function InvestigateContent() {
     >
       <div className="max-w-6xl mx-auto space-y-10 pb-16">
         {/* Dossier Header (Open, Non-Boxy) */}
-        <section className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-2xl space-y-8">
+        <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-2xl space-y-8">
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
             <div className="space-y-3 flex-1">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-[14px] uppercase tracking-wider text-[#D0D7E0] font-extrabold">
+                <span className="font-mono text-[14px] uppercase tracking-wider text-[#9CA3AF] font-extrabold">
                   INVESTIGATION DOSSIER
                 </span>
-                <span className="text-[#303946]">/</span>
+                <span className="text-[#1E2638]">/</span>
                 <span
                   className={`font-mono text-[14px] uppercase tracking-wider font-extrabold px-3 py-1 rounded-lg border ${
                     threat.riskScore >= 80
@@ -117,8 +117,8 @@ function InvestigateContent() {
                 {threat.targetAsset}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-3.5 text-[16px] font-mono text-[#D0D7E0] pt-1 font-bold">
-                <span>Targeted brand: <strong className="text-[#35D0BA]">{brand.name}</strong></span>
+              <div className="flex flex-wrap items-center gap-3.5 text-[16px] font-mono text-[#9CA3AF] pt-1 font-bold">
+                <span>Targeted brand: <strong className="text-[#F6821F]">{brand.name}</strong></span>
                 <span>•</span>
                 <span>Type: <strong className="text-[#FFFFFF] capitalize">{threat.type.replace('_', ' ')}</strong></span>
                 <span>•</span>
@@ -127,26 +127,26 @@ function InvestigateContent() {
             </div>
 
             {/* Score block */}
-            <div className="border border-[#303946] p-5 rounded-2xl bg-[#121821] shrink-0 min-w-[170px] text-center md:text-right shadow-md">
-              <span className="font-mono text-[13px] uppercase tracking-wider text-[#D0D7E0] font-extrabold">
+            <div className="border border-[#1E2638] p-5 rounded-2xl bg-[#111625] shrink-0 min-w-[170px] text-center md:text-right shadow-md">
+              <span className="font-mono text-[13px] uppercase tracking-wider text-[#9CA3AF] font-extrabold">
                 RISK SCORE
               </span>
               <div className="font-mono text-[42px] font-extrabold text-[#FF5C6C] leading-none mt-1">
-                {threat.riskScore} <span className="text-[16px] text-[#D0D7E0] font-bold">/ 100</span>
+                {threat.riskScore} <span className="text-[16px] text-[#9CA3AF] font-bold">/ 100</span>
               </div>
             </div>
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex items-center gap-6 sm:gap-8 overflow-x-auto border-t border-[#303946] pt-5 text-[18px] font-mono">
+          <div className="flex items-center gap-6 sm:gap-8 overflow-x-auto border-t border-[#1E2638] pt-5 text-[18px] font-mono">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as TabView)}
                 className={`pb-3 transition cursor-pointer whitespace-nowrap font-extrabold ${
                   activeTab === tab.id
-                    ? 'text-[#35D0BA] border-b-2 border-[#35D0BA]'
-                    : 'text-[#D0D7E0] hover:text-[#FFFFFF]'
+                    ? 'text-[#F6821F] border-b-2 border-[#F6821F]'
+                    : 'text-[#9CA3AF] hover:text-[#FFFFFF]'
                 }`}
               >
                 {tab.label}
@@ -157,31 +157,31 @@ function InvestigateContent() {
 
         {/* ── TAB 1: OVERVIEW ── */}
         {activeTab === 'overview' && (
-          <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-8">
-            <div className="font-mono text-[18px] divide-y divide-[#303946]">
+          <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-8">
+            <div className="font-mono text-[18px] divide-y divide-[#1E2638]">
               <div className="py-4 grid grid-cols-1 md:grid-cols-12 gap-3">
-                <span className="md:col-span-4 text-[#D0D7E0] font-bold">Entity Under Investigation</span>
+                <span className="md:col-span-4 text-[#9CA3AF] font-bold">Entity Under Investigation</span>
                 <span className="md:col-span-8 text-[#FFFFFF] font-extrabold">{threat.targetAsset}</span>
               </div>
               <div className="py-4 grid grid-cols-1 md:grid-cols-12 gap-3">
-                <span className="md:col-span-4 text-[#D0D7E0] font-bold">Targeted Brand</span>
+                <span className="md:col-span-4 text-[#9CA3AF] font-bold">Targeted Brand</span>
                 <span className="md:col-span-8 text-[#FFFFFF] font-bold">{brand.name} ({brand.domain})</span>
               </div>
               <div className="py-4 grid grid-cols-1 md:grid-cols-12 gap-3">
-                <span className="md:col-span-4 text-[#D0D7E0] font-bold">Threat Vector</span>
+                <span className="md:col-span-4 text-[#9CA3AF] font-bold">Threat Vector</span>
                 <span className="md:col-span-8 text-[#FFFFFF] font-bold capitalize">{threat.type.replace('_', ' ')}</span>
               </div>
               <div className="py-4 grid grid-cols-1 md:grid-cols-12 gap-3">
-                <span className="md:col-span-4 text-[#D0D7E0] font-bold">Assigned Analyst</span>
-                <span className="md:col-span-8 text-[#35D0BA] font-extrabold">{threat.assignedAnalyst || 'SOC Lead (Level 2)'}</span>
+                <span className="md:col-span-4 text-[#9CA3AF] font-bold">Assigned Analyst</span>
+                <span className="md:col-span-8 text-[#F6821F] font-extrabold">{threat.assignedAnalyst || 'SOC Lead (Level 2)'}</span>
               </div>
             </div>
 
-            <div className="space-y-3 pt-6 border-t border-[#303946]">
-              <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+            <div className="space-y-3 pt-6 border-t border-[#1E2638]">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
                 EXECUTIVE ASSESSMENT
               </span>
-              <p className="text-[19px] text-[#D0D7E0] leading-relaxed max-w-4xl font-bold">
+              <p className="text-[19px] text-[#9CA3AF] leading-relaxed max-w-4xl font-bold">
                 SAFENET correlates this entity as an active deceptive brand mimicry operation. Indicators suggest the primary motive is credential harvesting, financial extortion, and deceptive customer support impersonation. Immediate customer warning broadcast and abuse report generation is recommended.
               </p>
             </div>
@@ -190,23 +190,23 @@ function InvestigateContent() {
 
         {/* ── TAB 2: SIGNALS ── */}
         {activeTab === 'signals' && (
-          <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-6">
-            <div className="border-b border-[#303946] pb-4">
-              <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+          <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-6">
+            <div className="border-b border-[#1E2638] pb-4">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
                 FLAGGED SIGNALS ({threat.reasons?.length || 0})
               </span>
             </div>
 
-            <div className="divide-y divide-[#303946]">
+            <div className="divide-y divide-[#1E2638]">
               {(threat.reasons || []).map((reason, idx) => (
                 <div key={idx} className="py-5 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-                  <div className="md:col-span-1 font-mono text-[16px] text-[#D0D7E0] font-extrabold">
+                  <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-extrabold">
                     {String(idx + 1).padStart(2, '0')}
                   </div>
                   <div className="md:col-span-8 text-[19px] text-[#FFFFFF] font-bold">
                     {reason}
                   </div>
-                  <div className="md:col-span-3 md:text-right font-mono text-[15px] text-[#35D0BA] font-extrabold">
+                  <div className="md:col-span-3 md:text-right font-mono text-[15px] text-[#F6821F] font-extrabold">
                     Deterministic Match
                   </div>
                 </div>
@@ -217,46 +217,46 @@ function InvestigateContent() {
 
         {/* ── TAB 3: AI ANALYSIS ── */}
         {activeTab === 'ai_analysis' && (
-          <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-6">
-            <div className="border-b border-[#303946] pb-4">
-              <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+          <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-6">
+            <div className="border-b border-[#1E2638] pb-4">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
                 SYNTHESIS &amp; ATTRIBUTION
               </span>
             </div>
 
-            <div className="divide-y divide-[#303946]">
+            <div className="divide-y divide-[#1E2638]">
               <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-                <div className="md:col-span-3 font-mono text-[14px] uppercase text-[#35D0BA] font-extrabold">
+                <div className="md:col-span-3 font-mono text-[14px] uppercase text-[#F6821F] font-extrabold">
                   01 / WHAT IS HAPPENING?
                 </div>
-                <div className="md:col-span-9 text-[19px] text-[#D0D7E0] leading-relaxed font-bold">
-                  SAFENET analysis indicates an unauthorized actor is operating <code className="text-[#FFFFFF] bg-[#121821] px-2 py-1 rounded border border-[#303946] font-mono font-extrabold">{threat.targetAsset}</code> to mirror official services of <strong className="text-[#FFFFFF] font-extrabold">{brand.name}</strong>. The asset exhibits deceptive urgency claims and counterfeit KYC verification procedures.
+                <div className="md:col-span-9 text-[19px] text-[#9CA3AF] leading-relaxed font-bold">
+                  SAFENET analysis indicates an unauthorized actor is operating <code className="text-[#FFFFFF] bg-[#111625] px-2 py-1 rounded border border-[#1E2638] font-mono font-extrabold">{threat.targetAsset}</code> to mirror official services of <strong className="text-[#FFFFFF] font-extrabold">{brand.name}</strong>. The asset exhibits deceptive urgency claims and counterfeit KYC verification procedures.
                 </div>
               </div>
 
               <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-                <div className="md:col-span-3 font-mono text-[14px] uppercase text-[#35D0BA] font-extrabold">
+                <div className="md:col-span-3 font-mono text-[14px] uppercase text-[#F6821F] font-extrabold">
                   02 / HOW THE ATTACK WORKS
                 </div>
-                <div className="md:col-span-9 text-[19px] text-[#D0D7E0] leading-relaxed font-bold">
+                <div className="md:col-span-9 text-[19px] text-[#9CA3AF] leading-relaxed font-bold">
                   The primary motive is consumer credential theft and fraudulent financial diversion. By manufacturing a false sense of urgency around account suspension, the campaign aims to bypass standard security caution and induce victims to reveal banking OTPs or approve UPI transactions.
                 </div>
               </div>
 
               <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-                <div className="md:col-span-3 font-mono text-[14px] uppercase text-[#35D0BA] font-extrabold">
+                <div className="md:col-span-3 font-mono text-[14px] uppercase text-[#F6821F] font-extrabold">
                   03 / WHO IS AFFECTED?
                 </div>
-                <div className="md:col-span-9 text-[19px] text-[#D0D7E0] leading-relaxed font-bold">
+                <div className="md:col-span-9 text-[19px] text-[#9CA3AF] leading-relaxed font-bold">
                   Potentially affected individuals include active retail customers of {brand.name} receiving unsolicited SMS or WhatsApp messages, particularly those unfamiliar with official domain validation protocols.
                 </div>
               </div>
 
               <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-                <div className="md:col-span-3 font-mono text-[14px] uppercase text-[#35D0BA] font-extrabold">
+                <div className="md:col-span-3 font-mono text-[14px] uppercase text-[#F6821F] font-extrabold">
                   04 / WHAT TO DO
                 </div>
-                <div className="md:col-span-9 text-[19px] text-[#D0D7E0] leading-relaxed font-bold">
+                <div className="md:col-span-9 text-[19px] text-[#9CA3AF] leading-relaxed font-bold">
                   Generate an official customer warning broadcast, submit a formal abuse notice to the upstream hosting and registrar provider, and escalate linked UPI identifiers to NPCI / Cyber Crime Cell (1930).
                 </div>
               </div>
@@ -266,9 +266,9 @@ function InvestigateContent() {
 
         {/* ── TAB 4: INFRASTRUCTURE ── */}
         {activeTab === 'infrastructure' && (
-          <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-6">
-            <div className="border-b border-[#303946] pb-4">
-              <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+          <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-6">
+            <div className="border-b border-[#1E2638] pb-4">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
                 TECHNICAL INFRASTRUCTURE &amp; TELEMETRY
               </span>
             </div>
@@ -276,42 +276,42 @@ function InvestigateContent() {
             <div className="overflow-x-auto">
               <table className="w-full text-left font-mono text-[16px]">
                 <thead>
-                  <tr className="border-b border-[#303946] text-[#D0D7E0] text-[13px] uppercase font-extrabold">
+                  <tr className="border-b border-[#1E2638] text-[#9CA3AF] text-[13px] uppercase font-extrabold">
                     <th className="py-4 pr-5">Component</th>
                     <th className="py-4 px-5">Observed Indicator</th>
                     <th className="py-4 pl-5">Attribution Telemetry</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#303946]">
+                <tbody className="divide-y divide-[#1E2638]">
                   <tr>
-                    <td className="py-4 pr-5 text-[#D0D7E0] font-bold">Analyzed Entity</td>
+                    <td className="py-4 pr-5 text-[#9CA3AF] font-bold">Analyzed Entity</td>
                     <td className="py-4 px-5 text-[#FFFFFF] font-extrabold">{threat.targetAsset}</td>
-                    <td className="py-4 pl-5 text-[#D0D7E0] font-bold">Target Asset Under Investigation</td>
+                    <td className="py-4 pl-5 text-[#9CA3AF] font-bold">Target Asset Under Investigation</td>
                   </tr>
                   <tr>
-                    <td className="py-4 pr-5 text-[#D0D7E0] font-bold">Hosting IP</td>
+                    <td className="py-4 pr-5 text-[#9CA3AF] font-bold">Hosting IP</td>
                     <td className="py-4 px-5 text-[#64A9FF] font-extrabold">
                       {threat.iocs?.find((i) => i.type === 'ip')?.value || 'Not resolved in historical record'}
                     </td>
-                    <td className="py-4 pl-5 text-[#D0D7E0] font-bold">
+                    <td className="py-4 pl-5 text-[#9CA3AF] font-bold">
                       {threat.iocs?.find((i) => i.type === 'ip') ? 'Observed Resolution Endpoint' : 'Requires live scan query'}
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-4 pr-5 text-[#D0D7E0] font-bold">Autonomous System</td>
+                    <td className="py-4 pr-5 text-[#9CA3AF] font-bold">Autonomous System</td>
                     <td className="py-4 px-5 text-[#64A9FF] font-extrabold">
                       {threat.iocs?.find((i) => i.type === 'asn')?.value || 'Not enriched'}
                     </td>
-                    <td className="py-4 pl-5 text-[#D0D7E0] font-bold">
+                    <td className="py-4 pl-5 text-[#9CA3AF] font-bold">
                       {threat.iocs?.find((i) => i.type === 'asn') ? 'BGP Routing Authority' : 'No ASN attributed'}
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-4 pr-5 text-[#D0D7E0] font-bold">Payment / Scam Pivot</td>
+                    <td className="py-4 pr-5 text-[#9CA3AF] font-bold">Payment / Scam Pivot</td>
                     <td className="py-4 px-5 text-[#FF5C6C] font-extrabold">
                       {threat.iocs?.find((i) => i.type === 'upi' || i.type === 'phone' || i.type === 'telegram')?.value || 'None captured'}
                     </td>
-                    <td className="py-4 pl-5 text-[#D0D7E0] font-bold">
+                    <td className="py-4 pl-5 text-[#9CA3AF] font-bold">
                       {threat.iocs?.some((i) => i.type === 'upi' || i.type === 'phone' || i.type === 'telegram')
                         ? 'Attributed Extraction Mechanism'
                         : 'No direct payment identifier extracted'}
@@ -330,33 +330,33 @@ function InvestigateContent() {
           );
 
           return (
-            <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-6">
-              <div className="flex items-baseline justify-between border-b border-[#303946] pb-4">
+            <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-6">
+              <div className="flex items-baseline justify-between border-b border-[#1E2638] pb-4">
                 <div className="space-y-1">
-                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
                     CORRELATED BRAND INCIDENTS
                   </span>
-                  <div className="text-[16px] text-[#D0D7E0] font-bold">
+                  <div className="text-[16px] text-[#9CA3AF] font-bold">
                     Other verified incidents matching brand profile &ldquo;{brand.name}&rdquo;
                   </div>
                 </div>
                 <Link
                   href="/campaigns"
-                  className="font-mono text-[16px] text-[#35D0BA] hover:text-[#2EB8A5] font-extrabold"
+                  className="font-mono text-[16px] text-[#F6821F] hover:text-[#2EB8A5] font-extrabold"
                 >
                   View Campaign Correlation →
                 </Link>
               </div>
 
               {relatedThreats.length > 0 ? (
-                <div className="divide-y divide-[#303946] font-mono text-[16px]">
+                <div className="divide-y divide-[#1E2638] font-mono text-[16px]">
                   {relatedThreats.slice(0, 5).map((rt) => (
                     <div key={rt.id} className="py-4 flex items-center justify-between">
                       <div className="space-y-1">
-                        <Link href={`/investigate?id=${rt.id}`} className="text-[#FFFFFF] font-extrabold hover:text-[#35D0BA]">
+                        <Link href={`/investigate?id=${rt.id}`} className="text-[#FFFFFF] font-extrabold hover:text-[#F6821F]">
                           {rt.targetAsset}
                         </Link>
-                        <div className="text-[14px] text-[#D0D7E0] capitalize font-bold">
+                        <div className="text-[14px] text-[#9CA3AF] capitalize font-bold">
                           {rt.type.replace('_', ' ')} • {rt.status.toUpperCase()}
                         </div>
                       </div>
@@ -367,7 +367,7 @@ function InvestigateContent() {
                   ))}
                 </div>
               ) : (
-                <div className="py-10 text-center text-[#D0D7E0] font-mono text-[16px] font-bold">
+                <div className="py-10 text-center text-[#9CA3AF] font-mono text-[16px] font-bold">
                   No other active threat incidents linked to this asset in local memory.
                 </div>
               )}
@@ -377,12 +377,12 @@ function InvestigateContent() {
 
         {/* ── TAB 6: RESPONSE ── */}
         {activeTab === 'response' && (
-          <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 shadow-xl space-y-10">
+          <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-10">
             {/* Customer Warning Generator */}
             <div className="space-y-5">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#303946] pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1E2638] pb-4">
                 <div className="space-y-1">
-                  <span className="font-mono text-[13px] uppercase text-[#35D0BA] font-extrabold">PUBLIC ADVISORY</span>
+                  <span className="font-mono text-[13px] uppercase text-[#F6821F] font-extrabold">PUBLIC ADVISORY</span>
                   <h3 className="text-[22px] font-extrabold text-[#FFFFFF]">
                     Customer Safety Warning Generator
                   </h3>
@@ -395,8 +395,8 @@ function InvestigateContent() {
                       onClick={() => setAdvisoryLang(lang)}
                       className={`px-3.5 py-1.5 rounded-lg transition font-extrabold cursor-pointer ${
                         advisoryLang === lang
-                          ? 'bg-[#35D0BA] text-[#080B10]'
-                          : 'bg-[#121821] text-[#D0D7E0] hover:text-[#FFFFFF] border border-[#303946]'
+                          ? 'bg-[#F6821F] text-[#080B11]'
+                          : 'bg-[#111625] text-[#9CA3AF] hover:text-[#FFFFFF] border border-[#1E2638]'
                       }`}
                     >
                       {lang === 'en' ? 'English' : lang === 'hi' ? 'हिंदी (Hindi)' : 'தமிழ் (Tamil)'}
@@ -405,7 +405,7 @@ function InvestigateContent() {
                 </div>
               </div>
 
-              <div className="bg-[#121821] border border-[#303946] p-5 rounded-xl font-mono text-[16px] text-[#FFFFFF] font-bold whitespace-pre-wrap max-h-52 overflow-y-auto leading-relaxed">
+              <div className="bg-[#111625] border border-[#1E2638] p-5 rounded-xl font-mono text-[16px] text-[#FFFFFF] font-bold whitespace-pre-wrap max-h-52 overflow-y-auto leading-relaxed">
                 {advisories.social.content}
               </div>
 
@@ -417,7 +417,7 @@ function InvestigateContent() {
                     setCopiedAdvisory(true);
                     setTimeout(() => setCopiedAdvisory(false), 2000);
                   }}
-                  className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[16px] font-extrabold rounded-xl transition shadow-lg cursor-pointer"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[16px] font-extrabold rounded-xl transition shadow-lg cursor-pointer"
                 >
                   {copiedAdvisory ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   {copiedAdvisory ? 'COPIED TO CLIPBOARD' : 'COPY ADVISORY'}
@@ -426,10 +426,10 @@ function InvestigateContent() {
             </div>
 
             {/* Abuse Notice Generator */}
-            <div className="space-y-5 pt-8 border-t border-[#303946]">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#303946] pb-4">
+            <div className="space-y-5 pt-8 border-t border-[#1E2638]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1E2638] pb-4">
                 <div className="space-y-1">
-                  <span className="font-mono text-[13px] uppercase text-[#35D0BA] font-extrabold">REGULATORY DISPATCH</span>
+                  <span className="font-mono text-[13px] uppercase text-[#F6821F] font-extrabold">REGULATORY DISPATCH</span>
                   <h3 className="text-[22px] font-extrabold text-[#FFFFFF]">
                     Prepare Formal Abuse Notice
                   </h3>
@@ -442,8 +442,8 @@ function InvestigateContent() {
                       onClick={() => setTakedownRecipient(rec)}
                       className={`px-3.5 py-1.5 rounded-lg capitalize transition font-extrabold cursor-pointer ${
                         takedownRecipient === rec
-                          ? 'bg-[#35D0BA] text-[#080B10]'
-                          : 'bg-[#121821] text-[#D0D7E0] hover:text-[#FFFFFF] border border-[#303946]'
+                          ? 'bg-[#F6821F] text-[#080B11]'
+                          : 'bg-[#111625] text-[#9CA3AF] hover:text-[#FFFFFF] border border-[#1E2638]'
                       }`}
                     >
                       {rec.replace('_', ' ')}
@@ -452,7 +452,7 @@ function InvestigateContent() {
                 </div>
               </div>
 
-              <div className="bg-[#121821] border border-[#303946] p-5 rounded-xl font-mono text-[15px] text-[#FFFFFF] font-bold whitespace-pre-wrap max-h-60 overflow-y-auto leading-relaxed">
+              <div className="bg-[#111625] border border-[#1E2638] p-5 rounded-xl font-mono text-[15px] text-[#FFFFFF] font-bold whitespace-pre-wrap max-h-60 overflow-y-auto leading-relaxed">
                 {notice.body}
               </div>
 
@@ -464,7 +464,7 @@ function InvestigateContent() {
                     setCopiedNotice(true);
                     setTimeout(() => setCopiedNotice(false), 2000);
                   }}
-                  className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[16px] font-extrabold rounded-xl transition shadow-lg cursor-pointer"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[16px] font-extrabold rounded-xl transition shadow-lg cursor-pointer"
                 >
                   {copiedNotice ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   {copiedNotice ? 'REPORT COPIED' : 'PREPARE REPORT & COPY EVIDENCE'}
@@ -480,7 +480,7 @@ function InvestigateContent() {
 
 export default function InvestigatePage() {
   return (
-    <Suspense fallback={<div className="p-12 text-center text-[#D0D7E0] font-mono text-[18px] font-bold">Loading investigation dossier...</div>}>
+    <Suspense fallback={<div className="p-12 text-center text-[#9CA3AF] font-mono text-[18px] font-bold">Loading investigation dossier...</div>}>
       <InvestigateContent />
     </Suspense>
   );

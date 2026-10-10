@@ -47,7 +47,7 @@ function ArcMeter({
             cx={size / 2}
             cy={size / 2}
             r={radius}
-            stroke="#303946"
+            stroke="#1E2638"
             strokeWidth={strokeWidth}
             fill="none"
             strokeDasharray={`${arcLength} ${circumference}`}
@@ -70,7 +70,7 @@ function ArcMeter({
           <span className="font-mono text-[34px] font-extrabold text-[#FFFFFF] leading-none tabular-nums">
             {score}
           </span>
-          <span className="font-mono text-[16px] font-bold text-[#D0D7E0] mt-1">/ {maxScore}</span>
+          <span className="font-mono text-[16px] font-bold text-[#9CA3AF] mt-1">/ {maxScore}</span>
         </div>
       </div>
       <span className="text-[17px] font-bold text-[#FFFFFF] uppercase tracking-wider mt-2 text-center">
@@ -106,7 +106,7 @@ function RiskBandBadge({ band }: { band: RiskBand }) {
     case 'Low concern':
     default:
       return (
-        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#0F2620] border border-[#35D0BA]/40 text-[#35D0BA] text-[16px] font-mono font-bold tracking-wide">
+        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#0F2620] border border-[#F6821F]/40 text-[#F6821F] text-[16px] font-mono font-bold tracking-wide">
           <ShieldCheck className="h-4 w-4" />
           LOW CONCERN (0–29)
         </span>
@@ -116,8 +116,8 @@ function RiskBandBadge({ band }: { band: RiskBand }) {
 
 function VariationBadge({ type }: { type: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#121821] border border-[#303946] text-[16px] font-mono font-bold text-[#FFFFFF]">
-      <Tag className="h-4 w-4 text-[#35D0BA]" />
+    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#111625] border border-[#1E2638] text-[16px] font-mono font-bold text-[#FFFFFF]">
+      <Tag className="h-4 w-4 text-[#F6821F]" />
       {type}
     </span>
   );
@@ -219,27 +219,27 @@ export default function LookalikeDetectionWorkbench() {
   return (
     <div className="space-y-10">
       {/* 1. Header & Context */}
-      <div className="space-y-3 border-b border-[#303946] pb-6">
+      <div className="space-y-3 border-b border-[#1E2638] pb-6">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[15px] uppercase tracking-wider text-[#35D0BA] font-extrabold">
+          <span className="font-mono text-[15px] uppercase tracking-wider text-[#F6821F] font-extrabold">
             DETECTION ENGINE
           </span>
-          <span className="text-[#303946]">/</span>
-          <span className="text-[17px] text-[#D0D7E0] font-bold">
+          <span className="text-[#1E2638]">/</span>
+          <span className="text-[17px] text-[#9CA3AF] font-bold">
             Look-alike Name Detection & False-Positive Minimization
           </span>
         </div>
         <h2 className="text-[28px] sm:text-[36px] font-extrabold tracking-tight text-[#FFFFFF]">
           Analyze Brand Name Resemblance
         </h2>
-        <p className="text-[20px] text-[#D0D7E0] max-w-4xl leading-relaxed font-bold">
+        <p className="text-[20px] text-[#9CA3AF] max-w-4xl leading-relaxed font-bold">
           Evaluates Unicode confusables, character transpositions, added support affixes, and delimiters.
           Prevents false positives by evaluating independent contextual evidence and explicit allowlist registries.
         </p>
       </div>
 
       {/* 2. Interactive Input Instrument (Open, Non-Boxy) */}
-      <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 space-y-7 shadow-xl">
+      <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 space-y-7 shadow-xl">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {/* Brand Selector */}
           <div>
@@ -253,15 +253,15 @@ export default function LookalikeDetectionWorkbench() {
                   setSelectedBrandName(e.target.value);
                   if (assessment) handleRunAnalysis(candidateInput, e.target.value);
                 }}
-                className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3.5 text-[19px] text-[#FFFFFF] font-bold outline-none focus:border-[#35D0BA] transition-colors appearance-none cursor-pointer"
+                className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3.5 text-[19px] text-[#FFFFFF] font-bold outline-none focus:border-[#F6821F] transition-colors appearance-none cursor-pointer"
               >
                 {Object.keys(PRESET_BRANDS).map((b) => (
-                  <option key={b} value={b} className="bg-[#0D1118] text-[#FFFFFF]">
+                  <option key={b} value={b} className="bg-[#0E131F] text-[#FFFFFF]">
                     {b} ({PRESET_BRANDS[b].domain})
                   </option>
                 ))}
               </select>
-              <ChevronDown className="absolute right-4 top-4 h-5 w-5 text-[#D0D7E0] pointer-events-none" />
+              <ChevronDown className="absolute right-4 top-4 h-5 w-5 text-[#9CA3AF] pointer-events-none" />
             </div>
           </div>
 
@@ -275,7 +275,7 @@ export default function LookalikeDetectionWorkbench() {
               value={candidateInput}
               onChange={(e) => setCandidateInput(e.target.value)}
               placeholder="e.g. Paytm Customer Care, Pаytm, @payttm, bike..."
-              className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3.5 text-[19px] text-[#FFFFFF] font-mono font-bold outline-none focus:border-[#35D0BA] transition-colors"
+              className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3.5 text-[19px] text-[#FFFFFF] font-mono font-bold outline-none focus:border-[#F6821F] transition-colors"
             />
           </div>
         </div>
@@ -285,24 +285,24 @@ export default function LookalikeDetectionWorkbench() {
           <button
             type="button"
             onClick={() => setShowOptionalFields(!showOptionalFields)}
-            className="inline-flex items-center gap-2.5 text-[18px] font-bold text-[#D0D7E0] hover:text-[#35D0BA] transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2.5 text-[18px] font-bold text-[#9CA3AF] hover:text-[#F6821F] transition-colors cursor-pointer"
           >
-            <SlidersHorizontal className="h-5 w-5 text-[#35D0BA]" />
+            <SlidersHorizontal className="h-5 w-5 text-[#F6821F]" />
             <span>{showOptionalFields ? 'Hide' : 'Add'} Optional Platform, Destination & Bio Context</span>
           </button>
         </div>
 
         {/* Optional Context Fields */}
         {showOptionalFields && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-[#303946]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-[#1E2638]">
             <div>
-              <label className="block text-[16px] font-bold text-[#D0D7E0] uppercase mb-2">
+              <label className="block text-[16px] font-bold text-[#9CA3AF] uppercase mb-2">
                 Platform
               </label>
               <select
                 value={platform}
                 onChange={(e) => setPlatform(e.target.value)}
-                className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-bold outline-none focus:border-[#35D0BA]"
+                className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-bold outline-none focus:border-[#F6821F]"
               >
                 <option value="Twitter / X">Twitter / X</option>
                 <option value="Instagram">Instagram</option>
@@ -314,7 +314,7 @@ export default function LookalikeDetectionWorkbench() {
               </select>
             </div>
             <div>
-              <label className="block text-[16px] font-bold text-[#D0D7E0] uppercase mb-2">
+              <label className="block text-[16px] font-bold text-[#9CA3AF] uppercase mb-2">
                 Profile URL / Domain (Optional)
               </label>
               <input
@@ -322,11 +322,11 @@ export default function LookalikeDetectionWorkbench() {
                 value={profileUrl}
                 onChange={(e) => setProfileUrl(e.target.value)}
                 placeholder="https://paytm-support-verify.xyz"
-                className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold outline-none focus:border-[#35D0BA]"
+                className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-mono font-bold outline-none focus:border-[#F6821F]"
               />
             </div>
             <div>
-              <label className="block text-[16px] font-bold text-[#D0D7E0] uppercase mb-2">
+              <label className="block text-[16px] font-bold text-[#9CA3AF] uppercase mb-2">
                 App Developer / Publisher (Optional)
               </label>
               <input
@@ -334,51 +334,51 @@ export default function LookalikeDetectionWorkbench() {
                 value={developer}
                 onChange={(e) => setDeveloper(e.target.value)}
                 placeholder="e.g. Rogue Developer Ltd"
-                className="w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-bold outline-none focus:border-[#35D0BA]"
+                className="w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-bold outline-none focus:border-[#F6821F]"
               />
             </div>
           </div>
         )}
 
         {/* Quick Test Presets & Action Button */}
-        <div className="flex flex-col gap-5 pt-4 border-t border-[#303946]">
+        <div className="flex flex-col gap-5 pt-4 border-t border-[#1E2638]">
           {/* Fictional Demonstration Suite (ApexPay) */}
-          <div className="flex flex-wrap items-center gap-2.5 text-[16px] bg-[#121821] p-4 rounded-xl border border-[#303946]">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#080B10] text-[#35D0BA] font-extrabold uppercase text-[14px] tracking-wider border border-[#303946]">
-              <Sparkles className="h-4 w-4 text-[#35D0BA]" /> ApexPay Suite
+          <div className="flex flex-wrap items-center gap-2.5 text-[16px] bg-[#111625] p-4 rounded-xl border border-[#1E2638]">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#080B11] text-[#F6821F] font-extrabold uppercase text-[14px] tracking-wider border border-[#1E2638]">
+              <Sparkles className="h-4 w-4 text-[#F6821F]" /> ApexPay Suite
             </span>
             <button
               type="button"
               onClick={() => handleApplyPreset('@ApexPay', 'ApexPay')}
-              className="px-3.5 py-1.5 bg-[#080B10] hover:bg-[#19222D] text-[#35D0BA] font-bold rounded-lg transition-colors cursor-pointer border border-[#303946]"
+              className="px-3.5 py-1.5 bg-[#080B11] hover:bg-[#161D2F] text-[#F6821F] font-bold rounded-lg transition-colors cursor-pointer border border-[#1E2638]"
             >
               1. Official Asset (@ApexPay)
             </button>
             <button
               type="button"
               onClick={() => handleApplyPreset('ApexP\u0430y', 'ApexPay')}
-              className="px-3.5 py-1.5 bg-[#080B10] hover:bg-[#19222D] text-[#FFAB40] font-bold rounded-lg transition-colors cursor-pointer border border-[#303946]"
+              className="px-3.5 py-1.5 bg-[#080B11] hover:bg-[#161D2F] text-[#FFAB40] font-bold rounded-lg transition-colors cursor-pointer border border-[#1E2638]"
             >
               2. Homoglyph (ApexPаy)
             </button>
             <button
               type="button"
               onClick={() => handleApplyPreset('ApexPay Support Desk', 'ApexPay')}
-              className="px-3.5 py-1.5 bg-[#080B10] hover:bg-[#19222D] text-[#FF5C6C] font-bold rounded-lg transition-colors cursor-pointer border border-[#303946]"
+              className="px-3.5 py-1.5 bg-[#080B11] hover:bg-[#161D2F] text-[#FF5C6C] font-bold rounded-lg transition-colors cursor-pointer border border-[#1E2638]"
             >
               3. Added Words (Support)
             </button>
             <button
               type="button"
               onClick={() => handleApplyPreset('Apex_Pay', 'ApexPay')}
-              className="px-3.5 py-1.5 bg-[#080B10] hover:bg-[#19222D] text-[#64A9FF] font-bold rounded-lg transition-colors cursor-pointer border border-[#303946]"
+              className="px-3.5 py-1.5 bg-[#080B11] hover:bg-[#161D2F] text-[#64A9FF] font-bold rounded-lg transition-colors cursor-pointer border border-[#1E2638]"
             >
               4. Separator (Apex_Pay)
             </button>
             <button
               type="button"
               onClick={() => handleApplyPreset('Apex Tools & Hardware', 'ApexPay')}
-              className="px-3.5 py-1.5 bg-[#080B10] hover:bg-[#19222D] text-[#D0D7E0] font-bold rounded-lg transition-colors cursor-pointer border border-[#303946]"
+              className="px-3.5 py-1.5 bg-[#080B11] hover:bg-[#161D2F] text-[#9CA3AF] font-bold rounded-lg transition-colors cursor-pointer border border-[#1E2638]"
             >
               5. Ordinary Business Name
             </button>
@@ -387,39 +387,39 @@ export default function LookalikeDetectionWorkbench() {
           {/* Real Brand Benchmarks */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
             <div className="flex flex-wrap items-center gap-2.5 text-[15px]">
-              <span className="text-[#D0D7E0] font-bold mr-1 text-[15px] uppercase tracking-wider">Live Benchmarks:</span>
+              <span className="text-[#9CA3AF] font-bold mr-1 text-[15px] uppercase tracking-wider">Live Benchmarks:</span>
               <button
                 type="button"
                 onClick={() => handleApplyPreset('Paytm Support Helpline', 'Paytm')}
-                className="px-3 py-1.5 bg-[#121821] hover:bg-[#19222D] text-[#FFFFFF] font-bold rounded-lg transition-colors cursor-pointer border border-[#303946]"
+                className="px-3 py-1.5 bg-[#111625] hover:bg-[#161D2F] text-[#FFFFFF] font-bold rounded-lg transition-colors cursor-pointer border border-[#1E2638]"
               >
                 Paytm Support
               </button>
               <button
                 type="button"
                 onClick={() => handleApplyPreset('P\u0430ytm Care', 'Paytm')}
-                className="px-3 py-1.5 bg-[#121821] hover:bg-[#19222D] text-[#FFFFFF] font-bold rounded-lg transition-colors cursor-pointer border border-[#303946]"
+                className="px-3 py-1.5 bg-[#111625] hover:bg-[#161D2F] text-[#FFFFFF] font-bold rounded-lg transition-colors cursor-pointer border border-[#1E2638]"
               >
                 Cyrillic Pаytm
               </button>
               <button
                 type="button"
                 onClick={() => handleApplyPreset('Pyatm', 'Paytm')}
-                className="px-3 py-1.5 bg-[#121821] hover:bg-[#19222D] text-[#FFFFFF] font-bold rounded-lg transition-colors cursor-pointer border border-[#303946]"
+                className="px-3 py-1.5 bg-[#111625] hover:bg-[#161D2F] text-[#FFFFFF] font-bold rounded-lg transition-colors cursor-pointer border border-[#1E2638]"
               >
                 Pyatm Transposition
               </button>
               <button
                 type="button"
                 onClick={() => handleApplyPreset('bike', 'Nike')}
-                className="px-3 py-1.5 bg-[#121821] hover:bg-[#19222D] text-[#FFFFFF] font-bold rounded-lg transition-colors cursor-pointer border border-[#303946]"
+                className="px-3 py-1.5 bg-[#111625] hover:bg-[#161D2F] text-[#FFFFFF] font-bold rounded-lg transition-colors cursor-pointer border border-[#1E2638]"
               >
                 bike (Common Word)
               </button>
               <button
                 type="button"
                 onClick={() => handleApplyPreset('@Paytm', 'Paytm')}
-                className="px-3 py-1.5 bg-[#121821] hover:bg-[#19222D] text-[#35D0BA] font-bold rounded-lg transition-colors cursor-pointer border border-[#303946]"
+                className="px-3 py-1.5 bg-[#111625] hover:bg-[#161D2F] text-[#F6821F] font-bold rounded-lg transition-colors cursor-pointer border border-[#1E2638]"
               >
                 @Paytm (Official)
               </button>
@@ -429,7 +429,7 @@ export default function LookalikeDetectionWorkbench() {
               type="button"
               disabled={analyzing || !candidateInput.trim()}
               onClick={() => handleRunAnalysis()}
-              className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#35D0BA] hover:bg-[#2EB8A5] text-[#080B10] text-[19px] font-extrabold rounded-xl shadow-lg cursor-pointer transition-all disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[19px] font-extrabold rounded-xl shadow-lg cursor-pointer transition-all disabled:opacity-50"
             >
               {analyzing ? (
                 <>
@@ -452,13 +452,13 @@ export default function LookalikeDetectionWorkbench() {
         <div className="space-y-8 animate-in fade-in zoom-in-95">
           {/* Previous Review Alert if exists */}
           {existingReview && (
-            <div className="bg-[#121821] border border-[#303946] rounded-xl p-5 flex items-start gap-3.5 text-[18px]">
+            <div className="bg-[#111625] border border-[#1E2638] rounded-xl p-5 flex items-start gap-3.5 text-[18px]">
               <Bookmark className="h-5 w-5 text-[#64A9FF] mt-1 shrink-0" />
               <div className="space-y-1">
                 <div className="text-[#FFFFFF] font-extrabold">
                   Analyst Decision on Record: {existingReview.decision.toUpperCase().replace('_', ' ')}
                 </div>
-                <div className="text-[#D0D7E0] font-bold">
+                <div className="text-[#9CA3AF] font-bold">
                   Reviewed by {existingReview.reviewedBy} on {new Date(existingReview.reviewedAt).toLocaleDateString()}
                   {existingReview.notes && ` — Note: "${existingReview.notes}"`}
                 </div>
@@ -467,27 +467,27 @@ export default function LookalikeDetectionWorkbench() {
           )}
 
           {reviewMessage && (
-            <div className="bg-[#0F2620] border border-[#35D0BA]/50 rounded-xl p-5 flex items-center gap-3 text-[18px] font-bold text-[#35D0BA]">
-              <Check className="h-5 w-5 text-[#35D0BA]" />
+            <div className="bg-[#0F2620] border border-[#F6821F]/50 rounded-xl p-5 flex items-center gap-3 text-[18px] font-bold text-[#F6821F]">
+              <Check className="h-5 w-5 text-[#F6821F]" />
               <span>{reviewMessage}</span>
             </div>
           )}
 
           {/* Primary Result Section (Open, Non-Boxy) */}
-          <div className="bg-[#0D1118] border border-[#303946] rounded-2xl p-7 sm:p-9 space-y-8 shadow-xl">
+          <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 space-y-8 shadow-xl">
             {/* Top Bar: Matched Brand Baseline + Badges */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#303946] pb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#1E2638] pb-6">
               <div className="space-y-1.5">
                 <div className="flex items-center gap-3">
-                  <span className="text-[15px] text-[#D0D7E0] uppercase font-bold tracking-wider">MATCHED BRAND:</span>
+                  <span className="text-[15px] text-[#9CA3AF] uppercase font-bold tracking-wider">MATCHED BRAND:</span>
                   <span className="text-[22px] font-extrabold text-[#FFFFFF]">
                     {assessment.brandName}
                   </span>
-                  <span className="text-[15px] font-mono text-[#35D0BA] bg-[#121821] px-3 py-1 rounded-md border border-[#303946] font-bold">
+                  <span className="text-[15px] font-mono text-[#F6821F] bg-[#111625] px-3 py-1 rounded-md border border-[#1E2638] font-bold">
                     {activeBrandProfile.domain}
                   </span>
                 </div>
-                <div className="text-[18px] text-[#D0D7E0] font-mono font-bold">
+                <div className="text-[18px] text-[#9CA3AF] font-mono font-bold">
                   Candidate Target: <span className="text-[#FFFFFF] font-extrabold">&quot;{assessment.candidateName}&quot;</span>
                 </div>
               </div>
@@ -499,15 +499,15 @@ export default function LookalikeDetectionWorkbench() {
             </div>
 
             {/* Middle: Distinct Gauges & Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center border-b border-[#303946] pb-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center border-b border-[#1E2638] pb-8">
               {/* Meter 1: Similarity Score (Lexical) */}
-              <div className="flex flex-col items-center justify-center p-4 border-b md:border-b-0 md:border-r border-[#303946] md:col-span-1">
+              <div className="flex flex-col items-center justify-center p-4 border-b md:border-b-0 md:border-r border-[#1E2638] md:col-span-1">
                 <ArcMeter
                   score={assessment.similarityScore}
                   label="Name Similarity"
                   color={
                     assessment.similarityScore >= 80
-                      ? '#35D0BA'
+                      ? '#F6821F'
                       : assessment.similarityScore >= 60
                       ? '#FFAB40'
                       : '#64A9FF'
@@ -516,7 +516,7 @@ export default function LookalikeDetectionWorkbench() {
               </div>
 
               {/* Meter 2: Contextual Risk Score */}
-              <div className="flex flex-col items-center justify-center p-4 border-b md:border-b-0 md:border-r border-[#303946] md:col-span-1">
+              <div className="flex flex-col items-center justify-center p-4 border-b md:border-b-0 md:border-r border-[#1E2638] md:col-span-1">
                 <ArcMeter
                   score={assessment.riskScore}
                   label="Threat Risk Score"
@@ -527,34 +527,34 @@ export default function LookalikeDetectionWorkbench() {
                       ? '#FFAB40'
                       : assessment.riskScore >= 30
                       ? '#FFD166'
-                      : '#35D0BA'
+                      : '#F6821F'
                   }
                 />
               </div>
 
               {/* Breakdown metrics in monospace */}
               <div className="md:col-span-2 space-y-3.5 text-[18px] font-mono">
-                <div className="flex items-center justify-between text-[#D0D7E0]">
+                <div className="flex items-center justify-between text-[#9CA3AF]">
                   <span>Damerau-Levenshtein Edit Distance:</span>
                   <span className="text-[#FFFFFF] font-extrabold tabular-nums">
                     {assessment.similarityMetrics.editDistance} edit(s)
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-[#D0D7E0]">
+                <div className="flex items-center justify-between text-[#9CA3AF]">
                   <span>Jaro-Winkler Prefix Metric:</span>
                   <span className="text-[#FFFFFF] font-extrabold tabular-nums">
                     {Math.round(assessment.similarityMetrics.jaroWinklerSimilarity * 100)}%
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-[#D0D7E0]">
+                <div className="flex items-center justify-between text-[#9CA3AF]">
                   <span>Token Jaccard Word Overlap:</span>
                   <span className="text-[#FFFFFF] font-extrabold tabular-nums">
                     {Math.round(assessment.similarityMetrics.tokenSimilarity * 100)}%
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-[#D0D7E0]">
+                <div className="flex items-center justify-between text-[#9CA3AF]">
                   <span>Allowlist / Registry Status:</span>
-                  <span className={assessment.isAllowlisted ? 'text-[#35D0BA] font-extrabold' : 'text-[#D0D7E0] font-bold'}>
+                  <span className={assessment.isAllowlisted ? 'text-[#F6821F] font-extrabold' : 'text-[#9CA3AF] font-bold'}>
                     {assessment.isAllowlisted ? 'OFFICIAL ASSET ALLOWLISTED' : 'UNREGISTERED CANDIDATE'}
                   </span>
                 </div>
@@ -562,7 +562,7 @@ export default function LookalikeDetectionWorkbench() {
             </div>
 
             {/* Heuristic Notice */}
-            <div className="p-5 bg-[#121821] border border-[#303946] rounded-xl space-y-2">
+            <div className="p-5 bg-[#111625] border border-[#1E2638] rounded-xl space-y-2">
               <div className="flex items-center gap-2.5 text-[16px] font-extrabold uppercase text-[#FFAB40]">
                 <Info className="h-5 w-5" />
                 <span>Heuristic Anti-False-Positive Policy</span>
@@ -570,7 +570,7 @@ export default function LookalikeDetectionWorkbench() {
               <p className="text-[19px] text-[#FFFFFF] leading-relaxed font-bold">
                 {assessment.summaryPhrase}
               </p>
-              <p className="text-[16px] text-[#D0D7E0] font-mono font-bold">
+              <p className="text-[16px] text-[#9CA3AF] font-mono font-bold">
                 {assessment.heuristicNotice}
               </p>
             </div>
@@ -585,7 +585,7 @@ export default function LookalikeDetectionWorkbench() {
                 {assessment.contributions.map((c) => (
                   <div
                     key={c.id}
-                    className="p-4 bg-[#121821] border border-[#303946] rounded-xl flex items-start justify-between gap-4 text-[18px]"
+                    className="p-4 bg-[#111625] border border-[#1E2638] rounded-xl flex items-start justify-between gap-4 text-[18px]"
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2.5">
@@ -595,7 +595,7 @@ export default function LookalikeDetectionWorkbench() {
                         <span className="text-[#FFFFFF] font-bold">{c.description}</span>
                       </div>
                     </div>
-                    <span className="text-[16px] font-mono text-[#35D0BA] font-extrabold shrink-0 bg-[#080B10] px-3 py-1 rounded-md border border-[#303946]">
+                    <span className="text-[16px] font-mono text-[#F6821F] font-extrabold shrink-0 bg-[#080B11] px-3 py-1 rounded-md border border-[#1E2638]">
                       +{c.points} pts
                     </span>
                   </div>
@@ -604,12 +604,12 @@ export default function LookalikeDetectionWorkbench() {
             </div>
 
             {/* Review Action Bar */}
-            <div className="pt-6 border-t border-[#303946] space-y-4">
+            <div className="pt-6 border-t border-[#1E2638] space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <span className="text-[16px] uppercase tracking-wider text-[#FFFFFF] font-extrabold">
                   Analyst Review & Feedback Action
                 </span>
-                <span className="text-[16px] text-[#D0D7E0] font-bold">
+                <span className="text-[16px] text-[#9CA3AF] font-bold">
                   Records decision in SAFENET database & updates allowlist
                 </span>
               </div>
@@ -620,7 +620,7 @@ export default function LookalikeDetectionWorkbench() {
                   value={reviewNotes}
                   onChange={(e) => setReviewNotes(e.target.value)}
                   placeholder="Optional analyst review notes..."
-                  className="flex-1 w-full bg-[#121821] border border-[#303946] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-bold outline-none focus:border-[#35D0BA] transition-colors"
+                  className="flex-1 w-full bg-[#111625] border border-[#1E2638] rounded-xl px-4 py-3 text-[18px] text-[#FFFFFF] font-bold outline-none focus:border-[#F6821F] transition-colors"
                 />
 
                 <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -628,7 +628,7 @@ export default function LookalikeDetectionWorkbench() {
                     type="button"
                     disabled={submittingReview}
                     onClick={() => handleRecordReview('legitimate')}
-                    className="flex-1 sm:flex-initial px-5 py-3 bg-[#0F2620] hover:bg-[#15382F] border border-[#35D0BA]/50 text-[#35D0BA] text-[17px] font-bold rounded-xl transition-colors cursor-pointer shadow-md"
+                    className="flex-1 sm:flex-initial px-5 py-3 bg-[#0F2620] hover:bg-[#15382F] border border-[#F6821F]/50 text-[#F6821F] text-[17px] font-bold rounded-xl transition-colors cursor-pointer shadow-md"
                   >
                     Mark Legitimate
                   </button>

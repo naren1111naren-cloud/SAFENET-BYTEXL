@@ -16,11 +16,10 @@ import {
   X,
   BookOpen,
   ChevronDown,
-  User,
   Smartphone,
   Share2,
   LogOut,
-  Sparkles,
+  Radio,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import GlobalSearchModal from '@/components/GlobalSearchModal';
@@ -37,7 +36,7 @@ interface AppShellProps {
 export default function AppShell({ children, pageTitle, pageSubtitle }: AppShellProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, loading, signOut, demoAccounts, loginWithDemo, isDemo } = useAuth();
+  const { user, signOut, demoAccounts, loginWithDemo } = useAuth();
   const [loggingOut, setLoggingOut] = useState(false);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -77,7 +76,7 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
     { label: 'Overview', href: '/overview', icon: LayoutDashboard },
     { label: 'App Intelligence', href: '/apps', icon: Smartphone },
     { label: 'Social & Brand', href: '/social', icon: Share2 },
-    { label: 'Check', href: '/check', icon: Search },
+    { label: 'Check & Verify', href: '/check', icon: Search },
     { label: 'Investigations', href: '/investigate', icon: ShieldAlert },
     { label: 'Campaigns', href: '/campaigns', icon: GitBranch },
     { label: 'Incidents', href: '/incidents', icon: AlertOctagon },
@@ -92,11 +91,11 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
   const unreadAlerts = alerts.filter((a) => !a.read);
 
   return (
-    <div className="min-h-screen flex bg-[#080B10] text-[#FFFFFF] font-sans antialiased selection:bg-[#35D0BA]/25 selection:text-[#FFFFFF] relative">
-      {/* ── LEFT DESKTOP SIDEBAR ── */}
-      <aside className="hidden lg:flex w-72 flex-col bg-[#080B10] border-r border-[#303946] shrink-0 sticky top-0 h-screen z-30 select-none">
-        {/* Logo Header */}
-        <div className="h-20 px-6 border-b border-[#303946] flex items-center bg-[#080B10]">
+    <div className="min-h-screen flex bg-[#080B11] text-[#FFFFFF] font-sans antialiased selection:bg-[#F6821F]/25 selection:text-[#FFFFFF] relative">
+      {/* ── LEFT RADAR DESKTOP SIDEBAR ── */}
+      <aside className="hidden lg:flex w-72 flex-col bg-[#080B11] border-r border-[#1E2638] shrink-0 sticky top-0 h-screen z-30 select-none">
+        {/* Radar Logo Header */}
+        <div className="h-20 px-6 border-b border-[#1E2638] flex items-center bg-[#080B11]">
           <Link href="/" className="hover:opacity-90 transition-opacity">
             <SafenetLogo size={22} showWordmark={true} />
           </Link>
@@ -106,8 +105,9 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
         <div className="flex-1 py-6 px-3 space-y-7 overflow-y-auto">
           {/* Intelligence Section */}
           <div className="space-y-1.5">
-            <div className="px-3 py-1.5 text-[15px] font-mono uppercase tracking-[0.1em] text-[#D0D7E0] font-extrabold">
-              THREAT INTELLIGENCE
+            <div className="px-3 py-1.5 text-[14px] font-mono uppercase tracking-[0.1em] text-[#9CA3AF] font-extrabold flex items-center justify-between">
+              <span>RADAR TELEMETRY</span>
+              <span className="flex h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
             </div>
             {intelligenceNav.map((item) => {
               const Icon = item.icon;
@@ -121,29 +121,29 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
                   href={item.href}
                   className={`flex items-center justify-between px-3.5 py-3 rounded-lg text-[20px] transition-all font-bold ${
                     isActive
-                      ? 'text-[#35D0BA] bg-[#121821] border-l-4 border-[#35D0BA]'
-                      : 'text-[#FFFFFF] hover:text-[#35D0BA] hover:bg-[#0D1118]'
+                      ? 'text-[#F6821F] bg-[#111625] border-l-4 border-[#F6821F]'
+                      : 'text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F]'
                   }`}
                 >
                   <span className="flex items-center gap-3.5">
-                    <Icon className={`h-5 w-5 ${isActive ? 'text-[#35D0BA]' : 'text-[#D0D7E0]'}`} />
+                    <Icon className={`h-5 w-5 ${isActive ? 'text-[#F6821F]' : 'text-[#9CA3AF]'}`} />
                     {item.label}
                   </span>
                   {isActive && (
-                    <span className="h-2 w-2 rounded-full bg-[#35D0BA]" />
+                    <span className="h-2 w-2 rounded-full bg-[#F6821F]" />
                   )}
                 </Link>
               );
             })}
           </div>
 
-          {/* Thin Hairline Divider */}
-          <div className="border-t border-[#303946] mx-2" />
+          {/* Hairline Divider */}
+          <div className="border-t border-[#1E2638] mx-2" />
 
           {/* Workspace Section */}
           <div className="space-y-1.5">
-            <div className="px-3 py-1.5 text-[15px] font-mono uppercase tracking-[0.1em] text-[#D0D7E0] font-extrabold">
-              WORKSPACE
+            <div className="px-3 py-1.5 text-[14px] font-mono uppercase tracking-[0.1em] text-[#9CA3AF] font-extrabold">
+              WORKSPACE &amp; AUDIT
             </div>
             {workspaceNav.map((item) => {
               const Icon = item.icon;
@@ -154,16 +154,16 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
                   href={item.href}
                   className={`flex items-center justify-between px-3.5 py-3 rounded-lg text-[20px] transition-all font-bold ${
                     isActive
-                      ? 'text-[#35D0BA] bg-[#121821] border-l-4 border-[#35D0BA]'
-                      : 'text-[#FFFFFF] hover:text-[#35D0BA] hover:bg-[#0D1118]'
+                      ? 'text-[#F6821F] bg-[#111625] border-l-4 border-[#F6821F]'
+                      : 'text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F]'
                   }`}
                 >
                   <span className="flex items-center gap-3.5">
-                    <Icon className={`h-5 w-5 ${isActive ? 'text-[#35D0BA]' : 'text-[#D0D7E0]'}`} />
+                    <Icon className={`h-5 w-5 ${isActive ? 'text-[#F6821F]' : 'text-[#9CA3AF]'}`} />
                     {item.label}
                   </span>
                   {isActive && (
-                    <span className="h-2 w-2 rounded-full bg-[#35D0BA]" />
+                    <span className="h-2 w-2 rounded-full bg-[#F6821F]" />
                   )}
                 </Link>
               );
@@ -171,11 +171,11 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
           </div>
         </div>
 
-        {/* Quiet Bottom Environment Indicator */}
-        <div className="p-4 border-t border-[#303946] bg-[#0D1118] flex items-center justify-between text-[16px] text-[#FFFFFF]">
-          <span className="font-bold text-[#D0D7E0]">Monitored Perimeter</span>
+        {/* Cloudflare Radar Monitored Entity Indicator */}
+        <div className="p-4 border-t border-[#1E2638] bg-[#0E131F] flex items-center justify-between text-[16px]">
+          <span className="font-bold text-[#9CA3AF]">Monitored Perimeter</span>
           <span className="text-[#FFFFFF] font-bold flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#35D0BA]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#F6821F]" />
             {brand?.name || 'Paytm'}
           </span>
         </div>
@@ -183,13 +183,13 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
 
       {/* ── RIGHT MAIN COLUMN ── */}
       <div className="flex-1 flex flex-col min-w-0 relative z-10">
-        {/* ── TOP NAVIGATION ── */}
-        <header className="h-20 bg-[#080B10]/95 backdrop-blur-md border-b border-[#303946] px-4 sm:px-8 flex items-center justify-between gap-4 sticky top-0 z-40 shrink-0">
-          {/* Left: Mobile Toggle & Breadcrumb */}
+        {/* ── CLOUDFLARE RADAR TOP NAVIGATION ── */}
+        <header className="h-20 bg-[#080B11]/95 backdrop-blur-md border-b border-[#1E2638] px-4 sm:px-8 flex items-center justify-between gap-4 sticky top-0 z-40 shrink-0">
+          {/* Left: Mobile Toggle & Radar Breadcrumb */}
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-[#FFFFFF] hover:text-[#35D0BA] hover:bg-[#121821] rounded-lg transition-colors cursor-pointer"
+              className="lg:hidden p-2 text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#111625] rounded-lg transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -199,10 +199,13 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
               <SafenetLogo size={18} showWordmark={false} />
             </Link>
 
-            <div className="hidden sm:flex items-center gap-2.5 text-[18px] text-[#FFFFFF] font-bold">
-              <span className="text-[#FFFFFF] font-extrabold tracking-wide">SAFENET</span>
-              <span className="text-[#303946]">/</span>
-              <span className="text-[#D0D7E0]">Digital Risk Decision System</span>
+            <div className="hidden sm:flex items-center gap-2.5 text-[17px] text-[#FFFFFF] font-bold">
+              <span className="text-[#FFFFFF] font-extrabold tracking-wide">SAFENET RADAR</span>
+              <span className="text-[#1E2638]">/</span>
+              <span className="inline-flex items-center gap-1.5 text-[14px] font-mono font-bold text-[#F6821F] bg-[#F6821F]/10 border border-[#F6821F]/25 px-2.5 py-0.5 rounded-md">
+                <Radio className="h-3.5 w-3.5 text-[#F6821F] animate-pulse" />
+                GLOBAL RADAR ACTIVE
+              </span>
             </div>
           </div>
 
@@ -210,13 +213,13 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
           <div className="flex-1 max-w-md hidden md:block">
             <button
               onClick={() => setSearchOpen(true)}
-              className="w-full flex items-center justify-between px-4 py-2.5 rounded-lg bg-[#0D1118] hover:bg-[#121821] border border-[#303946] hover:border-[#455263] text-[18px] text-[#FFFFFF] font-bold transition-all cursor-pointer"
+              className="w-full flex items-center justify-between px-4 py-2.5 rounded-lg bg-[#0E131F] hover:bg-[#111625] border border-[#1E2638] hover:border-[#28334E] text-[17px] text-[#FFFFFF] font-bold transition-all cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <Search className="h-5 w-5 text-[#35D0BA]" />
-                <span className="text-[#D0D7E0] font-bold">Search domains, URLs, apps, incidents...</span>
+                <Search className="h-4 w-4 text-[#F6821F]" />
+                <span className="text-[#9CA3AF] font-bold">Search domains, ASN, apps, threats...</span>
               </div>
-              <kbd className="text-[14px] font-mono bg-[#121821] text-[#FFFFFF] border border-[#303946] px-2.5 py-0.5 rounded font-bold">
+              <kbd className="text-[13px] font-mono bg-[#111625] text-[#FFFFFF] border border-[#1E2638] px-2 py-0.5 rounded font-bold">
                 ⌘K
               </kbd>
             </button>
@@ -226,45 +229,45 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
           <div className="flex items-center gap-4">
             <Link
               href="/check"
-              className="text-[18px] text-[#FFFFFF] hover:text-[#35D0BA] transition-colors font-bold hidden sm:inline"
+              className="text-[17px] text-[#FFFFFF] hover:text-[#F6821F] transition-colors font-bold hidden sm:inline"
             >
-              Quick Check
+              Check
             </Link>
 
             {/* Brand Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setShowBrandDropdown(!showBrandDropdown)}
-                className="flex items-center gap-2 px-3.5 py-2 rounded-lg border border-[#303946] bg-[#0D1118] hover:bg-[#121821] text-[17px] text-[#FFFFFF] font-bold transition-colors cursor-pointer"
+                className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[#1E2638] bg-[#0E131F] hover:bg-[#111625] text-[16px] text-[#FFFFFF] font-bold transition-colors cursor-pointer"
               >
-                <span className="h-2.5 w-2.5 rounded-full bg-[#35D0BA]" />
+                <span className="h-2 w-2 rounded-full bg-[#F6821F]" />
                 <span>{brand?.name || 'Paytm'}</span>
-                <ChevronDown className="h-4 w-4 text-[#D0D7E0]" />
+                <ChevronDown className="h-4 w-4 text-[#9CA3AF]" />
               </button>
 
               {showBrandDropdown && (
-                <div className="absolute right-0 mt-2 w-60 bg-[#121821] border border-[#303946] rounded-xl shadow-2xl z-50 p-2 text-[17px]">
+                <div className="absolute right-0 mt-2 w-60 bg-[#111625] border border-[#1E2638] rounded-xl shadow-2xl z-50 p-2 text-[16px]">
                   <button
                     onClick={() => handleSelectPreset('Paytm')}
                     className={`w-full text-left px-3.5 py-2.5 rounded-lg flex items-center justify-between transition-colors cursor-pointer font-bold ${
                       brand?.name === 'Paytm'
-                        ? 'bg-[#19222D] text-[#35D0BA]'
-                        : 'text-[#FFFFFF] hover:text-[#35D0BA] hover:bg-[#0D1118]'
+                        ? 'bg-[#161D2F] text-[#F6821F]'
+                        : 'text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F]'
                     }`}
                   >
                     <span>Paytm (Fintech)</span>
-                    {brand?.name === 'Paytm' && <span className="text-[#35D0BA]">✓</span>}
+                    {brand?.name === 'Paytm' && <span className="text-[#F6821F]">✓</span>}
                   </button>
                   <button
                     onClick={() => handleSelectPreset('Nike')}
                     className={`w-full text-left px-3.5 py-2.5 rounded-lg flex items-center justify-between transition-colors cursor-pointer font-bold ${
                       brand?.name === 'Nike'
-                        ? 'bg-[#19222D] text-[#35D0BA]'
-                        : 'text-[#FFFFFF] hover:text-[#35D0BA] hover:bg-[#0D1118]'
+                        ? 'bg-[#161D2F] text-[#F6821F]'
+                        : 'text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F]'
                     }`}
                   >
                     <span>Nike (Retail)</span>
-                    {brand?.name === 'Nike' && <span className="text-[#35D0BA]">✓</span>}
+                    {brand?.name === 'Nike' && <span className="text-[#F6821F]">✓</span>}
                   </button>
                 </div>
               )}
@@ -273,45 +276,45 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
             {/* Notification Bell */}
             <button
               onClick={() => setShowAlertsDropdown(!showAlertsDropdown)}
-              className="relative p-2.5 text-[#FFFFFF] hover:text-[#35D0BA] hover:bg-[#121821] rounded-lg transition-colors cursor-pointer"
+              className="relative p-2.5 text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#111625] rounded-lg transition-colors cursor-pointer"
               title="Alerts"
             >
               <Bell className="h-5 w-5" />
               {unreadAlerts.length > 0 && (
-                <span className="absolute top-2 right-2 h-2.5 w-2.5 rounded-full bg-[#FF5C6C]" />
+                <span className="absolute top-2 right-2 h-2.5 w-2.5 rounded-full bg-[#FF4D4D]" />
               )}
             </button>
 
             {/* User Session Profile & Demo Account Switcher */}
             {user ? (
-              <div className="relative pl-3 border-l border-[#303946]">
+              <div className="relative pl-3 border-l border-[#1E2638]">
                 <button
                   type="button"
                   onClick={() => setShowUserDropdown(!showUserDropdown)}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-[#0D1118] hover:bg-[#121821] border border-[#303946] text-[17px] text-[#FFFFFF] font-bold transition-colors cursor-pointer"
+                  className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-[#0E131F] hover:bg-[#111625] border border-[#1E2638] text-[16px] text-[#FFFFFF] font-bold transition-colors cursor-pointer"
                 >
-                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#35D0BA]/20 text-[#35D0BA] text-[12px] font-bold">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#F6821F]/20 text-[#F6821F] text-[12px] font-bold">
                     ID
                   </span>
                   <div className="flex flex-col text-left leading-none">
-                    <span className="text-[16px] font-mono text-[#FFFFFF] font-bold max-w-[160px] truncate">
+                    <span className="text-[15px] font-mono text-[#FFFFFF] font-bold max-w-[150px] truncate">
                       {user.email}
                     </span>
-                    <span className="text-[13px] text-[#35D0BA] font-bold mt-1">
+                    <span className="text-[12px] text-[#F6821F] font-bold mt-1">
                       Demo Account • Switch
                     </span>
                   </div>
-                  <ChevronDown className="h-4 w-4 text-[#D0D7E0]" />
+                  <ChevronDown className="h-4 w-4 text-[#9CA3AF]" />
                 </button>
 
                 {showUserDropdown && (
-                  <div className="absolute right-0 mt-2 w-80 bg-[#121821] border border-[#303946] rounded-xl shadow-2xl z-50 p-2.5 text-[17px] animate-fade-in">
-                    <div className="px-3 py-2 mb-1.5 border-b border-[#303946] flex items-center justify-between">
-                      <span className="text-[14px] font-mono uppercase tracking-wider text-[#D0D7E0] font-extrabold">
+                  <div className="absolute right-0 mt-2 w-80 bg-[#111625] border border-[#1E2638] rounded-xl shadow-2xl z-50 p-2.5 text-[16px] animate-fade-in">
+                    <div className="px-3 py-2 mb-1.5 border-b border-[#1E2638] flex items-center justify-between">
+                      <span className="text-[13px] font-mono uppercase tracking-wider text-[#9CA3AF] font-extrabold">
                         SELECT DEMO IDENTITY
                       </span>
-                      <span className="text-[12px] bg-[#35D0BA]/20 text-[#35D0BA] font-bold px-2 py-0.5 rounded">
-                        BYPASS ACTIVE
+                      <span className="text-[12px] bg-[#F6821F]/20 text-[#F6821F] font-bold px-2 py-0.5 rounded">
+                        RADAR ACCESS
                       </span>
                     </div>
 
@@ -328,34 +331,34 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
                             }}
                             className={`w-full text-left px-3 py-2.5 rounded-lg flex items-center justify-between transition-colors cursor-pointer font-bold ${
                               isCurrent
-                                ? 'bg-[#19222D] text-[#35D0BA]'
-                                : 'text-[#FFFFFF] hover:text-[#35D0BA] hover:bg-[#0D1118]'
+                                ? 'bg-[#161D2F] text-[#F6821F]'
+                                : 'text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F]'
                             }`}
                           >
                             <div className="flex flex-col">
-                              <span className="font-bold text-[17px] text-[#FFFFFF]">
+                              <span className="font-bold text-[16px] text-[#FFFFFF]">
                                 {acc.name}
                               </span>
-                              <span className="text-[14px] font-mono text-[#D0D7E0] font-bold">
+                              <span className="text-[13px] font-mono text-[#9CA3AF] font-bold">
                                 {acc.email}
                               </span>
-                              <span className="text-[13px] text-[#35D0BA] font-bold">
+                              <span className="text-[12px] text-[#F6821F] font-bold">
                                 {acc.badge}
                               </span>
                             </div>
                             {isCurrent && (
-                              <span className="text-sm font-bold text-[#35D0BA]">Active ✓</span>
+                              <span className="text-sm font-bold text-[#F6821F]">Active ✓</span>
                             )}
                           </button>
                         );
                       })}
                     </div>
 
-                    <div className="border-t border-[#303946] mt-2 pt-2 flex items-center justify-between px-1.5">
+                    <div className="border-t border-[#1E2638] mt-2 pt-2 flex items-center justify-between px-1.5">
                       <Link
                         href="/login"
                         onClick={() => setShowUserDropdown(false)}
-                        className="text-[15px] text-[#35D0BA] hover:underline font-bold"
+                        className="text-[14px] text-[#F6821F] hover:underline font-bold"
                       >
                         More Demo IDs
                       </Link>
@@ -372,7 +375,7 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
                           }
                         }}
                         disabled={loggingOut}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-[15px] text-[#FF5C6C] hover:bg-[#FF5C6C]/10 rounded-md font-bold transition-colors cursor-pointer"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-[14px] text-[#FF4D4D] hover:bg-[#FF4D4D]/10 rounded-md font-bold transition-colors cursor-pointer"
                       >
                         <LogOut className="h-4 w-4" />
                         <span>Sign Out</span>
@@ -384,9 +387,9 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
             ) : (
               <Link
                 href="/login"
-                className="px-4 py-2 rounded-lg bg-[#35D0BA] hover:bg-[#2bbca6] text-[17px] text-[#080B10] font-bold transition-all"
+                className="px-4 py-2 rounded-lg bg-[#F6821F] hover:bg-[#FA8B28] text-[16px] text-[#FFFFFF] font-bold transition-all shadow-sm"
               >
-                Demo Login
+                Sign In
               </Link>
             )}
           </div>
@@ -394,17 +397,17 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
 
         {/* ── MOBILE NAV DRAWER ── */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#080B10] border-b border-[#303946] px-4 py-4 space-y-2 z-30 shadow-2xl">
+          <div className="lg:hidden bg-[#080B11] border-b border-[#1E2638] px-4 py-4 space-y-2 z-30 shadow-2xl">
             {intelligenceNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-3.5 py-2.5 text-[19px] font-bold text-[#FFFFFF] hover:text-[#35D0BA] hover:bg-[#0D1118] rounded-lg"
+                className="block px-3.5 py-2.5 text-[19px] font-bold text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F] rounded-lg"
               >
                 {item.label}
               </Link>
             ))}
-            <div className="pt-3 border-t border-[#303946] flex items-center justify-between text-[17px] text-[#D0D7E0] font-bold">
+            <div className="pt-3 border-t border-[#1E2638] flex items-center justify-between text-[16px] text-[#9CA3AF] font-bold">
               <Link href="/guide" className="hover:text-[#FFFFFF]">Safety Guide</Link>
               <Link href="/setup" className="hover:text-[#FFFFFF]">Settings</Link>
             </div>
@@ -414,14 +417,14 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
         {/* ── WORKSPACE CANVAS ── */}
         <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
           {(pageTitle || pageSubtitle) && (
-            <div className="mb-10 pb-6 border-b border-[#303946]">
+            <div className="mb-10 pb-6 border-b border-[#1E2638]">
               {pageTitle && (
                 <h1 className="text-[40px] sm:text-[52px] font-extrabold text-[#FFFFFF] tracking-tight leading-tight">
                   {pageTitle}
                 </h1>
               )}
               {pageSubtitle && (
-                <p className="text-[20px] sm:text-[22px] text-[#D0D7E0] mt-2.5 font-bold leading-relaxed">
+                <p className="text-[20px] sm:text-[22px] text-[#9CA3AF] mt-2.5 font-bold leading-relaxed">
                   {pageSubtitle}
                 </p>
               )}
@@ -430,18 +433,22 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
           {children}
         </main>
 
-        {/* ── SYSTEM FOOTER ── */}
-        <footer className="border-t border-[#303946] bg-[#080B10] text-[#D0D7E0] text-[18px] py-8 px-4 sm:px-8 mt-auto font-bold">
+        {/* ── CLOUDFLARE RADAR STYLE FOOTER ── */}
+        <footer className="border-t border-[#1E2638] bg-[#080B11] text-[#9CA3AF] text-[17px] py-8 px-4 sm:px-8 mt-auto font-bold">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span className="font-bold text-[#FFFFFF]">SAFENET • Dark Cybersecurity Platform • Digital Risk Protection</span>
+            <div className="flex items-center gap-2">
+              <span className="font-extrabold text-[#FFFFFF]">SAFENET RADAR</span>
+              <span className="text-[#1E2638]">•</span>
+              <span className="text-[#9CA3AF]">Global Digital Threat &amp; Brand Perimeter Telemetry</span>
+            </div>
             <div className="flex items-center gap-6 text-[#FFFFFF] font-bold flex-wrap">
-              <Link href="/check" className="hover:text-[#35D0BA] transition-colors">Check</Link>
-              <Link href="/overview" className="hover:text-[#35D0BA] transition-colors">Overview</Link>
-              <Link href="/apps" className="hover:text-[#35D0BA] transition-colors">Apps</Link>
-              <Link href="/social" className="hover:text-[#35D0BA] transition-colors">Social</Link>
-              <Link href="/campaigns" className="hover:text-[#35D0BA] transition-colors">Campaigns</Link>
-              <Link href="/reports" className="hover:text-[#35D0BA] transition-colors">Reports</Link>
-              <Link href="/setup" className="hover:text-[#35D0BA] transition-colors">Settings</Link>
+              <Link href="/check" className="hover:text-[#F6821F] transition-colors">Check</Link>
+              <Link href="/overview" className="hover:text-[#F6821F] transition-colors">Overview</Link>
+              <Link href="/apps" className="hover:text-[#F6821F] transition-colors">Apps</Link>
+              <Link href="/social" className="hover:text-[#F6821F] transition-colors">Social</Link>
+              <Link href="/campaigns" className="hover:text-[#F6821F] transition-colors">Campaigns</Link>
+              <Link href="/reports" className="hover:text-[#F6821F] transition-colors">Reports</Link>
+              <Link href="/setup" className="hover:text-[#F6821F] transition-colors">Settings</Link>
             </div>
           </div>
         </footer>

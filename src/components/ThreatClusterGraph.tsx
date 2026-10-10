@@ -74,7 +74,7 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
         shape: node.shape || 'dot',
         size: node.size || 22,
         color: node.color,
-        font: node.font || { color: '#FFFFFF', size: 14, face: 'monospace', strokeWidth: 2, strokeColor: '#080B10' },
+        font: node.font || { color: '#FFFFFF', size: 14, face: 'monospace', strokeWidth: 2, strokeColor: '#080B11' },
         borderWidth: 2,
         shadow: {
           enabled: true,
@@ -93,9 +93,9 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
         to: edge.to,
         label: edge.label,
         dashes: edge.dashes,
-        color: edge.color || { color: '#303946', highlight: '#35D0BA' },
+        color: edge.color || { color: '#1E2638', highlight: '#F6821F' },
         width: edge.width || 1.5,
-        font: { color: '#D0D7E0', size: 12, face: 'monospace', align: 'middle', strokeWidth: 2, strokeColor: '#080B10' },
+        font: { color: '#9CA3AF', size: 12, face: 'monospace', align: 'middle', strokeWidth: 2, strokeColor: '#080B11' },
         smooth: {
           enabled: true,
           type: 'continuous',
@@ -214,21 +214,21 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
 
   return (
     <div
-      className={`flex flex-col bg-[#0D1118] border border-[#303946] rounded-xl overflow-hidden transition-all duration-300 ${
+      className={`flex flex-col bg-[#0E131F] border border-[#1E2638] rounded-xl overflow-hidden transition-all duration-300 ${
         isFullscreen ? 'fixed inset-0 z-50 rounded-none' : 'relative w-full'
       }`}
     >
       {/* Topology Toolbar */}
-      <div className="px-6 py-4 bg-[#121821] border-b border-[#303946] flex flex-wrap items-center justify-between gap-4 font-mono text-[16px] font-bold">
+      <div className="px-6 py-4 bg-[#111625] border-b border-[#1E2638] flex flex-wrap items-center justify-between gap-4 font-mono text-[16px] font-bold">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#35D0BA] animate-pulse" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#F6821F] animate-pulse" />
             <span className="font-bold text-[#FFFFFF] uppercase tracking-wider text-[16px]">
               THREAT CLUSTER GRAPH
             </span>
           </div>
-          <span className="text-[#303946]">|</span>
-          <span className="text-[#D0D7E0] text-[15px] font-bold">
+          <span className="text-[#1E2638]">|</span>
+          <span className="text-[#9CA3AF] text-[15px] font-bold">
             Force-Directed Network Projection
           </span>
         </div>
@@ -236,11 +236,11 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
         <div className="flex items-center gap-3">
           {/* Cluster Filter */}
           <div className="flex items-center gap-2 text-[15px]">
-            <FilterIcon className="h-4 w-4 text-[#35D0BA]" />
+            <FilterIcon className="h-4 w-4 text-[#F6821F]" />
             <select
               value={filterClusterId}
               onChange={(e) => setFilterClusterId(e.target.value)}
-              className="bg-[#080B10] border border-[#303946] text-[#FFFFFF] text-[15px] font-bold rounded-lg px-3 py-1.5 focus:outline-none focus:border-[#35D0BA]"
+              className="bg-[#080B11] border border-[#1E2638] text-[#FFFFFF] text-[15px] font-bold rounded-lg px-3 py-1.5 focus:outline-none focus:border-[#F6821F]"
             >
               <option value="all">All Clusters ({totalClusters})</option>
               {graphData?.clusters.map((c) => (
@@ -252,24 +252,24 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
           </div>
 
           {/* Graph Controls */}
-          <div className="flex items-center bg-[#080B10] border border-[#303946] rounded-lg p-1">
+          <div className="flex items-center bg-[#080B11] border border-[#1E2638] rounded-lg p-1">
             <button
               onClick={handleZoomIn}
-              className="p-2 text-[#FFFFFF] hover:text-[#35D0BA] transition cursor-pointer"
+              className="p-2 text-[#FFFFFF] hover:text-[#F6821F] transition cursor-pointer"
               title="Zoom In"
             >
               <ZoomIn className="h-4 w-4" />
             </button>
             <button
               onClick={handleZoomOut}
-              className="p-2 text-[#FFFFFF] hover:text-[#35D0BA] transition cursor-pointer"
+              className="p-2 text-[#FFFFFF] hover:text-[#F6821F] transition cursor-pointer"
               title="Zoom Out"
             >
               <ZoomOut className="h-4 w-4" />
             </button>
             <button
               onClick={handleFit}
-              className="p-2 text-[#FFFFFF] hover:text-[#35D0BA] transition cursor-pointer"
+              className="p-2 text-[#FFFFFF] hover:text-[#F6821F] transition cursor-pointer"
               title="Fit to Screen"
             >
               <RefreshCw className="h-4 w-4" />
@@ -278,8 +278,8 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
               onClick={handleTogglePhysics}
               className={`p-2 transition text-[13px] font-mono font-bold cursor-pointer ${
                 physicsEnabled
-                  ? 'text-[#35D0BA]'
-                  : 'text-[#D0D7E0] hover:text-[#FFFFFF]'
+                  ? 'text-[#F6821F]'
+                  : 'text-[#9CA3AF] hover:text-[#FFFFFF]'
               }`}
               title="Toggle Force Physics Simulation"
             >
@@ -287,7 +287,7 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
             </button>
             <button
               onClick={() => setIsFullscreen(!isFullscreen)}
-              className="p-2 text-[#FFFFFF] hover:text-[#35D0BA] transition cursor-pointer"
+              className="p-2 text-[#FFFFFF] hover:text-[#F6821F] transition cursor-pointer"
               title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
             >
               {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
@@ -297,23 +297,23 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
       </div>
 
       {/* Cluster Summary Metric Bar */}
-      <div className="px-6 py-3 bg-[#0D1118] border-b border-[#303946] flex flex-wrap items-center justify-between gap-4 text-[15px] font-mono font-bold">
+      <div className="px-6 py-3 bg-[#0E131F] border-b border-[#1E2638] flex flex-wrap items-center justify-between gap-4 text-[15px] font-mono font-bold">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
-            <span className="text-[#D0D7E0]">CAMPAIGNS:</span>
+            <span className="text-[#9CA3AF]">CAMPAIGNS:</span>
             <span className="text-[#FF5C6C] font-bold">{totalClusters} Clusters</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-[#D0D7E0]">CLUSTERED ASSETS:</span>
+            <span className="text-[#9CA3AF]">CLUSTERED ASSETS:</span>
             <span className="text-[#FFFFFF] font-bold">{clusteredAssetCount} Nodes</span>
           </div>
           <div className="hidden sm:flex items-center gap-2">
-            <span className="text-[#D0D7E0]">STANDALONE:</span>
+            <span className="text-[#9CA3AF]">STANDALONE:</span>
             <span className="text-[#FFFFFF]">{graphData?.unclusteredCount || 0}</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 text-[14px] text-[#D0D7E0] font-bold">
+        <div className="flex items-center gap-4 text-[14px] text-[#9CA3AF] font-bold">
           <span className="flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-[#FF5C6C] inline-block" />
             Campaign Hub
@@ -323,24 +323,24 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
             Shared Clue
           </span>
           <span className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#35D0BA] inline-block" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#F6821F] inline-block" />
             Threat Asset
           </span>
         </div>
       </div>
 
       {/* Main Canvas Container */}
-      <div className="relative flex-1 w-full min-h-[520px] bg-[#080B10] overflow-hidden">
+      <div className="relative flex-1 w-full min-h-[520px] bg-[#080B11] overflow-hidden">
         <div ref={containerRef} className="w-full h-full min-h-[520px]" />
 
         {/* Empty State Overlay */}
         {(!graphData || (graphData.nodes.length === 0 && graphData.clusters.length === 0)) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-[#080B10]/95 z-20">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-[#080B11]/95 z-20">
             <div className="h-14 w-14 rounded-xl bg-[#FF5C6C]/10 border border-[#FF5C6C]/30 flex items-center justify-center text-[#FF5C6C] mb-3">
               <ShieldAlert className="h-7 w-7" />
             </div>
             <h3 className="text-[20px] font-bold text-[#FFFFFF]">No Threat Clusters Discovered</h3>
-            <p className="text-[16px] text-[#D0D7E0] font-bold max-w-md mt-1 mb-4">
+            <p className="text-[16px] text-[#9CA3AF] font-bold max-w-md mt-1 mb-4">
               Discovered threat entities sharing identical infrastructure or identifiers (UPI VPAs, phone numbers, Telegram channels, or hosting IPs) will automatically coalesce into campaign hubs.
             </p>
           </div>
@@ -348,8 +348,8 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
 
         {/* Floating Side Panel: Selected Cluster Dossier */}
         {selectedCluster && (
-          <div className="absolute top-4 right-4 w-96 max-w-[calc(100%-2rem)] max-h-[calc(100%-2rem)] overflow-y-auto bg-[#121821]/95 border border-[#303946] rounded-xl p-5 shadow-2xl backdrop-blur-md z-30 text-[#FFFFFF]">
-            <div className="flex items-start justify-between gap-2 pb-3.5 border-b border-[#303946]">
+          <div className="absolute top-4 right-4 w-96 max-w-[calc(100%-2rem)] max-h-[calc(100%-2rem)] overflow-y-auto bg-[#111625]/95 border border-[#1E2638] rounded-xl p-5 shadow-2xl backdrop-blur-md z-30 text-[#FFFFFF]">
+            <div className="flex items-start justify-between gap-2 pb-3.5 border-b border-[#1E2638]">
               <div>
                 <span className="px-2.5 py-1 rounded text-[13px] font-mono font-bold bg-[#FF5C6C]/15 text-[#FF5C6C] border border-[#FF5C6C]/30 uppercase">
                   {selectedCluster.attackerTag}
@@ -360,15 +360,15 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
               </div>
               <button
                 onClick={() => setSelectedCluster(null)}
-                className="text-[#D0D7E0] hover:text-[#FFFFFF] text-[18px] font-bold p-1 cursor-pointer"
+                className="text-[#9CA3AF] hover:text-[#FFFFFF] text-[18px] font-bold p-1 cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
             <div className="mt-4 space-y-3.5 text-[15px] font-bold">
-              <div className="flex items-center justify-between p-3 rounded-lg bg-[#080B10] border border-[#303946]">
-                <span className="text-[#D0D7E0] font-mono">Cluster Risk Level:</span>
+              <div className="flex items-center justify-between p-3 rounded-lg bg-[#080B11] border border-[#1E2638]">
+                <span className="text-[#9CA3AF] font-mono">Cluster Risk Level:</span>
                 <span className="font-mono font-bold text-[#FF5C6C] bg-[#FF5C6C]/10 px-2.5 py-0.5 rounded border border-[#FF5C6C]/30">
                   Peak Risk {selectedCluster.highestRiskScore}/100
                 </span>
@@ -376,14 +376,14 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
 
               {/* Shared Pivot Clues */}
               <div>
-                <h4 className="text-[13px] font-mono font-bold text-[#D0D7E0] uppercase tracking-wider mb-2">
+                <h4 className="text-[13px] font-mono font-bold text-[#9CA3AF] uppercase tracking-wider mb-2">
                   🔑 Shared Attacker Clues (Pivot IOCs)
                 </h4>
                 <div className="space-y-2">
                   {selectedCluster.sharedIocs.map((ioc, i) => (
                     <div
                       key={i}
-                      className="p-2.5 rounded-lg bg-[#080B10] border border-[#303946] flex items-center justify-between font-mono"
+                      className="p-2.5 rounded-lg bg-[#080B11] border border-[#1E2638] flex items-center justify-between font-mono"
                     >
                       <span className="text-[12px] uppercase font-bold text-[#FFCD4D] bg-[#FFCD4D]/15 px-2 py-0.5 rounded border border-[#FFCD4D]/30">
                         {ioc.type}
@@ -396,14 +396,14 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
 
               {/* Connected Impersonation Assets */}
               <div>
-                <h4 className="text-[13px] font-mono font-bold text-[#D0D7E0] uppercase tracking-wider mb-2">
+                <h4 className="text-[13px] font-mono font-bold text-[#9CA3AF] uppercase tracking-wider mb-2">
                   ⚔️ Linked Threat Assets ({selectedCluster.threats.length})
                 </h4>
                 <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
                   {selectedCluster.threats.map((t) => (
                     <div
                       key={t.id}
-                      className="p-3 rounded-lg bg-[#080B10] border border-[#303946] hover:border-[#35D0BA] transition"
+                      className="p-3 rounded-lg bg-[#080B11] border border-[#1E2638] hover:border-[#F6821F] transition"
                     >
                       <div className="flex items-center justify-between">
                         <span className="font-mono font-bold text-[#FFFFFF] text-[15px] truncate max-w-[190px]">
@@ -413,7 +413,7 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
                           {t.riskScore}
                         </span>
                       </div>
-                      <span className="text-[13px] text-[#D0D7E0] uppercase font-mono block mt-1 font-bold">
+                      <span className="text-[13px] text-[#9CA3AF] uppercase font-mono block mt-1 font-bold">
                         {t.type.replace('_', ' ')} • {t.status}
                       </span>
                     </div>
@@ -426,8 +426,8 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
 
         {/* Floating Side Panel: Selected Threat Node Details */}
         {selectedNodeDetails && (
-          <div className="absolute top-4 right-4 w-88 max-w-[calc(100%-2rem)] bg-[#121821]/95 border border-[#303946] rounded-xl p-5 shadow-2xl backdrop-blur-md z-30 text-[#FFFFFF]">
-            <div className="flex items-start justify-between gap-2 pb-3 border-b border-[#303946]">
+          <div className="absolute top-4 right-4 w-88 max-w-[calc(100%-2rem)] bg-[#111625]/95 border border-[#1E2638] rounded-xl p-5 shadow-2xl backdrop-blur-md z-30 text-[#FFFFFF]">
+            <div className="flex items-start justify-between gap-2 pb-3 border-b border-[#1E2638]">
               <div>
                 <span className="px-2.5 py-1 rounded text-[13px] font-mono font-bold bg-[#FFCD4D]/15 text-[#FFCD4D] border border-[#FFCD4D]/30 uppercase">
                   {selectedNodeDetails.type === 'threat' ? 'Threat Asset Node' : 'Shared Clue IOC'}
@@ -440,7 +440,7 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
               </div>
               <button
                 onClick={() => setSelectedNodeDetails(null)}
-                className="text-[#D0D7E0] hover:text-[#FFFFFF] p-1 rounded-lg cursor-pointer"
+                className="text-[#9CA3AF] hover:text-[#FFFFFF] p-1 rounded-lg cursor-pointer"
               >
                 ✕
               </button>
@@ -448,14 +448,14 @@ export default function ThreatClusterGraph({ threats, onSeedDemoData }: ThreatCl
 
             {selectedNodeDetails.type === 'threat' && selectedNodeDetails.data && (
               <div className="mt-3.5 space-y-3 text-[15px] font-bold">
-                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#080B10] border border-[#303946]">
-                  <span className="text-[#D0D7E0] font-mono">Risk Score:</span>
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#080B11] border border-[#1E2638]">
+                  <span className="text-[#9CA3AF] font-mono">Risk Score:</span>
                   <span className="font-mono font-bold text-[#FF5C6C]">
                     {selectedNodeDetails.data.riskScore}/100
                   </span>
                 </div>
-                <div className="p-2.5 rounded-lg bg-[#080B10] border border-[#303946] text-[14px] text-[#FFFFFF]">
-                  <span className="font-mono text-[#D0D7E0] block mb-1 uppercase text-[12px] font-bold">Detected Reasons:</span>
+                <div className="p-2.5 rounded-lg bg-[#080B11] border border-[#1E2638] text-[14px] text-[#FFFFFF]">
+                  <span className="font-mono text-[#9CA3AF] block mb-1 uppercase text-[12px] font-bold">Detected Reasons:</span>
                   {selectedNodeDetails.data.reasons?.map((r: string, idx: number) => (
                     <p key={idx} className="text-[#FFFFFF] mb-1 font-bold">• {r}</p>
                   ))}

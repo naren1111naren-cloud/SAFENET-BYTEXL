@@ -24,7 +24,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     root.classList.remove('light');
     root.classList.add('dark');
     root.style.colorScheme = 'dark';
-    root.style.backgroundColor = '#080B10';
+    root.style.backgroundColor = '#080B11';
   }, []);
 
   return (
