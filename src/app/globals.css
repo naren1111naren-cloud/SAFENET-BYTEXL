@@ -74,18 +74,125 @@ body {
 
 /* Headings use Space Grotesk Display Typography */
 h1, h2, h3, h4, h5, h6, .font-display {
-  font-family: var(--font-space-grotesk), var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-display);
   letter-spacing: -0.02em;
 }
 
 /* Monospace font reserved strictly for data (domains, IPs, hashes, handles, scores, timestamps) */
 code, kbd, samp, pre, .font-mono {
-  font-family: var(--font-jetbrains-mono), "SF Mono", Consolas, "Liberation Mono", monospace;
-  font-feature-settings: "tnum" 1;
+  font-family: var(--font-mono);
+  font-feature-settings: "zero" 1, "tnum" 1;
 }
 
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* ========================================================================= */
+/* SAFENET DESIGN SYSTEM - CENTRALIZED TYPE SCALE TOKENS                      */
+/* ========================================================================= */
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--sn-text-primary);
+  text-wrap: balance;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--sn-text-primary);
+  text-wrap: balance;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--sn-text-primary);
+}
+
+.body-text {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--sn-text-secondary);
+  max-width: 70ch;
+  text-wrap: pretty;
+}
+
+.small-text {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--sn-text-secondary);
+}
+
+.eyebrow-text,
+.stat-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #94A3B8;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .stat-label {
+    white-space: normal;
+  }
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.button-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.table-header-text {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #94A3B8;
+}
+
+.nav-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.data-text {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "zero" 1, "tnum" 1;
 }
 
 /* === Geometric Cyber Grid Backdrop === */

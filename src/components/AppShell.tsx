@@ -33,9 +33,10 @@ interface AppShellProps {
   children: React.ReactNode;
   pageTitle?: string;
   pageSubtitle?: string;
+  pageEyebrow?: string;
 }
 
-export default function AppShell({ children, pageTitle, pageSubtitle }: AppShellProps) {
+export default function AppShell({ children, pageTitle, pageSubtitle, pageEyebrow }: AppShellProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -437,22 +438,22 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
         )}
 
         {/* ── CONTINUOUS INTELLIGENCE CANVAS ── */}
-        <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+        <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-10">
           {(pageTitle || pageSubtitle) && (
-            <div className="mb-10 pb-5 border-b border-purple-900/40 space-y-2">
+            <div className="mb-8 pb-5 border-b border-purple-900/40 space-y-2">
               <div className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-[#EC4899] shadow-[0_0_8px_#EC4899] animate-pulse" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-purple-300 font-bold">
-                  SAFENET SENTINEL TELEMETRY
+                <span className="eyebrow-text text-purple-300">
+                  {pageEyebrow || 'Digital Risk Intelligence'}
                 </span>
               </div>
               {pageTitle && (
-                <h1 className="text-[26px] sm:text-[36px] font-extrabold text-[#F8FAFC] tracking-tight">
+                <h1 className="page-title">
                   {pageTitle}
                 </h1>
               )}
               {pageSubtitle && (
-                <p className="text-[13px] sm:text-[15px] text-slate-300 font-normal leading-relaxed max-w-3xl">
+                <p className="body-text">
                   {pageSubtitle}
                 </p>
               )}
@@ -462,13 +463,13 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
         </main>
 
         {/* ── SYSTEM FOOTER ── */}
-        <footer className="border-t border-purple-900/40 bg-[#0D0722]/90 text-purple-400/80 text-[11px] font-mono py-6 px-4 sm:px-8 mt-auto">
+        <footer className="border-t border-purple-900/40 bg-[#0D0722]/90 text-purple-400/80 text-xs font-sans py-5 px-4 sm:px-8 mt-auto">
           <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-[#EC4899] shadow-[0_0_6px_#EC4899]" />
-              <span>SAFENET • Digital Risk Decision System • Eventor Cosmic Theme</span>
+              <span className="small-text text-purple-300/90">SAFENET • Digital Risk Decision Platform</span>
             </div>
-            <div className="flex items-center gap-4 text-purple-300">
+            <div className="flex items-center gap-4 small-text text-purple-300">
               <Link href="/check" className="hover:text-pink-300 transition-colors">Check</Link>
               <Link href="/overview" className="hover:text-pink-300 transition-colors">Overview</Link>
               <Link href="/apps" className="hover:text-pink-300 transition-colors">Apps</Link>
