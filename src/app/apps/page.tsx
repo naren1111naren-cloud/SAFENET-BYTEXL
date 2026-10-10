@@ -672,7 +672,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 type="button"
                 onClick={() => handleSearch(undefined, true)}
                 disabled={isSearching}
-                className="flex-1 px-4 py-2 bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white font-mono text-[17px] font-bold rounded-lg transition flex items-center justify-center gap-2 shadow-xs disabled:opacity-50"
+                className="flex-1 px-4 py-2 bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-white font-mono text-[17px] font-bold rounded-lg transition flex items-center justify-center gap-2 shadow-xs disabled:opacity-50"
               >
                 {isSearching ? (
                   <>
@@ -743,7 +743,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
             <Search className="h-4 w-4" />
             <span>1. APP THREAT DISCOVERY & INBOX</span>
             {activeTab === 'search' && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F6821F] text-[#080B11] font-extrabold rounded-t-sm" />
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F6821F] text-[#080B11] font-semibold rounded-t-sm" />
             )}
           </button>
 
@@ -757,7 +757,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
             <Smartphone className="h-4 w-4" />
             <span>2. STATIC APK ARTIFACT INSPECTION</span>
             {activeTab === 'apk' && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F6821F] text-[#080B11] font-extrabold rounded-t-sm" />
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#F6821F] text-[#080B11] font-semibold rounded-t-sm" />
             )}
           </button>
         </div>
@@ -811,7 +811,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="submit"
                     disabled={isSearching}
-                    className="px-5 py-2.5 bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white font-mono text-[24px] font-bold font-bold rounded-xl transition flex items-center gap-2 shadow-xs disabled:opacity-50 shrink-0"
+                    className="px-5 py-2.5 bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-white font-mono text-[24px] font-bold font-bold rounded-xl transition flex items-center gap-2 shadow-xs disabled:opacity-50 shrink-0"
                   >
                     {isSearching ? (
                       <>
@@ -1142,7 +1142,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                           <button
                             type="button"
                             onClick={() => setSelectedCandidate(cand)}
-                            className="px-3 py-1.5 bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white rounded-lg transition flex items-center gap-1 font-bold text-[28px] font-bold font-bold shadow-xs"
+                            className="px-3 py-1.5 bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-white rounded-lg transition flex items-center gap-1 font-bold text-[28px] font-bold font-bold shadow-xs"
                           >
                             <span>INVESTIGATE</span>
                             <ChevronRight className="h-3 w-3" />
@@ -1273,7 +1273,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                     <span className="text-[21px] font-bold text-[#9CA3AF] font-bold block uppercase font-bold">COMBINED THREAT LEVEL</span>
                     <div className="flex items-center gap-2">
                       <span
-                        className={`text-[32px] font-extrabold font-bold ${
+                        className={`text-[32px] font-semibold font-bold ${
                           apkReport.combined_risk_level === 'CRITICAL'
                             ? 'text-[#FF5C6C] font-bold'
                             : apkReport.combined_risk_level === 'HIGH'
@@ -1384,7 +1384,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <span className="text-[21px] font-bold text-[#9CA3AF] font-bold uppercase block font-bold">THREAT VERDICT</span>
                   <div className="flex items-center gap-2 justify-end">
                     <span
-                      className={`text-[32px] font-extrabold font-bold ${
+                      className={`text-[32px] font-semibold font-bold ${
                         selectedCandidate.risk_level === 'CRITICAL'
                           ? 'text-[#FF5C6C] font-bold'
                           : selectedCandidate.risk_level === 'HIGH'
@@ -1455,7 +1455,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => handleExportReport(selectedCandidate)}
-                    className="px-3 py-1.5 bg-[#0F2620] border border-[#F6821F]/40 text-[#F6821F] font-bold hover:bg-[#F6821F] text-[#080B11] font-extrabold hover:text-white rounded-lg flex items-center gap-1.5 font-bold transition"
+                    className="px-3 py-1.5 bg-[#0F2620] border border-[#F6821F]/40 text-[#F6821F] font-bold hover:bg-[#F6821F] text-[#080B11] font-semibold hover:text-white rounded-lg flex items-center gap-1.5 font-bold transition"
                   >
                     <Download className="h-3 w-3" />
                     <span>EXPORT INVESTIGATION</span>
@@ -1822,7 +1822,7 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                 <button
                   type="button"
                   onClick={handleSaveSchedule}
-                  className="px-4 py-2 bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white font-bold text-[17px] font-bold rounded-lg transition shadow-xs"
+                  className="px-4 py-2 bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-white font-bold text-[17px] font-bold rounded-lg transition shadow-xs"
                 >
                   SAVE SCHEDULE
                 </button>

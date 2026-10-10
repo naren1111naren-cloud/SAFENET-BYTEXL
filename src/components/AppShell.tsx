@@ -93,21 +93,21 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
   return (
     <div className="min-h-screen flex bg-[#080B11] text-[#FFFFFF] font-sans antialiased selection:bg-[#F6821F]/25 selection:text-[#FFFFFF] relative">
       {/* ── LEFT RADAR DESKTOP SIDEBAR ── */}
-      <aside className="hidden lg:flex w-72 flex-col bg-[#080B11] border-r border-[#1E2638] shrink-0 sticky top-0 h-screen z-30 select-none">
+      <aside className="hidden lg:flex w-64 flex-col bg-[#080B11] border-r border-[#1E2638] shrink-0 sticky top-0 h-screen z-30 select-none">
         {/* Radar Logo Header */}
-        <div className="h-20 px-6 border-b border-[#1E2638] flex items-center bg-[#080B11]">
+        <div className="h-16 px-5 border-b border-[#1E2638] flex items-center bg-[#080B11]">
           <Link href="/" className="hover:opacity-90 transition-opacity">
-            <SafenetLogo size={22} showWordmark={true} />
+            <SafenetLogo size={18} showWordmark={true} />
           </Link>
         </div>
 
         {/* Sidebar Nav Items */}
-        <div className="flex-1 py-6 px-3 space-y-7 overflow-y-auto">
+        <div className="flex-1 py-5 px-3 space-y-6 overflow-y-auto">
           {/* Intelligence Section */}
-          <div className="space-y-1.5">
-            <div className="px-3 py-1.5 text-[14px] font-mono uppercase tracking-[0.1em] text-[#9CA3AF] font-extrabold flex items-center justify-between">
+          <div className="space-y-1">
+            <div className="px-3 py-1 text-[11px] font-mono uppercase tracking-[0.1em] text-[#9CA3AF] font-semibold flex items-center justify-between">
               <span>RADAR TELEMETRY</span>
-              <span className="flex h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
+              <span className="flex h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse" />
             </div>
             {intelligenceNav.map((item) => {
               const Icon = item.icon;
@@ -119,18 +119,18 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center justify-between px-3.5 py-3 rounded-lg text-[20px] transition-all font-bold ${
+                  className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-[15px] transition-all ${
                     isActive
-                      ? 'text-[#F6821F] bg-[#111625] border-l-4 border-[#F6821F]'
-                      : 'text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F]'
+                      ? 'text-[#F6821F] bg-[#111625] font-semibold border-l-2 border-[#F6821F]'
+                      : 'text-[#E5E7EB] font-normal hover:text-[#FFFFFF] hover:bg-[#0E131F]'
                   }`}
                 >
-                  <span className="flex items-center gap-3.5">
-                    <Icon className={`h-5 w-5 ${isActive ? 'text-[#F6821F]' : 'text-[#9CA3AF]'}`} />
+                  <span className="flex items-center gap-3">
+                    <Icon className={`h-4 w-4 ${isActive ? 'text-[#F6821F]' : 'text-[#9CA3AF]'}`} />
                     {item.label}
                   </span>
                   {isActive && (
-                    <span className="h-2 w-2 rounded-full bg-[#F6821F]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#F6821F]" />
                   )}
                 </Link>
               );
@@ -141,9 +141,9 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
           <div className="border-t border-[#1E2638] mx-2" />
 
           {/* Workspace Section */}
-          <div className="space-y-1.5">
-            <div className="px-3 py-1.5 text-[14px] font-mono uppercase tracking-[0.1em] text-[#9CA3AF] font-extrabold">
-              WORKSPACE &amp; AUDIT
+          <div className="space-y-1">
+            <div className="px-3 py-1 text-[11px] font-mono uppercase tracking-[0.1em] text-[#9CA3AF] font-semibold">
+              WORKSPACE
             </div>
             {workspaceNav.map((item) => {
               const Icon = item.icon;
@@ -152,18 +152,18 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center justify-between px-3.5 py-3 rounded-lg text-[20px] transition-all font-bold ${
+                  className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-[15px] transition-all ${
                     isActive
-                      ? 'text-[#F6821F] bg-[#111625] border-l-4 border-[#F6821F]'
-                      : 'text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F]'
+                      ? 'text-[#F6821F] bg-[#111625] font-semibold border-l-2 border-[#F6821F]'
+                      : 'text-[#E5E7EB] font-normal hover:text-[#FFFFFF] hover:bg-[#0E131F]'
                   }`}
                 >
-                  <span className="flex items-center gap-3.5">
-                    <Icon className={`h-5 w-5 ${isActive ? 'text-[#F6821F]' : 'text-[#9CA3AF]'}`} />
+                  <span className="flex items-center gap-3">
+                    <Icon className={`h-4 w-4 ${isActive ? 'text-[#F6821F]' : 'text-[#9CA3AF]'}`} />
                     {item.label}
                   </span>
                   {isActive && (
-                    <span className="h-2 w-2 rounded-full bg-[#F6821F]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#F6821F]" />
                   )}
                 </Link>
               );
@@ -172,10 +172,10 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
         </div>
 
         {/* Cloudflare Radar Monitored Entity Indicator */}
-        <div className="p-4 border-t border-[#1E2638] bg-[#0E131F] flex items-center justify-between text-[16px]">
-          <span className="font-bold text-[#9CA3AF]">Monitored Perimeter</span>
-          <span className="text-[#FFFFFF] font-bold flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#F6821F]" />
+        <div className="p-3.5 border-t border-[#1E2638] bg-[#0E131F] flex items-center justify-between text-[13px]">
+          <span className="text-[#9CA3AF] font-normal">Perimeter</span>
+          <span className="text-[#FFFFFF] font-medium flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded-full bg-[#F6821F]" />
             {brand?.name || 'Paytm'}
           </span>
         </div>
@@ -184,7 +184,7 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
       {/* ── RIGHT MAIN COLUMN ── */}
       <div className="flex-1 flex flex-col min-w-0 relative z-10">
         {/* ── CLOUDFLARE RADAR TOP NAVIGATION ── */}
-        <header className="h-20 bg-[#080B11]/95 backdrop-blur-md border-b border-[#1E2638] px-4 sm:px-8 flex items-center justify-between gap-4 sticky top-0 z-40 shrink-0">
+        <header className="h-16 bg-[#080B11]/95 backdrop-blur-md border-b border-[#1E2638] px-4 sm:px-6 flex items-center justify-between gap-4 sticky top-0 z-40 shrink-0">
           {/* Left: Mobile Toggle & Radar Breadcrumb */}
           <div className="flex items-center gap-3">
             <button
@@ -192,67 +192,67 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
               className="lg:hidden p-2 text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#111625] rounded-lg transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
 
             <Link href="/" className="lg:hidden">
-              <SafenetLogo size={18} showWordmark={false} />
+              <SafenetLogo size={16} showWordmark={false} />
             </Link>
 
-            <div className="hidden sm:flex items-center gap-2.5 text-[17px] text-[#FFFFFF] font-bold">
-              <span className="text-[#FFFFFF] font-extrabold tracking-wide">SAFENET RADAR</span>
+            <div className="hidden sm:flex items-center gap-2 text-[14px] text-[#FFFFFF]">
+              <span className="text-[#FFFFFF] font-semibold tracking-wide">SAFENET RADAR</span>
               <span className="text-[#1E2638]">/</span>
-              <span className="inline-flex items-center gap-1.5 text-[14px] font-mono font-bold text-[#F6821F] bg-[#F6821F]/10 border border-[#F6821F]/25 px-2.5 py-0.5 rounded-md">
-                <Radio className="h-3.5 w-3.5 text-[#F6821F] animate-pulse" />
-                GLOBAL RADAR ACTIVE
+              <span className="inline-flex items-center gap-1.5 text-[12px] font-mono font-medium text-[#F6821F] bg-[#F6821F]/10 border border-[#F6821F]/25 px-2 py-0.5 rounded">
+                <Radio className="h-3 w-3 text-[#F6821F] animate-pulse" />
+                LIVE RADAR
               </span>
             </div>
           </div>
 
           {/* Center: Global Search Control */}
-          <div className="flex-1 max-w-md hidden md:block">
+          <div className="flex-1 max-w-sm hidden md:block">
             <button
               onClick={() => setSearchOpen(true)}
-              className="w-full flex items-center justify-between px-4 py-2.5 rounded-lg bg-[#0E131F] hover:bg-[#111625] border border-[#1E2638] hover:border-[#28334E] text-[17px] text-[#FFFFFF] font-bold transition-all cursor-pointer"
+              className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg bg-[#0E131F] hover:bg-[#111625] border border-[#1E2638] hover:border-[#28334E] text-[13px] text-[#FFFFFF] transition-all cursor-pointer"
             >
-              <div className="flex items-center gap-3">
-                <Search className="h-4 w-4 text-[#F6821F]" />
-                <span className="text-[#9CA3AF] font-bold">Search domains, ASN, apps, threats...</span>
+              <div className="flex items-center gap-2.5">
+                <Search className="h-3.5 w-3.5 text-[#F6821F]" />
+                <span className="text-[#9CA3AF] font-normal">Filter domains, ASN, threats...</span>
               </div>
-              <kbd className="text-[13px] font-mono bg-[#111625] text-[#FFFFFF] border border-[#1E2638] px-2 py-0.5 rounded font-bold">
+              <kbd className="text-[11px] font-mono bg-[#111625] text-[#9CA3AF] border border-[#1E2638] px-1.5 py-0.5 rounded">
                 ⌘K
               </kbd>
             </button>
           </div>
 
           {/* Right: Quick Check + Brand Profile + User */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <Link
               href="/check"
-              className="text-[17px] text-[#FFFFFF] hover:text-[#F6821F] transition-colors font-bold hidden sm:inline"
+              className="text-[14px] text-[#E5E7EB] hover:text-[#F6821F] transition-colors font-medium hidden sm:inline"
             >
-              Check
+              Quick Check
             </Link>
 
             {/* Brand Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setShowBrandDropdown(!showBrandDropdown)}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[#1E2638] bg-[#0E131F] hover:bg-[#111625] text-[16px] text-[#FFFFFF] font-bold transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-[#1E2638] bg-[#0E131F] hover:bg-[#111625] text-[13px] text-[#FFFFFF] font-medium transition-colors cursor-pointer"
               >
                 <span className="h-2 w-2 rounded-full bg-[#F6821F]" />
                 <span>{brand?.name || 'Paytm'}</span>
-                <ChevronDown className="h-4 w-4 text-[#9CA3AF]" />
+                <ChevronDown className="h-3.5 w-3.5 text-[#9CA3AF]" />
               </button>
 
               {showBrandDropdown && (
-                <div className="absolute right-0 mt-2 w-60 bg-[#111625] border border-[#1E2638] rounded-xl shadow-2xl z-50 p-2 text-[16px]">
+                <div className="absolute right-0 mt-2 w-56 bg-[#111625] border border-[#1E2638] rounded-lg shadow-xl z-50 p-1.5 text-[13px]">
                   <button
                     onClick={() => handleSelectPreset('Paytm')}
-                    className={`w-full text-left px-3.5 py-2.5 rounded-lg flex items-center justify-between transition-colors cursor-pointer font-bold ${
+                    className={`w-full text-left px-3 py-2 rounded-md flex items-center justify-between transition-colors cursor-pointer ${
                       brand?.name === 'Paytm'
-                        ? 'bg-[#161D2F] text-[#F6821F]'
-                        : 'text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F]'
+                        ? 'bg-[#161D2F] text-[#F6821F] font-semibold'
+                        : 'text-[#E5E7EB] hover:text-[#F6821F] hover:bg-[#0E131F]'
                     }`}
                   >
                     <span>Paytm (Fintech)</span>
@@ -260,10 +260,10 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
                   </button>
                   <button
                     onClick={() => handleSelectPreset('Nike')}
-                    className={`w-full text-left px-3.5 py-2.5 rounded-lg flex items-center justify-between transition-colors cursor-pointer font-bold ${
+                    className={`w-full text-left px-3 py-2 rounded-md flex items-center justify-between transition-colors cursor-pointer ${
                       brand?.name === 'Nike'
-                        ? 'bg-[#161D2F] text-[#F6821F]'
-                        : 'text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F]'
+                        ? 'bg-[#161D2F] text-[#F6821F] font-semibold'
+                        : 'text-[#E5E7EB] hover:text-[#F6821F] hover:bg-[#0E131F]'
                     }`}
                   >
                     <span>Nike (Retail)</span>
@@ -276,49 +276,49 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
             {/* Notification Bell */}
             <button
               onClick={() => setShowAlertsDropdown(!showAlertsDropdown)}
-              className="relative p-2.5 text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#111625] rounded-lg transition-colors cursor-pointer"
+              className="relative p-2 text-[#E5E7EB] hover:text-[#F6821F] hover:bg-[#111625] rounded-lg transition-colors cursor-pointer"
               title="Alerts"
             >
-              <Bell className="h-5 w-5" />
+              <Bell className="h-4 w-4" />
               {unreadAlerts.length > 0 && (
-                <span className="absolute top-2 right-2 h-2.5 w-2.5 rounded-full bg-[#FF4D4D]" />
+                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-[#FF4D4D]" />
               )}
             </button>
 
             {/* User Session Profile & Demo Account Switcher */}
             {user ? (
-              <div className="relative pl-3 border-l border-[#1E2638]">
+              <div className="relative pl-2.5 border-l border-[#1E2638]">
                 <button
                   type="button"
                   onClick={() => setShowUserDropdown(!showUserDropdown)}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-[#0E131F] hover:bg-[#111625] border border-[#1E2638] text-[16px] text-[#FFFFFF] font-bold transition-colors cursor-pointer"
+                  className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#0E131F] hover:bg-[#111625] border border-[#1E2638] text-[13px] text-[#FFFFFF] font-medium transition-colors cursor-pointer"
                 >
-                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#F6821F]/20 text-[#F6821F] text-[12px] font-bold">
+                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#F6821F]/20 text-[#F6821F] text-[11px] font-semibold">
                     ID
                   </span>
                   <div className="flex flex-col text-left leading-none">
-                    <span className="text-[15px] font-mono text-[#FFFFFF] font-bold max-w-[150px] truncate">
+                    <span className="text-[13px] font-mono text-[#FFFFFF] font-medium max-w-[130px] truncate">
                       {user.email}
                     </span>
-                    <span className="text-[12px] text-[#F6821F] font-bold mt-1">
-                      Demo Account • Switch
+                    <span className="text-[11px] text-[#F6821F] mt-0.5">
+                      Demo User
                     </span>
                   </div>
-                  <ChevronDown className="h-4 w-4 text-[#9CA3AF]" />
+                  <ChevronDown className="h-3.5 w-3.5 text-[#9CA3AF]" />
                 </button>
 
                 {showUserDropdown && (
-                  <div className="absolute right-0 mt-2 w-80 bg-[#111625] border border-[#1E2638] rounded-xl shadow-2xl z-50 p-2.5 text-[16px] animate-fade-in">
-                    <div className="px-3 py-2 mb-1.5 border-b border-[#1E2638] flex items-center justify-between">
-                      <span className="text-[13px] font-mono uppercase tracking-wider text-[#9CA3AF] font-extrabold">
-                        SELECT DEMO IDENTITY
+                  <div className="absolute right-0 mt-2 w-72 bg-[#111625] border border-[#1E2638] rounded-xl shadow-2xl z-50 p-2 text-[13px] animate-fade-in">
+                    <div className="px-2.5 py-1.5 mb-1 border-b border-[#1E2638] flex items-center justify-between">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-[#9CA3AF] font-semibold">
+                        DEMO IDENTITY
                       </span>
-                      <span className="text-[12px] bg-[#F6821F]/20 text-[#F6821F] font-bold px-2 py-0.5 rounded">
+                      <span className="text-[11px] bg-[#F6821F]/20 text-[#F6821F] font-medium px-1.5 py-0.5 rounded">
                         RADAR ACCESS
                       </span>
                     </div>
 
-                    <div className="space-y-1.5 py-1">
+                    <div className="space-y-1 py-1">
                       {demoAccounts.map((acc) => {
                         const isCurrent = user.email?.toLowerCase() === acc.email.toLowerCase();
                         return (
@@ -329,38 +329,35 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
                               await loginWithDemo(acc.id);
                               setShowUserDropdown(false);
                             }}
-                            className={`w-full text-left px-3 py-2.5 rounded-lg flex items-center justify-between transition-colors cursor-pointer font-bold ${
+                            className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between transition-colors cursor-pointer ${
                               isCurrent
-                                ? 'bg-[#161D2F] text-[#F6821F]'
-                                : 'text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F]'
+                                ? 'bg-[#161D2F] text-[#F6821F] font-semibold'
+                                : 'text-[#E5E7EB] hover:text-[#F6821F] hover:bg-[#0E131F]'
                             }`}
                           >
                             <div className="flex flex-col">
-                              <span className="font-bold text-[16px] text-[#FFFFFF]">
+                              <span className="text-[13px] text-[#FFFFFF] font-medium">
                                 {acc.name}
                               </span>
-                              <span className="text-[13px] font-mono text-[#9CA3AF] font-bold">
+                              <span className="text-[11px] font-mono text-[#9CA3AF]">
                                 {acc.email}
-                              </span>
-                              <span className="text-[12px] text-[#F6821F] font-bold">
-                                {acc.badge}
                               </span>
                             </div>
                             {isCurrent && (
-                              <span className="text-sm font-bold text-[#F6821F]">Active ✓</span>
+                              <span className="text-[12px] font-medium text-[#F6821F]">Active ✓</span>
                             )}
                           </button>
                         );
                       })}
                     </div>
 
-                    <div className="border-t border-[#1E2638] mt-2 pt-2 flex items-center justify-between px-1.5">
+                    <div className="border-t border-[#1E2638] mt-1.5 pt-1.5 flex items-center justify-between px-1">
                       <Link
                         href="/login"
                         onClick={() => setShowUserDropdown(false)}
-                        className="text-[14px] text-[#F6821F] hover:underline font-bold"
+                        className="text-[12px] text-[#F6821F] hover:underline font-medium"
                       >
-                        More Demo IDs
+                        All Profiles
                       </Link>
                       <button
                         type="button"
@@ -375,9 +372,9 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
                           }
                         }}
                         disabled={loggingOut}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-[14px] text-[#FF4D4D] hover:bg-[#FF4D4D]/10 rounded-md font-bold transition-colors cursor-pointer"
+                        className="flex items-center gap-1 px-2.5 py-1 text-[12px] text-[#FF4D4D] hover:bg-[#FF4D4D]/10 rounded font-medium transition-colors cursor-pointer"
                       >
-                        <LogOut className="h-4 w-4" />
+                        <LogOut className="h-3.5 w-3.5" />
                         <span>Sign Out</span>
                       </button>
                     </div>
@@ -387,7 +384,7 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
             ) : (
               <Link
                 href="/login"
-                className="px-4 py-2 rounded-lg bg-[#F6821F] hover:bg-[#FA8B28] text-[16px] text-[#FFFFFF] font-bold transition-all shadow-sm"
+                className="px-3.5 py-1.5 rounded-lg bg-[#F6821F] hover:bg-[#FA8B28] text-[13px] text-[#FFFFFF] font-medium transition-all shadow-sm"
               >
                 Sign In
               </Link>
@@ -397,17 +394,17 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
 
         {/* ── MOBILE NAV DRAWER ── */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#080B11] border-b border-[#1E2638] px-4 py-4 space-y-2 z-30 shadow-2xl">
+          <div className="lg:hidden bg-[#080B11] border-b border-[#1E2638] px-4 py-3 space-y-1.5 z-30 shadow-2xl">
             {intelligenceNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-3.5 py-2.5 text-[19px] font-bold text-[#FFFFFF] hover:text-[#F6821F] hover:bg-[#0E131F] rounded-lg"
+                className="block px-3 py-2 text-[15px] font-medium text-[#E5E7EB] hover:text-[#F6821F] hover:bg-[#0E131F] rounded-lg"
               >
                 {item.label}
               </Link>
             ))}
-            <div className="pt-3 border-t border-[#1E2638] flex items-center justify-between text-[16px] text-[#9CA3AF] font-bold">
+            <div className="pt-2 border-t border-[#1E2638] flex items-center justify-between text-[13px] text-[#9CA3AF]">
               <Link href="/guide" className="hover:text-[#FFFFFF]">Safety Guide</Link>
               <Link href="/setup" className="hover:text-[#FFFFFF]">Settings</Link>
             </div>
@@ -415,16 +412,16 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
         )}
 
         {/* ── WORKSPACE CANVAS ── */}
-        <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+        <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
           {(pageTitle || pageSubtitle) && (
-            <div className="mb-10 pb-6 border-b border-[#1E2638]">
+            <div className="mb-8 pb-5 border-b border-[#1E2638]">
               {pageTitle && (
-                <h1 className="text-[40px] sm:text-[52px] font-extrabold text-[#FFFFFF] tracking-tight leading-tight">
+                <h1 className="text-[28px] sm:text-[34px] font-semibold text-[#FFFFFF] tracking-tight leading-tight">
                   {pageTitle}
                 </h1>
               )}
               {pageSubtitle && (
-                <p className="text-[20px] sm:text-[22px] text-[#9CA3AF] mt-2.5 font-bold leading-relaxed">
+                <p className="text-[15px] sm:text-[16px] text-[#9CA3AF] mt-1.5 font-normal leading-relaxed">
                   {pageSubtitle}
                 </p>
               )}
@@ -434,14 +431,14 @@ export default function AppShell({ children, pageTitle, pageSubtitle }: AppShell
         </main>
 
         {/* ── CLOUDFLARE RADAR STYLE FOOTER ── */}
-        <footer className="border-t border-[#1E2638] bg-[#080B11] text-[#9CA3AF] text-[17px] py-8 px-4 sm:px-8 mt-auto font-bold">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <footer className="border-t border-[#1E2638] bg-[#080B11] text-[#9CA3AF] text-[13px] py-5 px-4 sm:px-6 mt-auto">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-[#FFFFFF]">SAFENET RADAR</span>
+              <span className="font-semibold text-[#FFFFFF]">SAFENET RADAR</span>
               <span className="text-[#1E2638]">•</span>
-              <span className="text-[#9CA3AF]">Global Digital Threat &amp; Brand Perimeter Telemetry</span>
+              <span className="text-[#9CA3AF] font-normal">Global Digital Threat &amp; Perimeter Telemetry</span>
             </div>
-            <div className="flex items-center gap-6 text-[#FFFFFF] font-bold flex-wrap">
+            <div className="flex items-center gap-5 text-[#E5E7EB] font-normal flex-wrap">
               <Link href="/check" className="hover:text-[#F6821F] transition-colors">Check</Link>
               <Link href="/overview" className="hover:text-[#F6821F] transition-colors">Overview</Link>
               <Link href="/apps" className="hover:text-[#F6821F] transition-colors">Apps</Link>

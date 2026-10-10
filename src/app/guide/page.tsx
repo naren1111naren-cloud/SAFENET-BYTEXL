@@ -71,10 +71,10 @@ export default function SafetyGuidePage() {
         {/* ========================================================================= */}
         <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-8">
           <div className="border-b border-[#1E2638] pb-5">
-            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
               DECISION ARCHITECTURE
             </span>
-            <h2 className="text-[30px] sm:text-[38px] font-extrabold text-[#FFFFFF] mt-1">
+            <h2 className="text-[30px] sm:text-[38px] font-semibold text-[#FFFFFF] mt-1">
               The 4-step verification loop
             </h2>
           </div>
@@ -82,11 +82,11 @@ export default function SafetyGuidePage() {
           <div className="divide-y divide-[#1E2638]">
             {steps.map((s) => (
               <div key={s.num} className="py-7 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
-                <div className="md:col-span-1 font-mono text-[22px] text-[#F6821F] font-extrabold">
+                <div className="md:col-span-1 font-mono text-[22px] text-[#F6821F] font-semibold">
                   {s.num}
                 </div>
                 <div className="md:col-span-4">
-                  <div className="text-[22px] text-[#FFFFFF] font-extrabold">
+                  <div className="text-[22px] text-[#FFFFFF] font-semibold">
                     {s.title}
                   </div>
                   <div className="text-[16px] text-[#64A9FF] mt-1 font-mono font-bold">
@@ -106,10 +106,10 @@ export default function SafetyGuidePage() {
         {/* ========================================================================= */}
         <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-8">
           <div className="border-b border-[#1E2638] pb-5">
-            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
               REAL-WORLD LURES
             </span>
-            <h3 className="text-[28px] font-extrabold text-[#FFFFFF] mt-1">
+            <h3 className="text-[28px] font-semibold text-[#FFFFFF] mt-1">
               Common impersonation archetypes
             </h3>
           </div>
@@ -117,14 +117,14 @@ export default function SafetyGuidePage() {
           <div className="divide-y divide-[#1E2638]">
             {commonLures.map((lure, idx) => (
               <div key={idx} className="py-7 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
-                <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-extrabold">
+                <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-semibold">
                   {String(idx + 1).padStart(2, '0')}
                 </div>
                 <div className="md:col-span-4">
-                  <div className="text-[20px] text-[#FFFFFF] font-extrabold">
+                  <div className="text-[20px] text-[#FFFFFF] font-semibold">
                     {lure.title}
                   </div>
-                  <div className="font-mono text-[14px] font-extrabold mt-1.5">
+                  <div className="font-mono text-[14px] font-semibold mt-1.5">
                     <span className={`px-3 py-1 rounded-md border ${
                       lure.severity === 'CRITICAL'
                         ? 'text-[#FF5C6C] bg-[#2D1216] border-[#FF5C6C]/40'
@@ -152,20 +152,20 @@ export default function SafetyGuidePage() {
         {/* ========================================================================= */}
         <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-8">
           <div className="border-b border-[#1E2638] pb-5">
-            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
               EMERGENCY PROTOCOL
             </span>
-            <h3 className="text-[28px] font-extrabold text-[#FFFFFF] mt-1">
+            <h3 className="text-[28px] font-semibold text-[#FFFFFF] mt-1">
               National escalation helplines
             </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-[#1E2638]">
             <div className="space-y-1.5">
-              <div className="font-mono text-[14px] text-[#9CA3AF] uppercase font-extrabold">
+              <div className="font-mono text-[14px] text-[#9CA3AF] uppercase font-semibold">
                 Financial Fraud Helpline
               </div>
-              <div className="font-mono text-[42px] font-extrabold text-[#F6821F]">
+              <div className="font-mono text-[42px] font-semibold text-[#F6821F]">
                 1930
               </div>
               <p className="text-[17px] text-[#9CA3AF] font-bold">
@@ -174,10 +174,10 @@ export default function SafetyGuidePage() {
             </div>
 
             <div className="space-y-1.5 md:pl-6 pt-4 md:pt-0">
-              <div className="font-mono text-[14px] text-[#9CA3AF] uppercase font-extrabold">
+              <div className="font-mono text-[14px] text-[#9CA3AF] uppercase font-semibold">
                 Reporting Portal
               </div>
-              <div className="font-mono text-[22px] text-[#FFFFFF] font-extrabold pt-2">
+              <div className="font-mono text-[22px] text-[#FFFFFF] font-semibold pt-2">
                 cybercrime.gov.in
               </div>
               <p className="text-[17px] text-[#9CA3AF] font-bold">
@@ -186,10 +186,10 @@ export default function SafetyGuidePage() {
             </div>
 
             <div className="space-y-1.5 md:pl-6 pt-4 md:pt-0">
-              <div className="font-mono text-[14px] text-[#9CA3AF] uppercase font-extrabold">
+              <div className="font-mono text-[14px] text-[#9CA3AF] uppercase font-semibold">
                 Telecom Disconnection (Chakshu)
               </div>
-              <div className="font-mono text-[22px] text-[#FFFFFF] font-extrabold pt-2">
+              <div className="font-mono text-[22px] text-[#FFFFFF] font-semibold pt-2">
                 sancharsaathi.gov.in
               </div>
               <p className="text-[17px] text-[#9CA3AF] font-bold">

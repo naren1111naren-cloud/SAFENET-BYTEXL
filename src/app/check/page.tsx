@@ -68,7 +68,7 @@ function RiskArcGauge({ score, maxScore = 100 }: { score: number; maxScore?: num
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center pt-1">
-        <span className="font-mono text-[40px] font-extrabold text-[#FFFFFF] leading-none tracking-tight tabular-nums">
+        <span className="font-mono text-[40px] font-semibold text-[#FFFFFF] leading-none tracking-tight tabular-nums">
           {score}
         </span>
         <span className="font-mono text-[16px] font-bold text-[#9CA3AF] mt-1">/ {maxScore}</span>
@@ -261,10 +261,10 @@ function CheckRiskContent() {
         {/* ========================================================================= */}
         <section className="space-y-6 pt-2">
           <div className="space-y-2 border-b border-[#1E2638] pb-5">
-            <span className="font-mono text-[15px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+            <span className="font-mono text-[15px] uppercase tracking-wider text-[#F6821F] font-semibold">
               CHECK RISK
             </span>
-            <h1 className="text-[34px] sm:text-[44px] font-extrabold tracking-tight text-[#FFFFFF]">
+            <h1 className="text-[34px] sm:text-[44px] font-semibold tracking-tight text-[#FFFFFF]">
               What are you checking?
             </h1>
             <p className="text-[20px] text-[#9CA3AF] max-w-3xl leading-relaxed font-bold">
@@ -279,7 +279,7 @@ function CheckRiskContent() {
               onClick={() => loadDemoPreset('url')}
               className={`pb-3 transition-all cursor-pointer flex items-center gap-2.5 whitespace-nowrap ${
                 checkType === 'url'
-                  ? 'text-[#F6821F] border-b-2 border-[#F6821F] font-extrabold'
+                  ? 'text-[#F6821F] border-b-2 border-[#F6821F] font-semibold'
                   : 'text-[#9CA3AF] hover:text-[#FFFFFF] font-bold'
               }`}
             >
@@ -291,7 +291,7 @@ function CheckRiskContent() {
               onClick={() => loadDemoPreset('message')}
               className={`pb-3 transition-all cursor-pointer flex items-center gap-2.5 whitespace-nowrap ${
                 checkType === 'message'
-                  ? 'text-[#F6821F] border-b-2 border-[#F6821F] font-extrabold'
+                  ? 'text-[#F6821F] border-b-2 border-[#F6821F] font-semibold'
                   : 'text-[#9CA3AF] hover:text-[#FFFFFF] font-bold'
               }`}
             >
@@ -303,7 +303,7 @@ function CheckRiskContent() {
               onClick={() => loadDemoPreset('social')}
               className={`pb-3 transition-all cursor-pointer flex items-center gap-2.5 whitespace-nowrap ${
                 checkType === 'social'
-                  ? 'text-[#F6821F] border-b-2 border-[#F6821F] font-extrabold'
+                  ? 'text-[#F6821F] border-b-2 border-[#F6821F] font-semibold'
                   : 'text-[#9CA3AF] hover:text-[#FFFFFF] font-bold'
               }`}
             >
@@ -315,7 +315,7 @@ function CheckRiskContent() {
               onClick={() => loadDemoPreset('app')}
               className={`pb-3 transition-all cursor-pointer flex items-center gap-2.5 whitespace-nowrap ${
                 checkType === 'app'
-                  ? 'text-[#F6821F] border-b-2 border-[#F6821F] font-extrabold'
+                  ? 'text-[#F6821F] border-b-2 border-[#F6821F] font-semibold'
                   : 'text-[#9CA3AF] hover:text-[#FFFFFF] font-bold'
               }`}
             >
@@ -327,7 +327,7 @@ function CheckRiskContent() {
               onClick={() => loadDemoPreset('lookalike')}
               className={`pb-3 transition-all cursor-pointer flex items-center gap-2.5 whitespace-nowrap ${
                 checkType === 'lookalike'
-                  ? 'text-[#F6821F] border-b-2 border-[#F6821F] font-extrabold'
+                  ? 'text-[#F6821F] border-b-2 border-[#F6821F] font-semibold'
                   : 'text-[#9CA3AF] hover:text-[#FFFFFF] font-bold'
               }`}
             >
@@ -364,7 +364,7 @@ function CheckRiskContent() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 pt-1">
                   {/* Presets in clean pills */}
                   <div className="flex flex-wrap items-center gap-2.5 text-[15px] font-mono text-[#9CA3AF]">
-                    <span className="font-extrabold text-[#FFFFFF]">Presets:</span>
+                    <span className="font-semibold text-[#FFFFFF]">Presets:</span>
                     <button
                       type="button"
                       onClick={() => {
@@ -402,7 +402,7 @@ function CheckRiskContent() {
                   <button
                     type="submit"
                     disabled={analyzing || !inputValue.trim()}
-                    className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[19px] font-extrabold tracking-tight rounded-xl shadow-lg transition-all cursor-pointer disabled:opacity-40 shrink-0"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[19px] font-semibold tracking-tight rounded-xl shadow-lg transition-all cursor-pointer disabled:opacity-40 shrink-0"
                   >
                     {analyzing ? (
                       <>
@@ -425,7 +425,7 @@ function CheckRiskContent() {
                   <div className="flex items-center gap-3 font-mono text-[16px] text-[#9CA3AF] font-bold">
                     <span className="h-2 w-2 rounded-full bg-[#F6821F] animate-pulse" />
                     <span>EVALUATING ARTIFACT TELEMETRY:</span>
-                    <span className="text-[#FFFFFF] font-extrabold">{inputValue.slice(0, 45)}</span>
+                    <span className="text-[#FFFFFF] font-semibold">{inputValue.slice(0, 45)}</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-mono text-[15px] font-bold">
                     {scanningStages.map((stage, idx) => (
@@ -453,10 +453,10 @@ function CheckRiskContent() {
         {/* ========================================================================= */}
         {errorMessage && !analyzing && (
           <div className="space-y-4 border border-[#FF5C6C]/40 bg-[#2D1216] p-8 rounded-2xl text-center my-8">
-            <span className="font-mono text-[15px] uppercase tracking-wider text-[#FF5C6C] font-extrabold">
+            <span className="font-mono text-[15px] uppercase tracking-wider text-[#FF5C6C] font-semibold">
               Analysis unavailable
             </span>
-            <h3 className="text-[22px] text-[#FFFFFF] font-extrabold">
+            <h3 className="text-[22px] text-[#FFFFFF] font-semibold">
               {errorMessage}
             </h3>
             <p className="text-[18px] text-[#9CA3AF] max-w-lg mx-auto leading-relaxed font-bold">
@@ -474,12 +474,12 @@ function CheckRiskContent() {
             <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-2xl flex flex-col md:flex-row md:items-start justify-between gap-8">
               <div className="space-y-5 flex-1">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="text-[15px] font-extrabold uppercase tracking-wider text-[#9CA3AF]">
+                  <span className="text-[15px] font-semibold uppercase tracking-wider text-[#9CA3AF]">
                     RISK ASSESSMENT
                   </span>
                   <span className="text-[#1E2638]">/</span>
                   <span
-                    className={`inline-flex items-center px-3.5 py-1 rounded-lg text-[15px] font-mono font-extrabold uppercase border ${
+                    className={`inline-flex items-center px-3.5 py-1 rounded-lg text-[15px] font-mono font-semibold uppercase border ${
                       result.riskScore >= 70
                         ? 'bg-[#2D1216] text-[#FF5C6C] border-[#FF5C6C]/40'
                         : result.riskScore >= 40
@@ -495,7 +495,7 @@ function CheckRiskContent() {
                   </span>
                 </div>
 
-                <h2 className="text-[28px] sm:text-[38px] font-mono text-[#FFFFFF] font-extrabold break-all leading-tight">
+                <h2 className="text-[28px] sm:text-[38px] font-mono text-[#FFFFFF] font-semibold break-all leading-tight">
                   {result.targetInput}
                 </h2>
 
@@ -515,7 +515,7 @@ function CheckRiskContent() {
                     type="button"
                     onClick={handleCreateIncident}
                     disabled={incidentCreated}
-                    className={`inline-flex items-center gap-2.5 px-6 py-3 rounded-xl text-[18px] font-extrabold cursor-pointer transition-all shadow-md ${
+                    className={`inline-flex items-center gap-2.5 px-6 py-3 rounded-xl text-[18px] font-semibold cursor-pointer transition-all shadow-md ${
                       incidentCreated
                         ? 'bg-[#0F2620] text-[#F6821F] border border-[#F6821F]/50'
                         : result.riskScore >= 50
@@ -558,7 +558,7 @@ function CheckRiskContent() {
                   <div className="pt-2 flex items-center gap-2.5 text-[17px] font-bold text-[#F6821F]">
                     <span className="h-2.5 w-2.5 rounded-full bg-[#F6821F]" />
                     <span>Incident successfully queued in response center.</span>
-                    <Link href="/incidents" className="text-[#F6821F] hover:underline font-extrabold ml-1">
+                    <Link href="/incidents" className="text-[#F6821F] hover:underline font-semibold ml-1">
                       View in queue →
                     </Link>
                   </div>
@@ -567,7 +567,7 @@ function CheckRiskContent() {
 
               {/* Arc Gauge */}
               <div className="flex flex-col items-center justify-center shrink-0 border border-[#1E2638] p-7 rounded-2xl bg-[#111625] min-w-[220px] shadow-lg">
-                <span className="text-[14px] font-extrabold uppercase tracking-wider text-[#9CA3AF] mb-3">
+                <span className="text-[14px] font-semibold uppercase tracking-wider text-[#9CA3AF] mb-3">
                   THREAT SCORE
                 </span>
                 <RiskArcGauge score={result.riskScore ?? 0} />
@@ -581,10 +581,10 @@ function CheckRiskContent() {
             <section className="space-y-6">
               <div className="flex items-baseline justify-between border-b border-[#1E2638] pb-4">
                 <div className="space-y-1">
-                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
                     DECISION SIGNALS
                   </span>
-                  <h3 className="text-[26px] font-extrabold text-[#FFFFFF]">
+                  <h3 className="text-[26px] font-semibold text-[#FFFFFF]">
                     Why SAFENET reached this assessment
                   </h3>
                 </div>
@@ -603,7 +603,7 @@ function CheckRiskContent() {
                           {num}
                         </div>
                         <div className="md:col-span-4">
-                          <div className="text-[19px] text-[#FFFFFF] font-extrabold">
+                          <div className="text-[19px] text-[#FFFFFF] font-semibold">
                             {contrib.vector}
                           </div>
                           <div className="text-[15px] text-[#F6821F] mt-0.5 font-mono font-bold">
@@ -613,7 +613,7 @@ function CheckRiskContent() {
                         <div className="md:col-span-5 text-[18px] text-[#9CA3AF] leading-relaxed font-bold">
                           {contrib.reason}
                         </div>
-                        <div className={`md:col-span-2 md:text-right font-mono text-[15px] font-extrabold ${
+                        <div className={`md:col-span-2 md:text-right font-mono text-[15px] font-semibold ${
                           contrib.points >= 30 ? 'text-[#FF5C6C]' : contrib.points >= 15 ? 'text-[#FFAB40]' : 'text-[#F6821F]'
                         }`}>
                           {contrib.points >= 30 ? 'HIGH IMPACT' : contrib.points >= 15 ? 'MODERATE' : 'INFORMATIONAL'}
@@ -627,9 +627,9 @@ function CheckRiskContent() {
                     return (
                       <div key={index} className="py-5 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
                         <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-bold">{num}</div>
-                        <div className="md:col-span-4 text-[19px] text-[#FFFFFF] font-extrabold">Evaluation Finding {num}</div>
+                        <div className="md:col-span-4 text-[19px] text-[#FFFFFF] font-semibold">Evaluation Finding {num}</div>
                         <div className="md:col-span-5 text-[18px] text-[#9CA3AF] leading-relaxed font-bold">{reason}</div>
-                        <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#F6821F] font-extrabold">VERIFIED</div>
+                        <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#F6821F] font-semibold">VERIFIED</div>
                       </div>
                     );
                   })
@@ -645,12 +645,12 @@ function CheckRiskContent() {
             {result.aiAnalysis && (
               <section className="space-y-4 border border-[#1E2638] bg-[#0E131F] p-7 rounded-2xl">
                 <div className="flex items-center justify-between pb-3 border-b border-[#1E2638]">
-                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
                     NEURAL THREAT REASONING
                   </span>
                   <span className="font-mono text-[14px] text-[#9CA3AF] font-bold">EVIDENCE-GROUNDED INFERENCE</span>
                 </div>
-                <h4 className="text-[22px] text-[#FFFFFF] font-extrabold leading-snug">
+                <h4 className="text-[22px] text-[#FFFFFF] font-semibold leading-snug">
                   {result.aiAnalysis.threatAssessment}
                 </h4>
                 <p className="text-[19px] text-[#9CA3AF] leading-relaxed font-bold">
@@ -668,10 +668,10 @@ function CheckRiskContent() {
             <section className="space-y-6">
               <div className="flex items-baseline justify-between border-b border-[#1E2638] pb-4">
                 <div className="space-y-1">
-                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
                     TECHNICAL EVIDENCE
                   </span>
-                  <h3 className="text-[26px] font-extrabold text-[#FFFFFF]">
+                  <h3 className="text-[26px] font-semibold text-[#FFFFFF]">
                     Multi-source network intelligence
                   </h3>
                 </div>
@@ -684,13 +684,13 @@ function CheckRiskContent() {
                 {/* 1. Identity & Asset */}
                 <div className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <span className="text-[#9CA3AF] font-bold">Target Asset</span>
-                  <span className="text-[#FFFFFF] font-extrabold">{result.normalizedTarget || result.targetInput}</span>
+                  <span className="text-[#FFFFFF] font-semibold">{result.normalizedTarget || result.targetInput}</span>
                 </div>
 
                 {/* 2. DNS Resolution */}
                 <div className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <span className="text-[#9CA3AF] font-bold">DNS Status</span>
-                  <span className={result.dns ? (result.dns.isResolved || result.dns.resolved ? 'text-[#F6821F] font-extrabold' : 'text-[#FFAB40] font-extrabold') : 'text-[#9CA3AF]'}>
+                  <span className={result.dns ? (result.dns.isResolved || result.dns.resolved ? 'text-[#F6821F] font-semibold' : 'text-[#FFAB40] font-semibold') : 'text-[#9CA3AF]'}>
                     {result.dns ? ((result.dns.isResolved || result.dns.resolved) ? 'Resolved (A/AAAA Active)' : `No resolution (${result.dns.overallStatus || 'NXDOMAIN'})`) : 'Not applicable'}
                   </span>
                 </div>
@@ -721,14 +721,14 @@ function CheckRiskContent() {
                   <>
                     <div className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <span className="text-[#9CA3AF] font-bold">Domain Registrar</span>
-                      <span className={result.rdap.registrarName ? 'text-[#FFFFFF] font-extrabold' : 'text-[#9CA3AF]'}>
+                      <span className={result.rdap.registrarName ? 'text-[#FFFFFF] font-semibold' : 'text-[#9CA3AF]'}>
                         {result.rdap.registrarName ? `${result.rdap.registrarName}${result.rdap.registrarIanaId ? ` (IANA: ${result.rdap.registrarIanaId})` : ''}` : (result.rdap.status === 'unavailable' ? 'Unavailable via RDAP' : 'Not available')}
                       </span>
                     </div>
 
                     <div className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <span className="text-[#9CA3AF] font-bold">Domain Age & Creation</span>
-                      <span className={result.rdap.registrationDateUtc ? 'text-[#FFFFFF] font-extrabold' : 'text-[#9CA3AF]'}>
+                      <span className={result.rdap.registrationDateUtc ? 'text-[#FFFFFF] font-semibold' : 'text-[#9CA3AF]'}>
                         {result.rdap.registrationDateUtc ? `${result.rdap.domainAgeFormatted || 'Verified'} (Created: ${result.rdap.registrationDateUtc.split('T')[0]})` : 'Unavailable / Not returned by registry'}
                       </span>
                     </div>
@@ -740,7 +740,7 @@ function CheckRiskContent() {
                   <>
                     <div className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <span className="text-[#9CA3AF] font-bold">TLS Certificate Status</span>
-                      <span className={result.tls.status === 'valid' ? 'text-[#F6821F] font-extrabold' : 'text-[#FF5C6C] font-extrabold'}>
+                      <span className={result.tls.status === 'valid' ? 'text-[#F6821F] font-semibold' : 'text-[#FF5C6C] font-semibold'}>
                         {result.tls.status === 'valid' ? `Valid (${result.tls.daysRemaining} days remaining)` : `Anomaly: ${result.tls.status} (${result.tls.error || 'Verification error'})`}
                       </span>
                     </div>
@@ -759,7 +759,7 @@ function CheckRiskContent() {
                   <>
                     <div className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <span className="text-[#9CA3AF] font-bold">HTTP Endpoint Status</span>
-                      <span className={result.http.isAccessible ? 'text-[#F6821F] font-extrabold' : 'text-[#FFAB40] font-extrabold'}>
+                      <span className={result.http.isAccessible ? 'text-[#F6821F] font-semibold' : 'text-[#FFAB40] font-semibold'}>
                         {result.http.isAccessible ? `HTTP ${result.http.statusCode} (${result.http.durationMs}ms latency)` : `Unreachable (${result.http.error || 'Connection failed'})`}
                       </span>
                     </div>
@@ -779,7 +779,7 @@ function CheckRiskContent() {
                 {result.threatFeeds && result.threatFeeds.findings?.length > 0 && (
                   <div className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <span className="text-[#9CA3AF] font-bold">Threat Feed Detections</span>
-                    <span className={result.threatFeeds.detectionsCount > 0 ? 'text-[#FF5C6C] font-extrabold' : 'text-[#F6821F] font-extrabold'}>
+                    <span className={result.threatFeeds.detectionsCount > 0 ? 'text-[#FF5C6C] font-semibold' : 'text-[#F6821F] font-semibold'}>
                       {result.threatFeeds.detectionsCount > 0
                         ? `${result.threatFeeds.detectionsCount} vendor detection(s) flagged`
                         : (result.threatFeeds.providersChecked > 0 ? 'Clean (No vendor detections)' : 'Threat feeds unconfigured')}
@@ -793,10 +793,10 @@ function CheckRiskContent() {
             <section className="space-y-6">
               <div className="flex items-baseline justify-between border-b border-[#1E2638] pb-4">
                 <div className="space-y-1">
-                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
                     ACTIONABLE MITIGATION
                   </span>
-                  <h3 className="text-[26px] font-extrabold text-[#FFFFFF]">
+                  <h3 className="text-[26px] font-semibold text-[#FFFFFF]">
                     Recommended action
                   </h3>
                 </div>
@@ -823,7 +823,7 @@ function CheckRiskContent() {
                       <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-bold">
                         {num}
                       </div>
-                      <div className="md:col-span-4 text-[19px] text-[#FFFFFF] font-extrabold">
+                      <div className="md:col-span-4 text-[19px] text-[#FFFFFF] font-semibold">
                         {index === 0 ? 'Authentication Protocol' : index === 1 ? 'Transaction Protocol' : 'Mitigation Protocol'}
                       </div>
                       <div className="md:col-span-7 text-[18px] text-[#9CA3AF] leading-relaxed font-bold">
@@ -845,10 +845,10 @@ function CheckRiskContent() {
             <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl max-w-2xl w-full p-7 space-y-6 shadow-2xl">
               <div className="flex items-center justify-between pb-4 border-b border-[#1E2638]">
                 <div>
-                  <span className="font-mono text-[13px] uppercase text-[#F6821F] font-extrabold">
+                  <span className="font-mono text-[13px] uppercase text-[#F6821F] font-semibold">
                     PUBLIC NOTICE
                   </span>
-                  <h3 className="text-[22px] font-extrabold text-[#FFFFFF]">
+                  <h3 className="text-[22px] font-semibold text-[#FFFFFF]">
                     Customer Safety Advisory
                   </h3>
                 </div>
@@ -898,7 +898,7 @@ function CheckRiskContent() {
                     setCopiedAdvisory(true);
                     setTimeout(() => setCopiedAdvisory(false), 2000);
                   }}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#F6821F] text-[#080B11] text-[17px] font-extrabold rounded-xl hover:bg-[#2EB8A5] transition-all cursor-pointer shadow-md"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#F6821F] text-[#080B11] text-[17px] font-semibold rounded-xl hover:bg-[#2EB8A5] transition-all cursor-pointer shadow-md"
                 >
                   {copiedAdvisory ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   {copiedAdvisory ? 'COPIED TO CLIPBOARD' : 'COPY ADVISORY'}

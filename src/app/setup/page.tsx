@@ -297,7 +297,7 @@ export default function SetupPage() {
         {/* Preset Selector Banner */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#1E2638] pb-5">
           <div className="space-y-1">
-            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+            <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
               FAST-LOAD DEMO TEMPLATES
             </span>
             <p className="text-[17px] text-[#9CA3AF] font-bold">
@@ -309,7 +309,7 @@ export default function SetupPage() {
             <button
               type="button"
               onClick={() => handleLoadPreset('Paytm')}
-              className={`px-4 py-2 rounded-xl transition font-extrabold text-[16px] cursor-pointer ${
+              className={`px-4 py-2 rounded-xl transition font-semibold text-[16px] cursor-pointer ${
                 brandName === 'Paytm'
                   ? 'bg-[#F6821F] text-[#080B11]'
                   : 'bg-[#111625] text-[#9CA3AF] hover:text-[#FFFFFF] border border-[#1E2638]'
@@ -320,7 +320,7 @@ export default function SetupPage() {
             <button
               type="button"
               onClick={() => handleLoadPreset('Nike')}
-              className={`px-4 py-2 rounded-xl transition font-extrabold text-[16px] cursor-pointer ${
+              className={`px-4 py-2 rounded-xl transition font-semibold text-[16px] cursor-pointer ${
                 brandName === 'Nike'
                   ? 'bg-[#F6821F] text-[#080B11]'
                   : 'bg-[#111625] text-[#9CA3AF] hover:text-[#FFFFFF] border border-[#1E2638]'
@@ -337,11 +337,11 @@ export default function SetupPage() {
             <div className="space-y-1.5">
               <div className="flex items-center gap-2.5">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#F6821F] animate-pulse" />
-                <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+                <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
                   REAL-TIME BRAND PROFILE INTELLIGENCE
                 </span>
               </div>
-              <h4 className="text-[22px] font-extrabold text-[#FFFFFF]">
+              <h4 className="text-[22px] font-semibold text-[#FFFFFF]">
                 Extract ground truth from official website
               </h4>
               <p className="text-[17px] text-[#9CA3AF] leading-relaxed font-bold">
@@ -353,7 +353,7 @@ export default function SetupPage() {
               type="button"
               onClick={handleAnalyzeBrand}
               disabled={analysisState === 'VALIDATING' || analysisState === 'FETCHING_WEBSITE' || analysisState === 'EXTRACTING_IDENTITY'}
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer disabled:opacity-50 shrink-0 shadow-lg"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono font-semibold rounded-xl transition cursor-pointer disabled:opacity-50 shrink-0 shadow-lg"
             >
               {analysisState === 'VALIDATING' || analysisState === 'FETCHING_WEBSITE' || analysisState === 'EXTRACTING_IDENTITY' ? (
                 <>
@@ -386,7 +386,7 @@ export default function SetupPage() {
             <div className="border border-[#FF5C6C]/40 bg-[#2D1216] p-5 rounded-xl flex items-start gap-3.5 text-[17px] text-[#FF5C6C] font-bold">
               <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />
               <div>
-                <span className="font-extrabold block uppercase">Inspection Error</span>
+                <span className="font-semibold block uppercase">Inspection Error</span>
                 <span>{analysisError}</span>
               </div>
             </div>
@@ -398,10 +398,10 @@ export default function SetupPage() {
           <div className="border border-[#1E2638] bg-[#0E131F] p-7 sm:p-9 rounded-2xl space-y-7 shadow-xl">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-[#1E2638] pb-5">
               <div className="space-y-1.5">
-                <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+                <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
                   DISCOVERED BRAND IDENTITY (REVIEW &amp; CONFIRM)
                 </span>
-                <h3 className="text-[26px] text-[#FFFFFF] font-extrabold flex items-center gap-2.5">
+                <h3 className="text-[26px] text-[#FFFFFF] font-semibold flex items-center gap-2.5">
                   <span>{discoveredIdentity.brandName}</span>
                   {discoveredIdentity.legalName && (
                     <span className="text-[17px] font-mono text-[#9CA3AF] font-normal">
@@ -423,7 +423,7 @@ export default function SetupPage() {
                   />
                   <div className="text-[14px] font-mono">
                     <span className="text-[#9CA3AF] block text-[11px] uppercase font-bold">LOGO SOURCE</span>
-                    <span className="text-[#F6821F] uppercase font-extrabold">{discoveredIdentity.logoSource || 'WEBSITE'}</span>
+                    <span className="text-[#F6821F] uppercase font-semibold">{discoveredIdentity.logoSource || 'WEBSITE'}</span>
                   </div>
                 </div>
               )}
@@ -444,7 +444,7 @@ export default function SetupPage() {
                       <span className="text-[13px] text-[#8F9CAE]">N/A</span>
                     )}
                   </div>
-                  <span className={`text-[16px] block font-extrabold capitalize ${
+                  <span className={`text-[16px] block font-semibold capitalize ${
                     sig.status === 'verified' ? 'text-[#F6821F]' : sig.status === 'detected' ? 'text-[#FFFFFF]' : 'text-[#8F9CAE]'
                   }`}>
                     {sig.status}
@@ -456,7 +456,7 @@ export default function SetupPage() {
             {/* Discovered Social Profiles */}
             <div className="space-y-4 font-mono">
               <div className="flex items-center justify-between">
-                <span className="text-[14px] text-[#9CA3AF] uppercase tracking-wider font-extrabold">
+                <span className="text-[14px] text-[#9CA3AF] uppercase tracking-wider font-semibold">
                   DISCOVERED OFFICIAL SOCIAL PRESENCE ({discoveredIdentity.socialProfiles.length})
                 </span>
                 <span className="text-[14px] text-[#F6821F] font-bold">
@@ -484,14 +484,14 @@ export default function SetupPage() {
                       >
                         <div className="space-y-1 truncate pr-2">
                           <div className="flex items-center gap-2">
-                            <span className="text-[13px] uppercase font-extrabold text-[#F6821F]">
+                            <span className="text-[13px] uppercase font-semibold text-[#F6821F]">
                               {s.platform}
                             </span>
                             <span className="text-[11px] text-[#9CA3AF] uppercase font-bold">
                               [{s.source}]
                             </span>
                           </div>
-                          <span className="text-[17px] text-[#FFFFFF] font-extrabold block truncate">
+                          <span className="text-[17px] text-[#FFFFFF] font-semibold block truncate">
                             {s.username}
                           </span>
                         </div>
@@ -499,7 +499,7 @@ export default function SetupPage() {
                         <button
                           type="button"
                           onClick={() => toggleSocialSelection(key)}
-                          className={`px-3 py-1.5 text-[14px] rounded-lg transition font-extrabold cursor-pointer shrink-0 ${
+                          className={`px-3 py-1.5 text-[14px] rounded-lg transition font-semibold cursor-pointer shrink-0 ${
                             isSelected
                               ? 'bg-[#F6821F] text-[#080B11]'
                               : 'bg-[#111625] text-[#9CA3AF] border border-[#1E2638] hover:text-[#FFFFFF]'
@@ -516,7 +516,7 @@ export default function SetupPage() {
 
             {/* Discovered Mobile Applications */}
             <div className="space-y-4 font-mono">
-              <span className="text-[14px] text-[#9CA3AF] uppercase tracking-wider block font-extrabold">
+              <span className="text-[14px] text-[#9CA3AF] uppercase tracking-wider block font-semibold">
                 DISCOVERED MOBILE APPLICATIONS ({discoveredIdentity.applications.length})
               </span>
 
@@ -540,11 +540,11 @@ export default function SetupPage() {
                       >
                         <div className="space-y-1 truncate pr-2">
                           <div className="flex items-center gap-2">
-                            <span className="text-[13px] uppercase font-extrabold text-[#F6821F]">
+                            <span className="text-[13px] uppercase font-semibold text-[#F6821F]">
                               {app.store}
                             </span>
                           </div>
-                          <span className="text-[16px] text-[#FFFFFF] font-extrabold block truncate">
+                          <span className="text-[16px] text-[#FFFFFF] font-semibold block truncate">
                             {app.packageId || app.name}
                           </span>
                         </div>
@@ -552,7 +552,7 @@ export default function SetupPage() {
                         <button
                           type="button"
                           onClick={() => toggleAppSelection(key)}
-                          className={`px-3 py-1.5 text-[14px] rounded-lg transition font-extrabold cursor-pointer shrink-0 ${
+                          className={`px-3 py-1.5 text-[14px] rounded-lg transition font-semibold cursor-pointer shrink-0 ${
                             isSelected
                               ? 'bg-[#F6821F] text-[#080B11]'
                               : 'bg-[#111625] text-[#9CA3AF] border border-[#1E2638] hover:text-[#FFFFFF]'
@@ -576,7 +576,7 @@ export default function SetupPage() {
               <button
                 type="button"
                 onClick={handleConfirmDiscoveredIdentity}
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer shadow-lg"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono font-semibold rounded-xl transition cursor-pointer shadow-lg"
               >
                 <Check className="h-4 w-4" />
                 <span>CONFIRM OFFICIAL IDENTITY</span>
@@ -589,11 +589,11 @@ export default function SetupPage() {
         <form onSubmit={handleSave} className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-9">
           <div className="space-y-7">
             <div className="border-b border-[#1E2638] pb-3 flex items-center justify-between">
-              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
                 IDENTITY PARAMETERS (SOURCE OF TRUTH)
               </span>
               {analysisState === 'CONFIRMED' && (
-                <span className="font-mono text-[14px] text-[#F6821F] uppercase font-extrabold">
+                <span className="font-mono text-[14px] text-[#F6821F] uppercase font-semibold">
                   VERIFIED WITH WEBSITE INTELLIGENCE
                 </span>
               )}
@@ -725,7 +725,7 @@ export default function SetupPage() {
             <div className="flex items-center gap-3.5 shrink-0">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#1E2638] text-[#FFFFFF] text-[17px] font-mono font-extrabold rounded-xl hover:bg-[#111625] transition cursor-pointer shadow-md"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#1E2638] text-[#FFFFFF] text-[17px] font-mono font-semibold rounded-xl hover:bg-[#111625] transition cursor-pointer shadow-md"
               >
                 {saved ? <Check className="h-4 w-4 text-[#F6821F]" /> : <Save className="h-4 w-4" />}
                 <span>{saved ? 'SAVED BASELINE' : 'SAVE BASELINE'}</span>
@@ -735,7 +735,7 @@ export default function SetupPage() {
                 type="button"
                 onClick={handleStartInvestigation}
                 disabled={investigationState === 'INVESTIGATING' || investigationState === 'DISCOVERING' || investigationState === 'ANALYZING'}
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono font-extrabold rounded-xl transition cursor-pointer disabled:opacity-50 shadow-lg"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono font-semibold rounded-xl transition cursor-pointer disabled:opacity-50 shadow-lg"
               >
                 {investigationState === 'INVESTIGATING' || investigationState === 'DISCOVERING' || investigationState === 'ANALYZING' ? (
                   <>
@@ -758,14 +758,14 @@ export default function SetupPage() {
           <div className="border border-[#1E2638] bg-[#0E131F] p-7 sm:p-9 rounded-2xl space-y-5 font-mono shadow-xl">
             <div className="flex items-center justify-between border-b border-[#1E2638] pb-4">
               <div className="flex items-center gap-3 text-[15px]">
-                <span className="text-[#9CA3AF] font-extrabold">STATUS:</span>
+                <span className="text-[#9CA3AF] font-semibold">STATUS:</span>
                 <span
                   className={
                     investigationState === 'COMPLETED'
-                      ? 'text-[#F6821F] font-extrabold'
+                      ? 'text-[#F6821F] font-semibold'
                       : investigationState === 'ERROR'
-                      ? 'text-[#FF5C6C] font-extrabold'
-                      : 'text-[#FFAB40] font-extrabold'
+                      ? 'text-[#FF5C6C] font-semibold'
+                      : 'text-[#FFAB40] font-semibold'
                   }
                 >
                   {investigationState}
@@ -784,26 +784,26 @@ export default function SetupPage() {
               <div className="space-y-5 pt-3">
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-[15px] bg-[#111625] p-5 rounded-xl border border-[#1E2638]">
                   <div>
-                    <span className="text-[#9CA3AF] block text-[13px] font-extrabold uppercase">CANDIDATES</span>
-                    <span className="text-[#FFFFFF] text-[26px] font-extrabold">
+                    <span className="text-[#9CA3AF] block text-[13px] font-semibold uppercase">CANDIDATES</span>
+                    <span className="text-[#FFFFFF] text-[26px] font-semibold">
                       {investigationSummary.candidatesCount || 0}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[#9CA3AF] block text-[13px] font-extrabold uppercase">ELEVATED / HIGH RISK</span>
-                    <span className="text-[#FF5C6C] text-[26px] font-extrabold">
+                    <span className="text-[#9CA3AF] block text-[13px] font-semibold uppercase">ELEVATED / HIGH RISK</span>
+                    <span className="text-[#FF5C6C] text-[26px] font-semibold">
                       {investigationSummary.highRiskCount || 0}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[#9CA3AF] block text-[13px] font-extrabold uppercase">PROVIDERS QUERIED</span>
-                    <span className="text-[#F6821F] text-[26px] font-extrabold">
+                    <span className="text-[#9CA3AF] block text-[13px] font-semibold uppercase">PROVIDERS QUERIED</span>
+                    <span className="text-[#F6821F] text-[26px] font-semibold">
                       {Object.keys(investigationSummary.providerRuns || {}).length}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[#9CA3AF] block text-[13px] font-extrabold uppercase">STATUS</span>
-                    <span className="text-[#FFFFFF] text-[24px] font-extrabold uppercase">
+                    <span className="text-[#9CA3AF] block text-[13px] font-semibold uppercase">STATUS</span>
+                    <span className="text-[#FFFFFF] text-[24px] font-semibold uppercase">
                       {investigationSummary.status}
                     </span>
                   </div>
@@ -815,7 +815,7 @@ export default function SetupPage() {
                   </span>
                   <Link
                     href="/overview"
-                    className="inline-flex items-center gap-2 text-[16px] text-[#F6821F] hover:text-[#2EB8A5] font-extrabold"
+                    className="inline-flex items-center gap-2 text-[16px] text-[#F6821F] hover:text-[#2EB8A5] font-semibold"
                   >
                     <span>VIEW RESULTS IN DASHBOARD</span>
                     <ArrowRight className="h-4 w-4" />

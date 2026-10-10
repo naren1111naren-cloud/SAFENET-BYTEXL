@@ -101,7 +101,7 @@ export default function GlobalThreatMap() {
       <div className="px-6 py-5 border-b border-[#1E2638] flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#0E131F]">
         <div>
           <div className="flex items-center gap-3">
-            <h3 className="text-[20px] font-extrabold text-[#FFFFFF] tracking-[-0.01em]">
+            <h3 className="text-[20px] font-semibold text-[#FFFFFF] tracking-[-0.01em]">
               Origin Telemetry & Infrastructure Map
             </h3>
             <span className="text-[14px] font-mono text-[#F6821F] bg-[#111625] px-2.5 py-1 rounded-md border border-[#1E2638] font-bold">
@@ -215,15 +215,15 @@ export default function GlobalThreatMap() {
           <div className="space-y-4">
             <div className="flex items-center justify-between pb-3.5 border-b border-[#1E2638]">
               <div>
-                <span className="text-[13px] font-mono uppercase tracking-wider text-[#F6821F] font-extrabold">
+                <span className="text-[13px] font-mono uppercase tracking-wider text-[#F6821F] font-semibold">
                   Selected Origin
                 </span>
-                <h4 className="text-[20px] font-extrabold text-[#FFFFFF] mt-0.5">
+                <h4 className="text-[20px] font-semibold text-[#FFFFFF] mt-0.5">
                   {selectedRegion.name} ({selectedRegion.countryCode})
                 </h4>
               </div>
               <span
-                className={`text-[13px] font-mono font-extrabold px-2.5 py-1 rounded-md border ${
+                className={`text-[13px] font-mono font-semibold px-2.5 py-1 rounded-md border ${
                   selectedRegion.severity === 'CRITICAL'
                     ? 'bg-[#2D1216] text-[#FF5C6C] border-[#FF5C6C]/40'
                     : selectedRegion.severity === 'HIGH'
@@ -238,20 +238,20 @@ export default function GlobalThreatMap() {
             <div className="space-y-3 font-mono text-[16px]">
               <div className="flex items-center justify-between py-2 border-b border-[#1E2638]">
                 <span className="text-[#9CA3AF] font-bold">Observed Threats:</span>
-                <span className="text-[#FFFFFF] font-extrabold tabular-nums">
+                <span className="text-[#FFFFFF] font-semibold tabular-nums">
                   {selectedRegion.threatCount.toLocaleString()}
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-[#1E2638]">
                 <span className="text-[#9CA3AF] font-bold">Velocity Delta:</span>
-                <span className="text-[#F6821F] font-extrabold flex items-center gap-1">
+                <span className="text-[#F6821F] font-semibold flex items-center gap-1">
                   <ArrowUpRight className="h-4 w-4" />
                   {selectedRegion.changeRate}
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-[#1E2638]">
                 <span className="text-[#9CA3AF] font-bold">Risk Severity Score:</span>
-                <span className="text-[#FF5C6C] font-extrabold">{selectedRegion.riskScore} / 100</span>
+                <span className="text-[#FF5C6C] font-semibold">{selectedRegion.riskScore} / 100</span>
               </div>
               <div className="py-2 border-b border-[#1E2638]">
                 <span className="text-[#9CA3AF] block text-[14px] uppercase font-bold">Primary Attack Vector:</span>
@@ -271,7 +271,7 @@ export default function GlobalThreatMap() {
           <div className="pt-4 border-t border-[#1E2638]">
             <button
               onClick={() => (window.location.href = `/monitoring?tab=threats`)}
-              className="w-full py-3 px-4 rounded-xl bg-[#080B11] hover:bg-[#161D2F] border border-[#1E2638] text-[#FFFFFF] text-[16px] font-extrabold transition-colors cursor-pointer text-center"
+              className="w-full py-3 px-4 rounded-xl bg-[#080B11] hover:bg-[#161D2F] border border-[#1E2638] text-[#FFFFFF] text-[16px] font-semibold transition-colors cursor-pointer text-center"
             >
               Filter Telemetry by {selectedRegion.countryCode} →
             </button>

@@ -31,25 +31,25 @@ export default function StatCard({
   const numberColor = accentColors[variant];
 
   return (
-    <div className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-5 flex flex-col justify-between transition-all hover:border-[#28334E] hover:bg-[#111625] group shadow-sm">
+    <div className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-4 sm:p-5 flex flex-col justify-between transition-all hover:border-[#28334E] hover:bg-[#111625] group shadow-sm">
       {/* Label and Icon Header */}
       <div className="flex items-center justify-between text-[#FFFFFF] gap-2 mb-2">
-        <div className="text-[16px] font-bold text-[#9CA3AF] uppercase tracking-wider">
+        <div className="text-[13px] font-medium text-[#9CA3AF] uppercase tracking-wider">
           {title}
         </div>
         {Icon ? (
-          <div className="p-2 rounded-lg bg-[#111625] text-[#F6821F] border border-[#1E2638] group-hover:border-[#F6821F]/40 transition-colors">
-            <Icon className="h-5 w-5" />
+          <div className="p-1.5 rounded-lg bg-[#111625] text-[#F6821F] border border-[#1E2638] group-hover:border-[#F6821F]/40 transition-colors">
+            <Icon className="h-4 w-4" />
           </div>
         ) : (
-          <Info className="h-4 w-4 text-[#9CA3AF]" />
+          <Info className="h-3.5 w-3.5 text-[#9CA3AF]" />
         )}
       </div>
 
-      {/* Large Bold Statistic */}
+      {/* Clear Visible Statistic */}
       <div className="my-2">
         <div
-          className="text-[42px] sm:text-[50px] font-extrabold tabular-nums leading-none tracking-[-0.03em]"
+          className="text-[36px] sm:text-[42px] font-bold tabular-nums leading-none tracking-tight"
           style={{ color: numberColor }}
         >
           {value}
@@ -57,20 +57,20 @@ export default function StatCard({
       </div>
 
       {/* Radar Metadata & Change Rate */}
-      <div className="flex items-center justify-between text-[15px] text-[#9CA3AF] font-bold pt-3 border-t border-[#1E2638]">
+      <div className="flex items-center justify-between text-[13px] text-[#9CA3AF] font-normal pt-2.5 border-t border-[#1E2638]">
         <span className="truncate text-[#9CA3AF]">{subtitle || 'Live radar telemetry'}</span>
         {changeRate && (
           <span
-            className={`flex items-center font-bold text-[15px] px-2 py-0.5 rounded ${
+            className={`flex items-center font-medium text-[13px] px-1.5 py-0.5 rounded ${
               isPositiveChange
                 ? 'text-[#10B981] bg-[#10B981]/10'
                 : 'text-[#FF4D4D] bg-[#FF4D4D]/10'
             }`}
           >
             {isPositiveChange ? (
-              <ArrowUpRight className="h-3.5 w-3.5 mr-0.5" />
+              <ArrowUpRight className="h-3 w-3 mr-0.5" />
             ) : (
-              <ArrowDownRight className="h-3.5 w-3.5 mr-0.5" />
+              <ArrowDownRight className="h-3 w-3 mr-0.5" />
             )}
             {changeRate}
           </span>

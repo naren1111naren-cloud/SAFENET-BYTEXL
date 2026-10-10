@@ -69,7 +69,7 @@ All scores and indicators derived from live network telemetry, DNS, RDAP, TLS ha
         <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-2xl flex flex-col md:flex-row md:items-start justify-between gap-6">
           <div className="space-y-3 flex-1">
             <div className="flex items-center gap-3">
-              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
                 EXECUTIVE BRIEFING
               </span>
               <span className="text-[#1E2638]">/</span>
@@ -78,7 +78,7 @@ All scores and indicators derived from live network telemetry, DNS, RDAP, TLS ha
               </span>
             </div>
 
-            <h1 className="text-[32px] sm:text-[42px] font-extrabold text-[#FFFFFF] leading-tight">
+            <h1 className="text-[32px] sm:text-[42px] font-semibold text-[#FFFFFF] leading-tight">
               Digital Risk Summary: {brand?.name || 'Organization'}
             </h1>
 
@@ -89,7 +89,7 @@ All scores and indicators derived from live network telemetry, DNS, RDAP, TLS ha
 
           <button
             onClick={handleCopyReport}
-            className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono transition rounded-xl font-extrabold shrink-0 shadow-lg cursor-pointer"
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-mono transition rounded-xl font-semibold shrink-0 shadow-lg cursor-pointer"
           >
             {copiedReport ? <Check className="h-4 w-4 text-[#080B11]" /> : <Copy className="h-4 w-4 text-[#080B11]" />}
             {copiedReport ? 'REPORT COPIED' : 'EXPORT EXECUTIVE REPORT'}
@@ -102,10 +102,10 @@ All scores and indicators derived from live network telemetry, DNS, RDAP, TLS ha
         <section className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-7 sm:p-9 shadow-xl space-y-8">
           <div className="flex items-baseline justify-between border-b border-[#1E2638] pb-4">
             <div className="space-y-1">
-              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-extrabold">
+              <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
                 DOCUMENTED IMPACT
               </span>
-              <h3 className="text-[26px] font-extrabold text-[#FFFFFF]">
+              <h3 className="text-[26px] font-semibold text-[#FFFFFF]">
                 Key security outcomes
               </h3>
             </div>
@@ -117,11 +117,11 @@ All scores and indicators derived from live network telemetry, DNS, RDAP, TLS ha
           <div className="divide-y divide-[#1E2638]">
             {/* 01 */}
             <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-              <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-extrabold">
+              <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-semibold">
                 01
               </div>
               <div className="md:col-span-4">
-                <div className="text-[20px] text-[#FFFFFF] font-extrabold">
+                <div className="text-[20px] text-[#FFFFFF] font-semibold">
                   Identified threat portfolio
                 </div>
                 <div className="text-[15px] text-[#F6821F] font-mono mt-0.5 font-bold">
@@ -131,18 +131,18 @@ All scores and indicators derived from live network telemetry, DNS, RDAP, TLS ha
               <div className="md:col-span-5 text-[18px] text-[#9CA3AF] leading-relaxed font-bold">
                 Active monitoring across domains, social channels, and scam vectors targeting {brand?.name || 'this brand'}. {criticalThreats} items classified as critical risk.
               </div>
-              <div className={`md:col-span-2 md:text-right font-mono text-[15px] font-extrabold ${criticalThreats > 0 ? 'text-[#FF5C6C]' : 'text-[#F6821F]'}`}>
+              <div className={`md:col-span-2 md:text-right font-mono text-[15px] font-semibold ${criticalThreats > 0 ? 'text-[#FF5C6C]' : 'text-[#F6821F]'}`}>
                 {criticalThreats > 0 ? `${criticalThreats} CRITICAL` : 'NORMAL'}
               </div>
             </div>
 
             {/* 02 */}
             <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-              <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-extrabold">
+              <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-semibold">
                 02
               </div>
               <div className="md:col-span-4">
-                <div className="text-[20px] text-[#FFFFFF] font-extrabold">
+                <div className="text-[20px] text-[#FFFFFF] font-semibold">
                   Highest-risk triage targets
                 </div>
                 <div className="text-[15px] text-[#F6821F] font-mono mt-0.5 font-bold">
@@ -153,25 +153,25 @@ All scores and indicators derived from live network telemetry, DNS, RDAP, TLS ha
                 {topThreats.length > 0 ? (
                   topThreats.map((t) => (
                     <div key={t.id} className="truncate text-[#FFFFFF]">
-                      {t.targetAsset} (Risk: <span className="text-[#FF5C6C] font-extrabold">{t.riskScore}/100</span>)
+                      {t.targetAsset} (Risk: <span className="text-[#FF5C6C] font-semibold">{t.riskScore}/100</span>)
                     </div>
                   ))
                 ) : (
                   <div>No critical threat records currently stored.</div>
                 )}
               </div>
-              <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#FF5C6C] font-extrabold">
+              <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#FF5C6C] font-semibold">
                 TRIAGE ACTIVE
               </div>
             </div>
 
             {/* 03 */}
             <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-              <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-extrabold">
+              <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-semibold">
                 03
               </div>
               <div className="md:col-span-4">
-                <div className="text-[20px] text-[#FFFFFF] font-extrabold">
+                <div className="text-[20px] text-[#FFFFFF] font-semibold">
                   Remediation &amp; takedowns
                 </div>
                 <div className="text-[15px] text-[#F6821F] font-mono mt-0.5 font-bold">
@@ -181,18 +181,18 @@ All scores and indicators derived from live network telemetry, DNS, RDAP, TLS ha
               <div className="md:col-span-5 text-[18px] text-[#9CA3AF] leading-relaxed font-bold">
                 Takedown notices and registrar abuse packages generated from verifiable evidence dossiers.
               </div>
-              <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#F6821F] font-extrabold">
+              <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#F6821F] font-semibold">
                 {resolvedCount > 0 ? 'CONTAINED' : 'READY'}
               </div>
             </div>
 
             {/* 04 */}
             <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-              <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-extrabold">
+              <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-semibold">
                 04
               </div>
               <div className="md:col-span-4">
-                <div className="text-[20px] text-[#FFFFFF] font-extrabold">
+                <div className="text-[20px] text-[#FFFFFF] font-semibold">
                   Threat vector coverage
                 </div>
                 <div className="text-[15px] text-[#F6821F] font-mono mt-0.5 font-bold">
@@ -202,7 +202,7 @@ All scores and indicators derived from live network telemetry, DNS, RDAP, TLS ha
               <div className="md:col-span-5 text-[18px] text-[#9CA3AF] leading-relaxed capitalize font-bold">
                 {monitoredVectors.length > 0 ? monitoredVectors.join(', ').replace(/_/g, ' ') : 'Domain lookahead and link scanner'}
               </div>
-              <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#F6821F] font-extrabold">
+              <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#F6821F] font-semibold">
                 OPERATIONAL
               </div>
             </div>

@@ -83,7 +83,7 @@ export default function IncidentsPage() {
           <div className="flex flex-wrap items-center gap-2.5 font-mono text-[16px]">
             <button
               onClick={() => setSelectedFilter('ALL')}
-              className={`px-4 py-2 rounded-xl transition font-extrabold cursor-pointer ${
+              className={`px-4 py-2 rounded-xl transition font-semibold cursor-pointer ${
                 selectedFilter === 'ALL'
                   ? 'bg-[#F6821F] text-[#080B11]'
                   : 'bg-[#111625] border border-[#1E2638] text-[#9CA3AF] hover:text-[#FFFFFF]'
@@ -97,7 +97,7 @@ export default function IncidentsPage() {
                 <button
                   key={st}
                   onClick={() => setSelectedFilter(st)}
-                  className={`px-4 py-2 rounded-xl transition font-extrabold cursor-pointer ${
+                  className={`px-4 py-2 rounded-xl transition font-semibold cursor-pointer ${
                     selectedFilter === st
                       ? 'bg-[#F6821F] text-[#080B11]'
                       : 'bg-[#111625] border border-[#1E2638] text-[#9CA3AF] hover:text-[#FFFFFF]'
@@ -111,7 +111,7 @@ export default function IncidentsPage() {
 
           <Link
             href="/check"
-            className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-extrabold rounded-xl transition shadow-lg shrink-0"
+            className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] text-[17px] font-semibold rounded-xl transition shadow-lg shrink-0"
           >
             <Plus className="h-4 w-4 text-[#080B11]" />
             <span>Check new artifact</span>
@@ -123,14 +123,14 @@ export default function IncidentsPage() {
         {/* ========================================================================= */}
         {filteredThreats.length === 0 ? (
           <div className="bg-[#0E131F] border border-[#1E2638] rounded-2xl p-16 text-center space-y-4 shadow-xl">
-            <h3 className="text-[22px] font-extrabold text-[#FFFFFF]">No incidents match the active filter</h3>
+            <h3 className="text-[22px] font-semibold text-[#FFFFFF]">No incidents match the active filter</h3>
             <p className="text-[18px] text-[#9CA3AF] max-w-md mx-auto font-bold">
               Investigate a suspicious link or change filters to review queued entities.
             </p>
             <div className="pt-2">
               <Link
                 href="/check"
-                className="font-mono text-[16px] text-[#F6821F] hover:text-[#2EB8A5] font-extrabold underline underline-offset-4"
+                className="font-mono text-[16px] text-[#F6821F] hover:text-[#2EB8A5] font-semibold underline underline-offset-4"
               >
                 Launch check instrument →
               </Link>
@@ -141,7 +141,7 @@ export default function IncidentsPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-[18px]">
                 <thead>
-                  <tr className="bg-[#111625] border-b border-[#1E2638] text-[#9CA3AF] font-mono text-[14px] uppercase font-extrabold">
+                  <tr className="bg-[#111625] border-b border-[#1E2638] text-[#9CA3AF] font-mono text-[14px] uppercase font-semibold">
                     <th className="py-4 px-5">Severity</th>
                     <th className="py-4 px-5">Entity / Asset</th>
                     <th className="py-4 px-5">Vector</th>
@@ -165,7 +165,7 @@ export default function IncidentsPage() {
                       >
                         <td className="py-4 px-5 font-mono text-[14px]">
                           <span
-                            className={`font-extrabold px-3 py-1 rounded-md border ${
+                            className={`font-semibold px-3 py-1 rounded-md border ${
                               isCrit
                                 ? 'text-[#FF5C6C] bg-[#2D1216] border-[#FF5C6C]/40'
                                 : threat.riskScore >= 50
@@ -177,7 +177,7 @@ export default function IncidentsPage() {
                           </span>
                         </td>
 
-                        <td className="py-4 px-5 font-mono text-[18px] text-[#FFFFFF] font-extrabold max-w-xs truncate">
+                        <td className="py-4 px-5 font-mono text-[18px] text-[#FFFFFF] font-semibold max-w-xs truncate">
                           {threat.targetAsset}
                         </td>
 
@@ -185,7 +185,7 @@ export default function IncidentsPage() {
                           {threat.type.replace('_', ' ')}
                         </td>
 
-                        <td className="py-4 px-5 font-mono text-[18px] text-[#FFFFFF] font-extrabold">
+                        <td className="py-4 px-5 font-mono text-[18px] text-[#FFFFFF] font-semibold">
                           {threat.riskScore} <span className="text-[#9CA3AF] text-[14px] font-bold">/ 100</span>
                         </td>
 
@@ -212,7 +212,7 @@ export default function IncidentsPage() {
                         <td className="py-4 px-5 text-right whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                           <Link
                             href={`/threat/${threat.id}`}
-                            className="font-mono text-[16px] text-[#F6821F] hover:text-[#2EB8A5] font-extrabold transition inline-flex items-center gap-1.5"
+                            className="font-mono text-[16px] text-[#F6821F] hover:text-[#2EB8A5] font-semibold transition inline-flex items-center gap-1.5"
                           >
                             <span>Investigate</span>
                             <ChevronRight className="h-4 w-4" />

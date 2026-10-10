@@ -63,7 +63,7 @@ export default function ResetPasswordPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#111625] text-[#F6821F] mb-2 border border-[#1E2638] shadow-[0_0_20px_rgba(246, 130, 31,0.15)]">
             <ShieldCheck className="w-8 h-8" />
           </div>
-          <h1 className="text-3xl font-extrabold text-[#FFFFFF] tracking-tight">Set New Password</h1>
+          <h1 className="text-3xl font-semibold text-[#FFFFFF] tracking-tight">Set New Password</h1>
           <p className="text-[17px] text-[#9CA3AF] font-bold">
             Enter your new secure password to restore access to your SAFENET account.
           </p>
@@ -127,7 +127,7 @@ export default function ResetPasswordPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 rounded-xl bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] font-extrabold text-[19px] transition flex items-center justify-center gap-2.5 disabled:opacity-50 cursor-pointer shadow-lg"
+              className="w-full py-4 rounded-xl bg-[#F6821F] hover:bg-[#2EB8A5] text-[#080B11] font-semibold text-[19px] transition flex items-center justify-center gap-2.5 disabled:opacity-50 cursor-pointer shadow-lg"
             >
               {loading ? (
                 <>

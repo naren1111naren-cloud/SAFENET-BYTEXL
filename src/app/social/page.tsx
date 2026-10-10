@@ -428,7 +428,7 @@ export default function SocialMonitoringPage() {
                 className={`px-6 py-3 rounded-xl text-[24px] font-bold font-bold transition flex items-center justify-center gap-2 shrink-0 ${
                   isInvestigating
                     ? 'bg-[#0F2620] text-[#F6821F] font-bold border border-[#F6821F]/40 cursor-not-allowed'
-                    : 'bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white shadow-xs'
+                    : 'bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-white shadow-xs'
                 }`}
               >
                 <RefreshCw className={`h-4 w-4 ${isInvestigating ? 'animate-spin' : ''}`} />
@@ -598,7 +598,7 @@ export default function SocialMonitoringPage() {
                         </span>
                       )}
                     </div>
-                    <h3 className="text-[30px] font-extrabold font-bold text-[#FFFFFF] font-bold mt-1">
+                    <h3 className="text-[30px] font-semibold font-bold text-[#FFFFFF] font-bold mt-1">
                       {brandDisplayName}
                     </h3>
                   </div>
@@ -627,7 +627,7 @@ export default function SocialMonitoringPage() {
                           prof.verificationStatus === 'VERIFIED'
                             ? 'bg-[#347653]/10 text-[#F6821F] font-bold border-[#F6821F]/40'
                             : prof.verificationStatus === 'LIKELY'
-                            ? 'bg-[#F6821F] text-[#080B11] font-extrabold/10 text-[#F6821F] font-bold border-[#F6821F]/40'
+                            ? 'bg-[#F6821F] text-[#080B11] font-semibold/10 text-[#F6821F] font-bold border-[#F6821F]/40'
                             : prof.verificationStatus === 'POSSIBLE'
                             ? 'bg-[#0D1B2A] text-[#64A9FF] font-bold border-[#64A9FF]/40'
                             : prof.verificationStatus === 'UNAVAILABLE'
@@ -758,31 +758,31 @@ export default function SocialMonitoringPage() {
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                 <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
                   <div className="text-[28px] font-bold font-bold font-mono text-[#FF5C6C] font-bold uppercase tracking-wider">Critical Threats</div>
-                  <div className="text-[36px] font-extrabold font-bold font-mono text-[#FF5C6C] font-bold mt-1">{criticalCount}</div>
+                  <div className="text-[36px] font-semibold font-bold font-mono text-[#FF5C6C] font-bold mt-1">{criticalCount}</div>
                   <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Urgent scam risks</div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
                   <div className="text-[28px] font-bold font-bold font-mono text-[#FFAB40] font-bold uppercase tracking-wider">High Risk</div>
-                  <div className="text-[36px] font-extrabold font-bold font-mono text-[#FFAB40] font-bold mt-1">{highRiskCount}</div>
+                  <div className="text-[36px] font-semibold font-bold font-mono text-[#FFAB40] font-bold mt-1">{highRiskCount}</div>
                   <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Impersonation alerts</div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
                   <div className="text-[28px] font-bold font-bold font-mono text-[#FFAB40] font-bold uppercase tracking-wider">Suspicious</div>
-                  <div className="text-[36px] font-extrabold font-bold font-mono text-[#FFAB40] font-bold mt-1">{suspiciousCount}</div>
+                  <div className="text-[36px] font-semibold font-bold font-mono text-[#FFAB40] font-bold mt-1">{suspiciousCount}</div>
                   <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Combosquatting</div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
                   <div className="text-[28px] font-bold font-bold font-mono text-[#64A9FF] font-bold uppercase tracking-wider">Low Concern</div>
-                  <div className="text-[36px] font-extrabold font-bold font-mono text-[#64A9FF] font-bold mt-1">{lowConcernCount}</div>
+                  <div className="text-[36px] font-semibold font-bold font-mono text-[#64A9FF] font-bold mt-1">{lowConcernCount}</div>
                   <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Related community</div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
                   <div className="text-[28px] font-bold font-bold font-mono text-[#F6821F] font-bold uppercase tracking-wider">Likely Official</div>
-                  <div className="text-[36px] font-extrabold font-bold font-mono text-[#F6821F] font-bold mt-1">{likelyOfficialCount}</div>
+                  <div className="text-[36px] font-semibold font-bold font-mono text-[#F6821F] font-bold mt-1">{likelyOfficialCount}</div>
                   <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Verified brand channels</div>
                 </div>
               </div>
@@ -821,7 +821,7 @@ export default function SocialMonitoringPage() {
                       onClick={() => setFilterPlatform(p)}
                       className={`px-3 py-1 rounded-md transition uppercase ${
                         filterPlatform === p
-                          ? 'bg-[#F6821F] text-[#080B11] font-extrabold text-white font-bold'
+                          ? 'bg-[#F6821F] text-[#080B11] font-semibold text-white font-bold'
                           : 'bg-[#0E131F] border border-[#1E2638] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold'
                       }`}
                     >
@@ -886,7 +886,7 @@ export default function SocialMonitoringPage() {
                             )}
 
                             {item.status === 'watchlist' && (
-                              <span className="bg-[#F6821F] text-[#080B11] font-extrabold/10 border border-[#F6821F]/40 text-[#F6821F] font-bold text-[21px] font-bold px-1.5 py-0.5 rounded font-bold font-mono">
+                              <span className="bg-[#F6821F] text-[#080B11] font-semibold/10 border border-[#F6821F]/40 text-[#F6821F] font-bold text-[21px] font-bold px-1.5 py-0.5 rounded font-bold font-mono">
                                 WATCHLIST
                               </span>
                             )}
@@ -927,7 +927,7 @@ export default function SocialMonitoringPage() {
                             className={`px-3.5 py-1.5 rounded-lg text-[17px] font-bold transition flex items-center gap-1.5 font-bold ${
                               tier === 'LIKELY_OFFICIAL'
                                 ? 'bg-[#161D2F] text-[#FFFFFF] font-bold hover:bg-[#161D2F] border border-[#1E2638]'
-                                : 'bg-[#0F2620] text-[#F6821F] font-bold hover:bg-[#F6821F] text-[#080B11] font-extrabold hover:text-white border border-[#F6821F]/40'
+                                : 'bg-[#0F2620] text-[#F6821F] font-bold hover:bg-[#F6821F] text-[#080B11] font-semibold hover:text-white border border-[#F6821F]/40'
                             }`}
                           >
                             <Eye className="h-3.5 w-3.5" />
@@ -965,7 +965,7 @@ export default function SocialMonitoringPage() {
                     )}
                   </div>
 
-                  <h2 className="text-[30px] font-extrabold font-bold text-[#FFFFFF] font-bold pt-1 font-mono">
+                  <h2 className="text-[30px] font-semibold font-bold text-[#FFFFFF] font-bold pt-1 font-mono">
                     {investigatingCandidate.candidate.username}
                   </h2>
                   <div className="text-[24px] font-bold text-[#9CA3AF] font-bold">
@@ -1138,7 +1138,7 @@ export default function SocialMonitoringPage() {
                       onClick={() =>
                         handleUpdateStatus(investigatingCandidate.candidate.id, 'new')
                       }
-                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#0F2620] text-[#F6821F] font-bold border border-[#F6821F]/40 hover:bg-[#F6821F] text-[#080B11] font-extrabold hover:text-white transition flex items-center gap-1.5 font-bold"
+                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#0F2620] text-[#F6821F] font-bold border border-[#F6821F]/40 hover:bg-[#F6821F] text-[#080B11] font-semibold hover:text-white transition flex items-center gap-1.5 font-bold"
                     >
                       <Check className="h-4 w-4" />
                       Reviewed
@@ -1148,7 +1148,7 @@ export default function SocialMonitoringPage() {
                       onClick={() =>
                         handleUpdateStatus(investigatingCandidate.candidate.id, 'reviewed')
                       }
-                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#F6821F] text-[#080B11] font-extrabold hover:bg-[#2EB8A5] text-white transition flex items-center gap-1.5 font-bold shadow-xs"
+                      className="px-4 py-2 rounded-lg text-[24px] font-bold bg-[#F6821F] text-[#080B11] font-semibold hover:bg-[#2EB8A5] text-white transition flex items-center gap-1.5 font-bold shadow-xs"
                     >
                       <Check className="h-4 w-4" />
                       Mark as Reviewed
