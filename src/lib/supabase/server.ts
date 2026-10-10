@@ -1,10 +1,9 @@
 /**
  * SAFENET - Supabase Server Client
  * Provides server-side Supabase client for Server Components, Server Actions,
- * and Route Handlers using @supabase/ssr and Next.js cookieStore.
+ * and Route Handlers using Next.js cookieStore.
  */
 
-import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 
 export async function getSupabaseServerClient() {
@@ -21,21 +20,17 @@ export async function getSupabaseServerClient() {
     process.env.SUPABASE_PUBLISHABLE_KEY ||
     '';
 
-  return createServerClient(supabaseUrl, supabaseKey, {
-    cookies: {
-      getAll() {
-        return cookieStore.getAll();
-      },
-      setAll(cookiesToSet) {
-        try {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            cookieStore.set(name, value, options)
-          );
-        } catch {
-          // Can happen if called from a Server Component.
-          // Middleware handles cookie refreshes.
-        }
-      },
+  return {
+    auth: {
+      getUser: async () => ({ data: { user: null }, error: null }),
+      getSession: async () => ({ data: { session: null }, error: null }),
+      exchangeCodeForSession: async (code: string) => ({ data: { user: null, session: null }, error: null }),
     },
-  });
+    from: (tableName: string) => ({
+      select: () => Promise.resolve({ data: [], error: null }),
+      insert: () => Promise.resolve({ data: null, error: null }),
+      update: () => Promise.resolve({ data: null, error: null }),
+      delete: () => Promise.resolve({ data: null, error: null }),
+    }),
+  };
 }

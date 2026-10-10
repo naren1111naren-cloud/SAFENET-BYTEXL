@@ -499,7 +499,7 @@ function CheckRiskContent() {
                   {result.targetInput}
                 </h2>
 
-                <p className="text-[20px] text-[#9CA3AF] leading-relaxed max-w-3xl font-bold">
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl font-normal">
                   {result.summaryPhrase || (
                     result.riskScore >= 70
                       ? `SAFENET detected high-risk indicators targeting ${result.brand?.name || 'protected assets'}.`
@@ -510,55 +510,55 @@ function CheckRiskContent() {
                 </p>
 
                 {/* Action Bar */}
-                <div className="flex flex-wrap items-center gap-3.5 pt-3">
+                <div className="flex flex-wrap items-center gap-3 pt-3">
                   <button
                     type="button"
                     onClick={handleCreateIncident}
                     disabled={incidentCreated}
-                    className={`inline-flex items-center gap-2.5 px-6 py-3 rounded-xl text-[18px] font-semibold cursor-pointer transition-all shadow-md ${
+                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold font-sans cursor-pointer transition-all shadow-md ${
                       incidentCreated
-                        ? 'bg-[#0F2620] text-[#F6821F] border border-[#F6821F]/50'
+                        ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/40'
                         : result.riskScore >= 50
-                        ? 'bg-[#FF5C6C] text-[#080B11] hover:bg-[#E04857]'
-                        : 'bg-[#F6821F] text-[#080B11] hover:bg-[#2EB8A5]'
+                        ? 'btn-accent'
+                        : 'btn-accent'
                     }`}
                   >
-                    <AlertOctagon className="h-5 w-5" />
+                    <AlertOctagon className="h-4 w-4" />
                     {incidentCreated ? '✓ Incident Logged' : 'Create Incident'}
                   </button>
 
                   <Link
                     href="/campaigns"
-                    className="inline-flex items-center gap-2.5 px-5 py-3 border border-[#1E2638] bg-[#111625] text-[#FFFFFF] text-[18px] font-bold hover:bg-[#161D2F] rounded-xl shadow-md transition-colors"
+                    className="btn-quiet inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold font-sans shadow-md"
                   >
-                    <GitBranch className="h-5 w-5 text-[#64A9FF]" />
-                    Investigate Campaign
+                    <GitBranch className="h-4 w-4 text-sky-400" />
+                    <span>Investigate Campaign</span>
                   </Link>
 
                   <button
                     type="button"
                     onClick={() => setAdvisoryModalOpen(true)}
-                    className="inline-flex items-center gap-2.5 px-5 py-3 border border-[#1E2638] bg-[#111625] text-[#FFFFFF] text-[18px] font-bold hover:bg-[#161D2F] rounded-xl shadow-md transition-colors cursor-pointer"
+                    className="btn-quiet inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold font-sans shadow-md cursor-pointer"
                   >
-                    <FileText className="h-5 w-5 text-[#F6821F]" />
-                    Customer Advisory
+                    <FileText className="h-4 w-4 text-pink-400" />
+                    <span>Customer Advisory</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={handleShareResult}
-                    className="inline-flex items-center gap-2 px-4 py-3 text-[#9CA3AF] hover:text-[#FFFFFF] text-[17px] font-bold rounded-xl hover:bg-[#111625] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 text-slate-400 hover:text-white text-xs font-medium font-sans rounded-full hover:bg-purple-900/30 transition-colors cursor-pointer"
                   >
-                    <Share2 className="h-5 w-5" />
-                    {copiedShare ? 'Copied Link' : 'Share'}
+                    <Share2 className="h-4 w-4" />
+                    <span>{copiedShare ? 'Copied Link' : 'Share'}</span>
                   </button>
                 </div>
 
                 {incidentCreated && (
-                  <div className="pt-2 flex items-center gap-2.5 text-[17px] font-bold text-[#F6821F]">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#F6821F]" />
+                  <div className="pt-2 flex items-center gap-2 text-xs font-sans text-emerald-400">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_6px_#10B981]" />
                     <span>Incident successfully queued in response center.</span>
-                    <Link href="/incidents" className="text-[#F6821F] hover:underline font-semibold ml-1">
+                    <Link href="/incidents" className="text-pink-300 hover:underline font-semibold ml-1">
                       View in queue →
                     </Link>
                   </div>
@@ -566,55 +566,55 @@ function CheckRiskContent() {
               </div>
 
               {/* Arc Gauge */}
-              <div className="flex flex-col items-center justify-center shrink-0 border border-[#1E2638] p-7 rounded-2xl bg-[#111625] min-w-[220px] shadow-lg">
-                <span className="text-[14px] font-semibold uppercase tracking-wider text-[#9CA3AF] mb-3">
+              <div className="flex flex-col items-center justify-center shrink-0 border border-purple-500/20 p-6 rounded-2xl bg-[#130D2E]/80 backdrop-blur-xl min-w-[200px] shadow-lg">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-3 font-sans">
                   THREAT SCORE
                 </span>
                 <RiskArcGauge score={result.riskScore ?? 0} />
-                <span className="text-[16px] font-bold text-[#FFFFFF] mt-3 font-sans">
+                <span className="text-xs font-medium text-slate-300 mt-3 font-sans">
                   {typeof result.confidence === 'number' ? `Confidence: ${result.confidence}%` : 'Confidence unavailable'}
                 </span>
               </div>
             </div>
 
             {/* ── SECTION: WHY WE FLAGGED IT / DECISION SIGNALS ── */}
-            <section className="space-y-6">
-              <div className="flex items-baseline justify-between border-b border-[#1E2638] pb-4">
+            <section className="space-y-4">
+              <div className="flex items-baseline justify-between border-b border-purple-900/40 pb-3">
                 <div className="space-y-1">
-                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
+                  <span className="text-xs uppercase tracking-wider text-purple-300 font-semibold font-sans">
                     DECISION SIGNALS
                   </span>
-                  <h3 className="text-[26px] font-semibold text-[#FFFFFF]">
+                  <h3 className="text-base sm:text-lg font-semibold font-display text-white">
                     Why SAFENET reached this assessment
                   </h3>
                 </div>
-                <span className="font-mono text-[16px] text-[#9CA3AF] font-bold">
+                <span className="text-xs text-slate-400 font-sans">
                   {result.contributions?.length || result.reasons?.length || 0} evaluated signal{(result.contributions?.length || result.reasons?.length || 0) === 1 ? '' : 's'}
                 </span>
               </div>
 
-              <div className="divide-y divide-[#1E2638]">
+              <div className="divide-y divide-purple-900/30">
                 {result.contributions && result.contributions.length > 0 ? (
                   result.contributions.map((contrib: any, index: number) => {
                     const num = String(index + 1).padStart(2, '0');
                     return (
-                      <div key={index} className="py-5 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-                        <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-bold">
+                      <div key={index} className="py-4 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline text-sm">
+                        <div className="md:col-span-1 font-mono text-xs text-slate-400">
                           {num}
                         </div>
                         <div className="md:col-span-4">
-                          <div className="text-[19px] text-[#FFFFFF] font-semibold">
+                          <div className="text-sm text-white font-semibold font-sans">
                             {contrib.vector}
                           </div>
-                          <div className="text-[15px] text-[#F6821F] mt-0.5 font-mono font-bold">
+                          <div className="text-xs text-pink-400 mt-0.5 font-mono font-medium">
                             Contribution: +{contrib.points} pts
                           </div>
                         </div>
-                        <div className="md:col-span-5 text-[18px] text-[#9CA3AF] leading-relaxed font-bold">
+                        <div className="md:col-span-5 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
                           {contrib.reason}
                         </div>
-                        <div className={`md:col-span-2 md:text-right font-mono text-[15px] font-semibold ${
-                          contrib.points >= 30 ? 'text-[#FF5C6C]' : contrib.points >= 15 ? 'text-[#FFAB40]' : 'text-[#F6821F]'
+                        <div className={`md:col-span-2 md:text-right font-mono text-xs font-semibold ${
+                          contrib.points >= 30 ? 'text-rose-400' : contrib.points >= 15 ? 'text-amber-400' : 'text-emerald-400'
                         }`}>
                           {contrib.points >= 30 ? 'HIGH IMPACT' : contrib.points >= 15 ? 'MODERATE' : 'INFORMATIONAL'}
                         </div>
@@ -625,16 +625,16 @@ function CheckRiskContent() {
                   result.reasons.map((reason: string, index: number) => {
                     const num = String(index + 1).padStart(2, '0');
                     return (
-                      <div key={index} className="py-5 grid grid-cols-1 md:grid-cols-12 gap-5 items-baseline">
-                        <div className="md:col-span-1 font-mono text-[16px] text-[#9CA3AF] font-bold">{num}</div>
-                        <div className="md:col-span-4 text-[19px] text-[#FFFFFF] font-semibold">Evaluation Finding {num}</div>
-                        <div className="md:col-span-5 text-[18px] text-[#9CA3AF] leading-relaxed font-bold">{reason}</div>
-                        <div className="md:col-span-2 md:text-right font-mono text-[15px] text-[#F6821F] font-semibold">VERIFIED</div>
+                      <div key={index} className="py-4 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline text-sm">
+                        <div className="md:col-span-1 font-mono text-xs text-slate-400">{num}</div>
+                        <div className="md:col-span-4 text-sm text-white font-semibold font-sans">Evaluation Finding {num}</div>
+                        <div className="md:col-span-5 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">{reason}</div>
+                        <div className="md:col-span-2 md:text-right font-mono text-xs text-emerald-400 font-semibold">VERIFIED</div>
                       </div>
                     );
                   })
                 ) : (
-                  <div className="py-8 text-center font-mono text-[17px] text-[#9CA3AF] font-bold">
+                  <div className="py-8 text-center text-xs text-slate-400 font-sans">
                     No significant risk indicators were detected.
                   </div>
                 )}
@@ -643,21 +643,21 @@ function CheckRiskContent() {
 
             {/* ── SECTION: AI THREAT REASONING ── */}
             {result.aiAnalysis && (
-              <section className="space-y-4 border border-[#1E2638] bg-[#0E131F] p-7 rounded-2xl">
-                <div className="flex items-center justify-between pb-3 border-b border-[#1E2638]">
-                  <span className="font-mono text-[14px] uppercase tracking-wider text-[#F6821F] font-semibold">
+              <section className="space-y-3 border border-purple-500/20 bg-[#130D2E]/80 backdrop-blur-xl p-6 rounded-2xl shadow-xl">
+                <div className="flex items-center justify-between pb-3 border-b border-purple-900/40">
+                  <span className="text-xs uppercase tracking-wider text-purple-300 font-semibold font-sans">
                     NEURAL THREAT REASONING
                   </span>
-                  <span className="font-mono text-[14px] text-[#9CA3AF] font-bold">EVIDENCE-GROUNDED INFERENCE</span>
+                  <span className="text-xs text-slate-400 font-sans">EVIDENCE-GROUNDED INFERENCE</span>
                 </div>
-                <h4 className="text-[22px] text-[#FFFFFF] font-semibold leading-snug">
+                <h4 className="text-base font-semibold font-display text-white leading-snug">
                   {result.aiAnalysis.threatAssessment}
                 </h4>
-                <p className="text-[19px] text-[#9CA3AF] leading-relaxed font-bold">
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
                   {result.aiAnalysis.keyFindingsExplanation}
                 </p>
                 {result.aiAnalysis.contradictoryOrMissingEvidence?.length > 0 && (
-                  <div className="pt-2 font-mono text-[15px] text-[#9CA3AF] font-bold">
+                  <div className="pt-2 font-mono text-xs text-slate-400">
                     Evidence gaps: {result.aiAnalysis.contradictoryOrMissingEvidence.join(' • ')}
                   </div>
                 )}

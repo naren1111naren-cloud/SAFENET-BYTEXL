@@ -9,8 +9,13 @@
  */
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import type { User, Session, AuthError } from '@supabase/supabase-js';
+import type { SupabaseUser as User, SupabaseSession as Session } from '@/lib/supabase/browser';
 import { getSupabaseBrowserClient } from '@/lib/supabase/browser';
+
+export interface AuthError {
+  name: string;
+  message: string;
+}
 
 export interface DemoAccount {
   id: string;
@@ -162,7 +167,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // 2. Try Supabase session if available
     try {
       const supabase = getSupabaseBrowserClient();
-      supabase.auth.getSession().then(({ data: { session: initialSession }, error }) => {
+      supabase.auth.getSession().then(({ data, error }: { data: { session: any }; error: any }) => {
+        const initialSession = data?.session;
         if (!error && initialSession?.user) {
           setSession(initialSession);
           setUser(initialSession.user);

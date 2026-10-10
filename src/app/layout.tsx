@@ -1,10 +1,16 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 
 const inter = Inter({
   variable: '--font-inter',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
   subsets: ['latin'],
   display: 'swap',
 });
@@ -42,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased dark`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased dark`}
       style={{ colorScheme: 'dark', backgroundColor: '#090414' }}
       suppressHydrationWarning
     >

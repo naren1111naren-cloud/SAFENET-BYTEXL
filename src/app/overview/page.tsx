@@ -120,60 +120,60 @@ export default function OverviewPage() {
             </div>
           </div>
 
-          {/* CLOUDFLARE RADAR KPI METRICS: Clean dark cards with relaxed weights */}
+          {/* RADAR KPI METRICS */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Metric 1 */}
-            <div className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-4 space-y-1.5 hover:border-[#28334E] hover:bg-[#111625] transition-all">
-              <div className="text-[12px] text-[#9CA3AF] uppercase font-medium tracking-wider">
+            <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-4 space-y-1.5 hover:border-pink-500/40 hover:bg-[#1C1344] transition-all shadow-lg">
+              <div className="text-[11px] sm:text-xs text-slate-300 uppercase font-semibold tracking-wider">
                 Detected Candidates
               </div>
-              <div className="text-[34px] sm:text-[38px] font-bold text-[#FFFFFF] leading-none tabular-nums tracking-tight">
+              <div className="text-[28px] sm:text-[32px] font-bold font-mono text-white leading-none tabular-nums tracking-tight">
                 {totalDetected}
               </div>
-              <div className="text-[12px] text-[#F6821F] font-normal flex items-center gap-1.5 pt-2 border-t border-[#1E2638]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#F6821F]" />
+              <div className="text-xs text-pink-400 font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#EC4899]" />
                 {totalDetected > 0 ? `${totalDetected} active candidates` : 'Perimeter nominal'}
               </div>
             </div>
 
             {/* Metric 2 */}
-            <div className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-4 space-y-1.5 hover:border-[#28334E] hover:bg-[#111625] transition-all">
-              <div className="text-[12px] text-[#9CA3AF] uppercase font-medium tracking-wider">
+            <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-rose-500/30 rounded-2xl p-4 space-y-1.5 hover:border-rose-500/50 hover:bg-[#1C1344] transition-all shadow-lg">
+              <div className="text-[11px] sm:text-xs text-slate-300 uppercase font-semibold tracking-wider">
                 Needs Attention
               </div>
-              <div className="text-[34px] sm:text-[38px] font-bold text-[#FF4D4D] leading-none tabular-nums tracking-tight">
+              <div className="text-[28px] sm:text-[32px] font-bold font-mono text-rose-400 leading-none tabular-nums tracking-tight">
                 {needsAttention}
               </div>
-              <div className="text-[12px] text-[#FF4D4D] font-normal flex items-center gap-1.5 pt-2 border-t border-[#1E2638]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#FF4D4D]" />
+              <div className="text-xs text-rose-400 font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
+                <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
                 High / Critical priority
               </div>
             </div>
 
             {/* Metric 3 */}
-            <div className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-4 space-y-1.5 hover:border-[#28334E] hover:bg-[#111625] transition-all">
-              <div className="text-[12px] text-[#9CA3AF] uppercase font-medium tracking-wider">
+            <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-amber-500/30 rounded-2xl p-4 space-y-1.5 hover:border-amber-500/50 hover:bg-[#1C1344] transition-all shadow-lg">
+              <div className="text-[11px] sm:text-xs text-slate-300 uppercase font-semibold tracking-wider">
                 Active Investigations
               </div>
-              <div className="text-[34px] sm:text-[38px] font-bold text-[#FBBF24] leading-none tabular-nums tracking-tight">
+              <div className="text-[28px] sm:text-[32px] font-bold font-mono text-amber-400 leading-none tabular-nums tracking-tight">
                 {investigationsCount}
               </div>
-              <div className="text-[12px] text-[#FBBF24] font-normal flex items-center gap-1.5 pt-2 border-t border-[#1E2638]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#FBBF24]" />
+              <div className="text-xs text-amber-400 font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
                 Persisted forensic cases
               </div>
             </div>
 
             {/* Metric 4 */}
-            <div className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-4 space-y-1.5 hover:border-[#28334E] hover:bg-[#111625] transition-all">
-              <div className="text-[12px] text-[#9CA3AF] uppercase font-medium tracking-wider">
+            <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-sky-500/30 rounded-2xl p-4 space-y-1.5 hover:border-sky-500/50 hover:bg-[#1C1344] transition-all shadow-lg">
+              <div className="text-[11px] sm:text-xs text-slate-300 uppercase font-semibold tracking-wider">
                 Campaign Clusters
               </div>
-              <div className="text-[34px] sm:text-[38px] font-bold text-[#2C7BE5] leading-none tabular-nums tracking-tight">
+              <div className="text-[28px] sm:text-[32px] font-bold font-mono text-sky-400 leading-none tabular-nums tracking-tight">
                 {campaignsCount}
               </div>
-              <div className="text-[12px] text-[#2C7BE5] font-normal flex items-center gap-1.5 pt-2 border-t border-[#1E2638]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#2C7BE5]" />
+              <div className="text-xs text-sky-400 font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
+                <span className="h-1.5 w-1.5 rounded-full bg-sky-500" />
                 Correlated threat hubs
               </div>
             </div>
@@ -185,17 +185,17 @@ export default function OverviewPage() {
         {/* ========================================================================= */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* LEFT 8 COLS: THREAT ACTIVITY VELOCITY (HOURLY) */}
-          <div className="lg:col-span-8 bg-[#0E131F] border border-[#1E2638] rounded-xl p-5 space-y-4">
-            <div className="flex items-baseline justify-between border-b border-[#1E2638] pb-3">
+          <div className="lg:col-span-8 bg-[#130D2E]/80 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-5 space-y-4 shadow-xl">
+            <div className="flex items-baseline justify-between border-b border-purple-900/40 pb-3">
               <div className="space-y-0.5">
-                <span className="text-[11px] font-mono font-medium uppercase tracking-wider text-[#F6821F]">
+                <span className="text-xs font-semibold uppercase tracking-wider text-purple-300 font-sans">
                   RADAR TEMPORAL SIGNALS
                 </span>
-                <h3 className="text-[18px] font-semibold text-[#FFFFFF]">
+                <h3 className="text-base sm:text-lg font-semibold font-display text-white">
                   Threat Activity Velocity
                 </h3>
               </div>
-              <span className="text-[13px] font-mono text-[#9CA3AF]">Interval: 60m UTC</span>
+              <span className="text-xs text-slate-400 font-sans">Interval: 60m UTC</span>
             </div>
 
             {/* Analytical density bar graph */}

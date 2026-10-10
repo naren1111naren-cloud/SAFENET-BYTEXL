@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "SF Mono", Consolas, "Liberation Mono", monospace;
+}
+
 @layer base {
   :root,
   .dark {
@@ -61,12 +67,18 @@ body {
   background-attachment: fixed;
   color: #F8FAFC;
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Monospace font for telemetry, data, domains, hashes, and indicators */
+/* Headings use Space Grotesk Display Typography */
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-space-grotesk), var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Monospace font reserved strictly for data (domains, IPs, hashes, handles, scores, timestamps) */
 code, kbd, samp, pre, .font-mono {
   font-family: var(--font-jetbrains-mono), "SF Mono", Consolas, "Liberation Mono", monospace;
   font-feature-settings: "tnum" 1;

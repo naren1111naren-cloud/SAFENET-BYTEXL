@@ -513,8 +513,8 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
       <div className="space-y-6 pb-20">
         {/* Toast Feedback */}
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 bg-[#111625] text-white px-4 py-2.5 rounded-lg font-mono text-[17px] font-bold flex items-center gap-2 shadow-xl animate-in slide-in-from-bottom-3 border border-[#F6821F]/40">
-            <Check className="h-4 w-4 text-[#F6821F] font-bold" />
+          <div className="fixed bottom-6 right-6 z-50 bg-[#130D2E] text-white px-4 py-2.5 rounded-xl font-sans text-sm font-medium flex items-center gap-2 shadow-2xl border border-pink-500/40">
+            <Check className="h-4 w-4 text-[#00F5A0]" />
             <span>{toastMessage}</span>
           </div>
         )}
@@ -522,46 +522,46 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         {/* TOP: PROTECTION OVERVIEW METRICS DASHBOARD */}
         {/* ═════════════════════════════════════════════════════════════════════ */}
-        <div className="bg-[#0E131F] border border-[#1E2638] p-5 rounded-xl shadow-xs">
-          <div className="flex items-center justify-between pb-3 border-b border-[#1E2638]">
+        <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-purple-500/20 p-5 rounded-2xl shadow-xl">
+          <div className="flex items-center justify-between pb-3 border-b border-purple-900/40">
             <div className="flex items-center gap-2">
-              <BarChart2 className="h-4 w-4 text-[#F6821F] font-bold" />
-              <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#F6821F] font-bold">
+              <BarChart2 className="h-4 w-4 text-purple-400" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-purple-300 font-sans">
                 PROTECTION OVERVIEW
               </span>
             </div>
-            <div className="flex items-center gap-3 text-[28px] font-bold font-bold font-mono text-[#9CA3AF] font-bold">
+            <div className="flex items-center gap-3 text-xs text-slate-400 font-sans">
               <span className="flex items-center gap-1.5">
-                <Clock className="h-3.5 w-3.5 text-[#9CA3AF] font-bold" />
-                Last Scan: <span className="text-[#FFFFFF] font-bold font-medium">{monitoringConfig.last_scan ? new Date(monitoringConfig.last_scan).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today, 14:42'}</span>
+                <Clock className="h-3.5 w-3.5 text-purple-400" />
+                Last Scan: <span className="text-white font-mono font-medium">{monitoringConfig.last_scan ? new Date(monitoringConfig.last_scan).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today, 14:42'}</span>
               </span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-4 font-mono text-[28px] font-bold font-bold">
-            <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638]">
-              <span className="text-[#9CA3AF] font-bold block text-[21px] font-bold uppercase font-semibold">Applications Monitored</span>
-              <span className="text-[#FFFFFF] font-bold text-[24px] font-bold">{totalMonitoredCount}</span>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-4">
+            <div className="bg-[#0D0722]/80 p-3 rounded-xl border border-purple-900/40">
+              <span className="text-slate-400 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">Applications Monitored</span>
+              <span className="text-white font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{totalMonitoredCount}</span>
             </div>
-            <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638]">
-              <span className="text-[#FFAB40] font-bold block text-[21px] font-bold uppercase font-semibold">New Threats</span>
-              <span className="text-[#FFAB40] font-bold text-[24px] font-bold">{newThreatsCount}</span>
+            <div className="bg-[#0D0722]/80 p-3 rounded-xl border border-purple-900/40">
+              <span className="text-purple-300 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">New Threats</span>
+              <span className="text-purple-300 font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{newThreatsCount}</span>
             </div>
-            <div className="bg-[#2D1216] p-3 rounded-lg border border-[#FF5C6C]/40">
-              <span className="text-[#FF5C6C] font-bold block text-[21px] font-bold uppercase font-bold">High / Critical</span>
-              <span className="text-[#FF5C6C] font-bold text-[24px] font-bold">{highCriticalTotal}</span>
+            <div className="bg-rose-950/30 p-3 rounded-xl border border-rose-500/30">
+              <span className="text-rose-400 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">High / Critical</span>
+              <span className="text-rose-400 font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{highCriticalTotal}</span>
             </div>
-            <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638]">
-              <span className="text-[#FFAB40] font-bold block text-[21px] font-bold uppercase font-semibold">Under Review</span>
-              <span className="text-[#FFAB40] font-bold text-[24px] font-bold">{underReviewCount}</span>
+            <div className="bg-[#0D0722]/80 p-3 rounded-xl border border-purple-900/40">
+              <span className="text-amber-300 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">Under Review</span>
+              <span className="text-amber-300 font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{underReviewCount}</span>
             </div>
-            <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638]">
-              <span className="text-[#FFAB40] font-bold block text-[21px] font-bold uppercase font-semibold">Confirmed Suspicious</span>
-              <span className="text-[#FFAB40] font-bold text-[24px] font-bold">{confirmedSuspiciousCount}</span>
+            <div className="bg-[#0D0722]/80 p-3 rounded-xl border border-purple-900/40">
+              <span className="text-pink-300 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">Confirmed Suspicious</span>
+              <span className="text-pink-300 font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{confirmedSuspiciousCount}</span>
             </div>
-            <div className="bg-[#111625] p-3 rounded-lg border border-[#1E2638]">
-              <span className="text-[#F6821F] font-bold block text-[21px] font-bold uppercase font-semibold">Resolved</span>
-              <span className="text-[#F6821F] font-bold text-[24px] font-bold">{resolvedCount}</span>
+            <div className="bg-[#0D0722]/80 p-3 rounded-xl border border-purple-900/40">
+              <span className="text-emerald-400 block text-[11px] sm:text-xs font-semibold uppercase tracking-wider truncate">Resolved</span>
+              <span className="text-emerald-400 font-mono text-2xl sm:text-[28px] font-bold mt-1 block">{resolvedCount}</span>
             </div>
           </div>
         </div>
@@ -571,15 +571,15 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
         {/* ═════════════════════════════════════════════════════════════════════ */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Protected Brand Baseline */}
-          <div className="lg:col-span-2 bg-[#0E131F] border border-[#1E2638] p-5 rounded-xl shadow-xs relative flex flex-col justify-between">
+          <div className="lg:col-span-2 bg-[#130D2E]/80 backdrop-blur-xl border border-purple-500/20 p-5 rounded-2xl shadow-xl relative flex flex-col justify-between">
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-[#F6821F] font-bold" />
-                  <span className="text-[28px] font-bold font-bold font-mono uppercase tracking-wider text-[#F6821F] font-bold">
+                  <Shield className="h-4 w-4 text-purple-400" />
+                  <span className="text-xs font-semibold uppercase tracking-wider text-purple-300 font-sans">
                     PROTECTED BRAND TARGET
                   </span>
-                  <span className="text-[21px] font-bold font-mono bg-[#0F2620] text-[#F6821F] font-bold px-2 py-0.5 rounded-full border border-[#F6821F]/40 font-semibold">
+                  <span className="text-[11px] font-mono bg-emerald-950/60 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30 font-medium">
                     VERIFIED BASELINE
                   </span>
                 </div>
@@ -588,15 +588,15 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                   <button
                     type="button"
                     onClick={() => setShowBrandSelector(!showBrandSelector)}
-                    className="px-3 py-1.5 bg-[#111625] border border-[#1E2638] text-[#FFFFFF] font-bold text-[17px] font-bold font-mono rounded-lg hover:bg-[#161D2F] transition flex items-center gap-1.5"
+                    className="px-3 py-1.5 bg-[#0D0722] border border-purple-900/50 text-slate-200 text-xs font-sans rounded-xl hover:bg-purple-900/30 transition flex items-center gap-1.5"
                   >
                     <span>Change ({currentBrand?.name})</span>
-                    <ChevronDown className="h-3.5 w-3.5 text-[#9CA3AF] font-bold" />
+                    <ChevronDown className="h-3.5 w-3.5 text-purple-400" />
                   </button>
 
                   {showBrandSelector && (
-                    <div className="absolute right-0 top-9 z-40 w-56 bg-[#0E131F] border border-[#1E2638] shadow-xl rounded-xl p-1.5 font-mono text-[17px] font-bold">
-                      <div className="px-3 py-1.5 text-[21px] font-bold uppercase text-[#9CA3AF] font-bold border-b border-[#1E2638] font-semibold">
+                    <div className="absolute right-0 top-9 z-40 w-56 bg-[#130D2E] border border-purple-500/30 shadow-2xl rounded-2xl p-1.5 font-sans text-xs">
+                      <div className="px-3 py-1.5 text-[10px] uppercase text-purple-400 border-b border-purple-900/40 font-semibold">
                         SELECT AUTHORITATIVE BRAND
                       </div>
                       {Object.keys(PRESET_BRANDS).map((bKey) => (
@@ -604,11 +604,11 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
                           key={bKey}
                           type="button"
                           onClick={() => handleSelectBrand(bKey)}
-                          className="w-full text-left px-3 py-2 text-[#FFFFFF] font-bold hover:bg-[#111625] rounded-lg flex items-center justify-between"
+                          className="w-full text-left px-3 py-2 text-slate-200 hover:bg-purple-900/40 rounded-xl flex items-center justify-between"
                         >
                           <span>{bKey}</span>
                           {currentBrand?.name === bKey && (
-                            <Check className="h-3.5 w-3.5 text-[#F6821F] font-bold" />
+                            <Check className="h-3.5 w-3.5 text-[#00F5A0]" />
                           )}
                         </button>
                       ))}
@@ -618,29 +618,29 @@ External Domains: ${(candidate.extracted_domains || []).join(', ') || 'None decl
               </div>
 
               <div className="flex flex-wrap items-baseline gap-3 pt-1">
-                <h2 className="text-[28px] font-bold text-[#FFFFFF] font-bold">
+                <h2 className="text-lg font-semibold font-display text-white">
                   {currentBrand?.name || 'PayPal'}
                 </h2>
-                <span className="text-[17px] font-bold font-mono text-[#9CA3AF] font-bold">
-                  Official Domain: <span className="text-[#FFFFFF] font-bold font-semibold">{currentBrand?.domain || 'paypal.com'}</span>
+                <span className="text-xs text-slate-400">
+                  Official Domain: <span className="font-mono text-purple-300 font-medium">{currentBrand?.domain || 'paypal.com'}</span>
                 </span>
                 {currentBrand?.officialDevelopers && currentBrand.officialDevelopers.length > 0 ? (
-                  <span className="text-[17px] font-bold font-mono text-[#9CA3AF] font-bold">
-                    · Publisher: <span className="text-[#FFFFFF] font-bold font-semibold">{currentBrand.officialDevelopers[0]}</span>
+                  <span className="text-xs text-slate-400">
+                    · Publisher: <span className="text-slate-200 font-medium">{currentBrand.officialDevelopers[0]}</span>
                   </span>
                 ) : (
-                  <span className="text-[28px] font-bold font-bold font-mono text-[#FFAB40] font-bold">
+                  <span className="text-xs font-mono text-amber-400">
                     (Official identity partially verified)
                   </span>
                 )}
                 {currentBrand?.appPackageName && (
-                  <span className="hidden sm:inline text-[17px] font-bold font-mono text-[#9CA3AF] font-bold">
+                  <span className="hidden sm:inline text-xs font-mono text-slate-400">
                     · Pkg: {currentBrand.appPackageName}
                   </span>
                 )}
               </div>
 
-              <p className="text-[24px] font-bold text-[#9CA3AF] font-bold pt-1 leading-relaxed">
+              <p className="text-sm text-slate-300 pt-1 leading-relaxed">
                 SAFENET protects this organization from brand impersonation, deceptive app look-alikes, publisher spoofing, and malicious credential phishing across Android application perimeters.
               </p>
             </div>

@@ -40,81 +40,81 @@ import {
 import { SocialStore, SocialScanRecord } from '@/lib/social/social-store';
 import { BrandDiscoveryResult } from '@/lib/social/brand-discovery';
 
-// Clean platform badge in Organic Monochrome
+// Clean platform badge
 function PlatformBadge({ platform }: { platform: string }) {
   switch (platform.toLowerCase()) {
     case 'youtube':
       return (
-        <span className="font-mono text-[21px] font-bold font-bold text-[#FF5C6C] font-bold bg-[#2D1216] px-2 py-0.5 rounded border border-[#FF5C6C]/40">
+        <span className="font-mono text-xs font-semibold text-rose-400 bg-rose-950/40 px-2 py-0.5 rounded-full border border-rose-500/30">
           YOUTUBE
         </span>
       );
     case 'twitter':
       return (
-        <span className="font-mono text-[21px] font-bold font-bold text-[#64A9FF] font-bold bg-[#0D1B2A] px-2 py-0.5 rounded border border-[#64A9FF]/40">
+        <span className="font-mono text-xs font-semibold text-sky-400 bg-sky-950/40 px-2 py-0.5 rounded-full border border-sky-500/30">
           X / TWITTER
         </span>
       );
     case 'instagram':
       return (
-        <span className="font-mono text-[21px] font-bold font-bold text-[#E1306C] bg-[#E1306C]/10 px-2 py-0.5 rounded border border-[#E1306C]/20">
+        <span className="font-mono text-xs font-semibold text-pink-400 bg-pink-950/40 px-2 py-0.5 rounded-full border border-pink-500/30">
           INSTAGRAM
         </span>
       );
     case 'facebook':
       return (
-        <span className="font-mono text-[21px] font-bold font-bold text-[#1877F2] bg-[#1877F2]/10 px-2 py-0.5 rounded border border-[#1877F2]/20">
+        <span className="font-mono text-xs font-semibold text-blue-400 bg-blue-950/40 px-2 py-0.5 rounded-full border border-blue-500/30">
           FACEBOOK
         </span>
       );
     case 'linkedin':
       return (
-        <span className="font-mono text-[21px] font-bold font-bold text-[#0A66C2] bg-[#0A66C2]/10 px-2 py-0.5 rounded border border-[#0A66C2]/20">
+        <span className="font-mono text-xs font-semibold text-indigo-400 bg-indigo-950/40 px-2 py-0.5 rounded-full border border-indigo-500/30">
           LINKEDIN
         </span>
       );
     case 'website':
       return (
-        <span className="font-mono text-[21px] font-bold font-bold text-[#F6821F] font-bold bg-[#0F2620] px-2 py-0.5 rounded border border-[#F6821F]/40">
+        <span className="font-mono text-xs font-semibold text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-500/30">
           OFFICIAL WEB
         </span>
       );
     default:
       return (
-        <span className="font-mono text-[21px] font-bold font-semibold text-[#9CA3AF] font-bold bg-[#161D2F] px-2 py-0.5 rounded border border-[#1E2638]">
+        <span className="font-mono text-xs font-medium text-slate-400 bg-purple-950/30 px-2 py-0.5 rounded-full border border-purple-900/40">
           {platform.toUpperCase()}
         </span>
       );
   }
 }
 
-// 5-Tier Threat Classification Badge (Organic Monochrome)
+// 5-Tier Threat Classification Badge
 function ThreatTierBadge({ tier, score }: { tier?: ThreatClassification; score: number }) {
   switch (tier) {
     case 'LIKELY_OFFICIAL':
       return (
-        <span className="inline-flex items-center gap-1 font-mono text-[28px] font-bold font-bold text-[#F6821F] font-bold bg-[#347653]/10 border border-[#F6821F]/40 px-2 py-0.5 rounded">
+        <span className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
           <ShieldCheck className="h-3 w-3" />
           LIKELY OFFICIAL ({score}/100)
         </span>
       );
     case 'LOW_CONCERN':
       return (
-        <span className="inline-flex items-center gap-1 font-mono text-[28px] font-bold font-bold text-[#64A9FF] font-bold bg-[#0D1B2A] border border-[#64A9FF]/40 px-2 py-0.5 rounded">
+        <span className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-sky-400 bg-sky-950/40 border border-sky-500/30 px-2.5 py-0.5 rounded-full">
           <Shield className="h-3 w-3" />
           RELATED / LOW CONCERN ({score}/100)
         </span>
       );
     case 'SUSPICIOUS':
       return (
-        <span className="inline-flex items-center gap-1 font-mono text-[28px] font-bold font-bold text-[#FFAB40] font-bold bg-[#2C1C0D] border border-[#FFAB40]/40 px-2 py-0.5 rounded">
+        <span className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-500/30 px-2.5 py-0.5 rounded-full">
           <AlertTriangle className="h-3 w-3" />
           SUSPICIOUS ({score}/100)
         </span>
       );
     case 'HIGH_RISK':
       return (
-        <span className="inline-flex items-center gap-1 font-mono text-[28px] font-bold font-bold text-[#FFAB40] font-bold bg-[#2C1C0D] border border-[#FFAB40]/40 px-2 py-0.5 rounded">
+        <span className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-pink-400 bg-pink-950/40 border border-pink-500/30 px-2.5 py-0.5 rounded-full">
           <AlertOctagon className="h-3 w-3" />
           POTENTIAL IMPERSONATION ({score}/100)
         </span>
@@ -122,7 +122,7 @@ function ThreatTierBadge({ tier, score }: { tier?: ThreatClassification; score: 
     case 'CRITICAL_THREAT':
     default:
       return (
-        <span className="inline-flex items-center gap-1 font-mono text-[28px] font-bold font-bold text-[#FF5C6C] font-bold bg-[#2D1216] border border-[#FF5C6C]/40 px-2 py-0.5 rounded">
+        <span className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-rose-400 bg-rose-950/40 border border-rose-500/30 px-2.5 py-0.5 rounded-full">
           <ShieldAlert className="h-3 w-3" />
           CRITICAL THREAT ({score}/100)
         </span>
@@ -754,36 +754,36 @@ export default function SocialMonitoringPage() {
                 </div>
               </div>
 
-              {/* Metric Tiles (Organic Monochrome Style) */}
+              {/* Metric Tiles */}
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
-                  <div className="text-[28px] font-bold font-bold font-mono text-[#FF5C6C] font-bold uppercase tracking-wider">Critical Threats</div>
-                  <div className="text-[36px] font-semibold font-bold font-mono text-[#FF5C6C] font-bold mt-1">{criticalCount}</div>
-                  <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Urgent scam risks</div>
+                <div className="p-4 rounded-2xl bg-[#130D2E]/80 backdrop-blur-xl border border-rose-500/30 shadow-lg">
+                  <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-rose-400 font-sans">Critical Threats</div>
+                  <div className="text-[28px] sm:text-[32px] font-bold font-mono text-rose-400 tabular-nums mt-1">{criticalCount}</div>
+                  <div className="text-xs text-slate-400 mt-0.5">Urgent scam risks</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
-                  <div className="text-[28px] font-bold font-bold font-mono text-[#FFAB40] font-bold uppercase tracking-wider">High Risk</div>
-                  <div className="text-[36px] font-semibold font-bold font-mono text-[#FFAB40] font-bold mt-1">{highRiskCount}</div>
-                  <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Impersonation alerts</div>
+                <div className="p-4 rounded-2xl bg-[#130D2E]/80 backdrop-blur-xl border border-pink-500/30 shadow-lg">
+                  <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-pink-400 font-sans">High Risk</div>
+                  <div className="text-[28px] sm:text-[32px] font-bold font-mono text-pink-400 tabular-nums mt-1">{highRiskCount}</div>
+                  <div className="text-xs text-slate-400 mt-0.5">Impersonation alerts</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
-                  <div className="text-[28px] font-bold font-bold font-mono text-[#FFAB40] font-bold uppercase tracking-wider">Suspicious</div>
-                  <div className="text-[36px] font-semibold font-bold font-mono text-[#FFAB40] font-bold mt-1">{suspiciousCount}</div>
-                  <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Combosquatting</div>
+                <div className="p-4 rounded-2xl bg-[#130D2E]/80 backdrop-blur-xl border border-amber-500/30 shadow-lg">
+                  <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-amber-400 font-sans">Suspicious</div>
+                  <div className="text-[28px] sm:text-[32px] font-bold font-mono text-amber-400 tabular-nums mt-1">{suspiciousCount}</div>
+                  <div className="text-xs text-slate-400 mt-0.5">Combosquatting</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
-                  <div className="text-[28px] font-bold font-bold font-mono text-[#64A9FF] font-bold uppercase tracking-wider">Low Concern</div>
-                  <div className="text-[36px] font-semibold font-bold font-mono text-[#64A9FF] font-bold mt-1">{lowConcernCount}</div>
-                  <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Related community</div>
+                <div className="p-4 rounded-2xl bg-[#130D2E]/80 backdrop-blur-xl border border-sky-500/30 shadow-lg">
+                  <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-sky-400 font-sans">Low Concern</div>
+                  <div className="text-[28px] sm:text-[32px] font-bold font-mono text-sky-400 tabular-nums mt-1">{lowConcernCount}</div>
+                  <div className="text-xs text-slate-400 mt-0.5">Related community</div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0E131F] border border-[#1E2638] shadow-xs">
-                  <div className="text-[28px] font-bold font-bold font-mono text-[#F6821F] font-bold uppercase tracking-wider">Likely Official</div>
-                  <div className="text-[36px] font-semibold font-bold font-mono text-[#F6821F] font-bold mt-1">{likelyOfficialCount}</div>
-                  <div className="text-[28px] font-bold font-bold text-[#9CA3AF] font-bold mt-0.5">Verified brand channels</div>
+                <div className="p-4 rounded-2xl bg-[#130D2E]/80 backdrop-blur-xl border border-emerald-500/30 shadow-lg">
+                  <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-emerald-400 font-sans">Likely Official</div>
+                  <div className="text-[28px] sm:text-[32px] font-bold font-mono text-emerald-400 tabular-nums mt-1">{likelyOfficialCount}</div>
+                  <div className="text-xs text-slate-400 mt-0.5">Verified brand channels</div>
                 </div>
               </div>
             </section>
@@ -793,8 +793,8 @@ export default function SocialMonitoringPage() {
             {/* ========================================================================= */}
             <section className="space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-center gap-1.5 flex-wrap text-[17px] font-bold font-mono">
-                  <span className="text-[#9CA3AF] font-bold font-semibold mr-1">Filter:</span>
+                <div className="flex items-center gap-1.5 flex-wrap text-xs font-sans">
+                  <span className="text-slate-400 font-medium mr-1">Filter:</span>
                   {[
                     { label: 'ALL', id: 'ALL' },
                     { label: 'HIGH RISK & CRITICAL', id: 'HIGH_RISK' },
@@ -804,17 +804,17 @@ export default function SocialMonitoringPage() {
                     <button
                       key={f.id}
                       onClick={() => setFilterTier(f.id)}
-                      className={`px-3 py-1 rounded-md transition ${
+                      className={`px-3 py-1.5 rounded-full text-xs font-medium transition cursor-pointer ${
                         filterTier === f.id
-                          ? 'bg-[#111625] text-white font-bold'
-                          : 'bg-[#0E131F] border border-[#1E2638] text-[#9CA3AF] font-bold hover:text-[#FFFFFF] font-bold'
+                          ? 'bg-gradient-to-r from-purple-600/50 to-pink-600/50 text-white border border-pink-500/50'
+                          : 'bg-[#130D2E]/80 border border-purple-900/50 text-slate-300 hover:text-white hover:border-pink-500/30'
                       }`}
                     >
                       {f.label}
                     </button>
                   ))}
 
-                  <span className="text-[#9CA3AF] font-bold font-semibold ml-2 mr-1">Platform:</span>
+                  <span className="text-slate-400 font-medium ml-2 mr-1">Platform:</span>
                   {['ALL', 'youtube', 'twitter', 'instagram', 'facebook', 'linkedin'].map((p) => (
                     <button
                       key={p}

@@ -13,7 +13,7 @@ export async function GET(request: Request) {
       if (!error) {
         return NextResponse.redirect(`${origin}${next}`);
       }
-      console.error('[Auth Callback] Code exchange error:', error.message);
+      console.error('[Auth Callback] Code exchange error:', (error as any)?.message);
     } catch (err) {
       console.error('[Auth Callback] Unexpected error:', err);
     }
