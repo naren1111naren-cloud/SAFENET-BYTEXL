@@ -71,6 +71,7 @@ export default function IncidentsPage() {
 
   return (
     <AppShell
+      pageEyebrow="Security Operations Response"
       pageTitle="Incident Response Queue"
       pageSubtitle="Operational triage, status lifecycle, and mitigation workflow."
     >
@@ -83,9 +84,9 @@ export default function IncidentsPage() {
           <div className="flex flex-wrap items-center gap-2 text-xs font-sans">
             <button
               onClick={() => setSelectedFilter('ALL')}
-              className={`px-3.5 py-1.5 rounded-full transition font-medium cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-full transition button-text cursor-pointer ${
                 selectedFilter === 'ALL'
-                  ? 'bg-gradient-to-r from-purple-600/50 to-pink-600/50 text-white border border-pink-500/50'
+                  ? 'bg-gradient-to-r from-purple-600/50 to-pink-600/50 text-white border border-pink-500/50 font-semibold'
                   : 'bg-[#130D2E]/80 border border-purple-900/50 text-slate-300 hover:text-white hover:border-pink-500/30'
               }`}
             >
@@ -97,9 +98,9 @@ export default function IncidentsPage() {
                 <button
                   key={st}
                   onClick={() => setSelectedFilter(st)}
-                  className={`px-3.5 py-1.5 rounded-full transition font-medium cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full transition button-text cursor-pointer ${
                     selectedFilter === st
-                      ? 'bg-gradient-to-r from-purple-600/50 to-pink-600/50 text-white border border-pink-500/50'
+                      ? 'bg-gradient-to-r from-purple-600/50 to-pink-600/50 text-white border border-pink-500/50 font-semibold'
                       : 'bg-[#130D2E]/80 border border-purple-900/50 text-slate-300 hover:text-white hover:border-pink-500/30'
                   }`}
                 >
@@ -111,7 +112,7 @@ export default function IncidentsPage() {
 
           <Link
             href="/check"
-            className="btn-accent inline-flex items-center gap-2 px-5 py-2 text-xs font-semibold font-sans shadow-lg shrink-0"
+            className="btn-accent inline-flex items-center gap-2 px-5 py-2 button-text font-semibold shadow-lg shrink-0"
           >
             <Plus className="h-3.5 w-3.5" />
             <span>Check new artifact</span>
@@ -123,14 +124,14 @@ export default function IncidentsPage() {
         {/* ========================================================================= */}
         {filteredThreats.length === 0 ? (
           <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-12 text-center space-y-3 shadow-xl">
-            <h3 className="text-base sm:text-lg font-semibold font-display text-white">No incidents match the active filter</h3>
-            <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">
+            <h3 className="card-title text-white">No incidents match the active filter</h3>
+            <p className="small-text text-slate-400 max-w-md mx-auto">
               Investigate a suspicious link or change filters to review queued entities.
             </p>
             <div className="pt-2">
               <Link
                 href="/check"
-                className="text-xs font-sans text-pink-400 hover:text-pink-300 font-medium underline underline-offset-4"
+                className="button-text text-pink-400 hover:text-pink-300 underline underline-offset-4"
               >
                 Launch check instrument →
               </Link>
@@ -141,15 +142,15 @@ export default function IncidentsPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs sm:text-sm">
                 <thead>
-                  <tr className="bg-[#0D0722]/80 border-b border-purple-900/40 text-slate-400 text-[11px] font-semibold uppercase tracking-wider font-sans">
-                    <th className="py-3 px-4">Severity</th>
-                    <th className="py-3 px-4">Entity / Asset</th>
-                    <th className="py-3 px-4">Vector</th>
-                    <th className="py-3 px-4">Score</th>
-                    <th className="py-3 px-4">First Seen</th>
-                    <th className="py-3 px-4">Status</th>
-                    <th className="py-3 px-4">Analyst</th>
-                    <th className="py-3 px-4 text-right">Action</th>
+                  <tr className="bg-[#0D0722]/80 border-b border-purple-900/40 text-slate-400">
+                    <th className="table-header-text py-3 px-4">Severity</th>
+                    <th className="table-header-text py-3 px-4">Entity / Asset</th>
+                    <th className="table-header-text py-3 px-4">Vector</th>
+                    <th className="table-header-text py-3 px-4">Score</th>
+                    <th className="table-header-text py-3 px-4">First Seen</th>
+                    <th className="table-header-text py-3 px-4">Status</th>
+                    <th className="table-header-text py-3 px-4">Analyst</th>
+                    <th className="table-header-text py-3 px-4 text-right">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-purple-900/30 font-sans">
@@ -163,9 +164,9 @@ export default function IncidentsPage() {
                         onClick={() => router.push(`/threat/${threat.id}`)}
                         className="group hover:bg-purple-900/20 transition cursor-pointer"
                       >
-                        <td className="py-3 px-4 font-mono text-xs">
+                        <td className="py-3 px-4">
                           <span
-                            className={`font-semibold px-2.5 py-0.5 rounded-full border text-[10px] uppercase ${
+                            className={`eyebrow-text px-2.5 py-0.5 rounded-full border ${
                               isCrit
                                 ? 'text-rose-400 bg-rose-950/40 border-rose-500/30'
                                 : threat.riskScore >= 50
@@ -177,7 +178,7 @@ export default function IncidentsPage() {
                           </span>
                         </td>
 
-                        <td className="py-3 px-4 font-mono text-xs text-white font-medium max-w-xs truncate">
+                        <td className="py-3 px-4 data-text text-white font-medium max-w-xs truncate">
                           {threat.targetAsset}
                         </td>
 
@@ -185,11 +186,11 @@ export default function IncidentsPage() {
                           {threat.type.replace('_', ' ')}
                         </td>
 
-                        <td className="py-3 px-4 font-mono text-xs text-white font-semibold">
-                          {threat.riskScore} <span className="text-slate-400 text-[10px]">/ 100</span>
+                        <td className="py-3 px-4 data-text text-white font-semibold">
+                          {threat.riskScore} <span className="text-slate-400 text-xs">/ 100</span>
                         </td>
 
-                        <td className="py-3 px-4 text-xs text-slate-400 font-sans">
+                        <td className="py-3 px-4 data-text text-slate-400">
                           {threat.discoveredAt ? new Date(threat.discoveredAt).toLocaleDateString() : 'Today'}
                         </td>
 
@@ -212,7 +213,7 @@ export default function IncidentsPage() {
                         <td className="py-3 px-4 text-right whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                           <Link
                             href={`/threat/${threat.id}`}
-                            className="text-xs text-pink-400 hover:text-pink-300 font-medium transition inline-flex items-center gap-1 font-sans"
+                            className="button-text text-pink-400 hover:text-pink-300 transition inline-flex items-center gap-1 font-sans"
                           >
                             <span>Investigate</span>
                             <ChevronRight className="h-3.5 w-3.5" />
