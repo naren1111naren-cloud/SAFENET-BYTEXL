@@ -134,14 +134,10 @@ export default function AppShell({ children, pageTitle, pageSubtitle, pageEyebro
       {/* ── EVENTOR VIOLET DESKTOP SIDEBAR ── */}
       <aside className="hidden lg:flex w-60 flex-col bg-[#0D0722]/90 backdrop-blur-xl border-r border-purple-900/40 shrink-0 sticky top-0 h-screen z-30 select-none shadow-[4px_0_30px_rgba(0,0,0,0.6)]">
         {/* Brand / Logo Header */}
-        <div className="h-16 px-5 border-b border-purple-900/40 flex items-center justify-between bg-[#130D2E]/40">
+        <div className="h-16 px-5 border-b border-purple-900/40 flex items-center bg-[#130D2E]/40">
           <Link href="/" className="hover:opacity-95 transition-opacity">
-            <SafenetLogo size={16} showWordmark={true} />
+            <SafenetLogo size={18} showWordmark={true} />
           </Link>
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EC4899] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#EC4899]" />
-          </span>
         </div>
 
         {/* Navigation Section */}

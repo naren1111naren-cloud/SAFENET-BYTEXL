@@ -56,13 +56,10 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#111625] border border-[#1E2638] text-[#F6821F] mb-1 shadow-inner">
             <ShieldCheck className="w-6 h-6 text-[#F6821F]" />
           </div>
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center">
             <h1 className="page-title text-2xl font-semibold tracking-tight text-white font-display">
               SAFENET
             </h1>
-            <span className="px-1.5 py-0.5 rounded text-[10px] font-sans font-semibold tracking-wider bg-[#F6821F]/15 text-[#F6821F] border border-[#F6821F]/30 uppercase">
-              RADAR
-            </span>
           </div>
           <p className="small-text text-xs sm:text-sm text-slate-400 font-normal font-sans">
             Sign In to Telemetry Portal
