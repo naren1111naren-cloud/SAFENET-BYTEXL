@@ -72,6 +72,7 @@ export default function OverviewPage() {
 
   return (
     <AppShell
+      pageEyebrow="Radar Overview & Executive Telemetry"
       pageTitle="Radar Overview"
       pageSubtitle={`Global digital risk and social perimeter telemetry for ${brand?.name || 'Paytm'} • Live radar ingestion`}
     >
@@ -82,12 +83,12 @@ export default function OverviewPage() {
         <section className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1E2638] pb-4">
             <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#F6821F]/15 border border-[#F6821F]/30 text-[#F6821F] text-[12px] font-medium font-mono">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#F6821F]/15 border border-[#F6821F]/30 text-[#F6821F] text-xs font-semibold font-sans uppercase tracking-wider">
                 <Radio className="h-3 w-3 text-[#F6821F] animate-pulse" />
                 LIVE RADAR TELEMETRY
               </span>
               <span className="text-[#1E2638]">/</span>
-              <span className="text-[14px] text-[#E5E7EB] font-normal">
+              <span className="text-sm text-slate-300 font-sans font-normal">
                 {brand?.name || 'Paytm'} Perimeter Active
               </span>
             </div>
@@ -96,21 +97,21 @@ export default function OverviewPage() {
             <div className="flex items-center gap-2.5">
               <Link
                 href="/check"
-                className="px-3.5 py-1.5 bg-[#F6821F] hover:bg-[#FA8B28] text-[#FFFFFF] font-medium text-[13px] rounded-lg shadow-sm inline-flex items-center gap-1.5 transition-all cursor-pointer"
+                className="button-text px-3.5 py-1.5 bg-[#F6821F] hover:bg-[#FA8B28] text-white font-semibold text-xs sm:text-sm rounded-lg shadow-sm inline-flex items-center gap-1.5 transition-all cursor-pointer font-sans"
               >
                 <Search className="h-3.5 w-3.5" />
                 <span>Quick Check</span>
               </Link>
 
-              <div className="flex items-center bg-[#0E131F] border border-[#1E2638] rounded-lg p-0.5 text-[12px] font-medium">
+              <div className="flex items-center bg-[#0E131F] border border-[#1E2638] rounded-lg p-0.5 text-xs font-medium font-sans">
                 {(['24H', '7D', '30D'] as const).map((r) => (
                   <button
                     key={r}
                     onClick={() => setTimeRange(r)}
-                    className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
+                    className={`px-3 py-1 rounded-md transition-all cursor-pointer font-sans ${
                       timeRange === r
-                        ? 'bg-[#F6821F] text-[#FFFFFF] font-semibold'
-                        : 'text-[#9CA3AF] hover:text-[#FFFFFF]'
+                        ? 'bg-[#F6821F] text-white font-semibold shadow-xs'
+                        : 'text-slate-400 hover:text-white'
                     }`}
                   >
                     {r}
@@ -124,13 +125,13 @@ export default function OverviewPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Metric 1 */}
             <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-4 space-y-1.5 hover:border-pink-500/40 hover:bg-[#1C1344] transition-all shadow-lg">
-              <div className="text-[11px] sm:text-xs text-slate-300 uppercase font-semibold tracking-wider">
+              <div className="stat-label text-slate-400 font-sans text-xs uppercase tracking-wider font-semibold">
                 Detected Candidates
               </div>
-              <div className="text-[28px] sm:text-[32px] font-bold font-mono text-white leading-none tabular-nums tracking-tight">
+              <div className="stat-value text-3xl sm:text-4xl font-bold font-mono text-white leading-tight tabular-nums tracking-tight">
                 {totalDetected}
               </div>
-              <div className="text-xs text-pink-400 font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
+              <div className="small-text text-xs text-pink-400 font-sans font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#EC4899]" />
                 {totalDetected > 0 ? `${totalDetected} active candidates` : 'Perimeter nominal'}
               </div>
@@ -138,13 +139,13 @@ export default function OverviewPage() {
 
             {/* Metric 2 */}
             <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-rose-500/30 rounded-2xl p-4 space-y-1.5 hover:border-rose-500/50 hover:bg-[#1C1344] transition-all shadow-lg">
-              <div className="text-[11px] sm:text-xs text-slate-300 uppercase font-semibold tracking-wider">
+              <div className="stat-label text-slate-400 font-sans text-xs uppercase tracking-wider font-semibold">
                 Needs Attention
               </div>
-              <div className="text-[28px] sm:text-[32px] font-bold font-mono text-rose-400 leading-none tabular-nums tracking-tight">
+              <div className="stat-value text-3xl sm:text-4xl font-bold font-mono text-rose-400 leading-tight tabular-nums tracking-tight">
                 {needsAttention}
               </div>
-              <div className="text-xs text-rose-400 font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
+              <div className="small-text text-xs text-rose-400 font-sans font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
                 <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
                 High / Critical priority
               </div>
@@ -152,13 +153,13 @@ export default function OverviewPage() {
 
             {/* Metric 3 */}
             <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-amber-500/30 rounded-2xl p-4 space-y-1.5 hover:border-amber-500/50 hover:bg-[#1C1344] transition-all shadow-lg">
-              <div className="text-[11px] sm:text-xs text-slate-300 uppercase font-semibold tracking-wider">
+              <div className="stat-label text-slate-400 font-sans text-xs uppercase tracking-wider font-semibold">
                 Active Investigations
               </div>
-              <div className="text-[28px] sm:text-[32px] font-bold font-mono text-amber-400 leading-none tabular-nums tracking-tight">
+              <div className="stat-value text-3xl sm:text-4xl font-bold font-mono text-amber-400 leading-tight tabular-nums tracking-tight">
                 {investigationsCount}
               </div>
-              <div className="text-xs text-amber-400 font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
+              <div className="small-text text-xs text-amber-400 font-sans font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
                 <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
                 Persisted forensic cases
               </div>
@@ -166,13 +167,13 @@ export default function OverviewPage() {
 
             {/* Metric 4 */}
             <div className="bg-[#130D2E]/80 backdrop-blur-xl border border-sky-500/30 rounded-2xl p-4 space-y-1.5 hover:border-sky-500/50 hover:bg-[#1C1344] transition-all shadow-lg">
-              <div className="text-[11px] sm:text-xs text-slate-300 uppercase font-semibold tracking-wider">
+              <div className="stat-label text-slate-400 font-sans text-xs uppercase tracking-wider font-semibold">
                 Campaign Clusters
               </div>
-              <div className="text-[28px] sm:text-[32px] font-bold font-mono text-sky-400 leading-none tabular-nums tracking-tight">
+              <div className="stat-value text-3xl sm:text-4xl font-bold font-mono text-sky-400 leading-tight tabular-nums tracking-tight">
                 {campaignsCount}
               </div>
-              <div className="text-xs text-sky-400 font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
+              <div className="small-text text-xs text-sky-400 font-sans font-normal flex items-center gap-1.5 pt-2 border-t border-purple-900/30">
                 <span className="h-1.5 w-1.5 rounded-full bg-sky-500" />
                 Correlated threat hubs
               </div>
@@ -188,14 +189,14 @@ export default function OverviewPage() {
           <div className="lg:col-span-8 bg-[#130D2E]/80 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-5 space-y-4 shadow-xl">
             <div className="flex items-baseline justify-between border-b border-purple-900/40 pb-3">
               <div className="space-y-0.5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-purple-300 font-sans">
+                <span className="eyebrow-text text-xs font-semibold uppercase tracking-wider text-purple-300 font-sans">
                   RADAR TEMPORAL SIGNALS
                 </span>
-                <h3 className="text-base sm:text-lg font-semibold font-display text-white">
+                <h3 className="card-title text-base sm:text-lg font-semibold font-display text-white">
                   Threat Activity Velocity
                 </h3>
               </div>
-              <span className="text-xs text-slate-400 font-sans">Interval: 60m UTC</span>
+              <span className="small-text text-xs text-slate-400 font-sans">Interval: 60m UTC</span>
             </div>
 
             {/* Analytical density bar graph */}
@@ -212,12 +213,12 @@ export default function OverviewPage() {
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between text-[#9CA3AF] text-[12px] pt-3 border-t border-[#1E2638] font-mono">
+              <div className="flex justify-between text-slate-400 text-xs pt-3 border-t border-[#1E2638] font-mono tabular-nums">
                 <span>00:00 UTC</span>
                 <span>06:00 UTC</span>
                 <span>12:00 UTC</span>
                 <span>18:00 UTC</span>
-                <span className="text-[#F6821F] font-medium">Now</span>
+                <span className="text-[#F6821F] font-medium font-sans">Now</span>
               </div>
             </div>
           </div>
@@ -226,22 +227,22 @@ export default function OverviewPage() {
           <div className="lg:col-span-4 bg-[#0E131F] border border-[#1E2638] rounded-xl p-5 space-y-4">
             <div className="flex items-baseline justify-between border-b border-[#1E2638] pb-3">
               <div className="space-y-0.5">
-                <span className="text-[11px] font-mono font-medium uppercase tracking-wider text-[#F6821F]">
+                <span className="eyebrow-text text-xs font-sans font-semibold uppercase tracking-wider text-[#F6821F]">
                   SEVERITY COMPOSITION
                 </span>
-                <h3 className="text-[18px] font-semibold text-[#FFFFFF]">
+                <h3 className="card-title text-base sm:text-lg font-semibold font-display text-white">
                   Risk Distribution
                 </h3>
               </div>
-              <span className="text-[13px] font-mono text-[#9CA3AF]">N = {totalDetected}</span>
+              <span className="data-text text-xs font-mono text-slate-400 tabular-nums">N = {totalDetected}</span>
             </div>
 
-            <div className="space-y-3.5">
+            <div className="space-y-3.5 font-sans">
               {/* Critical */}
               <div className="space-y-1">
-                <div className="flex justify-between text-[13px]">
-                  <span className="text-[#FF4D4D] font-medium">CRITICAL</span>
-                  <span className="text-[#FFFFFF] font-mono tabular-nums">
+                <div className="flex justify-between text-xs sm:text-sm">
+                  <span className="text-[#FF4D4D] font-semibold">CRITICAL</span>
+                  <span className="text-white font-mono text-xs tabular-nums font-medium">
                     {criticalCount} ({totalDetected > 0 ? Math.round((criticalCount / totalDetected) * 100) : 0}%)
                   </span>
                 </div>
@@ -255,9 +256,9 @@ export default function OverviewPage() {
 
               {/* High */}
               <div className="space-y-1">
-                <div className="flex justify-between text-[13px]">
-                  <span className="text-[#F6821F] font-medium">HIGH</span>
-                  <span className="text-[#FFFFFF] font-mono tabular-nums">
+                <div className="flex justify-between text-xs sm:text-sm">
+                  <span className="text-[#F6821F] font-semibold">HIGH</span>
+                  <span className="text-white font-mono text-xs tabular-nums font-medium">
                     {highCount} ({totalDetected > 0 ? Math.round((highCount / totalDetected) * 100) : 0}%)
                   </span>
                 </div>
@@ -271,9 +272,9 @@ export default function OverviewPage() {
 
               {/* Medium */}
               <div className="space-y-1">
-                <div className="flex justify-between text-[13px]">
-                  <span className="text-[#FBBF24] font-medium">MEDIUM</span>
-                  <span className="text-[#FFFFFF] font-mono tabular-nums">
+                <div className="flex justify-between text-xs sm:text-sm">
+                  <span className="text-[#FBBF24] font-semibold">MEDIUM</span>
+                  <span className="text-white font-mono text-xs tabular-nums font-medium">
                     {mediumCount} ({totalDetected > 0 ? Math.round((mediumCount / totalDetected) * 100) : 0}%)
                   </span>
                 </div>
@@ -287,9 +288,9 @@ export default function OverviewPage() {
 
               {/* Low */}
               <div className="space-y-1">
-                <div className="flex justify-between text-[13px]">
-                  <span className="text-[#2C7BE5] font-medium">LOW</span>
-                  <span className="text-[#FFFFFF] font-mono tabular-nums">
+                <div className="flex justify-between text-xs sm:text-sm">
+                  <span className="text-[#2C7BE5] font-semibold">LOW</span>
+                  <span className="text-white font-mono text-xs tabular-nums font-medium">
                     {lowCount} ({totalDetected > 0 ? Math.round((lowCount / totalDetected) * 100) : 0}%)
                   </span>
                 </div>
@@ -307,19 +308,19 @@ export default function OverviewPage() {
         {/* ========================================================================= */}
         {/* 3. PRIORITY DETECTIONS TABLE (CLOUDFLARE RADAR FORMAT)                    */}
         {/* ========================================================================= */}
-        <section className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-5 space-y-4">
+        <section className="bg-[#0E131F] border border-[#1E2638] rounded-xl p-5 space-y-4 shadow-xl">
           <div className="flex items-baseline justify-between border-b border-[#1E2638] pb-3">
             <div className="space-y-0.5">
-              <span className="text-[11px] font-mono font-medium uppercase tracking-wider text-[#F6821F]">
+              <span className="eyebrow-text text-xs font-sans font-semibold uppercase tracking-wider text-[#F6821F]">
                 RADAR TRIAGE QUEUE
               </span>
-              <h3 className="text-[18px] font-semibold text-[#FFFFFF]">
+              <h3 className="card-title text-base sm:text-lg font-semibold font-display text-white">
                 Priority Detections
               </h3>
             </div>
             <Link
               href="/incidents"
-              className="text-[13px] font-medium text-[#F6821F] hover:underline transition-colors inline-flex items-center gap-1"
+              className="button-text text-xs sm:text-sm font-semibold text-[#F6821F] hover:underline transition-colors inline-flex items-center gap-1 font-sans"
             >
               <span>All Incidents ({threats.length})</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -327,9 +328,9 @@ export default function OverviewPage() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-[14px]">
+            <table className="w-full text-left text-xs sm:text-sm font-sans">
               <thead>
-                <tr className="border-b border-[#1E2638] text-[#9CA3AF] text-[12px] uppercase tracking-wider font-mono">
+                <tr className="border-b border-[#1E2638] text-slate-400 text-xs uppercase tracking-wider font-sans font-semibold">
                   <th className="py-2.5 pr-3">Severity</th>
                   <th className="py-2.5 px-3">Target Asset</th>
                   <th className="py-2.5 px-3">Vector</th>
@@ -344,7 +345,7 @@ export default function OverviewPage() {
                     <tr key={threat.id} className="group hover:bg-[#111625] transition-colors">
                       <td className="py-3 pr-3">
                         <span
-                          className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium uppercase border ${
+                          className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-sans font-semibold uppercase tracking-wider border ${
                             threat.riskScore >= 80
                               ? 'bg-[#FF4D4D]/15 text-[#FF4D4D] border-[#FF4D4D]/35'
                               : threat.riskScore >= 50
@@ -355,22 +356,22 @@ export default function OverviewPage() {
                           {threat.riskScore >= 80 ? 'CRITICAL' : threat.riskScore >= 50 ? 'HIGH' : 'EVALUATED'}
                         </span>
                       </td>
-                      <td className="py-3 px-3 font-mono text-[13px] text-[#FFFFFF]">
+                      <td className="py-3 px-3 font-mono text-xs sm:text-sm text-white font-medium">
                         {threat.targetAsset}
                       </td>
-                      <td className="py-3 px-3 text-[#9CA3AF] text-[12px] uppercase font-mono">
+                      <td className="py-3 px-3 text-slate-300 text-xs font-sans">
                         {threat.type.replace('_', ' ')}
                       </td>
-                      <td className="py-3 px-3 font-mono text-[13px] text-[#FFFFFF] tabular-nums font-medium">
-                        {threat.riskScore} <span className="text-[#9CA3AF] text-[11px]">/ 100</span>
+                      <td className="py-3 px-3 font-mono text-xs sm:text-sm text-white tabular-nums font-semibold">
+                        {threat.riskScore} <span className="text-slate-400 text-[11px] font-normal">/ 100</span>
                       </td>
-                      <td className="py-3 px-3 text-[13px] text-[#9CA3AF]">
+                      <td className="py-3 px-3 text-xs text-slate-400 font-mono tabular-nums">
                         {new Date(threat.discoveredAt).toLocaleDateString()}
                       </td>
                       <td className="py-3 pl-3 text-right">
                         <Link
                           href={`/threat/${threat.id}`}
-                          className="text-[13px] font-medium text-[#F6821F] hover:underline transition-colors inline-flex items-center gap-1 group-hover:translate-x-0.5"
+                          className="button-text text-xs sm:text-sm font-semibold text-[#F6821F] hover:underline transition-colors inline-flex items-center gap-1 group-hover:translate-x-0.5 font-sans"
                         >
                           <span>Investigate</span>
                           <ChevronRight className="h-3.5 w-3.5" />
@@ -380,9 +381,9 @@ export default function OverviewPage() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={6} className="py-10 text-center text-[#9CA3AF] text-[14px]">
+                    <td colSpan={6} className="py-10 text-center text-slate-400 text-sm font-sans">
                       No digital impersonation entities currently detected for {brand?.name || 'this brand'}.{' '}
-                      <Link href="/check" className="text-[#F6821F] hover:underline ml-1">
+                      <Link href="/check" className="text-[#F6821F] hover:underline ml-1 font-semibold">
                         Run a check to discover candidates →
                       </Link>
                     </td>
